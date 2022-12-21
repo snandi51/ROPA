@@ -15,3 +15,5 @@ sqlalchemy-utils
 sqlalchemy
 pyodbc
 whitenoise
+pypdf2
+reportlab
