@@ -1,0 +1,474 @@
+{% extends 'base-figma.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<link href="static/assets/css/style-figma.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:600|Noto+Sans|Open+Sans:400,700&display=swap');
+    *{
+      margin: 0;
+      padding: 0;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    .container{
+      position: relative;
+      width: 400px;
+      padding: 60px 40px;
+    }
+    .input-field, form .button{
+      margin: 25px 0;
+      position: relative;
+      height: 35px;
+      width: 100%;
+    }
+    .input-field input{
+      height: 100%;
+      width: 100%;
+      border: 1px solid silver;
+      padding-left: 15px;
+      outline: none;
+      font-size: 19px;
+      transition: .4s;
+    }
+    input:focus{
+      border: 1px solid #1DA1F2;
+    }
+    .input-field label, span.show{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .input-field label{
+      left: 15px;
+      pointer-events: none;
+      color: grey;
+      font-size: 14px;
+      transition: .3s;
+    }
+    span.show{
+      right: 20px;
+      color: #111;
+      font-size: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+      visibility: hidden;
+      font-family: 'Open Sans', sans-serif;
+    }
+    input:valid ~ span.show{
+      visibility: visible;
+    }
+    input:focus ~ label,
+    input:valid ~ label{
+      transform: translateY(-25px);
+      background: rgba(245, 245, 248, 10);
+      font-size: 12px;
+      color: #1DA1F2;
+    }
+    form .button{
+      margin-top: 30px;
+      overflow: hidden;
+      z-index: 111;
+    }
+    .button .inner{
+      position: absolute;
+      height: 100%;
+      width: 300%;
+      left: -100%;
+      z-index: -1;
+      transition: all .4s;
+      background: -webkit-linear-gradient(right,#00dbde,#fc00ff,#00dbde,#fc00ff);
+    }
+    .button:hover .inner{
+      left: 0;
+    }
+    .button button{
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: none;
+      outline: none;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .container .auth{
+      margin: 35px 0 20px 0;
+      font-size: 19px;
+      color: grey;
+    }
+    .links{
+      display: flex;
+      cursor: pointer;
+    }
+    .facebook, .google{
+      height: 40px;
+      width: 100%;
+      border: 1px solid silver;
+      border-radius: 3px;
+      margin: 0 10px;
+      transition: .4s;
+    }
+    .facebook:hover{
+      border: 1px solid #4267B2;
+    }
+    .google:hover{
+      border: 1px solid #dd4b39;
+    }
+    .facebook i, .facebook span{
+      color: #4267B2;
+    }
+    .google i, .google span{
+      color: #dd4b39;
+    }
+    .links i{
+      font-size: 23px;
+      line-height: 40px;
+      margin-left: -90px;
+    }
+    .links span{
+      position: absolute;
+      font-size: 17px;
+      font-weight: bold;
+      padding-left: 8px;
+      font-family: 'Open Sans', sans-serif;
+    }
+    .signup{
+      margin-top: 50px;
+      font-family: 'Noto Sans', sans-serif;
+    }
+    .signup a{
+      color: #3498db;
+      text-decoration: none;
+    }
+    .signup a:hover{
+      text-decoration: underline;
+    }
+
+              .search {
+              width: 292px;
+              height:40px;
+              box-sizing: border-box;
+              border: 2px solid #ccc;
+              border-radius: 4px;
+              font-size: 16px;
+              background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat 13px center;
+
+              background-position: 10px 10px;
+              background-repeat: no-repeat;
+              margin:24px 0px 0px 32px;
+              padding: 12px 20px 12px 40px; }
+
+              .drop-down {
+              width: 108px;
+              height:40px;
+              margin-left:16px;
+              box-sizing: border-box;
+              border: 2px solid #ccc;
+              border-radius: 4px;
+              font-size: 16px;
+              background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat 13px center;
+
+              background-position: 10px 10px;
+              background-repeat: no-repeat;
+              margin:24px 0px 0px 32px;
+              padding: 12px 20px 12px 40px; }
+
+              .Filterbox{
+                    background-image: transparent url(static/assets/img/ROPA-Img/drop-down.png') no-repeat 13px center;
+                    background-repeat:no-repeat;
+              }
+              .Addnew-button{
+              box-sizing: border-box;
+
+                /* Auto layout */
+
+
+                width: 120px;
+                height: 40px;
+
+                /* Primary/Palette/Primary */
+                background: #12ABDB;
+                border: 1px solid #0E88AF;
+                border-radius: 4px;
+                text-align: center;
+
+                align-items: center;
+
+                /* Inside auto layout */
+
+                color: rgba(255, 255, 255, 0.95);
+                flex: none;
+                order: 0;
+                flex-grow: 0;
+                font-family: 'Ubuntu';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 14px;
+                Letter: 0.75 px;
+                line-height: 16px;
+              }
+
+              .close {
+                  color: #aaaaaa;
+                  float: right;
+                  margin-right:2%;
+                  font-size: 28px;
+                  font-weight: bold;
+                }
+            .close:hover,
+             .close:focus
+                 {
+                  color: #000;
+
+                  text-decoration: none;
+                  cursor: pointer;
+                   }
+
+                                 /* The Modal (background) */
+                    .modal {
+                      display: none; /* Hidden by default */
+                      position: fixed; /* Stay in place */
+                      z-index: 1; /* Sit on top */
+                      padding-top: 100px; /* Location of the box */
+                      left: 0;
+                      bottom: 0;
+                      width: 100%; /* Full width */
+                      height: 100%; /* Full height */
+                      overflow: auto; /* Enable scroll if needed */
+                      background-color: rgb(0,0,0); /* Fallback color */
+                      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                    }
+
+                    /* Modal Content */
+
+
+
+
+
+</style>
+
+<script>
+
+    function pdf_or_excel(){
+        getSelectValue = document.getElementById("cars").value;
+        if(getSelectValue == "1"){
+            document.getElementById("download_csv").click();
+        }else{
+           console.log('pdf')
+        }
+    }
+</script>
+
+
+
+
+              <div id="myModal" class="modal" style="overflow-x: hidden;overflow-y: hidden;margin-top:0px;">
+
+
+
+
+
+
+
+
+<!--        <button type="submit" class="button" style=" margin-top: 240px;  margin-left: 600px;"><span></span></button>-->
+      <p style="margin-top:55px; margin-left: 42px;"></p>
+
+
+        </div>
+
+
+
+          </div>
+
+
+   <footer style="height:50px;  position: fixed;width:570px; right: 0;bottom: 0; background: #FFFFFF;border: 1px solid #FFFFFF;">
+                       <button type="submit" style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:25px; margin-top:10px;  width:240px; height:30px;">
+                           <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Delete</span></button>
+                          <button type="submit"  style="background: #12ABDB;border: 1px solid #0E88AF;border-radius: 4px; margin-left:30px; margin-top:10px;  width:240px; height:30px;">
+                              <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Add</span></button>
+
+                </footer>
+
+
+</div>
+
+
+<body class="body-class" style="overflow-y: hidden; overflow-x: hidden;">
+  <!-- The dots/circles -->
+
+
+
+
+  <div class="alt-nav" style="width:1372px;height:80px;">
+
+    <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 102px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>
+    <p style="margin-left:80px;margin-bottom:143px;margin-top:0;font-weight: 500;line-height: 28px;font-size: 24px;">&#60; Business Glossary </p><br>
+
+
+
+</div>
+
+
+
+
+<div class="login-box" style="top:165px;left:400px;  width:1130px;min-height:430px;overflow-y: scroll; overflow-x:hidden;">
+
+                <input type="text" name="search" placeholder="Search.." class="search" id="myInput" onkeyup="myFunction()">
+
+
+
+                <input type="text" name="filter" style="width:108px;border: 2px solid #ccc; margin-left:16px; box-sizing: border-box; height:40px;" placeholder="   Filter        &#x25BC;" class="Filterbox" id="filter" onkeyup="myFunction()" >
+
+<!--                <input type="text" name="Download" style="width:168px; height:40px;border: 2px solid #ccc; margin-right:5px; margin-left:357px;" placeholder="   Download As     &#x25BC;">-->
+<!--               <button class="Addnew-button" id="myBtn" style="padding-left:0px;">-->
+                   <select onchange="pdf_or_excel()" name="cars" id="cars" style="width:168px; height:40px;border: 2px solid #ccc; margin-right:5px; margin-left:357px;">
+                      <option value="0" selected>Download As</option>
+                      <option  value="1">Excel</option>
+                      <option  value="2">PDF</option>
+                   </select>
+                    <button class="Addnew-button" id="myBtn" style="padding-left:0px;">
+                    <span style="font-size:30px; margin-right:10px;">&plus; </span>  Add New
+                </button>
+                <a href="static/assets/bs_glossary_df.csv" id="download_csv" download hidden>download</a>
+
+
+
+    <div class="table" style="margin-top:15px;">
+                <table id="myTable" class="paginated table table-striped table-hover" style="margin-left:32px;width:1100px;background: #E0E0E0;">
+          <thead>
+                <tr>
+                    <th scope="col">Business Term</th>
+                    <th scope="col">Definition</th>
+                    <th scope="col">Data Attribute</th>
+                    <th scope="col">System</th>
+                    <th scope="col">Data Domain</th>
+                    <th scope="col">Line of Business</th>
+                    <th scope="col">Status</th>
+                </tr>
+         </thead>
+                    <tbody>
+
+                        {% for temp in bga %}
+                            <tr>
+                              <td scope="row">{{temp.businessterm}}</td>
+                          <td>{{ temp.definition }}</td>
+                             <td>{{ temp.dataattribute }}</td>
+                              <td>{{ temp.system }}</td>
+                              <td>{{ temp.datadomain }}</td>
+                              <td>{{ temp.lineofbusiness }}</td>
+                              <td>{{ temp.status }}</td>
+                            </tr>
+                         {% endfor %}
+
+
+
+
+
+     </div>
+
+
+
+
+</div >
+
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+<script>
+    function myFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+</script>
+
+
+<!--<script>-->
+<!--    function myFunction = () =>{-->
+
+<!--      let filter = document.getElementById("myInput").value;.toUpperCase();-->
+<!--      filter = input.value.toUpperCase();-->
+<!--      let myTable = document.getElementById("myTable");-->
+<!--      tr = myTable.getElementsByTagName("");-->
+<!--      for (i = 0; i < tr.length; i++) {-->
+<!--        td = tr[i].getElementsByTagName("td")[0];-->
+<!--        td = tr[i].getElementsByTagName("td")[1];-->
+<!--        td = tr[i].getElementsByTagName("td")[2];-->
+<!--        td = tr[i].getElementsByTagName("td")[3];-->
+<!--        td = tr[i].getElementsByTagName("td")[4];-->
+<!--        td = tr[i].getElementsByTagName("td")[5];-->
+<!--        td = tr[i].getElementsByTagName("td")[6];-->
+<!--        if (td) {-->
+<!--          txtValue = td.textContent || td.innerText;-->
+<!--          if (txtValue.toUpperCase().indexOf(filter) > -1) {-->
+<!--            tr[i].style.display = "";-->
+<!--          } else {-->
+<!--            tr[i].style.display = "none";-->
+<!--          }-->
+<!--        }-->
+<!--      }-->
+<!--    }-->
+
+<!--</script>-->
+
+{% endblock %}
+
+
+</body>
+
+
+
+</html>

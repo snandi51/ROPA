@@ -1,0 +1,80 @@
+{% extends 'base-figma.html' %}
+{% block content %}
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .modal2 {
+<!--                          display:none;-->
+                          position: fixed; /* Stay in place */
+                          z-index: 1; /* Sit on top */
+                          padding-top: 100px; /* Location of the box */
+                          left: 0;
+                          bottom: 0;
+                          width: 100%; /* Full width */
+                          height: 100%; /* Full height */
+                          overflow: auto; /* Enable scroll if needed */
+                          background-color: rgb(0,0,0); /* Fallback color */
+                          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                        }
+               .close2 {
+                      color: #aaaaaa;
+                      float: right;
+                      font-size: 28px;
+                      font-weight: bold;
+                    }
+
+                    .close2:hover,
+                    .close2:focus {
+                      color: #000;
+                      text-decoration: none;
+                      cursor: pointer;
+                    }
+    </style>
+</head>
+<body>
+
+
+  <form method="POST" id="bform_screen12" class="business_form12" action="delete">
+      {% csrf_token %}
+
+      <div id="myModal2" class="modal2" style="overflow-x: hidden;overflow-y: hidden;margin-top:0px;">
+          <div class="rect-4" style="height:575px; max-width:572px;  margin-top:-140px;margin-left:43.45%; overflow-x: hidden;overflow-y: scroll;border: 1px solid #FFFFFF; border-radius: 0px;">
+              <span class="close1">&times;</span>
+              <div style="position:absolute; left:7%; ">
+                  <div style="margin_top:4%;">
+
+                      <button type="button" onclick="history.back()" style="display: none; color:Black" id="back-btn" >  </button>
+                      <a href="#" style="color:green; margin-left:80px;"><img src="static/assets/img/Icon.png" onclick="document.getElementById('back-btn').click()"  alt="Back"/><b>BACK</b>
+                       <lable class="org" style="left:-2%;position:absolute;font-family: 'Ubuntu';font-style: normal;font-weight: 500;
+                    font-size: 16px;line-height: 24px;" >  Cancel Business Term </lable>
+                  </div>
+                    <p style="margin-top:15%"></p>
+                    <img style="top:4%;" src="static/assets/img/ROPA-Img/Group 14400.png">
+                      <p>Are you sure you want to cancel?</p>
+                      <p>All data you entered will be discarded.</p>
+
+              </div>
+
+
+          </div>
+      </div>
+                <footer style="height:50px;  position: fixed;width:570px; right: 0;bottom: 0; background: #FFFFFF;border: 1px solid #FFFFFF;">
+               <button type="submit"  onClick = "" id="no"  style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:25px; margin-top:10px;  width:240px; height:30px;">
+                           <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">No</span></button>
+              <button type="submit"  style="background: #12ABDB;border: 1px solid #0E88AF;border-radius: 4px; margin-left:30px; margin-top:10px;  width:240px; height:30px;">
+                  <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Yes</span>
+              </button>
+
+          </footer>
+
+  </form>
+
+{% endblock %}
+
+
+</body>
+</html>

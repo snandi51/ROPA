@@ -1,0 +1,785 @@
+{% extends 'base-figma.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<link href="static/assets/css/style-figma.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:600|Noto+Sans|Open+Sans:400,700&display=swap');
+    *{
+      margin: 0;
+      padding: 0;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    .container{
+      position: relative;
+      width: 400px;
+      padding: 60px 40px;
+    }
+    .input-field, form .button{
+      margin: 25px 0;
+      position: relative;
+      height: 35px;
+      width: 100%;
+    }
+    .input-field input{
+      height: 100%;
+      width: 100%;
+      border: 1px solid silver;
+      padding-left: 15px;
+      outline: none;
+      font-size: 19px;
+      transition: .4s;
+    }
+    input:focus{
+      border: 1px solid #1DA1F2;
+    }
+    .input-field label, span.show{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .input-field label{
+      left: 15px;
+      pointer-events: none;
+      color: grey;
+      font-size: 14px;
+      transition: .3s;
+    }
+    span.show{
+      right: 20px;
+      color: #111;
+      font-size: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+      visibility: hidden;
+      font-family: 'Open Sans', sans-serif;
+    }
+    input:valid ~ span.show{
+      visibility: visible;
+    }
+    input:focus ~ label,
+    input:valid ~ label{
+      transform: translateY(-25px);
+      background: rgba(245, 245, 248, 10);
+      font-size: 12px;
+      color: #1DA1F2;
+    }
+    form .button{
+      margin-top: 30px;
+      overflow: hidden;
+      z-index: 111;
+    }
+    .button .inner{
+      position: absolute;
+      height: 100%;
+      width: 300%;
+      left: -100%;
+      z-index: -1;
+      transition: all .4s;
+      background: -webkit-linear-gradient(right,#00dbde,#fc00ff,#00dbde,#fc00ff);
+    }
+    .button:hover .inner{
+      left: 0;
+    }
+    .button button{
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: none;
+      outline: none;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .container .auth{
+      margin: 35px 0 20px 0;
+      font-size: 19px;
+      color: grey;
+    }
+    .links{
+      display: flex;
+      cursor: pointer;
+    }
+    .facebook, .google{
+      height: 40px;
+      width: 100%;
+      border: 1px solid silver;
+      border-radius: 3px;
+      margin: 0 10px;
+      transition: .4s;
+    }
+    .facebook:hover{
+      border: 1px solid #4267B2;
+    }
+    .google:hover{
+      border: 1px solid #dd4b39;
+    }
+    .facebook i, .facebook span{
+      color: #4267B2;
+    }
+    .google i, .google span{
+      color: #dd4b39;
+    }
+    .links i{
+      font-size: 23px;
+      line-height: 40px;
+      margin-left: -90px;
+    }
+    .links span{
+      position: absolute;
+      font-size: 17px;
+      font-weight: bold;
+      padding-left: 8px;
+      font-family: 'Open Sans', sans-serif;
+    }
+    .signup{
+      margin-top: 50px;
+      font-family: 'Noto Sans', sans-serif;
+    }
+    .signup a{
+      color: #3498db;
+      text-decoration: none;
+    }
+    .signup a:hover{
+      text-decoration: underline;
+    }
+
+              .search {
+              width: 292px;
+              height:40px;
+              box-sizing: border-box;
+              border: 2px solid #ccc;
+              border-radius: 4px;
+              font-size: 16px;
+              background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat 13px center;
+
+              background-position: 10px 10px;
+              background-repeat: no-repeat;
+              margin:24px 0px 0px 32px;
+              padding: 12px 20px 12px 40px; }
+
+              .drop-down {
+              width: 108px;
+              height:40px;
+              margin-left:16px;
+              box-sizing: border-box;
+              border: 2px solid #ccc;
+              border-radius: 4px;
+              font-size: 16px;
+              background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat 13px center;
+
+              background-position: 10px 10px;
+              background-repeat: no-repeat;
+              margin:24px 0px 0px 32px;
+              padding: 12px 20px 12px 40px; }
+
+              .Filterbox{
+                    background-image: transparent url(static/assets/img/ROPA-Img/drop-down.png') no-repeat 13px center;
+                    background-repeat:no-repeat;
+              }
+              .Addnew-button{
+              box-sizing: border-box;
+
+                /* Auto layout */
+
+
+                width: 120px;
+                height: 40px;
+
+                /* Primary/Palette/Primary */
+                background: #12ABDB;
+                border: 1px solid #0E88AF;
+                border-radius: 4px;
+                text-align: center;
+
+                align-items: center;
+
+                /* Inside auto layout */
+
+                color: rgba(255, 255, 255, 0.95);
+                flex: none;
+                order: 0;
+                flex-grow: 0;
+                font-family: 'Ubuntu';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 14px;
+                Letter: 0.75 px;
+                line-height: 16px;
+              }
+
+                    .close {
+                      color: #aaaaaa;
+                      float: right;
+                      font-size: 28px;
+                      font-weight: bold;
+                    }
+
+                    .close:hover,
+                    .close:focus {
+                      color: #000;
+                      text-decoration: none;
+                      cursor: pointer;
+                    }
+
+                   .close1 {
+                      color: #aaaaaa;
+                      float: right;
+                      font-size: 28px;
+                      font-weight: bold;
+                    }
+
+                    .close1:hover,
+                    .close1:focus {
+                      color: #000;
+                      text-decoration: none;
+                      cursor: pointer;
+                    }
+
+                    .first-column:focus,
+                    .first-column:hover{
+                      cursor: pointer;
+                    }
+
+                                 /* The Modal (background) */
+                    .modal {
+                      display:none;
+                      position: fixed; /* Stay in place */
+                      z-index: 1; /* Sit on top */
+                      padding-top: 100px; /* Location of the box */
+                      left: 0;
+                      bottom: 0;
+                      width: 100%; /* Full width */
+                      height: 100%; /* Full height */
+                      overflow: auto; /* Enable scroll if needed */
+                      background-color: rgb(0,0,0); /* Fallback color */
+                      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                    }
+
+                     .modal1 {
+                      display:none;
+                      position: fixed; /* Stay in place */
+                      z-index: 1; /* Sit on top */
+                      padding-top: 100px; /* Location of the box */
+                      left: 0;
+                      bottom: 0;
+                      width: 100%; /* Full width */
+                      height: 100%; /* Full height */
+                      overflow: auto; /* Enable scroll if needed */
+                      background-color: rgb(0,0,0); /* Fallback color */
+                      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                    }
+
+                    /* Modal Content */
+
+
+
+
+</style>
+
+
+
+
+
+<body class="body-class" style="overflow-y: hidden;">
+  <!-- The dots/circles -->
+
+
+
+
+  <div class="alt-nav" style="width:1372px;height:80px;">
+
+    <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 210px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>
+    <p style="margin-left:190px;margin-bottom:143px;margin-top:0;font-weight: 500;line-height: 28px;font-size: 24px;">&#60; Business Glossary </p><br>
+
+
+
+</div>
+
+
+
+
+  <div class="login-box" style="top:165px;left:400px;  width:1165px;min-height:500px;overflow-y: scroll;">
+
+      <input type="text" name="search" placeholder="Search.." class="search">
+      <input type="text" name="filter" style="width:108px;border: 2px solid #ccc; margin-left:16px; box-sizing: border-box; height:40px;" placeholder="   Filter        &#x25BC;" class="Filterbox">
+      <input type="text" name="Download" style="width:168px; height:40px;border: 2px solid #ccc; margin-right:5px; margin-left:357px;" placeholder="   Download As     &#x25BC;">
+
+      <button class="Addnew-button" id="myBtn" style="padding-left:0px;">
+          <span style="font-size:30px; margin-right:10px;">&plus; </span>  Add New
+      </button>
+
+      <div class="table" style="margin-top:15px;">
+          <table id="dbtable"  class="paginated table table-striped table-hover" style="margin-left:32px;width:1100px;background: #E0E0E0;">
+              <thead>
+              <tr>
+                  <th scope="col">Business Term</th>
+                  <th scope="col">Definition</th>
+                  <th scope="col">Data Attribute</th>
+                  <th scope="col">System</th>
+                  <th scope="col">Data Domain</th>
+                  <th scope="col">Line of Business</th>
+                  <th scope="col">Status</th>
+              </tr>
+              </thead>
+              <tbody>
+
+              {% for temp in bg_dict %}
+              <tr>
+                  <td scope="row" id='Myvar' onclick="Mybtn1('{{temp.bgid}}')" class="first-column">{{temp.businessterm}}</td>
+
+<!--                    <td scope="row" ><button onclick="get_id('{{temp.bgid}}')" >{{temp.businessterm}}</button></td>-->
+<!--                  <td scope="row" id="bg{{temp.businessterm}}" class="first-column" >{{temp.businessterm}}</a></td>-->
+                  <td>{{ temp.definition }}</td>
+                  <td>{{ temp.dataattribute }}</td>
+                  <td>{{ temp.system }}</td>
+                  <td>{{ temp.datadomain }}</td>
+                  <td>{{ temp.lineofbusiness }}</td>
+                  <td>{{ temp.status }}</td>
+              </tr>
+              {% endfor %}
+      </div>
+
+
+
+
+  </div >
+
+
+
+  <form method="POST" id="bform_screen1" class="business_form" action="test">
+      {% csrf_token %}
+
+
+      <div id="myModal" class="modal" style="overflow-x: hidden;overflow-y: hidden;margin-top:0px;">
+          <div class="rect-4" style="height:575px; max-width:572px;  margin-top:-140px;margin-left:43.45%; overflow-x: hidden;overflow-y: scroll;border: 1px solid #FFFFFF; border-radius: 0px;">
+              <span class="close">&times;</span>
+              <div style="position:absolute; left:7%; ">
+                  <div>
+                      <lable class="org" style="left:-2%;position:absolute;font-family: 'Ubuntu';font-style: normal;font-weight: 500;
+                    font-size: 16px;line-height: 24px;" >View Business Term Details</lable>
+                  </div>
+
+                  <div class="input-1 col " style="padding-top: 2%;left:-5%; margin-top:15%;">
+                      <label class="label-top"
+                             style="font-family: 'Ubuntu';
+                    font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);">
+                          Business Term</label>
+                      <input type="text" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="businessterm" id="businessterm_add"
+                             placeholder="Account Password" >
+                  </div>
+
+                  <div class="input-1 col " style="left: -5%; margin-top:4%;">
+                      <label class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);">Data Attribute</label>
+                      <input type="text" name="dataattribute" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="dataattribute_add" placeholder="Lorem Ipsum">
+                  </div>
+
+
+                  <div class="input-1 col" style="left: -5%; margin-top:9.8%;">
+                      <label  class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);"
+                      >Definition</label>
+                      <input style="box-sizing: border-box;width: 456px;height: 90px;background: #FFFFFF;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" type="text" name="definition" id="definition_add"
+                             placeholder="Describe the meaning of the term with respect to the business">
+                  </div>
+
+                  <div class="input-1 col " style="left: -5%; margin-top:12%;">
+                      <label  class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);"
+                      >System</label>
+                      <input type="text" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="system"  id="system_add"
+                             placeholder="type something">
+                  </div>
+                  <div class="input-1 col " style="left: -5%;margin-top:4%;">
+                      <label  class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);"
+                      >Classification</label>
+                      <!--        <input type="text" name="email" style="margin-top: 5px;" class="input-master" id="inputPassword" placeholder="GDPR">-->
+                      <select id="classification_add" name="classification"; style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;">
+                          <option value="volvo">GDPR</option>
+                          <option value="saab">Saab</option>
+                          <option value="fiat">Fiat</option>
+                          <option value="audi">Audi</option>
+                      </select>
+                  </div>
+
+                  <div class="input-1 col " style="left: -5%; margin-top:4%;">
+                      <label  class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);"
+                      >Domain</label>
+                      <input type="text" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="datadomain"  id="datadomain_add"
+                             placeholder="Lorem ipsum" >
+                  </div>
+
+
+                  <div class="input-1 col " style="left: -5%;margin-top:4%;">
+                      <label  class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);width:300px;"
+                      >Line of Business</label>
+                      <input type="text" name="lineofbusiness" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="lineofbusiness_add" placeholder="lorem ipsum">
+                  </div>
+
+
+                  <div class="input-1 col " style="left: -5%;margin-top:4%;">
+                      <label  class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);"
+                      >Status</label>
+                      <input type="text" name="status" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="status_add" placeholder="Approved">
+                  </div>
+
+                  <div class="input-1 col " style="left: -5%;margin-top:4%;">
+                      <label  class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);width:300px;"
+                      >Created by</label>
+                      <input type="text" name="createdby" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;"class="input-master" id="createdby_add" placeholder="lorem ipsum">
+                  </div>
+
+                  <p style="margin-top:55px; margin-left: 42px;"></p>
+              </div>
+          </div>
+          <!--                  <form method="POST" id="bform_screen1" class="business_form" action="test">-->
+          <!--                     {% csrf_token %}-->
+          <footer style="height:50px;  position: fixed;width:570px; right: 0;bottom: 0; background: #FFFFFF;border: 1px solid #FFFFFF;">
+              <button  style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:25px; margin-top:10px;  width:240px; height:30px;">
+                  <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Cancel</span></button>
+              <button type="submit"  style="background: rgba(39, 41, 54, 0.22);border: 1px solid #0C7799;border-radius: 4px; margin-left:30px; margin-top:10px;  width:240px; height:30px;" id="add_button" onchange="colorChange()" >
+                  <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Add</span>
+              </button>
+
+          </footer>
+
+            </div>
+
+  </form>
+
+
+
+  <form method="POST" id="bform_screen11" class="business_form1" action="edit">
+      {% csrf_token %}
+
+      <div id="myModal1" class="modal1" style="overflow-x: hidden;overflow-y: hidden;margin-top:0px;">
+          <div class="rect-4" style="height:575px; max-width:572px;  margin-top:-140px;margin-left:43.45%; overflow-x: hidden;overflow-y: scroll;border: 1px solid #FFFFFF; border-radius: 0px;">
+              <span class="close1">&times;</span>
+              <div style="position:absolute; left:7%; ">
+                  <div>
+                      <lable class="org" style="left:-2%;position:absolute;font-family: 'Ubuntu';font-style: normal;font-weight: 500;
+                    font-size: 16px;line-height: 24px;" >View Business Term Details</lable>
+                  </div>
+
+                  <div class="input-1 col " style="padding-top: 2%;left:-5%; margin-top:15%;">
+                      <label for="inputPassword" class="label-top"
+                             style="font-family: 'Ubuntu';
+                    font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);">
+                          Business Term</label>
+                      <input type="text" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="businessterm" id="businessterm_edit"
+                             placeholder="Account Password" >
+                  </div>
+
+                  <div class="input-1 col " style="left: -5%; margin-top:4%;">
+                      <label for="inputPassword" class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);">Data Attribute</label>
+                      <input type="text" name="dataattribute" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="dataattribute_edit" placeholder="Lorem Ipsum">
+                  </div>
+
+
+                  <div class="input-1 col" style="left: -5%; margin-top:9.8%;">
+                      <label for="inputPassword" class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);"
+                      >Definition</label>
+                      <input style="box-sizing: border-box;width: 456px;height: 90px;background: #FFFFFF;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" type="text" name="definition" id="definition_edit"
+                             placeholder="Describe the meaning of the term with respect to the business">
+                  </div>
+
+                  <div class="input-1 col " style="left: -5%; margin-top:12%;">
+                      <label for="inputPassword" class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);"
+                      >System</label>
+                      <input type="text" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="system"  id="system_edit"
+                             placeholder="type something">
+                  </div>
+<!--                  <div class="input-1 col " style="left: -5%;margin-top:4%;">-->
+<!--                      <label for="inputPassword" class="label-top"-->
+<!--                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;-->
+<!--                    color: rgba(39, 41, 54, 0.85);"-->
+<!--                      >Classification</label>-->
+<!--                      &lt;!&ndash;        <input type="text" name="email" style="margin-top: 5px;" class="input-master" id="inputPassword" placeholder="GDPR">&ndash;&gt;-->
+<!--                      <select id="classification_edit" name="inputPassword"; style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;-->
+<!--        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;">-->
+<!--                          <option value="volvo">GDPR</option>-->
+<!--                          <option value="saab">Saab</option>-->
+<!--                          <option value="fiat">Fiat</option>-->
+<!--                          <option value="audi">Audi</option>-->
+<!--                      </select>-->
+<!--                  </div>-->
+
+                  <div class="input-1 col " style="left: -5%; margin-top:4%;">
+                      <label for="inputPassword" class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);"
+                      >Domain</label>
+                      <input type="text" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="datadomain"  id="datadomain_edit"
+                             placeholder="Lorem ipsum" >
+                  </div>
+
+
+                  <div class="input-1 col " style="left: -5%;margin-top:4%;">
+                      <label for="inputPassword" class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);width:300px;"
+                      >Line of Business</label>
+                      <input type="text" name="lineofbusiness" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="lineofbusiness_edit" placeholder="lorem ipsum">
+                  </div>
+
+
+                  <div class="input-1 col " style="left: -5%;margin-top:4%;">
+                      <label for="inputPassword" class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);"
+                      >Staus</label>
+                      <input type="text" name="status" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="status_edit" placeholder="Approved">
+                  </div>
+
+                  <div class="input-1 col " style="left: -5%;margin-top:4%;">
+                      <label for="inputPassword" class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);width:300px;"
+                      >Created by</label>
+                      <input type="text" name="createdby" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;"class="input-master" id="Createdby_edit" placeholder="lorem ipsum">
+                  </div>
+
+                  <input type="text" name="bgid"  id="bgid_edit" placeholder="lorem ipsum" style="display:none;">
+
+
+                  <p style="margin-top:55px; margin-left: 42px;"></p>
+              </div>
+          </div>
+          <!--                  <form method="POST" id="bform_screen1" class="business_form" action="test">-->
+          <!--                     {% csrf_token %}-->
+          <footer style="height:50px;  position: fixed;width:570px; right: 0;bottom: 0; background: #FFFFFF;border: 1px solid #FFFFFF;">
+               <button type="submit"  onClick = "deleteRow(this)" id="deleterow"  style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:25px; margin-top:10px;  width:240px; height:30px;">
+                           <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Delete</span></button>
+              <button type="submit"  style="background: #12ABDB;border: 1px solid #0E88AF;border-radius: 4px; margin-left:30px; margin-top:10px;  width:240px; height:30px;">
+                  <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Edit</span>
+              </button>
+
+          </footer>
+
+  </form>
+
+
+
+
+</div>
+
+
+  <script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+var btn1 = document.getElementById("myBtn1");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+<!--function myFunction() {-->
+<!--  document.getElementById("myModal");-->
+<!--}-->
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+
+window.onload= function(){
+      console.log("function called")
+      var businessterm_add = document.getElementById("businessterm_add")
+      var dataattribute_add = document.getElementById("dataattribute_add")
+      var definition_add = document.getElementById("definition_add")
+      var system_add = document.getElementById("system_add")
+      var classification_add = document.getElementById("classification_add")
+      var datadomain_add = document.getElementById("datadomain_add")
+      var lineofbusiness_add = document.getElementById("lineofbusiness_add")
+      var status_add = document.getElementById("status_add")
+      var createdby_add = document.getElementById("createdby_add")
+
+
+}
+function colorChange() {
+       if (document.getElementById("createdby_add").value == "") {
+            var x = document.getElementById("add_button").style.background = "green";
+    }
+    else {
+       document.getElementById("add_button").style.background = "blue";
+       document.getElementById("add_button").style.color = "white";
+       document.getElementById("add_button").style.border = "blue";
+      }
+}
+
+
+
+
+// Get the modal
+var modal1 = document.getElementById("myModal1");
+
+
+
+// Get the button that opens the modal
+var btn1 = document.getElementById("Myvar");
+
+function Mybtn1(id){
+    console.log('Hi!')
+    console.log(id)
+    var bg_dict= {{bg_dict|safe}}
+    console.log(bg_dict)
+    console.log('entering index')
+    const index = bg_dict.findIndex(object => {
+        return object.bgid == id;
+    });
+    console.log(index)
+    var edit_dict=bg_dict[index]
+    console.log(edit_dict)
+    if (edit_dict){
+        var businessterm_edit = document.getElementById('businessterm_edit')
+        businessterm_edit.value=edit_dict.businessterm
+        var dataattribute_edit =document.getElementById('dataattribute_edit')
+        dataattribute_edit.value=edit_dict.dataattribute
+        var definition_edit = document.getElementById('definition_edit')
+        definition_edit.value=edit_dict.definition
+        var system_edit = document.getElementById('system_edit')
+        system_edit.value=edit_dict.system
+<!--        var classification_edit = document.getElementById('classification_edit')-->
+<!--        classification_edit.value=edit_dict.dataclassification-->
+        var datadomain_edit = document.getElementById('datadomain_edit')
+        datadomain_edit.value=edit_dict.datadomain
+        var lineofbusiness_edit = document.getElementById('lineofbusiness_edit')
+        lineofbusiness_edit.value=edit_dict.lineofbusiness
+        var status_edit = document.getElementById('status_edit')
+        status_edit.value=edit_dict.status
+        var Createdby_edit = document.getElementById('Createdby_edit')
+        Createdby_edit.value=edit_dict.createdby
+        var bgid_edit = document.getElementById('bgid_edit')
+        bgid_edit.value=edit_dict.bgid
+    }
+
+<!--    a=temp-->
+<!--    console.log(a)-->
+
+    modal1.style.display = "block";
+
+<!--    document.getElementById("businessterm").innerhtml= temp.businessterm;-->
+<!--    const btn1 = document.getElementById("temp").innerText;-->
+<!--    if (a==btn1){-->
+<!--        console.log('Hi!',a)-->
+<!--    }-->
+
+}
+
+// Get the <span> element that closes the modal
+var span1 = document.getElementsByClassName("close1")[0];
+
+function get_id(id){
+console.log(id)
+}
+
+
+<!--// When the user clicks the button, open the modal-->
+<!--btn1.onclick = function() {-->
+<!--  modal1.style.display = "block";-->
+<!--}-->
+
+<!--function myFunction() {-->
+<!--  document.getElementById("myModal");-->
+<!--}-->
+
+// When the user clicks on <span> (x), close the modal
+span1.onclick = function() {
+  modal1.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal1) {
+    modal1.style.display = "none";
+  }
+}
+
+function deleteRow(r) {
+  var i = r.parentNode.parentNode.rowIndex;
+  document.getElementById("dbtable").deleteRow(i);
+}
+
+
+
+
+
+</script>
+
+{% endblock %}
+
+</body>
+
+
+
+</html>

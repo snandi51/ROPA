@@ -1,0 +1,793 @@
+{% extends 'base-figma.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <style>
+.button {
+  border-radius: 4px;
+  background: #12ABDB;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 14px;
+  width: 130px;
+  height: 32px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+ </style>
+<body style="background: linear-gradient(3.47deg, #00649B 13.28%, #66A9CD 93.28%);
+position: static;
+width: 900px;
+height: 1820px;">
+  <link href="static/assets/css/style-figma.css" rel="stylesheet">
+  <div id="main">
+      <script type="text/javascript">
+
+        window.onload = function(){
+            console.log('inside the function')
+            var value_dict = {{value_dict|safe}}
+            console.log(value_dict)
+
+<!--            Disabled all values if Status is Approved-->
+            if (value_dict.status == 'Approved'){
+                if (value_dict.data_processing_project == '0'){
+                    document.getElementById('data_processing_project2').disabled = true;
+                }
+                else{
+                    document.getElementById('data_processing_project').disabled = true;
+                }
+
+                if (value_dict.select_data_process == '1'){
+                    document.getElementById('que_2_opt0').disabled = true;
+                    document.getElementById('que_2_opt2').disabled = true;
+                    document.getElementById('que_2_opt3').disabled = true;
+                    document.getElementById('que_2_opt4').disabled = true;
+                }
+                else if(value_dict.select_data_process == '2'){
+                    document.getElementById('que_2_opt0').disabled = true;
+                    document.getElementById('que_2_opt1').disabled = true;
+                    document.getElementById('que_2_opt3').disabled = true;
+                    document.getElementById('que_2_opt4').disabled = true;
+                }
+                else if(value_dict.select_data_process == '3'){
+                    document.getElementById('que_2_opt0').disabled = true;
+                    document.getElementById('que_2_opt1').disabled = true;
+                    document.getElementById('que_2_opt2').disabled = true;
+                    document.getElementById('que_2_opt4').disabled = true;
+                }
+                else{
+                    document.getElementById('que_2_opt0').disabled = true;
+                    document.getElementById('que_2_opt1').disabled = true;
+                    document.getElementById('que_2_opt2').disabled = true;
+                    document.getElementById('que_2_opt3').disabled = true;
+                }
+
+                if (value_dict.processing_data == '1'){
+                    console.log('Disabled')
+                    document.getElementById('que_3_opt0').disabled = true;
+                    document.getElementById('que_3_opt2').disabled = true;
+                }
+                else{
+                    document.getElementById('que_3_opt0').disabled = true;
+                    document.getElementById('que_3_opt1').disabled = true;
+                }
+
+                if(value_dict.data_processing_involve == '0'){
+                    document.getElementById('div_5').disabled = true;
+                }
+                else{
+                    document.getElementById('div_4').disabled = true;
+                }
+
+                 if(value_dict.automated_decision_making == '0'){
+                    document.getElementById('div_7').disabled = true;
+                }
+                else{
+                    document.getElementById('div_6').disabled = true;
+                }
+
+                if(value_dict.systematic_monitoring == '0'){
+                    document.getElementById('div_9').disabled = true;
+                }
+                else{
+                    document.getElementById('div_8').disabled = true;
+                }
+
+                if(value_dict.process_data_on_large_scale == '0'){
+                    document.getElementById('div_11').disabled = true;
+                }
+                else{
+                    document.getElementById('div_10').disabled = true;
+                }
+
+                if(value_dict.data_processing_involve_reusing_old_dataset == '0'){
+                    document.getElementById('div_14').disabled = true;
+                }
+                else{
+                    document.getElementById('div_13').disabled = true;
+                }
+
+                if(value_dict.vulnerable_data_subjects == '0'){
+                    document.getElementById('div_16').disabled = true;
+                }
+                else{
+                    document.getElementById('div_15').disabled = true;
+                }
+
+                if(value_dict.data_processing_involve_innovative_technologies == '0'){
+                    document.getElementById('div_18').disabled = true;
+                }
+                else{
+                    document.getElementById('div_17').disabled = true;
+                }
+
+                if(value_dict.data_processing_involve_sharing_data_outside_european_union == '0'){
+                    document.getElementById('div_20').disabled = true;
+                }
+                else{
+                    document.getElementById('div_19').disabled = true;
+                }
+
+                if(value_dict.data_processing_involve_collection_personal_information == '0'){
+                    document.getElementById('div_22').disabled = true;
+                }
+                else{
+                    document.getElementById('div_21').disabled = true;
+                }
+
+                if(value_dict.data_processing_involve_third_party == '0'){
+                    document.getElementById('div_24').disabled = true;
+                }
+                else{
+                    document.getElementById('div_23').disabled = true;
+                }
+
+                if(value_dict.data_processing_involve_change_information_is_stored_secured == '0'){
+                    document.getElementById('div_26').disabled = true;
+                }
+                else{
+                    document.getElementById('div_25').disabled = true;
+                }
+
+                if(value_dict.data_procc_involve_chg_personal_data_currently_collected == '0'){
+                    document.getElementById('div_28').disabled = true;
+                }
+                else{
+                    document.getElementById('div_27').disabled = true;
+                }
+
+                 if(value_dict.conducted_DPIA_for_similar_scope_of_service == '0'){
+                    document.getElementById('div_30').disabled = true;
+                }
+                else{
+                    document.getElementById('div_29').disabled = true;
+                }
+
+            }
+
+            if (value_dict != 'undefined'){
+                if(document.getElementsByName('data_processing_project').value == null){
+                document.forms['screening1']['data_processing_project'].value = value_dict.data_processing_project;
+                }
+
+                if(document.getElementsByName('select_data_process').value == null){
+                document.forms['screening1']['select_data_process'].value = value_dict.select_data_process;
+                }
+
+                if(document.getElementsByName('processing_data').value == null){
+                document.forms['screening1']['processing_data'].value = value_dict.processing_data;
+                }
+
+                if(document.getElementsByName('data_processing_involve').value == null){
+                document.forms['screening1']['data_processing_involve'].value = value_dict.data_processing_involve;
+                }
+
+                if(document.getElementsByName('automated_decision_making').value == null){
+                document.forms['screening1']['automated_decision_making'].value = value_dict.automated_decision_making;
+                }
+
+                if(document.getElementsByName('systematic_monitoring').value == null){
+                document.forms['screening1']['systematic_monitoring'].value = value_dict.systematic_monitoring;
+                }
+
+                if(document.getElementsByName('process_data_on_large_scale').value == null){
+                document.forms['screening1']['process_data_on_large_scale'].value = value_dict.process_data_on_large_scale;
+                }
+
+                if(document.getElementsByName('data_processing_involve_reusing_old_dataset').value == null){
+                document.forms['screening1']['data_processing_involve_reusing_old_dataset'].value = value_dict.data_processing_involve_reusing_old_dataset;
+                }
+
+                if(document.getElementsByName('vulnerable_data_subjects').value == null){
+                document.forms['screening1']['vulnerable_data_subjects'].value = value_dict.vulnerable_data_subjects;
+                }
+
+                if(document.getElementsByName('data_processing_involve_innovative_technologies').value == null){
+                document.forms['screening1']['data_processing_involve_innovative_technologies'].value = value_dict.data_processing_involve_innovative_technologies;
+                }
+
+                if(document.getElementsByName('data_processing_involve_sharing_data_outside_european_union').value == null){
+                document.forms['screening1']['data_processing_involve_sharing_data_outside_european_union'].value = value_dict.data_processing_involve_sharing_data_outside_european_union;
+                }
+
+                if(document.getElementsByName('data_processing_involve_collection_personal_information').value == null){
+                document.forms['screening1']['data_processing_involve_collection_personal_information'].value = value_dict.data_processing_involve_collection_personal_information;
+                }
+
+                if(document.getElementsByName('data_processing_involve_third_party').value == null){
+                document.forms['screening1']['data_processing_involve_third_party'].value = value_dict.data_processing_involve_third_party;
+                }
+
+                if(document.getElementsByName('data_processing_involve_change_information_is_stored_secured').value == null){
+                document.forms['screening1']['data_processing_involve_change_information_is_stored_secured'].value = value_dict.data_processing_involve_change_information_is_stored_secured;
+                }
+
+                if(document.getElementsByName('data_procc_involve_chg_personal_data_currently_collected').value == null){
+                document.forms['screening1']['data_procc_involve_chg_personal_data_currently_collected'].value = value_dict.data_procc_involve_chg_personal_data_currently_collected;
+                }
+
+                if(document.getElementsByName('conducted_DPIA_for_similar_scope_of_service').value == null){
+                document.forms['screening1']['conducted_DPIA_for_similar_scope_of_service'].value = value_dict.conducted_DPIA_for_similar_scope_of_service;
+                }
+                console.log("Value replaced successfully")
+            }
+        }
+
+        function toggleInputHide() {
+                console.log('Hide method executed')
+
+                var Asset1 = document.getElementById("Asset1");
+                var sideButton1 = document.getElementById("info-btn1");
+
+                Asset1.style.display = 'none';
+                sideButton1.style.display = 'none'
+
+                var Asset2 = document.getElementById("Asset2");
+                var sideButton2 = document.getElementById("info-btn2");
+                Asset2.style.display = 'none';
+                sideButton2.style.display = 'none'
+
+                var Asset3 = document.getElementById("Asset3");
+                var sideButton3 = document.getElementById("info-btn3");
+                Asset3.style.display = 'none';
+
+                var Asset4 = document.getElementById("Asset4");
+                var sideButton4 = document.getElementById("info-btn4");
+                Asset4.style.display = 'none';
+
+                var Asset5 = document.getElementById("Asset5");
+                var sideButton5 = document.getElementById("info-btn5");
+                Asset5.style.display = 'none';
+
+                var Asset6 = document.getElementById("Asset6");
+                var sideButton6 = document.getElementById("info-btn6");
+                Asset6.style.display = 'none';
+
+                var Asset7 = document.getElementById("Asset7");
+                var sideButton1 = document.getElementById("info-btn1");
+                Asset7.style.display = 'none';
+
+                var Asset8 = document.getElementById("Asset8");
+                var sideButton1 = document.getElementById("info-btn1");
+                Asset8.style.display = 'none';
+
+                var Asset9 = document.getElementById("Asset9");
+                var sideButton1 = document.getElementById("info-btn1");
+                Asset9.style.display = 'none';
+
+                var Asset10 = document.getElementById("Asset10");
+                var sideButton1 = document.getElementById("info-btn1");
+                Asset10.style.display = 'none';
+
+                var Asset11 = document.getElementById("Asset11");
+                Asset11.style.display = 'none';
+
+                var Asset12 = document.getElementById("Asset12");
+                Asset12.style.display = 'none';
+
+                var Asset13 = document.getElementById("Asset13");
+                Asset13.style.display = 'none';
+
+                var Asset14 = document.getElementById("Asset14");
+                Asset14.style.display = 'none';
+
+                var Asset15 = document.getElementById("Asset15");
+                Asset15.style.display = 'none';
+
+                var Asset15 = document.getElementById("Asset16");
+                Asset16.style.display = 'none';
+
+                document.getElementById('screen_1_form').noValidate = 'true';
+        }
+
+        function toggleInputDisplay(){
+            console.log('Display method executed')
+            var Asset1 = document.getElementById("Asset1");
+            Asset1.style.display = 'block';
+
+            var Asset2 = document.getElementById("Asset2");
+            Asset2.style.display = 'block';
+
+            var Asset3 = document.getElementById("Asset3");
+            Asset3.style.display = 'block';
+
+            var Asset4 = document.getElementById("Asset4");
+            Asset4.style.display = 'block';
+
+            var Asset5 = document.getElementById("Asset5");
+            Asset5.style.display = 'block';
+
+            var Asset6 = document.getElementById("Asset6");
+            Asset6.style.display = 'block';
+
+            var Asset7 = document.getElementById("Asset7");
+            Asset7.style.display = 'block';
+
+            var Asset8 = document.getElementById("Asset8");
+            Asset8.style.display = 'block';
+
+            var Asset9 = document.getElementById("Asset9");
+            Asset9.style.display = 'block';
+
+            var Asset10 = document.getElementById("Asset10");
+            Asset10.style.display = 'block';
+
+            var Asset11 = document.getElementById("Asset11");
+            Asset11.style.display = 'block';
+
+            var Asset12 = document.getElementById("Asset12");
+            Asset12.style.display = 'block';
+
+            var Asset13 = document.getElementById("Asset13");
+            Asset13.style.display = 'block';
+
+            var Asset14 = document.getElementById("Asset14");
+            Asset14.style.display = 'block';
+
+            var Asset15 = document.getElementById("Asset15");
+            Asset15.style.display = 'block';
+
+            var Asset15 = document.getElementById("Asset16");
+            Asset16.style.display = 'block';
+        }
+
+
+
+            function toggleText(){
+                var myText=document.getElementById("info");
+                var displaySetting=myText.style.display;
+
+                if(displaySetting == 'none'){
+                    myText.style.display='block';
+                }
+                else{
+                    myText.style.display='none';
+                }
+            }
+            function toggleText1(){
+                var myText=document.getElementById("info1");
+                var displaySetting=myText.style.display;
+
+                if(displaySetting == 'none'){
+                    myText.style.display='block';
+                }
+                else{
+                    myText.style.display='none';
+                }
+            }
+            function toggleText2(){
+                var myText=document.getElementById("info2");
+                var displaySetting=myText.style.display;
+
+                if(displaySetting == 'none'){
+                    myText.style.display='block';
+                }
+                else{
+                    myText.style.display='none';
+                }
+            }
+            function toggleText3(){
+                var myText=document.getElementById("info3");
+                var displaySetting=myText.style.display;
+
+                if(displaySetting == 'none'){
+                    myText.style.display='block';
+                }
+                else{
+                    myText.style.display='none';
+                }
+            }
+            function toggleText4(){
+                var myText=document.getElementById("info4");
+                var displaySetting=myText.style.display;
+
+                if(displaySetting == 'none'){
+                    myText.style.display='block';
+                }
+                else{
+                    myText.style.display='none';
+                }
+            }
+            function toggleText5(){
+                var myText=document.getElementById("info5");
+                var displaySetting=myText.style.display;
+
+                if(displaySetting == 'none'){
+                    myText.style.display='block';
+                }
+                else{
+                    myText.style.display='none';
+                }
+            }
+            function toggleText6(){
+                var myText=document.getElementById("info6");
+                var displaySetting=myText.style.display;
+
+                if(displaySetting == 'none'){
+                    myText.style.display='block';
+                }
+                else{
+                    myText.style.display='none';
+                }
+            }
+            function toggleText7(){
+                var myText=document.getElementById("info7");
+                var displaySetting=myText.style.display;
+
+                if(displaySetting == 'none'){
+                    myText.style.display='block';
+                }
+                else{
+                    myText.style.display='none';
+                }
+            }
+            function toggleText8(){
+                var myText=document.getElementById("info8");
+                var displaySetting=myText.style.display;
+
+                if(displaySetting == 'none'){
+                    myText.style.display='block';
+                }
+                else{
+                    myText.style.display='none';
+                }
+            }
+            function toggleText9(){
+                var myText=document.getElementById("info9");
+                var displaySetting=myText.style.display;
+
+                if(displaySetting == 'none'){
+                    myText.style.display='block';
+                }
+                else{
+                    myText.style.display='none';
+                }
+            }
+            function toggleText10(){
+                var myText=document.getElementById("info10");
+                var displaySetting=myText.style.display;
+
+                if(displaySetting == 'none'){
+                    myText.style.display='block';
+                }
+                else{
+                    myText.style.display='none';
+                }
+            }
+            function toggleText11(){
+                var myText=document.getElementById("info11");
+                var displaySetting=myText.style.display;
+
+                if(displaySetting == 'none'){
+                    myText.style.display='block';
+                }
+                else{
+                    myText.style.display='none';
+                }
+            }
+            function toggleText12(){
+                var myText=document.getElementById("info12");
+                var displaySetting=myText.style.display;
+
+                if(displaySetting == 'none'){
+                    myText.style.display='block';
+                }
+                else{
+                    myText.style.display='none';
+                }
+            }
+            function toggleText13(){
+                var myText=document.getElementById("info13");
+                var displaySetting=myText.style.display;
+
+                if(displaySetting == 'none'){
+                    myText.style.display='block';
+                }
+                else{
+                    myText.style.display='none';
+                }
+            }
+            function toggleText14(){
+                var myText=document.getElementById("info14");
+                var displaySetting=myText.style.display;
+
+                if(displaySetting == 'none'){
+                    myText.style.display='block';
+                }
+                else{
+                    myText.style.display='none';
+                }
+            }
+            function toggleText15(){
+                var myText=document.getElementById("info15");
+                var displaySetting=myText.style.display;
+
+                if(displaySetting == 'none'){
+                    myText.style.display='block';
+                }
+                else{
+                    myText.style.display='none';
+                }
+            }
+      </script>
+      <form method="POST" id="screen_1_form" class="form-horizontal" action="screening1" name="screening1">
+      <div class="alt-nav" style="width: 1263px;">
+        <div style="position: absolute;
+        height: 26px;
+        left: 11.39%;
+        right: 38.75%;
+        top: 32%;
+
+        font-family: 'Ubuntu';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 28px;
+        /* or 117% */
+
+        font-feature-settings: 'pnum' on, 'lnum' on;
+
+        /* Typography/On Surface/High Emphasis */
+
+        color: rgba(39, 41, 54, 0.85);">
+            <a href="javascript:;" onclick="history.back()"><img src="static/assets/img/Icon.png"/></a>
+            ROPA Dashboard
+        </div>
+          <div style="position: absolute;
+        height: 26px;
+        left: 70.39%;
+        top: 40%;">
+        </div>
+          <div style="position: absolute;
+        height: 26px;
+        left: 90.00%;
+        top: 28%;">
+            <input type="reset" id="resetbuttonid" style="display:none;">
+            <a href="javascript:;">
+<!--            <img-->
+<!--            onclick="document.getElementById('resetbuttonid').click()"-->
+<!--            src="static/assets/img/Reset.png"-->
+<!--            alt="reset the form"-->
+<!--            title="Click to reset the form.">-->
+            </a>
+        </div>
+          <div style="position: absolute;
+        height: 26px;
+        left: 62.00%;
+        top: 30%;">
+              <type="submit" class="button" style="margin-left: 220px;"><span> </span></button>
+        </div>
+</div>
+    </div>
+        <!-- Form Name -->
+      <div class="rect-4" style="min-height:1074px; width:850px;">
+        <div style="position:absolute; left:4%; padding-right: 5%;">
+            <div style="padding-top: 2%;">
+                <lable class="org" style="">Organisation Details</lable>
+            </div>
+
+            <div class="form-group">
+                <div class="input-1 col " style="left: 5%; top: 10%;">
+        <label for="inputPassword" class="label-top">Organization</label>
+        <input type="text" style="margin-top: 5px;" name="title" class="input-master" id="inputPassword"
+          placeholder="Name of Organization" required>
+      </div>
+      <div class="input-1 col " style="left: 5%;top: 23%;">
+        <label for="inputPassword" class="label-top">Department</label>
+        <input type="text" name="department" style="margin-top: 5px;" class="input-master" id="inputPassword" placeholder="Lorem ipsum"
+          required>
+      </div>
+
+      </div>
+       <div class="input-1 col" style="left: 5%; top: 34%;">
+        <label for="inputPassword" class="label-top">Date</label>
+        <input style="margin-top: 5px;" type="date" name="date" class="input-master-box" required>
+      </div>
+
+      <div class="input-1 col" style="left: 38%; top: 10%;">
+<!--        <label for="inputPassword" class="label-top">Project Name</label>-->
+<!--        <input style="margin-top: 5px;" type="text" name="role" class="input-master" id="inputPassword" placeholder="eg: Project name"-->
+<!--          required>-->
+
+        <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px;">Business Function Head </label>
+        <input style="margin-top: 5px;" type="text" name="role" class="input-master" id="inputPassword" placeholder="For e.g IT/Admin etc"
+          required>
+      </div>
+
+
+      <div class="input-1 col" style="left: 38%; top: 23%;">
+
+        <label for="inputPassword" class="label-top" style=" width: 140px;font-size:12px;">Business Function</label>
+        <input style="margin-top: 5px; px;" type="text" name="department" class="input-master" id="inputPassword" placeholder="Jon doe " required>
+      </div>
+        <button type="submit" class="button" style=" margin-top: 240px;  margin-left: 600px;"><span></span></button>
+      <p style="margin-top: 270px; margin-left: 42px;"></p>
+    </form>
+
+  </div>
+
+
+
+            <div class="form-group">
+                <div style="padding-top: px;">
+                <lable class="controller" style="">Controller/Processor Details</lable>
+            </div>
+      <div class="col">
+                    <label class="con" style="margin-top:322px; margin-left:80px;"> User Type </label>
+                    <div class="con" style="font-size: 16px; width: 750px; margin-left: -20px; margin-top: -10px;">
+                        <input type="radio"style="margin-left:100px;" id="data_processing_project2" onchange="toggleInputHide()" name="data_processing_project"value="0"required>Controller
+                        <input type="radio" id="data_processing_project2" onchange="toggleInputHide()" name="data_processing_project" value="1" >Processer
+                    </div>
+                <div class="input-1 col " style="left: 8%; top: 40%;">
+        <label for="inputPassword" class="label-top">Name</label>
+        <input type="text" style="margin-top: 5px;" name="title" class="input-master" id="inputPassword"
+          placeholder="Name of Organization" required>
+      </div>
+       <div class="input-1 col " style="left: 8%;top: 48%;">
+        <label for="inputPassword" class="label-top">Email</label>
+        <input type="text" name="department" style="margin-top: 5px;" class="input-master" id="inputPassword" placeholder="Lorem ipsum"
+          required>
+      </div>
+        <div class="input-1 col" style="left: 38%; top: 40%;">
+<!--        <label for="inputPassword" class="label-top">Project Name</label>-->
+<!--        <input style="margin-top: 5px;" type="text" name="role" class="input-master" id="inputPassword" placeholder="eg: Project name"-->
+<!--          required>-->
+
+        <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px;">Telephone </label>
+        <input style="margin-top: 5px;" type="text" name="role" class="input-master" id="inputPassword" placeholder="Lorem ipsum"
+          required>
+      </div>
+
+
+      <div class="input-1 col" style="left: 38%; top: 48%;">
+<!--        <label for="inputPassword" class="label-top">Department</label>-->
+<!--        <input style="margin-top: 5px;" type="text" name="department" class="input-master" id="inputPassword" placeholder="eg: IT" required>-->
+        <label for="inputPassword" class="label-top" style=" width: 140px;font-size:12px;">Address</label>
+        <input style="margin-top: 5px;" type="text" name="department" class="input-master" id="inputPassword" placeholder="Lorem ipsum " required>
+      </div>
+
+
+
+
+            <div class="form-group">
+                <div class="input-1 col " style="left: 8%; top: 62%;">
+                    <div style="padding-top: 2%;">
+                        <input type="checkbox" id="dpo1" name="vehicle1" value="dpo">
+                <lable class="dpo" style="margin-top:400px;">DPO (If applicable)</lable>
+
+            </div>
+        <label for="inputPassword" class="label-top">Name</label>
+        <input type="text" style="margin-top: 5px;" name="title" class="input-master" id="inputPassword"
+          placeholder="John Doe" required>
+      </div>
+       <div class="input-1 col " style="left: 8%;top: 69%;">
+        <label for="inputPassword" class="label-top">Email</label>
+        <input type="text" name="department" style="margin-top: 5px;" class="input-master" id="inputPassword" placeholder="johndoe@capgemini.com"
+          required>
+      </div>
+        <div class="input-1 col" style="left: 38%; top: 63.5%;">
+<!--        <label for="inputPassword" class="label-top">Project Name</label>-->
+<!--        <input style="margin-top: 5px;" type="text" name="role" class="input-master" id="inputPassword" placeholder="eg: Project name"-->
+<!--          required>-->
+
+        <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px;">Telephone </label>
+        <input style="margin-top: 5px;" type="text" name="role" class="input-master" id="inputPassword" placeholder="8600900366"
+          required>
+      </div>
+
+
+      <div class="input-1 col" style="left: 38%; top: 69%;">
+<!--        <label for="inputPassword" class="label-top">Department</label>-->
+<!--        <input style="margin-top: 5px;" type="text" name="department" class="input-master" id="inputPassword" placeholder="eg: IT" required>-->
+        <label for="inputPassword" class="label-top" style=" width: 140px;font-size:12px;">Address</label>
+        <input style="margin-top: 5px;" type="text" name="department" class="input-master" id="inputPassword" placeholder="Whitefield, Bangalore, 560036 " required>
+      </div>
+
+
+
+
+
+        <div style="position:absolute; left:95%; padding-right: 5%;">
+                <a href="javascript:;" id="button_1"><img src="static/assets/img/icon-right-inside.png" onclick="toggleText()" alt="Info"></a>
+            </div>
+            <div class="form-group">
+                <div class="input-1 col " style="left: 8%; top: 80%;">
+                    <div style="padding-top: 2%;">
+                        <input type="checkbox" id="rep" name="vehicle1" value="repr">
+                <lable class="dpo" style="margin-top:400px;">Representative (If applicable)</lable>
+            </div>
+        <label for="inputPassword" class="label-top">Name</label>
+        <input type="text" style="margin-top: 5px;" name="title" class="input-master" id="inputPassword"
+          placeholder="Lorem Ipsum" required>
+      </div>
+       <div class="input-1 col " style="left: 8%;top: 88%;">
+        <label for="inputPassword" class="label-top">Email</label>
+        <input type="text" name="department" style="margin-top: 5px;" class="input-master" id="inputPassword" placeholder="Lorem ipsum"
+          required>
+      </div>
+        <div class="input-1 col" style="left: 38%; top: 81.6%;">
+<!--        <label for="inputPassword" class="label-top">Project Name</label>-->
+<!--        <input style="margin-top: 5px;" type="text" name="role" class="input-master" id="inputPassword" placeholder="eg: Project name"-->
+<!--          required>-->
+
+        <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px; ">Telephone </label>
+        <input style="margin-top: 5px;" type="text" name="role" class="input-master" id="inputPassword" placeholder="Lorem ipsum"
+          required>
+      </div>
+
+
+      <div class="input-1 col" style="left: 38%; top: 88%;">
+<!--        <label for="inputPassword" class="label-top">Department</label>-->
+<!--        <input style="margin-top: 5px;" type="text" name="department" class="input-master" id="inputPassword" placeholder="eg: IT" required>-->
+        <label for="inputPassword" class="label-top" style=" width: 140px;font-size:12px;">Address</label>
+        <input style="margin-top: 5px;" type="text" name="department" class="input-master" id="inputPassword" placeholder="Lorem ipsum " required>
+      </div>
+            </div>
+
+        <button type="submit" class="button" style="margin-top: 620px; margin-left: 70px;"><span>Save</span></button>
+
+
+
+
+
+
+
+
+
+
+  {% endblock %}
+</body>
+</form>
+
+</html>

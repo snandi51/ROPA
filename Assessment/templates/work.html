@@ -1,0 +1,241 @@
+{% extends 'base-figma.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<link href="static/assets/css/style-figma.css" rel="stylesheet">
+
+<style>
+
+    .dpo-button,.role2-button,.role3-button,.bfh-button,.ds-button{
+        box-sizing: border-box;
+
+            /* Auto layout */
+
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            padding: 8px 12px;
+            gap: 10px;
+
+            width: 55px;
+            height: 30px;
+            margin-top:10px;
+
+            /* Grey Scale/White */
+
+            background: #FFFFFF;
+            /* Grey Scale/Grey 5 */
+
+            border: 1px solid #A8A8A8;
+            border-radius: 8px;
+
+            /* Inside auto layout */
+
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+                }
+
+</style>
+
+<div class="alt-nav" style="width:100%;">
+
+
+      <div style="width: 100%; height: 70px; top:2%; ">
+<!--          <a href="javascript:;" onclick="history.back()" static="margin-top:14px;"><img src="static/assets/img/Icon.png" static="margin-top13"/></a>-->
+          <p  style="margin-left:15%;margin-top:1.4%;margin-bottom:0%;font-family: 'Ubuntu';font-style: normal;font-weight: 700;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;color: #0070AD;">TITLE</p>
+          <p class="gdpr_font1" style=" margin-left:15%; margin-top:0%; width:400px; ">Workflow Management</p>
+      </div>
+
+
+</div>
+
+<body style="background: linear-gradient(3.47deg, #00649B 13.28%, #66A9CD 93.28%);
+position: static;
+width: 1090px;
+height: 800px; margin-left: 150px;
+padding-top: 100px;
+overflow-y:hidden"
+>
+
+<div class="login-box" style="margin-top:0.9%;margin-left:-31.5%;  width:89%;min-height:72%;">
+    <label style="margin-top:30px; margin-left:300px;">Records Register Workflow</label>
+    <button class="save" style="margin-left:500px; border: 1px solid #0C7799;">Save Changes</button>
+    <img class=""src="static/assets/img/bussiness.png" style="margin-top:30px; margin-left:600px">
+
+
+    <div class="left-workflow" style="width:20%;background: #C6C6C6;height:30%;margin-top:27%;border: 2px solid #C6C6C6;">
+
+        <p style="margin-bottom:0%;margin-left:2%"> Roles </p>
+        <hr style="width: 100%; background-color: black;margin-top:0%;  ">
+        <button class="dpo-button" style="margin-right:1%">
+            DPO
+        </button>
+        <button class="role2-button" style="margin-right:1%">
+            Role 2
+        </button>
+
+        <button class="role3-button" style="margin-right:1%;">
+            Role 3
+        </button>
+
+        <button class="bfh-button">
+            Business Function Head
+        </button>
+
+        <button class="ds-button">
+            Data Steward
+        </button>
+
+<!--    </div>-->
+    <div class="login-box" style="top:1px;left:301px;  width:273px;min-height:679px; background: #F4F4F4; border-radius: 8px 0px 0px 8px;">
+    <div class="in" style="left: -5%; margin-top: 3%; ">
+    <lable style="margin-left:10px;"> Workflow Type</lable>
+         </div>
+
+
+    <select style="box-sizing: border-box;
+
+/* Auto layout */
+
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0px;
+
+width: 196px;
+height: 48px;
+margin-top:25px;
+margin-left: 14px;
+
+/* Surface/Surface */
+
+background: #FFFFFF;
+/* Typography/On Surface/Medium Emphasis */
+
+border: 1px solid rgba(39, 41, 54, 0.45);
+border-radius: 4px;
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;">
+        <option>Records Register</option>
+        <option  value="1">Business Glossary</option>
+
+
+    </select>
+     <div class="input " style="left: -5%; margin-top: 4%;">
+    <lable class="con"style="margin-left:10px;">Actions</lable>
+         </div>
+
+<div class="">
+
+<!--    <button class="raise" style="">Raise Request</button>-->
+
+    <img class="users" src="static/assets/img/request.png" style="margin-top:0.5rem; height:30px; margin-left:1rem; " >
+    </div>
+
+    <div class="">
+
+<!--    <button class="review" style="">Review Request</button>-->
+
+        <img class="users" src="static/assets/img/Action Chips.png" style="margin-top:0.5rem; height:30px; margin-left:1rem;" >
+
+    </div>
+
+    <div class="">
+
+<!--    <button class="approve" style=""> Approve Request</button>-->
+     <img class="users" src="static/assets/img/aprove.png" style="margin-top:0.5rem; height:30px; margin-left:1rem;" >
+    </div>
+
+    <div class="">
+
+<!--    <button class="make" style=""> Make Change</button>-->
+    <img class="users" src="static/assets/img/make.png" style="margin-top:0.5rem; height:30px; margin-left:1rem;">
+    </div>
+
+    <div class="">
+
+<!--    <button class="inform" style="">Informed About Change</button>-->
+     <img class="users" src="static/assets/img/informed.png" style="margin-top:0.5rem; height:30px; margin-left:1rem;" >
+    </div>
+
+        <p style="margin-bottom:0%;margin-left:4%; margin-top:3%;"> Roles </p>
+        <hr style="width: 100%; background-color: black;margin-top:2%;">
+        <div class="dp" style="height:20px;">
+
+        <button class="dpo-button" style="margin-left:2%; margin-top:-1%;">
+            DPO
+        </button>
+            </div>
+        <div class="role" style="height:30px; margin-top:-20px;">
+        <button class="role2-button" style="margin-left:30%;">
+            Role2
+        </button>
+        </div>
+
+        <div class="bu" style="height:30px; margin-top:-28px;">
+        <button class="role3-button" style="margin-left:60%; margin-top:-6%;">
+            Role 3
+        </button>
+            </div>
+
+        <div class="bfh" style="height:30px; margin-top:-20px;">
+        <button class="bfh-button" style="margin-top:23px; width:200px; height:30px;">
+            Business Function Head
+        </button>
+        </div>
+
+        <div>
+        <button class="ds-button">
+            Data Steward
+        </button>
+        </div>
+
+        <div class="login-box" style="top:70px;left:600px;  bottom:20px; width:800px; height:333px; ">
+            <div class="wo" >
+                <input style="width:800px; height:45px;"></input>
+                <p style="margin-top:-35px; color: rgba(39, 41, 54, 0.85);margin-left:40px; font-size: 17px; line-height: 24px;">Workflow Area</p>
+            <p style="margin-left:250px; margin-top:90px; font-weight: 300;
+font-size: 30px;
+line-height: 36px;">Start New</p>
+                <p style="margin-left:240px; margin-top:3px; font-family: 'Ubuntu';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 24px;
+/* or 150% */
+
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: 0.5px;
+
+/* Typography/On Surface/High Emphasis */
+
+color: rgba(39, 41, 54, 0.85);">Drag and Drop items to create a workflow</p>
+
+        </div>
+
+
+
+
+
+
+<!--            <p style="margin-bottom:0%;margin-left:40%"> Record Register Workflow </p>-->
+
+
+
+</div>
+
+
+{% endblock %}
+</body>
+
+</html>
