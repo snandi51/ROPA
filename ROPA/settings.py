@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-u2i7v^jhexuctt=qs&s(t@uovq4)_5gr4tuag74guw#$28)yf6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -93,7 +93,7 @@ DATABASES = {
         'HOST': 'ropa.database.windows.net',
         'PORT': '1433',
         'OPTIONS': {
-                    'driver': 'ODBC Driver 18 for SQL Server',
+                    'driver': 'ODBC Driver 17 for SQL Server',
                     'extra_params': "Persist Security Info=False;server=ropa.database.windows.net"
 	        }
     }
