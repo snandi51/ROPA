@@ -117,13 +117,11 @@
 <script>
     function ColorChange() {
        if (document.getElementById("dpo1_address").value == "") {
-       var x = document.getElementById("save_btn").style.background = "#CBCBCB";
-    }
-    else {
-       document.getElementById("save_btn").style.background = "#12ABDB";
+       var x = document.getElementById("save_btn").style.background = "#12ABDB";
        document.getElementById("save_btn").style.color = "white";
        document.getElementById("save_btn").style.border = "#0C7799";
-      }
+    }
+
     }
 </script>
 <body style="background: linear-gradient(3.47deg, #00649B 13.28%, #66A9CD 93.28%);
@@ -139,7 +137,7 @@ padding-top: 100px;">
 
 
 <form method="POST" id="screen_1_form" class="form-horizontal" action="user">
-          {% csrf_token %}
+    {% csrf_token %}
         <div class="alt-nav" style="width: 1263px;">
         <div style="position: absolute;
         height: 22px;

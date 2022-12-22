@@ -59,8 +59,6 @@ def user(request):
         user_detail = UserDetails(organization=organization, businessfunc=business_function, businessunithead=business_function_head, logintime=date)
         user_detail.save()
 
-
-
         ropaty = request.POST.get('ropaty')
         userid = request.POST.get('userid')
         # ropaty = request.POST.get('sap')
@@ -81,7 +79,6 @@ def user(request):
         # current_user = request.user
         # print(current_user.id)
 
-
         # user_detail = UserDetails.objects.get(userid= current_user.id)
         ropa_type = RopaType(userid=user_detail, ropaty=ropaty, name=name, email=email, telephone=telephone, address=address, dpo_name=dpo_name, dpo_email=dpo_email, dpo_phone=dpo_telephone, dpo_address=dpo_address, rep_name=rep_name, rep_email=rep_email, rep_phone=rep_telephone, rep_address=rep_address)
         ropa_type.save()
@@ -90,10 +87,10 @@ def user(request):
         # bg = pd.DataFrame(list(BgMain.objects.all().values()))
         # # a=len(bg)
         # bg_dict = bg.to_dict('records')
-
-
-
-
+        context = {
+            'user_detail': user_detail,
+        }
+        return render(request, 'dashboard.html', context)
     return render(request, 'user.html')
 
 
@@ -146,13 +143,14 @@ def bussiness_glossary(request):
     context = {
         'bga': result
     }
-    return render(request, 'bussiness_glossary.html',context)
+    return render(request, 'bussiness_glossary.html', context)
 
 
 def date(request):
     today = date.today()
     print("Today's date:", today)
     return today
+
 
 def download(request):
     return render(request, 'download.html')
@@ -161,9 +159,9 @@ def download(request):
 def workflow(request):
     return render(request, 'workflow.html')
 
+
 def work(request):
     return render(request, 'work.html')
-
 
 
 def test(request):
@@ -180,13 +178,8 @@ def test(request):
         # dataclassification= request.POST.get('dataclassification')
         createdby=request.POST.get('createdby')
 
-
-
-
-
         business_detail = BgMain(businessterm=businessterm, definition=definition, dataattribute=dataattribute, system=system,datadomain=datadomain,lineofbusiness=lineofbusiness,status=status,createdby=createdby)
         business_detail.save()
-
 
     result = BgMain.objects.all()
     bg = pd.DataFrame(list(BgMain.objects.all().values()))
@@ -200,25 +193,25 @@ def test(request):
     import ipdb
     ipdb.set_trace()
 
-    context={
+    context = {
             'bga' : result,
             'bg_dict':bg_dict
              }
 
-    return render(request, 'test.html',context)
-
+    return render(request, 'test.html', context)
 
 
 def addnew(request):
     return render(request, 'addnew.html')
 
+
 def temp(request):
     return render(request, 'temp.html')
 
 
-
 def delete(request):
     return render(request, 'delete.html')
+
 
 def edit(request):
     if request.method == "POST":
@@ -257,11 +250,10 @@ def edit(request):
             'bga': result,
             'bg_dict': bg_dict
         }
+        return render(request, 'test.html', context)
 
 
-        return render(request, 'test.html',context)
-
-
-
+def dashboard(request):
+    return render(request, 'dashboard.html')
 
 
