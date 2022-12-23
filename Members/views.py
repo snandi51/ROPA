@@ -165,8 +165,8 @@ def work(request):
 
 
 def test(request):
-    import ipdb
-    ipdb.set_trace()
+    # import ipdb
+    # ipdb.set_trace()
     if request.method == "POST":
         businessterm = request.POST.get('businessterm')
         definition = request.POST.get('definition')
@@ -190,8 +190,8 @@ def test(request):
 
         i.update({'create_timestamp': str(i.get('create_timestamp'))})
         i.update({'update_timestamp': str(i.get('update_timestamp'))})
-    import ipdb
-    ipdb.set_trace()
+    # import ipdb
+    # ipdb.set_trace()
 
     context = {
             'bga' : result,
