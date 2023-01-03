@@ -1,15 +1,23 @@
 businessterm,definition,dataattribute,system,dataclassification,datadomain,lineofbusiness,status,createdby
-First Name,First name of a person,FRST_NM,Unilever,PRIVATE,CUSTOMER,SALES,Active,Satish beura
-Last Name,Last name of a person,LAST_NM,CAPGEMINI,PRIVATE,CUSTOMER,SALES,Active,Satish beura
-FIRST NAME,First Name of a person,FRST_NM,CAPGEMINI,PRIVATE,CUSTOMER,SALES,Active,Satish beura
-Customer name,Customer Identifier,CUST_NAME,UNILEVER,PRIVATE,Client,SALES,Active,yash
+First  ,First name of a person ,FRST_NM ,system ,PRIVATE,Domain ,LOB class,Active class,Satish beura 
+Last ,Last name of a person ,LAST_NM ,CAPGEMINI ,PRIVATE,CUSTOMER ,SALES ,Active ,Satish beura class
+Customer name update,Customer Identifier,CUST_NAME,UNILEVER,PRIVATE,Client,SALES,Active,yash
+Gender update,Sex code of a person,SEX_CD,CAPGEMINI,PRIVATE,CUSTOMER,SALES,Active update,Satish beura 
 Customer Id,Customer Identifier,CUST_ID,CAPGEMINI,PRIVATE,CUSTOMER,SALES,Active,Satish beura
-Gender,Sex code of a person,SEX_CD,CAPGEMINI,PRIVATE,CUSTOMER,SALES,Active,Satish beura
+Birth Date update,Date of Birth of a person,BRTH_DT,CAPGEMINI,PRIVATE,CUSTOMER,SALES,Active,Satish beura
 Customer Id,Customer Identifier,CUST_ID,CAPGEMINI,PRIVATE,CUSTOMER,SALES,Active,Satish beura
-Birth Date,Date of Birth of a person,BRTH_DT,CAPGEMINI,PRIVATE,CUSTOMER,SALES,Active,Satish beura
-Customer Id,Customer Identifier,CUST_ID,CAPGEMINI,PRIVATE,CUSTOMER,SALES,Active,Satish beura
-Email ,Email Address of a person,Email_id,CAPGEMINI,PRIVATE,CUSTOMER,operation,Active,yash
 Email Identifier,Email Address of a person,Email_id,CAPGEMINI,PRIVATE,CUSTOMER,MARKETING,Active,Satish beura
 Birth Date,Date of Birth of a person,BRTH_DT,CAPGEMINI,PRIVATE,CUSTOMER,SALES,Active,Satish beura
 Telephone Number,Phone Number of a person,PH_NUM,CAPGEMINI,PRIVATE,CUSTOMER,SALES,Active,Satish beura
-TAX Identification Number,Tax Identifier of a person,TIN,CAPGEMINI,PRIVATE,CUSTOMER,SALES,Active,Satish beura
+Client ,client portal,service ,dell,GDPR,IT,sales,Active,yash
+p  latest,p,p,p,,p,p,p,p
+Social Security Number,SSN of a person,SSN,CAPGEMINI,PRIVATE,CLIENT,SALES,Active,Satish beura
+Social Security Number,SSN of a person,SSN,CAPGEMINI,PRIVATE,CLIENT,MARKETING,Active,Satish beura
+Email update,Email Address of a person,Email_id,CAPGEMINI,PRIVATE,CUSTOMER,SALES,Active update,Satish beura
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+vendor,vendor,vendor,vendor,,vendor,vendor,vendor,vendor
+,,,,,,,,
+,,,,,,,,

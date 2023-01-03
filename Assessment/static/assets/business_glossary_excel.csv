@@ -1,0 +1,13 @@
+businessterm,definition,dataattribute,system,datadomain,lineofbusiness,status
+First Name,First name of a person,FRST_NM,Unilever,CUSTOMER,SALES,Active
+Last Name,Last name of a person,LAST_NM,CAPGEMINI,CUSTOMER,SALES,Active
+Customer name,Customer Identifier,CUST_NAME,UNILEVER,Client,SALES,Active
+Gender,Sex code of a person,SEX_CD,CAPGEMINI,CUSTOMER,SALES,Active
+Customer Id,Customer Identifier,CUST_ID,CAPGEMINI,CUSTOMER,SALES,Active
+Birth Date,Date of Birth of a person,BRTH_DT,CAPGEMINI,CUSTOMER,SALES,Active
+Customer Id,Customer Identifier,CUST_ID,CAPGEMINI,CUSTOMER,SALES,Active
+Email Identifier,Email Address of a person,Email_id,CAPGEMINI,CUSTOMER,MARKETING,Active
+Birth Date,Date of Birth of a person,BRTH_DT,CAPGEMINI,CUSTOMER,SALES,Active
+Telephone Number,Phone Number of a person,PH_NUM,CAPGEMINI,CUSTOMER,SALES,Active
+TAX Identification Number,Tax Identifier of a person,TIN,CAPGEMINI,CUSTOMER,SALES,Active
+Client,client portal,service,dell,IT,sales,Active

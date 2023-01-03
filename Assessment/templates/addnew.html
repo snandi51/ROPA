@@ -9,303 +9,140 @@
     <title>Title</title>
     <link href="static/assets/css/style-figma.css" rel="stylesheet">
 </head>
-<body style="
-
-background-color: #4CAF50;
+<body style="background: linear-gradient(3.47deg, #00649B 13.28%, #66A9CD 93.28%);
 position: static;
-width: 900px;
-height: 1220px;
-overflow-y:hidden;
-overflow-x:hidden;
+width: 800px;
+height: 900px;">
 
-">
+ <div id="main">
 
-<!-- <div class="main-box-1" style="min-height:700px; width:580px; margin-left:85.9%; top:1%;background: #FFFFFF;  >-->
-
-      <form method="POST" id="screen_1_form" class="form-horizontal" action="user">
-<!--          {% csrf_token %}-->
-<!--      <div class="alt-nav" style="width: 1360px;">-->
-<!--        <div style="position: absolute;-->
-<!--        height: 26px;-->
-<!--        left: 11.39%;-->
-<!--        right: 38.75%;-->
-<!--        top: 32%;-->
-
-<!--        font-family: 'Ubuntu';-->
-<!--        font-style: normal;-->
-<!--        font-weight: 500;-->
-<!--        font-size: 20px;-->
-<!--        line-height: 28px;-->
-<!--        /* or 117% */-->
-
-<!--        font-feature-settings: 'pnum' on, 'lnum' on;-->
-
-<!--        /* Typography/On Surface/High Emphasis */-->
-
-<!--        color: rgba(39, 41, 54, 0.85);">-->
-<!--            <label class="tit" style="margin-left:39px;">TITLE</label>-->
-<!--&lt;!&ndash;            <a href="javascript:;" onclick="history.back()"><img src="static/assets/img/Icon.png" static="margin-top13"/></a>&ndash;&gt;-->
-<!--            <a href="javascript:;" onclick="history.back()" ><img src="static/assets/img/Icon.png" static=""/></a>-->
-<!--            <p class="" style=" margin-left: 54px; margin-top: -30px;">ROPA Dashboard<b></b></p>-->
-<!--        </div>-->
-<!--          <div style="position: absolute;-->
-<!--        height: 26px;-->
-<!--        left: 70.39%;-->
-<!--        top: 40%;">-->
-<!--          </div>-->
-<!--          <div style="position: absolute;-->
-<!--        height: 26px;-->
-<!--        left: 90.00%;-->
-<!--        top: 28%;">-->
-<!--            <input type="reset" id="resetbuttonid" style="display:none;">-->
-<!--            <a href="javascript:;">-->
-<!--            </a>-->
-<!--        </div>-->
-<!--          <div style="position: absolute;-->
-<!--        height: 26px;-->
-<!--        left: 62.00%;-->
-<!--        top: 30%;">-->
-<!--              <type="submit" class="button" style="margin-left: 220px;"><span> </span></button>-->
-<!--          </div>-->
-<!--      </div>-->
-
-
-<!-- Form Name -->
-           <div class="form-page" style="overflow-x: hidden;"  >
-      <div class="rect-4" style="min-height:549px; max-width:572px;  margin-left:43.45%; top:11.2%;overflow-x: hidden;overflow-y: scroll;border: 1px solid #FFFFFF;; border-radius: 0px;">
-
-     <div style="position:absolute; left:4%; ">
-            <div >
-                <lable class="org" style="position:absolute; left:-45%" >View Business Term Details</lable>
-            </div>
-
-
-                <div class="input-1 col " style="padding-top: 2%;left:-5%; top: 25%;">
-        <label for="inputPassword" class="label-top">Business Term</label>
-        <input type="text" style="margin-top: 5px; width:235px;" name="organization" class="input-master" id="inputPassword"
-          placeholder="Account Password" >
-                </div>
-      <div class="input-1 col " style="left: -5%;top: 48%;">
-        <label for="inputPassword" class="label-top">Data Attribute</label>
-        <input type="text" name="department" style="margin-top: 5px; width:235px;" class="input-master" id="inputPassword" placeholder="Lorem Ipsum"
-          >
-      </div>
-
-
-       <div class="input-1 col" style="left: -5%; top: 88%;">
-        <label for="inputPassword" class="label-top">Definition</label>
-        <input style="margin-top: 5px; height:120px; width:450px;" type="text" name="date" class="input-master-box"
-        placeholder="Describe the meaning of the term with respect to the business
-context Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.">
-       </div>
-
-            <div class="input-1 col " style="left: -5%; top: 128%;">
-        <label for="inputPassword" class="label-top">System</label>
-        <input type="text" style="margin-top: 5px;width:400px;" name="name" class="input-master" id="inputPassword"
-          placeholder="type something">
-      </div>
-            <div class="input-1 col " style="left: -5%;top: 150%;">
-                <label for="inputPassword" class="label-top">Classification</label>
-<!--        <input type="text" name="email" style="margin-top: 5px;" class="input-master" id="inputPassword" placeholder="GDPR">-->
-                <select id="inputPassword" name="inputPassword"; style="width:300px; height:25px; margin-top:5px; ">
-                      <option value="volvo">GDPR</option>
-                      <option value="saab">Saab</option>
-                      <option value="fiat">Fiat</option>
-                      <option value="audi">Audi</option>
-                </select>
+      <form method="POST" id="screen_1_form" class="form-horizontal" action="record">
+          {% csrf_token %}
+          <div class="alt-nav" style="width: 1263px;">
+            <div style="position: absolute;
+                height: 26px;
+                left: 11.39%;
+                right: 38.75%;
+                top: 32%;
+                font-family: 'Ubuntu';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 28px;
+                /* or 117% */
+                font-feature-settings: 'pnum' on, 'lnum' on;
+                /* Typography/On Surface/High Emphasis */
+                color: rgba(39, 41, 54, 0.85);">
+                <label class="tit" style="margin-left:39px;">TITLE</label>
+                <a href="javascript:;" onclick="history.back()" ><img src="static/assets/img/Icon.png"></a>
+                <p class="" style=" margin-left: 54px; margin-top: -30px;">ROPA Dashboard<b></b></p>
              </div>
+              <div style="position: absolute; height: 26px; left: 70.39%; top: 40%;">
+              </div>
+              <div style="position: absolute; height: 26px; left: 90.00%; top: 28%;">
+                <input type="reset" id="resetbuttonid" style="display:none;">
+                <a href="javascript:;"></a>
+              </div>
+              <div style="position: absolute; height: 26px; left: 62.00%; top: 30%;">
+                  <button type="submit" class="button" style="margin-left: 220px;"><span> </span></button>
+              </div>
+             </div>
+              <div class="rect-4" style="min-height:750px; width:750px;margin-left:25%;">
+                <div style="position:absolute; left:4%; padding-right: 5%;">
+                    <div style="padding-top: 2%;">
+                        <label class="org" style="left:-5%;">View ROPA ID Details</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-1 col " style="left: -5%; top: 25%;">
+                            <label for="inputPassword" class="label-top">ROPA ID</label>
+                            <input type="text" style="margin-top: 5px; width:300px;" name="ROPA ID" class="input-master" id="inputPassword" placeholder="Lorem Ipsum" >
+                        </div>
+                        <div class="input-1 col " style="left:-10%;top:52%; ">
+                            <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px;">Process Activity Name</label>
+                            <input type="text" name="Process Activity Name" style="margin-top: 5px; width:300px;" class="input-master" id="inputPassword" placeholder="Lorem Ipsum">
+                        </div>
+                    </div>
+                    <div class="input-1 col" style="left: 430%; top: 25%;">
+                        <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px;">Business Function  </label>
+                        <input style="margin-top: 5px; width:300px;" type="text" name="business_function" class="input-master" id="inputPassword" placeholder="Lorem Ipsum">
+                     </div>
+                     <div class="input-1 col" style="left: 430%; top: 56%;">
+                        <label for="inputPassword" class="label-top" style=" width: 200px;font-size:12px;">Process Activity Description</label>
+                        <input style="margin-top: 5px;width:300px; height:50px;" type="text" name="Process Activity Description" class="input-master" id="inputPassword" placeholder="Lorem Ipsum " >
+                      </div>
+                    <p style="margin-top: 270px; margin-left: 42px;"></p>
+                 </div>
+                <div class="form-group">
+                    <div class="col">
+                        <div class="input-1 col " style="left: 3%; top:32%;">
+                            <label for="inputPassword" class="label-top" style="width:200px;  margin-top:">Categories of Data Subjects</label>
+                            <input type="text" style="margin-top: 5px; width:300px;" name="Categories of Data Subjects" class="input-master" id="inputPassword" placeholder="Lorem Ipsum">
+                        </div>
+                       <div class="input-1 col " style="left: 3%;top:46%;">
+                            <label for="inputPassword" class="label-top" style="width:220px;">Name and Contact Details of Joint Controller</label>
+                            <input type="text" style="height:52px; width:300px;" name="Name and Contact Details of Joint Controller" style="margin-top: 5px;" class="input-master" id="inputPassword" placeholder="Lorem ipsum">
+                      </div>
+                    </div>
+                    <div class="input-1 col" style="left: 49.5%; top: 46%;">
+                        <label for="inputPassword" class="label-top" style="width: 200px; font-size:12px;">Categories of Recipients </label>
+                        <input style="margin-top: 5px; width:300px; height:52px; " type="text" name="Categories of Recipients" class="input-master" id="inputPassword" placeholder="Lorem ipsum">
+                    </div>
+                    <div class="input-1 col" style="left: 49.5%; top: 32%;">
+                        <label for="inputPassword" class="label-top" style=" width: 200px;font-size:12px;">Categories of Personal Data</label>
+                        <input style="margin-top: 5px; width: 300px;" type="text" name="Categories of Personal Data" class="input-master" id="inputPassword" placeholder="Lorem ipsum " >
+                    </div>
+                    <div class="form-group">
+                        <div class="input-1 col " style="left: 3%; top:56%;">
+                            <label for="inputPassword" class="label-top" style="width:200px;">Lawful Basis of Processing</label>
+                            <input type="text" style="margin-top: 5px; width:300px;" name="" class="input-master" id="inputPassword" placeholder="Lorem Ipsum" >
+                        </div>
+                       <div class="input-1 col " style="left: 3%;top:65%;">
+                            <label for="inputPassword" class="label-top">Data Processor</label>
+                            <input type="text" name="Data Processor" style="margin-top: 5px; width:300px;" class="input-master" id="inputPassword" placeholder="Lorem Ipsum">
+                       </div>
+                        <div class="input-1 col" style="left: 49.5%; top: 56%;">
+                            <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px;">Retention Schedule </label>
+                            <input style="margin-top: 5px; width:300px;" type="text" name="Retention Schedule" class="input-master" id="inputPassword" placeholder="Lorem Ipsum">
+                        </div>
+                        <div class="input-1 col" style="left: 49.5%; top: 65%;">
+                            <label for="inputPassword" class="label-top" style=" width: 200px;font-size:12px;">Link to Contract with Processor</label>
+                            <input style="margin-top: 5px; width: 300px;" type="text" name="Link to Contract with Processor" class="input-master" id="inputPassword" placeholder="Lorem Ipsum">
+                        </div>
+                        <div style="position:absolute; left:95%; padding-right: 5%;">
+                <!--                <a href="javascript:;" id="button_1"><img src="static/assets/img/icon-right-inside.png" onclick="toggleText()" alt="Info"></a>-->
+                        </div>
+                        <div class="form-group">
+                            <div class="input-1 col " style="left: 3%; top:75%;">
+                                <label for="inputPassword" class="label-top" Style="font-size:12px; width:300px; margin-top:px; Letter:0.2px;">Third Countries or international organizations where personal data
+                                        is transferred (if applicable) </label>
+                                <input type="text" style="margin-top: 22px; width:300px;" name="Third Countries or international organizations where personal data
+                                        is transferred (if applicable) " class="input-master" id="inputPassword" placeholder="Lorem Ipsum" >
+                            </div>
+                            <div class="input-1 col " style="left: 3%;top:85%;">
+                                <label for="inputPassword" class="label-top" style="width:300px; ">Safeguards for exceptional transfers of personal data for above (If applicable)</label>
+                                <input type="text" style="margin-top:22px;" name="Safeguards for exceptional transfers of personal data for above (If applicable)" style="margin-top: 22px; width:320px;" class="input-master" id="inputPassword" placeholder="Lorem ipsum">
+                            </div>
+                            <div class="input-1 col" style="left: 49.5%; top: 75%;">
+                                <label for="inputPassword" class="label-top" style="width: 300px; font-size:12px; ">Label General description of technical and organizational security measures (if applicable)</label>
+                                <input style="margin-top: 22px; width:300px;" type="text" name="Label General description of technical and organizational security
+                                      measures (if applicable)" class="input-master" id="inputPassword" placeholder="Lorem ipsum">
+                            </div>
+                          <div class="input-1 col" style="left: 49.5%; top: 85%;">
+                            <label for="inputPassword" class="label-top" style=" width: 300px;font-size:12px;">Links to contracts, consents, breach records, assessments</label>
+                            <input style="margin-top: 22px; width: 320px;" type="text" name="Links to contracts, consents, breach records, assessments" class="input-master" id="inputPassword" placeholder="Lorem ipsum " >
+                          </div>
+                        </div>
 
-                            <div class="input-1 col " style="left: -5%; top: 174%;">
-<!--                    <div style="padding-top: -23%;">-->
-<!--                        <input type="checkbox" id="dpo1" name="dpo1" value="dpo">-->
-<!--                <lable class="dpo" style="top:47%;">DPO (If applicable)</lable>-->
+                     </div>
 
-<!--                    </div>-->
-        <label for="inputPassword" class="label-top">Domain</label>
-        <input type="text" style="margin-top: 5px; width:250px;" name="dpo_name" class="input-master" id="inputPassword"
-          placeholder="Lorem ipsum" >
-                </div>
-
-
-       <div class="input-1 col " style="left: -5%;top: 194%;">
-        <label for="inputPassword" class="label-top" style="width:300px;">Line of Business</label>
-        <input type="text" name="dpo_email" style="margin-top: 5px;width:300px;" class="input-master" id="inputPassword" placeholder="lorem ipsum">
-       </div>
-
-
-             <div class="input-1 col " style="left: -5%;top: 214%;">
-        <label for="inputPassword" class="label-top" style="width:300px;">Staus</label>
-        <input type="text" name="dpo_email" style="margin-top: 5px;width:300px;" class="input-master" id="inputPassword" placeholder="Approved">
-       </div>
-
-                 <div class="input-1 col " style="left: -5%;top: 234%;">
-        <label for="inputPassword" class="label-top" style="width:300px;">Created by</label>
-        <input type="text" name="dpo_email" style="margin-top: 5px;width:300px;" class="input-master" id="inputPassword" placeholder="lorem ipsum">
-       </div>
-
-                 <div class="input-1 col " style="left: -5%;top: 254%;">
-        <label for="inputPassword" class="label-top" style="width:300px;">Created Timestamp</label>
-        <input type="text" name="dpo_email" style="margin-top: 5px;width:300px;" class="input-master" id="inputPassword" placeholder="type something">
-       </div>
-
-                 <div class="input-1 col " style="left: -5%;top: 274%;">
-        <label for="inputPassword" class="label-top" style="width:300px;">Updated Timestamp</label>
-        <input type="text" name="dpo_email" style="margin-top: 5px;width:300px;" class="input-master" id="inputPassword" placeholder="type something">
-       </div>
-
-
-
-
-
-
-
-<!--        <button type="submit" class="button" style=" margin-top: 240px;  margin-left: 600px;"><span></span></button>-->
-      <p style="margin-top: 270px; margin-left: 42px;"></p>
-
-
-        </div>
-
-
-<!--      <div class="col">-->
-<!--&lt;!&ndash;                    <label class="con" style="margin-top:322px; margin-left:30px; font-size: 12px;"> </label>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div class="con" style="font-size: 14px; width: 750px; margin-left: -20px; margin-top: -14px;">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <input type="radio"style="margin-left:48px;" id="data_processing_project2" onchange="toggleInputHide()" name="data_processing_project"value="0">Controller&ndash;&gt;-->
-<!--&lt;!&ndash;                        <input type="radio" id="data_processing_project2" onchange="toggleInputHide()" name="data_processing_project" value="1" >Processer&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--                <div class="input-1 col " style="left: 3%; top: 39%;">-->
-<!--        <label for="inputPassword" class="label-top">System</label>-->
-<!--        <input type="text" style="margin-top: 5px;" name="name" class="input-master" id="inputPassword"-->
-<!--          placeholder="type something">-->
-<!--      </div>-->
-<!--       <div class="input-1 col " style="left: 3%;top: 46%;">-->
-<!--        <label for="inputPassword" class="label-top">Classification</label>-->
-<!--&lt;!&ndash;        <input type="text" name="email" style="margin-top: 5px;" class="input-master" id="inputPassword" placeholder="GDPR">&ndash;&gt;-->
-<!--            <select id="inputPassword" name="inputPassword"; style="width:300px; height:25px; margin-top:5px; ">-->
-<!--              <option value="volvo">GDPR</option>-->
-<!--              <option value="saab">Saab</option>-->
-<!--              <option value="fiat">Fiat</option>-->
-<!--              <option value="audi">Audi</option>-->
-<!--            </select>-->
-
-
-<!--      </div>-->
-<!--&lt;!&ndash;        <div class="input-1 col" style="left: 35%; top: 37%;">&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;        <label for="inputPassword" class="label-top">Project Name</label>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;        <input style="margin-top: 5px;" type="text" name="role" class="input-master" id="inputPassword" placeholder="eg: Project name"&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;          required>&ndash;&gt;&ndash;&gt;-->
-
-<!--&lt;!&ndash;        <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px;">Telephone </label>&ndash;&gt;-->
-<!--&lt;!&ndash;        <input style="margin-top: 5px;" type="text" name="telephone" class="input-master" id="inputPassword" placeholder="Lorem ipsum"&ndash;&gt;-->
-<!--&lt;!&ndash;          >&ndash;&gt;-->
-<!--&lt;!&ndash;      </div>&ndash;&gt;-->
-
-
-<!--&lt;!&ndash;      <div class="input-1 col" style="left: 35%; top: 43%;">&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;        <label for="inputPassword" class="label-top">Department</label>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;        <input style="margin-top: 5px;" type="text" name="department" class="input-master" id="inputPassword" placeholder="eg: IT" required>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;        <label for="inputPassword" class="label-top" style=" width: 140px;font-size:12px;">Address</label>&ndash;&gt;-->
-<!--&lt;!&ndash;        <input style="margin-top: 5px; width: 282px;" type="text" name="address" class="input-master" id="inputPassword" placeholder="Lorem ipsum " >&ndash;&gt;-->
-<!--&lt;!&ndash;      </div>&ndash;&gt;-->
-
-
-
-
-<!--            <div class="form-group">-->
-<!--                <div class="input-1 col " style="left: 3%; top: 52.5%;">-->
-<!--&lt;!&ndash;                    <div style="padding-top: -23%;">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <input type="checkbox" id="dpo1" name="dpo1" value="dpo">&ndash;&gt;-->
-<!--&lt;!&ndash;                <lable class="dpo" style="top:47%;">DPO (If applicable)</lable>&ndash;&gt;-->
-
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--        <label for="inputPassword" class="label-top">Domain</label>-->
-<!--        <input type="text" style="margin-top: 5px; width:250px;" name="dpo_name" class="input-master" id="inputPassword"-->
-<!--          placeholder="Lorem ipsum" >-->
-<!--                </div>-->
-
-<!--       <div class="input-1 col " style="left: 3%;top: 60%;">-->
-<!--        <label for="inputPassword" class="label-top" style="width:300px;">Line of Business</label>-->
-<!--        <input type="text" name="dpo_email" style="margin-top: 5px;" class="input-master" id="inputPassword" placeholder="lorem ipsum"-->
-<!--          >-->
-<!--       </div>-->
-
-
-<!--        <div style="position:absolute; left:95%; padding-right: 5%;">-->
-<!--&lt;!&ndash;                <a href="javascript:;" id="button_1"><img src="static/assets/img/icon-right-inside.png" onclick="toggleText()" alt="Info"></a>&ndash;&gt;-->
-<!--        </div>-->
-<!--            <div class="form-group">-->
-<!--                <div class="input-1 col " style="left: 3%; top: 66%;">-->
-<!--                    <div style="padding-top: 2%;">-->
-<!--&lt;!&ndash;                        <input type="checkbox" id="rep" name="rep1" value="repr">&ndash;&gt;-->
-<!--&lt;!&ndash;                <lable class="dpo" style="margin-top:400px;">Representative (If applicable)</lable>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--        <label for="inputPassword" class="label-top">Status</label>-->
-<!--        <input type="text" style="margin-top: 5px;" name="rep_name" class="input-master" id="inputPassword"-->
-<!--          placeholder="Approved" >-->
-<!--                </div>-->
-<!--            </div>-->
-
-
-<!--&lt;!&ndash;                    <button class="" type="submit" style="margin-top:500px; position: static; float: right; margin-right: 530px; width:275px;">Save</button>&ndash;&gt;-->
-<!--              </div>-->
-
-<!--                </div>-->
-
-<!--                          <div class="input-1 col " style="left: 3%; top: 72%;">-->
-<!--                    <div style="padding-top: 2%;">-->
-<!--&lt;!&ndash;                        <input type="checkbox" id="rep" name="rep1" value="repr">&ndash;&gt;-->
-<!--&lt;!&ndash;                <lable class="dpo" style="margin-top:400px;">Representative (If applicable)</lable>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--        <label for="inputPassword" class="label-top" style="width:300px;">Created by</label>-->
-<!--        <input type="text" style="margin-top: 5px;" name="rep_name" class="input-master" id="inputPassword"-->
-<!--          placeholder="lorem ipsum" >-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--                                    <div class="input-1 col " style="left: 3%; top: 78%;">-->
-<!--                    <div style="padding-top: 2%;">-->
-<!--&lt;!&ndash;                        <input type="checkbox" id="rep" name="rep1" value="repr">&ndash;&gt;-->
-<!--&lt;!&ndash;                <lable class="dpo" style="margin-top:400px;">Representative (If applicable)</lable>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--        <label for="inputPassword" class="label-top" style="width:300px;">Created Timestamp </label>-->
-<!--        <input type="text" style="margin-top: 5px;" name="rep_name" class="input-master" id="inputPassword"-->
-<!--          placeholder="type something"" >-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--                                    <div class="input-1 col " style="left: 3%; top: 84%;">-->
-<!--                    <div style="padding-top: 2%;">-->
-<!--&lt;!&ndash;                        <input type="checkbox" id="rep" name="rep1" value="repr">&ndash;&gt;-->
-<!--&lt;!&ndash;                <lable class="dpo" style="margin-top:400px;">Representative (If applicable)</lable>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--        <label for="inputPassword" class="label-top" style="width:300px;">Updated Timestamp</label>-->
-<!--        <input type="text" style="margin-top: 5px;" name="rep_name" class="input-master" id="inputPassword"-->
-<!--          placeholder="type something" >-->
-<!--                </div>-->
-<!--                                        <button type="submit" class="button" style=" top: 90%;  width:200px; height:20px;"><span></span></button>-->
-
-<!--            </div>-->
-
-
-<!--          </div>-->
-
-
-          </div>
-
-
-   <footer style="height:50px;  position: fixed;width:570px; right: 0;bottom: 0; background: #FFFFFF;border: 1px solid #FFFFFF;">
-                       <button type="submit" style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:25px; margin-top:10px;  width:240px; height:30px;">
-                           <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Delete</span></button>
-                          <button type="submit"  style="background: #12ABDB;border: 1px solid #0E88AF;border-radius: 4px; margin-left:30px; margin-top:10px;  width:240px; height:30px;">
-                              <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Edit</span></button>
-
-                </footer>
-
-
-</div>
-
-
+               <footer style="height:50px;  position: fixed;width:570px; right: 0;bottom: 0; margin-40%; ">
+                   <button type="submit" style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:-160px; margin-top:10px;  width:340px; height:30px;">
+                   <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500; line-height: 16px; margin-left:10px;">Delete</span></button>
+                   <button type="submit"  style="background: #12ABDB;border: 1px solid #0E88AF;border-radius: 4px; margin-left:30px; margin-top:10px;  width:320px; height:30px;">
+                       <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Add</span></button>
+               </footer>
       </form>
 
-<!--</body>-->
+</body>
 {% endblock %}
 </html>

@@ -252,6 +252,20 @@
                       background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
                     }
 
+                    .filter {
+                      display:none;
+                      position: fixed; /* Stay in place */
+                      z-index: 1; /* Sit on top */
+                      padding-top: 100px; /* Location of the box */
+                      left: 0;
+                      bottom: 0;
+                      width: 100%; /* Full width */
+                      height: 100%; /* Full height */
+<!--                      overflow: auto; /* Enable scroll if needed */-->
+                      background-color: rgb(0,0,0); /* Fallback color */
+                      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                      }
+
                     /* Modal Content */
 
 
@@ -295,13 +309,7 @@
           </div>
 
 
-   <footer style="height:50px;  position: fixed;width:570px; right: 0;bottom: 0; background: #FFFFFF;border: 1px solid #FFFFFF;">
-                       <button type="submit" style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:25px; margin-top:10px;  width:240px; height:30px;">
-                           <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Delete</span></button>
-                          <button type="submit"  style="background: #12ABDB;border: 1px solid #0E88AF;border-radius: 4px; margin-left:30px; margin-top:10px;  width:240px; height:30px;">
-                              <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Add</span></button>
 
-                </footer>
 
 
 </div>
@@ -316,11 +324,11 @@
   <div class="alt-nav" style="width:1372px;height:80px;">
 
     <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 102px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>
-    <p style="margin-left:80px;margin-bottom:143px;margin-top:0;font-weight: 500;line-height: 28px;font-size: 24px;">&#60; Business Glossary </p><br>
+    <p style="margin-left:80px;margin-bottom:143px;margin-top:0;font-weight: 500;line-height: 28px;font-size: 24px;" onclick="history.back()">&#60; Business Glossary </p><br>
 
 
 
-</div>
+  </div>
 
 
 
@@ -331,7 +339,7 @@
 
 
 
-                <input type="text" name="filter" style="width:108px;border: 2px solid #ccc; margin-left:16px; box-sizing: border-box; height:40px;" placeholder="   Filter        &#x25BC;" class="Filterbox" id="filter" onkeyup="myFunction()" >
+    <button type="text" name="changee" style="width:108px;border: 2px solid #ccc; margin-left:16px; box-sizing: border-box; height:40px;" placeholder="   Filter        &#x25BC;"  id="filter_button" >Filter</button>
 
 <!--                <input type="text" name="Download" style="width:168px; height:40px;border: 2px solid #ccc; margin-right:5px; margin-left:357px;" placeholder="   Download As     &#x25BC;">-->
 <!--               <button class="Addnew-button" id="myBtn" style="padding-left:0px;">-->
@@ -343,7 +351,7 @@
                     <button class="Addnew-button" id="myBtn" style="padding-left:0px;">
                     <span style="font-size:30px; margin-right:10px;">&plus; </span>  Add New
                 </button>
-                <a href="static/assets/bs_glossary_df.csv" id="download_csv" download hidden>download</a>
+                <a href="static/assets/business_glossary_excel.csv" id="download_csv" download hidden>download</a>
 
 
 
@@ -373,22 +381,82 @@
                               <td>{{ temp.status }}</td>
                             </tr>
                          {% endfor %}
-
-
-
-
-
-     </div>
+    </div>
 
 
 
 
 </div >
 
+  <div class="filter" id="Filter_box" style="top:223px; margin-left:35%;  width:540px; height:320px; background: white; border-radius: 8px 0px 0px 8px;">
+    <div class="in" style="left: 8%; margin-top: 3%; ">
+        <lable style="margin-left:10px;"> Filter</lable><br>
+        <lable style="margin-left:10px;"> Domain</lable><br>
+        <lable style="margin-left:500px; margin-top:-100px;"> </lable>
+        <div style="padding-top: -23%; margin-left:40%; width:400%;">
+            <input type="checkbox" style="margin-left:-20%;" id="gdpr" onclick="dpo_1()" name="dpo1" value="dpo">
+                <lable class="" style="top:47%;">GDPR</lable>
+            <input type="checkbox" style="margin-left:20px;" id="g_policy" onclick="dpo_1()" name="dpo1" value="dpo">
+                <lable class="" style="top:47%;">Glossary Policy</lable>
+            <input type="checkbox" style="margin-left:20px;" id="ccpa" onclick="dpo_1()" name="dpo1" value="dpo">
+                <lable class="" style="top:47%;">CCPA</lable>
+            <input type="checkbox" style="margin-left:20px;" id="standard" onclick="dpo_1()" name="dpo1" value="dpo">
+                <lable class="" style="top:47%;">Standard</lable>
+        </div>
+
+        <div style="width:400px; margin-left:-120px;">
+            <lable style=""> Line of Business</lable>
+        </div>
+        <div style="padding-top: -23%; margin-left:40%; width:400%;">
+            <input type="checkbox" style="margin-left:-65%;" id="cust" onclick="dpo_1()" name="dpo1" value="dpo">
+                <lable class="" style="top:47%;">Customer</lable>
+            <input type="checkbox" style="margin-left:30px;" id="credit" onclick="dpo_1()" name="dpo1" value="dpo">
+                <lable class="" style="top:47%; margin-left:;">Credit</lable>
+
+        </div>
+
+        <lable style="margin-left:10px;"> Status</lable>
+        <div style="padding-top: -23%; margin-left:40%; width:400%;">
+            <input type="checkbox" style="margin-left:-12%;" id="approval" onclick="dpo_1()" name="dpo1" value="dpo">
+                <lable class="" style="top:47%;">Awaiting Approval</lable>
+            <input type="checkbox" style="margin-left:30px;" id="review" onclick="dpo_1()" name="dpo1" value="dpo">
+                <lable class="" style="top:47%;">Awaiting Review</lable>
+            <input type="checkbox" style="margin-left:30px;" id="dpo1" onclick="approved" name="dpo1" value="dpo">
+                <lable class="" style="top:47%;">Approved</lable>
+
+        </div>
+
+        <div style="margin-top:20px; background-color:; width:600px; ">
+<!--            <input type="submit" style="width:240px; margin-top:20px; margin-left:50px;" button>-->
+<!--            <input type="submit" style="width:240px; margin-top:-20px; margin-left:300px;" button>-->
+            <button class="" type="submit" id="cancel" style="margin-top:; margin-left:-20px; width:210px;">Cancel</button>
+            <button class="" type="submit" id ="filter" style="margin-top:; margin-left:10px; width:210px;">Apply filters</button>
+        </div>
+     </div>
+ </div>
+
+
+
 
 <script>
 // Get the modal
 var modal = document.getElementById("myModal");
+
+var fil_modal = document.getElementById("Filter_box");
+
+
+
+// Get the button that opens the modal
+var f_btn = document.getElementById("filter_button");
+
+
+
+
+// When the user clicks the button, open the modal
+f_btn.onclick = function() {
+  fil_modal.style.display = "block";
+}
+
 
 // Get the button that opens the modal
 var btn = document.getElementById("myBtn");
@@ -414,55 +482,6 @@ window.onclick = function(event) {
 }
 </script>
 
-<!--<script>-->
-<!--    function myFunction() {-->
-<!--      var input, filter, table, tr, td, i, txtValue;-->
-<!--      input = document.getElementById("myInput");-->
-<!--      filter = input.value.toUpperCase();-->
-<!--      table = document.getElementById("myTable");-->
-<!--      tr = table.getElementsByTagName("tr");-->
-<!--      for (i = 0; i < tr.length; i++) {-->
-<!--        td = tr[i].getElementsByTagName("td")[0];-->
-<!--        if (td) {-->
-<!--          txtValue = td.textContent || td.innerText;-->
-<!--          if (txtValue.toUpperCase().indexOf(filter) > -1) {-->
-<!--            tr[i].style.display = "";-->
-<!--          } else {-->
-<!--            tr[i].style.display = "none";-->
-<!--          }-->
-<!--        }-->
-<!--      }-->
-<!--    }-->
-<!--</script>-->
-
-
-<!--<script>-->
-<!--    function myFunction = () =>{-->
-
-<!--      let filter = document.getElementById("myInput").value;.toUpperCase();-->
-<!--      filter = input.value.toUpperCase();-->
-<!--      let myTable = document.getElementById("myTable");-->
-<!--      tr = myTable.getElementsByTagName("");-->
-<!--      for (i = 0; i < tr.length; i++) {-->
-<!--        td = tr[i].getElementsByTagName("td")[0];-->
-<!--        td = tr[i].getElementsByTagName("td")[1];-->
-<!--        td = tr[i].getElementsByTagName("td")[2];-->
-<!--        td = tr[i].getElementsByTagName("td")[3];-->
-<!--        td = tr[i].getElementsByTagName("td")[4];-->
-<!--        td = tr[i].getElementsByTagName("td")[5];-->
-<!--        td = tr[i].getElementsByTagName("td")[6];-->
-<!--        if (td) {-->
-<!--          txtValue = td.textContent || td.innerText;-->
-<!--          if (txtValue.toUpperCase().indexOf(filter) > -1) {-->
-<!--            tr[i].style.display = "";-->
-<!--          } else {-->
-<!--            tr[i].style.display = "none";-->
-<!--          }-->
-<!--        }-->
-<!--      }-->
-<!--    }-->
-
-<!--</script>-->
 <script>
 function myFunction() {
     var input, filter, found, table, tr, td, i, j;

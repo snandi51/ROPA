@@ -19,5 +19,8 @@ urlpatterns = [
     path('edit', member_views.edit, name='edit'),
     path('delete', member_views.delete, name='delete'),
     path('dashboard', member_views.dashboard, name='dashboard'),
+    path('record', member_views.record, name='record'),
+    path('ropa_edit', member_views.ropa_edit, name='ropa_edit'),
+    path('ropa_delete', member_views.ropa_delete, name='ropa_delete'),
 
  ]
