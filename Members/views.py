@@ -15,7 +15,7 @@ from django.forms.models import model_to_dict
 
 
 # Create your views here.
-@csrf_protect
+
 def login_user(request):
     if request.method == 'POST':
         request.session['username'] = request.POST.get('username')
@@ -46,13 +46,13 @@ def login_user(request):
 
 
 
-@csrf_protect
+
 @login_required
 def logout_user(request):
     logout(request)
     return render(request, 'logout.html')
 
-
+@login_required
 def index(request):
     return render(request, 'index.html')
 
@@ -192,7 +192,8 @@ def bussiness_glossary(request):
 def test(request):
     # import ipdb
     # ipdb.set_trace()
-    print('test function')
+
+
     if request.method == "POST":
         businessterm = request.POST.get('businessterm')
         definition = request.POST.get('definition')
