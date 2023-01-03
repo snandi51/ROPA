@@ -237,15 +237,15 @@
                       cursor: pointer;
                     }
 
-                   .close1 {
+                   .close_edit {
                       color: #aaaaaa;
                       float: right;
                       font-size: 28px;
                       font-weight: bold;
                     }
 
-                    .close1:hover,
-                    .close1:focus {
+                    .close_edit:hover,
+                    .close_edit:focus {
                       color: #000;
                       text-decoration: none;
                       cursor: pointer;
@@ -287,6 +287,48 @@
 
                     /* Modal Content */
 
+                     .modal2 {
+                            display:none;
+                          position: fixed; /* Stay in place */
+                          z-index: 1; /* Sit on top */
+                          padding-top: 100px; /* Location of the box */
+                          left: 0;
+                          bottom: 0;
+                          width: 100%; /* Full width */
+                          height: 100%; /* Full height */
+                          overflow: auto; /* Enable scroll if needed */
+                          background-color: rgb(0,0,0); /* Fallback color */
+                          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                        }
+               .close_delete {
+                      color: #aaaaaa;
+                      float: right;
+                      font-size: 28px;
+                      font-weight: bold;
+                    }
+
+                    .close_delete:hover,
+                    .close_delete:focus {
+                      color: #000;
+                      text-decoration: none;
+                      cursor: pointer;
+                    }
+
+                     .filter {
+                      display:none;
+                      position: fixed; /* Stay in place */
+                      z-index: 1; /* Sit on top */
+                      padding-top: 100px; /* Location of the box */
+                      left: 0;
+                      bottom: 0;
+                      width: 100%; /* Full width */
+                      height: 100%; /* Full height */
+<!--                      overflow: auto; /* Enable scroll if needed */-->
+                      background-color: rgb(0,0,0); /* Fallback color */
+                      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                      }
+
+
 
 
 
@@ -302,10 +344,10 @@
 
 
 
-  <div class="alt-nav" style="width:1372px;height:80px;">
+  <div class="alt-nav" style="width:100%;height:80px;">
 
     <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 210px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>
-    <p style="margin-left:190px;margin-bottom:143px;margin-top:0;font-weight: 500;line-height: 28px;font-size: 24px;">&#60; Business Glossary </p><br>
+    <p style="margin-left:190px;margin-bottom:143px;margin-top:0;font-weight: 500;line-height: 28px;font-size: 24px;"><span class="back-arrow" onclick="history.back()">&#60; </span> Business Glossary </p><br>
 
 
 
@@ -316,16 +358,28 @@
 
   <div class="login-box" style="top:165px;left:400px;  width:1165px;min-height:500px;overflow-y: scroll;">
 
-      <input type="text" name="search" placeholder="Search.." class="search">
-      <input type="text" name="filter" style="width:108px;border: 2px solid #ccc; margin-left:16px; box-sizing: border-box; height:40px;" placeholder="   Filter        &#x25BC;" class="Filterbox">
-      <input type="text" name="Download" style="width:168px; height:40px;border: 2px solid #ccc; margin-right:5px; margin-left:357px;" placeholder="   Download As     &#x25BC;">
+      <input type="text" name="search" placeholder="Search.." class="search" id="myInput" onkeyup="myFunction()">
+<!--      <input type="text" name="filter" style="width:108px;border: 2px solid #ccc; margin-left:16px; box-sizing: border-box; height:40px;" placeholder="   Filter        &#x25BC;" class="Filterbox" id="filter" onkeyup="myFunction()">-->
+      <button type="text" name="changee" style="width:108px;border: 2px solid #ccc; margin-left:16px; box-sizing: border-box; height:40px;" placeholder="   Filter        &#x25BC;"  id="filter_button" >Filter</button>
+      <!--      <input type="text" name="Download"  placeholder="   Download As     &#x25BC;">-->
+      <select onchange="pdf_or_excel()" name="download_as" id="download_as" style="width:168px; height:40px;border: 2px solid #ccc; margin-right:5px; margin-left:357px;">
+          <option value="0" selected>Download As</option>
+          <option  value="1">Excel</option>
+          <option  value="2">PDF</option>
+      </select>
+      <a href="static/assets/bg_excel.csv" id="download_csv" download hidden>download</a>
+
+
+<!--          -->
+
+
 
       <button class="Addnew-button" id="myBtn" style="padding-left:0px;">
           <span style="font-size:30px; margin-right:10px;">&plus; </span>  Add New
       </button>
 
       <div class="table" style="margin-top:15px;">
-          <table id="dbtable"  class="paginated table table-striped table-hover" style="margin-left:32px;width:1100px;background: #E0E0E0;">
+          <table id="myTable"  class="paginated table table-striped table-hover" style="margin-left:32px;width:1100px;background: #E0E0E0;">
               <thead>
               <tr>
                   <th scope="col">Business Term</th>
@@ -360,7 +414,7 @@
 
   </div >
 
-
+<!--add form-->
 
   <form method="POST" id="bform_screen1" class="business_form" action="test">
       {% csrf_token %}
@@ -369,10 +423,10 @@
       <div id="myModal" class="modal" style="overflow-x: hidden;overflow-y: hidden;margin-top:0px;">
           <div class="rect-4" style="height:575px; max-width:572px;  margin-top:-140px;margin-left:43.45%; overflow-x: hidden;overflow-y: scroll;border: 1px solid #FFFFFF; border-radius: 0px;">
               <span class="close">&times;</span>
-              <div style="position:absolute; left:7%; ">
+              <div onchange="colorChange()" style="position:absolute; left:7%; ">
                   <div>
-                      <lable class="org" style="left:-2%;position:absolute;font-family: 'Ubuntu';font-style: normal;font-weight: 500;
-                    font-size: 16px;line-height: 24px;" >View Business Term Details</lable>
+                      <label class="org" style="left:-2%;position:absolute;font-family: 'Ubuntu';font-style: normal;font-weight: 500;
+                    font-size: 16px;line-height: 24px;" >View Business Term Details</label>
                   </div>
 
                   <div class="input-1 col " style="padding-top: 2%;left:-5%; margin-top:15%;">
@@ -383,7 +437,7 @@
                           Business Term</label>
                       <input type="text" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
         border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="businessterm" id="businessterm_add"
-                             placeholder="Account Password" >
+                             placeholder="Account Password" required>
                   </div>
 
                   <div class="input-1 col " style="left: -5%; margin-top:4%;">
@@ -391,7 +445,7 @@
                              style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
                     color: rgba(39, 41, 54, 0.85);">Data Attribute</label>
                       <input type="text" name="dataattribute" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
-        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="dataattribute_add" placeholder="Lorem Ipsum">
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="dataattribute_add" placeholder="Lorem Ipsum" required>
                   </div>
 
 
@@ -402,7 +456,7 @@
                       >Definition</label>
                       <input style="box-sizing: border-box;width: 456px;height: 90px;background: #FFFFFF;border: 1px solid #8D8D8D;
         border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" type="text" name="definition" id="definition_add"
-                             placeholder="Describe the meaning of the term with respect to the business">
+                             placeholder="Describe the meaning of the term with respect to the business" required>
                   </div>
 
                   <div class="input-1 col " style="left: -5%; margin-top:12%;">
@@ -412,7 +466,7 @@
                       >System</label>
                       <input type="text" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
         border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="system"  id="system_add"
-                             placeholder="type something">
+                             placeholder="type something" required>
                   </div>
                   <div class="input-1 col " style="left: -5%;margin-top:4%;">
                       <label  class="label-top"
@@ -436,7 +490,7 @@
                       >Domain</label>
                       <input type="text" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
         border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="datadomain"  id="datadomain_add"
-                             placeholder="Lorem ipsum" >
+                             placeholder="Lorem ipsum" required >
                   </div>
 
 
@@ -446,7 +500,7 @@
                     color: rgba(39, 41, 54, 0.85);width:300px;"
                       >Line of Business</label>
                       <input type="text" name="lineofbusiness" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
-        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="lineofbusiness_add" placeholder="lorem ipsum">
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="lineofbusiness_add" placeholder="lorem ipsum" required>
                   </div>
 
 
@@ -456,27 +510,28 @@
                     color: rgba(39, 41, 54, 0.85);"
                       >Status</label>
                       <input type="text" name="status" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
-        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="status_add" placeholder="Approved">
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="status_add" placeholder="Approved" required>
                   </div>
 
-                  <div class="input-1 col " style="left: -5%;margin-top:4%;">
+                  <div  class="input-1 col " style="left: -5%;margin-top:4%;">
                       <label  class="label-top"
                              style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
                     color: rgba(39, 41, 54, 0.85);width:300px;"
                       >Created by</label>
                       <input type="text" name="createdby" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
-        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;"class="input-master" id="createdby_add" placeholder="lorem ipsum">
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;"class="input-master" id="createdby_add"  placeholder="lorem ipsum" required>
+                  </div>
                   </div>
 
                   <p style="margin-top:55px; margin-left: 42px;"></p>
               </div>
-          </div>
+
           <!--                  <form method="POST" id="bform_screen1" class="business_form" action="test">-->
           <!--                     {% csrf_token %}-->
           <footer style="height:50px;  position: fixed;width:570px; right: 0;bottom: 0; background: #FFFFFF;border: 1px solid #FFFFFF;">
-              <button  style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:25px; margin-top:10px;  width:240px; height:30px;">
+              <button  id="cancel-button"  style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:25px; margin-top:10px;  width:240px; height:30px;">
                   <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Cancel</span></button>
-              <button type="submit"  style="background: rgba(39, 41, 54, 0.22);border: 1px solid #0C7799;border-radius: 4px; margin-left:30px; margin-top:10px;  width:240px; height:30px;" id="add_button" onchange="colorChange()" >
+              <button type="submit"  style="background: rgba(39, 41, 54, 0.22);border: 1px solid #0C7799;border-radius: 4px; margin-left:30px; margin-top:10px;  width:240px; height:30px;" id="add_button"  >
                   <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Add</span>
               </button>
 
@@ -486,18 +541,18 @@
 
   </form>
 
-
+<!--# edit form-->
 
   <form method="POST" id="bform_screen11" class="business_form1" action="edit">
       {% csrf_token %}
 
       <div id="myModal1" class="modal1" style="overflow-x: hidden;overflow-y: hidden;margin-top:0px;">
           <div class="rect-4" style="height:575px; max-width:572px;  margin-top:-140px;margin-left:43.45%; overflow-x: hidden;overflow-y: scroll;border: 1px solid #FFFFFF; border-radius: 0px;">
-              <span class="close1">&times;</span>
+              <span class="close_edit">&times;</span>
               <div style="position:absolute; left:7%; ">
                   <div>
-                      <lable class="org" style="left:-2%;position:absolute;font-family: 'Ubuntu';font-style: normal;font-weight: 500;
-                    font-size: 16px;line-height: 24px;" >View Business Term Details</lable>
+                      <label class="org" style="left:-2%;position:absolute;font-family: 'Ubuntu';font-style: normal;font-weight: 500;
+                    font-size: 16px;line-height: 24px;" >View Business Term Details</label>
                   </div>
 
                   <div class="input-1 col " style="padding-top: 2%;left:-5%; margin-top:15%;">
@@ -594,29 +649,111 @@
                   </div>
 
                   <input type="text" name="bgid"  id="bgid_edit" placeholder="lorem ipsum" style="display:none;">
-
+<!-- invisble -->
 
                   <p style="margin-top:55px; margin-left: 42px;"></p>
               </div>
           </div>
           <!--                  <form method="POST" id="bform_screen1" class="business_form" action="test">-->
           <!--                     {% csrf_token %}-->
+
           <footer style="height:50px;  position: fixed;width:570px; right: 0;bottom: 0; background: #FFFFFF;border: 1px solid #FFFFFF;">
-               <button type="submit"  onClick = "deleteRow(this)" id="deleterow"  style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:25px; margin-top:10px;  width:240px; height:30px;">
-                           <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Delete</span></button>
-              <button type="submit"  style="background: #12ABDB;border: 1px solid #0E88AF;border-radius: 4px; margin-left:30px; margin-top:10px;  width:240px; height:30px;">
+<!--               <button   onClick = "deleteRow(this)" id="deleterow"  style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:25px; margin-top:10px;  width:240px; height:30px;">-->
+<!--                           <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Delete</span></button>-->
+              <button type="submit"  style="background: #12ABDB;border: 1px solid #0E88AF;border-radius: 4px; margin-left:300px; margin-top:10px;  width:240px; height:30px;">
                   <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Edit</span>
               </button>
 
           </footer>
 
-  </form>
+</form>
+
+   <button type="button"  onClick = "deleteRow(this)" id="deleterow"  style="position:absolute;background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:820px; margin-top:535px;  width:240px; height:30px;">
+                           <span style=" text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Delete</span></button>
 
 
 
 
 </div>
 
+
+    <div id="myModal2" class="modal2" style="overflow-x: hidden;overflow-y: hidden;margin-top:0px;">
+          <div class="rect-4" style="height:575px; max-width:572px;  margin-top:-140px;margin-left:43.45%; overflow-x: hidden;overflow-y: scroll;border: 1px solid #FFFFFF; border-radius: 0px;">
+              <span class="close_delete">&times;</span>
+              <div style="position:absolute; left:7%; ">
+                  <div style="margin_top:4%;">
+
+<!--                      <button type="button" onclick="history.back()" style="display: none; color:Black" id="back-btn" >  </button>-->
+<!--                      <a href="#" style=" margin-left:80px;"><img src="static/assets/img/Icon.png" onclick="document.getElementById('back-btn').click()"  alt="Back"/><b>BACK</b> </a>-->
+                       <lable class="org" style="left:-1%;position:absolute;font-family: 'Ubuntu';font-style: normal;font-weight: 500;
+                    font-size: 16px;line-height: 24px;" > <img src="static/assets/img/Icon.png" onclick="history.back()"  alt="Back"/> Delete Business Term </lable>
+                  </div>
+                    <p style="margin-top:15%"></p>
+                    <img style="width:70%; height:85%;margin-left: 25%; margin-right: auto;" src="static/assets/img/ROPA-Img/rafiki.png">
+                        <p style="margin-left: 25%;font-family: 'Ubuntu';font-style: normal;font-weight: 300;font-size: 24px;line-height: 28px;text-align: center;font-feature-settings: 'pnum' on, 'lnum' on;color: rgba(39, 41, 54, 0.85);">Are you sure you want to Delete?</p>
+                         <p style="margin-left: 25%;">All data you entered will be discarded.</p>
+
+              </div>
+
+
+          </div>
+
+                <footer style="height:50px;  position: fixed;width:570px; right: 0;bottom: 0; background: #FFFFFF;border: 1px solid #FFFFFF;">
+               <button  type="button" id="cancel-delete-button"  style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:25px; margin-top:10px;  width:240px; height:30px;">
+                           <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">No</span></button>
+              <button type="button"  onClick = "yes_function()" style="background: #12ABDB;border: 1px solid #0E88AF;border-radius: 4px; margin-left:30px; margin-top:10px;  width:240px; height:30px;">
+                  <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Yes</span>
+              </button>
+
+          </footer>
+    </div>
+
+
+  <div class="filter" id="Filter_box" style="top:223px; margin-left:25%;  width:540px; height:320px; background: white; border-radius: 8px 0px 0px 8px;">
+    <div  style="margin-left: 2%; background:green; ">
+        <lable style="margin-left:1%;"> Filter</lable><br>
+        <lable style="margin-left:1%;"> Domain</lable><br>
+        <div style="padding-top: -23%; margin-left:40%; width:400%;">
+            <input type="checkbox" style="margin-left:-20%;" id="gdpr" onclick="dpo_1()" name="dpo1" value="dpo">
+                <lable class="" style="top:47%;">GDPR</lable>
+            <input type="checkbox" style="margin-left:20px;" id="g_policy" onclick="dpo_1()" name="dpo1" value="dpo">
+                <lable class="" style="top:47%;">Glossary Policy</lable>
+            <input type="checkbox" style="margin-left:20px;" id="ccpa" onclick="dpo_1()" name="dpo1" value="dpo">
+                <lable class="" style="top:47%;">CCPA</lable>
+            <input type="checkbox" style="margin-left:20px;" id="standard" onclick="dpo_1()" name="dpo1" value="dpo">
+                <lable class="" style="top:47%;">Standard</lable>
+        </div>
+
+        <div style="width:400px; margin-left:-120px;">
+            <lable style=""> Line of Business</lable>
+        </div>
+        <div style="padding-top: -23%; margin-left:40%; width:400%;">
+            <input type="checkbox" style="margin-left:-65%;" id="cust" onclick="dpo_1()" name="dpo1" value="dpo">
+                <lable class="" style="top:47%;">Customer</lable>
+            <input type="checkbox" style="margin-left:30px;" id="credit" onclick="dpo_1()" name="dpo1" value="dpo">
+                <lable class="" style="top:47%; margin-left:;">Credit</lable>
+
+        </div>
+
+        <lable style="margin-left:10px;"> Status</lable>
+        <div style="padding-top: -23%; margin-left:40%; width:400%;">
+            <input type="checkbox" style="margin-left:-12%;" id="approval" onclick="dpo_1()" name="dpo1" value="dpo">
+                <lable class="" style="top:47%;">Awaiting Approval</lable>
+            <input type="checkbox" style="margin-left:30px;" id="review" onclick="dpo_1()" name="dpo1" value="dpo">
+                <lable class="" style="top:47%;">Awaiting Review</lable>
+            <input type="checkbox" style="margin-left:30px;" id="dpo1" onclick="approved" name="dpo1" value="dpo">
+                <lable class="" style="top:47%;">Approved</lable>
+
+        </div>
+
+        <div style="margin-top:20px; background-color:; width:600px; margin-left:10px;">
+<!--            <input type="submit" style="width:240px; margin-top:20px; margin-left:50px;" button>-->
+<!--            <input type="submit" style="width:240px; margin-top:-20px; margin-left:300px;" button>-->
+            <button class="" type="submit" id="cancel" style="margin-top:; position: static;  margin-left:20px; width:230px;">Cancel</button>
+            <button class="" type="submit" id ="filter" style="margin-top:; position: static;  margin-left:20px; width:230px;">Apply filters</button>
+        </div>
+     </div>
+ </div>
 
   <script>
 // Get the modal
@@ -635,9 +772,6 @@ btn.onclick = function() {
   modal.style.display = "block";
 }
 
-<!--function myFunction() {-->
-<!--  document.getElementById("myModal");-->
-<!--}-->
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
@@ -649,6 +783,19 @@ window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
+}
+
+var cancel = document.getElementById("cancel-button");
+
+cancel.onclick = function() {
+  modal.style.display = "none";
+}
+
+var canceldelete = document.getElementById("cancel-delete-button")
+
+
+canceldelete.onclick = function() {
+  myModal2.style.display = "none";
 }
 
 
@@ -667,13 +814,17 @@ window.onload= function(){
 
 }
 function colorChange() {
-       if (document.getElementById("createdby_add").value == "") {
-            var x = document.getElementById("add_button").style.background = "green";
+       if ((document.getElementById("createdby_add").value != "") & (document.getElementById("status_add").value != "") &
+           (document.getElementById("lineofbusiness_add").value != "") & (document.getElementById("datadomain_add").value != "") &
+           (document.getElementById("classification_add").value != "") & (document.getElementById("system_add").value != "") &
+           (document.getElementById("definition_add").value != "") & (document.getElementById("dataattribute_add").value != "")
+            & (document.getElementById("businessterm_add").value != "")) {
+            var x = document.getElementById("add_button").style.background = "#12ABDB";
     }
     else {
-       document.getElementById("add_button").style.background = "blue";
+       document.getElementById("add_button").style.background = "rgba(39, 41, 54, 0.22)";
        document.getElementById("add_button").style.color = "white";
-       document.getElementById("add_button").style.border = "blue";
+       document.getElementById("add_button").style.border = "#0C7799;";
       }
 }
 
@@ -688,9 +839,12 @@ var modal1 = document.getElementById("myModal1");
 // Get the button that opens the modal
 var btn1 = document.getElementById("Myvar");
 
+var glob_id = '0'
+
 function Mybtn1(id){
     console.log('Hi!')
     console.log(id)
+    glob_id = id
     var bg_dict= {{bg_dict|safe}}
     console.log(bg_dict)
     console.log('entering index')
@@ -723,25 +877,37 @@ function Mybtn1(id){
         bgid_edit.value=edit_dict.bgid
     }
 
-<!--    a=temp-->
-<!--    console.log(a)-->
+
 
     modal1.style.display = "block";
+}
 
-<!--    document.getElementById("businessterm").innerhtml= temp.businessterm;-->
-<!--    const btn1 = document.getElementById("temp").innerText;-->
-<!--    if (a==btn1){-->
-<!--        console.log('Hi!',a)-->
-<!--    }-->
+function deleteRow(tempid){
+    console.log('entering delete function')
+    console.log(tempid)
+    console.log(glob_id)
+    var modal1 = document.getElementById("myModal1");
+    modal1.style.display = "none";
+    var modal2 = document.getElementById("myModal2");
+    modal2.style.display = "block";
+
 
 }
+
 
 // Get the <span> element that closes the modal
-var span1 = document.getElementsByClassName("close1")[0];
+var span1 = document.getElementsByClassName("close_edit")[0];
 
-function get_id(id){
-console.log(id)
+var span2 = document.getElementsByClassName("close_delete")[0];
+
+function yes_function(){
+window.location.href='{% url 'delete' %}'+'?search='+glob_id
 }
+
+<!--function no_function(){-->
+<!--window.location.href='{% url 'test' %}'+'?search='+glob_id-->
+
+<!--}-->
 
 
 <!--// When the user clicks the button, open the modal-->
@@ -756,25 +922,95 @@ console.log(id)
 // When the user clicks on <span> (x), close the modal
 span1.onclick = function() {
   modal1.style.display = "none";
+  modal2.style.display = "none";
 }
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal1) {
-    modal1.style.display = "none";
-  }
+var span2 = document.getElementsByClassName("close_delete")[0];
+
+// When the user clicks on <span> (x), close the modal
+span1.onclick = function() {
+  modal1.style.display = "none";
+}
+span2.onclick = function() {
+  modal2.style.display = "none";
+}
+<!-- filter download and search -->
+
+
+function myFunction() {
+    var input, filter, found, table, tr, td, i, j;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td");
+        for (j = 0; j < td.length; j++) {
+            if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                found = true;
+            }
+        }
+        if (found) {
+            tr[i].style.display = "";
+            found = false;
+        } else {
+            tr[i].style.display = "none";
+        }
+    }
 }
 
-function deleteRow(r) {
-  var i = r.parentNode.parentNode.rowIndex;
-  document.getElementById("dbtable").deleteRow(i);
+ function pdf_or_excel(){
+        getSelectValue = document.getElementById("download_as").value;
+        if(getSelectValue == "1"){
+            document.getElementById("download_csv").click();
+        }else{
+           console.log('pdf')
+        }
+    }
+
+
+
+
+<!---->
+
+
+
+// Get the modal
+<!--var modal = document.getElementById("myModal");-->
+
+var fil_modal = document.getElementById("Filter_box");
+
+// Get the button that opens the modal
+var f_btn = document.getElementById("filter_button");
+
+// When the user clicks the button, open the modal
+f_btn.onclick = function() {
+  fil_modal.style.display = "block";
 }
 
 
 
 
+<!--// Get the <span> element that closes the modal-->
+<!--var span = document.getElementsByClassName("close")[0];-->
 
+
+<!--// When the user clicks on <span> (x), close the modal-->
+<!--span.onclick = function() {-->
+<!--  modal.style.display = "none";-->
+<!--}-->
+
+<!--// When the user clicks anywhere outside of the modal, close it-->
+<!--window.onclick = function(event) {-->
+<!--  if (event.target == modal) {-->
+<!--    modal.style.display = "none";-->
+<!--  }-->
+<!--}-->
 </script>
+
+
+
+
 
 {% endblock %}
 

@@ -131,8 +131,10 @@ class RopaMain(models.Model):
     securitymeasures_desc = models.TextField(db_column='SecurityMeasures_Desc')  # Field name made lowercase.
     linkscontracts = models.TextField(db_column='LinksContracts')  # Field name made lowercase.
     status = models.CharField(db_column='Status', max_length=30)  # Field name made lowercase.
-    create_timestamp = models.DateTimeField(db_column='Create_Timestamp')  # Field name made lowercase.
-    update_timestamp = models.DateTimeField(db_column='Update_Timestamp')  # Field name made lowercase.
+    # create_timestamp = models.DateTimeField(db_column='Create_Timestamp')  # Field name made lowercase.
+    # update_timestamp = models.DateTimeField(db_column='Update_Timestamp')  # Field name made lowercase.
+    create_timestamp = models.DateTimeField(db_column='Create_Timestamp', auto_now_add=True)  # Field name made lowercase.
+    update_timestamp = models.DateTimeField(db_column='Update_Timestamp', auto_now_add=True)
 
     class Meta:
         managed = False
@@ -176,8 +178,6 @@ class UserDetails(models.Model):
 #
 
 
-
-
 class RopaType(models.Model):
     ropaid = models.BigAutoField(db_column='ROPAId', primary_key=True)  # Field name made lowercase.
     userid = models.ForeignKey(UserDetails, models.DO_NOTHING, db_column='UserId', null=True)  # Field name made lowercase.
@@ -201,3 +201,13 @@ class RopaType(models.Model):
     class Meta:
         managed = False
         db_table = 'ROPA_TYPE'
+
+
+class roles_dup(models.Model):
+    DPO = models.CharField(db_column='DPO',  max_length=100, blank=True, null=True)
+    BusinessFunctionHead = models.CharField(db_column='BusinessFunctionHead', max_length=100, blank=True, null=True)
+    DataSteward = models.CharField(db_column='DataSteward', max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'roles_dup'
