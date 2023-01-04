@@ -23,6 +23,11 @@ def login_user(request):
         username = request.session.get('username')
         user = authenticate(request, username=username, password=password)
 
+        if request.user.is_authenticated:
+            return render(request, 'dashboard.html')
+        else:
+            return render(request, 'index.html')
+
         if user is not None:
             login(request, user)
             return render(request, 'index.html')
@@ -33,10 +38,6 @@ def login_user(request):
             messages.success(request, 'Invalid Username or Password')
             return render(request, 'login.html', context)
 
-        if request.user.is_authenticated:
-            return render(request, 'dashboard.html')
-        else:
-            return render(request, 'login.html')
     return render(request, 'login.html')
 
     # if request.user.is_authenticated:
@@ -240,8 +241,8 @@ def addnew(request):
 
 
 def edit(request):
-    import ipdb
-    ipdb.set_trace()
+    # import ipdb
+    # ipdb.set_trace()
 
     print('edit function')
     if request.method == "POST":
@@ -472,8 +473,8 @@ def record(request):
 def ropa_edit(request):
     print('inside edit function')
     if request.method == "POST":
-        import ipdb
-        ipdb.set_trace()
+        # import ipdb
+        # ipdb.set_trace()
         #  form data fetching
         status = request.POST.get('status')
         processingactivityname = request.POST.get('processingactivityname')
