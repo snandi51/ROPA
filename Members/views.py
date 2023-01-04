@@ -189,6 +189,7 @@ def bussiness_glossary(request):
     return render(request, 'bussiness_glossary.html',context)
 
 
+@login_required
 def test(request):
     # import ipdb
     # ipdb.set_trace()
@@ -312,7 +313,7 @@ def delete(request):
     # ipdb.set_trace()
     print('delete function')
 
-    id_delete=request.GET.get('search')
+    id_delete = request.GET.get('search')
     # Id maapping with database then form updated data save to variables
     delete_db = BgMain.objects.get(bgid=id_delete)
     print(delete_db)
@@ -335,7 +336,7 @@ def delete(request):
         'bg_dict': bg_dict
     }
 
-    stored_proc_delete(request)
+    # stored_proc_delete(request)
 
     return render(request, 'test.html', context)
 
@@ -366,17 +367,17 @@ def stored_proc_edit(req):
         cursor.close()
 
 
-def stored_proc_delete(req):
-    # import ipdb
-    # ipdb.set_trace()
-    cursor = connection.cursor()
-    print('sp_delete')
-    try:
-        cursor.execute('EXEC spauditdeleteoperation')
-
-        return render(req, 'test.html')
-    finally:
-        cursor.close()
+# def stored_proc_delete(req):
+#     # import ipdb
+#     # ipdb.set_trace()
+#     cursor = connection.cursor()
+#     print('sp_delete')
+#     try:
+#         cursor.execute('EXEC spauditdeleteoperation')
+#
+#         return render(req, 'test.html')
+#     finally:
+#         cursor.close()
 
 
 def dashboard(request):
@@ -518,7 +519,7 @@ def ropa_edit(request):
         ropa_edit_db.update_timestamp = datetime.datetime.now()
         # updates data save to new dict
         ropa_edit_db.save()
-
+        print('ropa edit db:', ropa_edit_db)
         user_detail = request.session['user_detail']
         # user_detail = UserDetails.objects.get(userid=current_user.id)
         ropa_id = RopaType.objects.get(userid=user_detail)
@@ -536,7 +537,7 @@ def ropa_edit(request):
 
         result = RopaMain.objects.all()
         ropa_main = pd.DataFrame(list(RopaMain.objects.all().values()))
-        print('ropa_main1 in edit', ropa_main1)
+        print('ropa_main in edit', ropa_main)
         # a=len(bg)
         ropa_dict = ropa_main.to_dict('records')
         print('ropa_dict in edit', ropa_dict)
@@ -553,33 +554,33 @@ def ropa_edit(request):
 def ropa_delete(request):
     # import ipdb
     # ipdb.set_trace()
-    print('delete function')
+    print('ropa delete function')
 
     id_delete = request.GET.get('search')
     # Id maapping with database then form updated data save to variables
-    delete_db = RopaAudit.objects.get(ropaid=id_delete)
+    delete_db = RopaMain.objects.get(ropaid=id_delete)
     print(delete_db)
 
 
     # updates data save to new dict
     delete_db.delete()
 
-    result = RopaAudit.objects.all()
-    ropa_delete = pd.DataFrame(list(RopaAudit.objects.all().values()))
+    result = RopaMain.objects.all()
+    ropa_delete = pd.DataFrame(list(RopaMain.objects.all().values()))
     # a=len(bg)
-    ropa_delete_dict = ropa_delete.to_dict('records')
+    ropa_dict = ropa_delete.to_dict('records')
 
-    for i in bg_dict:
+    for i in ropa_dict:
 
         i.update({'create_timestamp': str(i.get('create_timestamp'))})
         i.update({'update_timestamp': str(i.get('update_timestamp'))})
 
     context = {
         'result': result,
-        'ropa_delete_dict': ropa_delete_dict
+        'ropa_dict': ropa_dict
     }
 
-    # stored_proc_delete(request)
+    # ropa_stored_proc_delete(request)
     return render(request, 'record.html', context)
 
 
@@ -607,3 +608,16 @@ def ropa_stored_proc_edit(req):
         return render(req, 'record.html')
     finally:
         cursor.close()
+
+
+# def ropa_stored_proc_delete(req):
+#     # import ipdb
+#     # ipdb.set_trace()
+#     cursor = connection.cursor()
+#     print('ropa_sp_delete')
+#     try:
+#         cursor.execute('EXEC spauditdeleteoperation_ropa')
+#
+#         return render(req, 'record.html')
+#     finally:
+#         cursor.close()
