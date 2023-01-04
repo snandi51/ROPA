@@ -359,7 +359,7 @@
 <!-------------------------------------------------- Add Form -------------------------------------------------------------------------->
     <form method="POST" id="add_form" class="ropa_form_add" action="record">
          {% csrf_token %}
-        <div id="myModal" class="modal" style="overflow-x: hidden;overflow-y: hidden;margin-top:0px;">
+        <div id="myModal" class="modal" style="overflow-x: hidden;overflow-y: scroll ;margin-top:0px;">
 <!--        <div id="myModal" class="modal" style="overflow-x: hidden;overflow-y: hidden;margin-top:0px; overflow-y: scroll;">-->
           <div class="rect-4" style="min-height:800px; width:760px;margin-left:25%; margin-top:-87px; ">
             <div style="position:absolute; left:4%; padding-right: 5%;">
@@ -369,76 +369,76 @@
                 <div class="form-group">
                     <div class="input-1 col " style="left: -1%; margin-top:15%">
                         <label for="inputPassword" class="label-top" >Status</label>
-                        <input type="text" style=" width:300px; margin-top: -2%;" name="status" id="status_add" class="input-master"  placeholder=" Lorem Ipsum">
+                        <input type="text" style=" width:300px; margin-top: -2%;" name="status" id="status_add" class="input-master"  placeholder=" Lorem Ipsum" required>
                     </div>
                     <div class="input-1 col " style="left: -1%; margin-top:5%">
                         <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px; ">Process Activity Name</label>
-                        <input type="text" name="processingactivityname" id="processingactivityname_add" style="margin-top: -2%; width:300px;" class="input-master"  placeholder=" Lorem Ipsum">
+                        <input type="text" name="processingactivityname" id="processingactivityname_add" style="margin-top: -2%; width:300px;" class="input-master"  placeholder=" Lorem Ipsum" required>
                     </div>
                     <div class="input-1 col" style="left: 95%; margin-top:-35% ">
                         <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px;">Business Function  </label>
-                        <input style="margin-top:-2%; width:300px;" type="text" name="businessfunc" id="businessfunc_add" class="input-master" placeholder=" Lorem Ipsum">
+                        <input style="margin-top:-2%; width:300px;" type="text" name="businessfunc" id="businessfunc_add" class="input-master" placeholder=" Lorem Ipsum" required>
                     </div>
                     <div class="input-1 col" style="left: 95%;margin-top:8% ">
                         <label for="inputPassword" class="label-top" style=" width: 200px;font-size:12px;">Process Activity Description</label>
-                        <input style="margin-top: -2%;width:300px; height:50px;" type="text" name="processingactivitydesc" id="processingactivitydesc_add" class="input-master"  placeholder=" Lorem Ipsum " >
+                        <input style="margin-top: -2%;width:300px; height:50px;" type="text" name="processingactivitydesc" id="processingactivitydesc_add" class="input-master"  placeholder=" Lorem Ipsum " required>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col">
                         <div class="input-1 col " style="left:-5%;margin-top: 10%">
                             <label for="inputPassword" class="label-top" style="width:200px;">Categories of Data Subjects</label>
-                            <input type="text" style="width:300px;" name="categoriesdatasubjects" id="categoriesdatasubjects_add" class="input-master" placeholder=" Lorem Ipsum">
+                            <input type="text" style="width:300px;" name="categoriesdatasubjects" id="categoriesdatasubjects_add" class="input-master" placeholder=" Lorem Ipsum" required>
                         </div>
                         <div class="input-1 col " style="left: -5%; margin-top:15%">
                             <label for="inputPassword" class="label-top" style="width:250px;">Name and Contact Details of Joint Controller</label>
-                            <input type="text" style="height:52px; width:300px;margin-top: 2%;" name="controllername" id="controllername_add" class="input-master"  placeholder=" Lorem ipsum">
+                            <input type="text" style="height:52px; width:300px;margin-top: 2%;" name="controllername" id="controllername_add" class="input-master"  placeholder=" Lorem ipsum" required>
                          </div>
                      </div>
                     <div class="input-1 col" style="left: 95%; margin-top:-40%;">
                         <label for="inputPassword" class="label-top" style="width: 200px; font-size:12px;">Categories of Recipients </label>
-                        <input style="margin-top: -2px; width:300px; height:52px;" type="text" name="categoriesofrecepients" id="categoriesofrecepients_add" class="input-master"  placeholder=" Lorem ipsum">
+                        <input style="margin-top: -2px; width:300px; height:52px;" type="text" name="categoriesofrecepients" id="categoriesofrecepients_add" class="input-master"  placeholder=" Lorem ipsum" required>
                      </div>
                     <div class="input-1 col" style="left: 95%;  margin-top:5%;">
                         <label for="inputPassword" class="label-top" style=" width: 200px;font-size:12px;;">Categories of Personal Data</label>
-                        <input style="margin-top: -2%; width: 300px;" type="text" name="categoriespersonaldata" id="categoriespersonaldata_add" class="input-master"  placeholder=" Lorem ipsum " >
+                        <input style="margin-top: -2%; width: 300px;" type="text" name="categoriespersonaldata" id="categoriespersonaldata_add" class="input-master"  placeholder=" Lorem ipsum " required>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-1 col " style="left: 1%; margin-top: 15%;">
                         <label for="inputPassword" class="label-top" style="width:200px;">Lawful Basis of Processing</label>
-                        <input type="text" style="margin-top: -2%; width:300px;" name="lawfulbasisofprocessing" id="lawfulbasisofprocessing_add"  class="input-master" placeholder=" Lorem Ipsum" >
+                        <input type="text" style="margin-top: -2%; width:300px;" name="lawfulbasisofprocessing" id="lawfulbasisofprocessing_add"  class="input-master" placeholder=" Lorem Ipsum" required>
                     </div>
                    <div class="input-1 col " style="left: 1%; margin-top: 5%;">
                         <label for="inputPassword" class="label-top">Data Processor</label>
-                        <input type="text" name="dataprocessor" id="dataprocessor_add" style="margin-top: -2%; width:300px;" class="input-master" placeholder="Lorem Ipsum">
+                        <input type="text" name="dataprocessor" id="dataprocessor_add" style="margin-top: -2%; width:300px;" class="input-master" placeholder="Lorem Ipsum" required>
                    </div>
                    <div class="input-1 col" style="left: 95%;margin-top: -35%;">
                         <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px;">Retention Schedule </label>
-                        <input style="margin-top: -2%; width:300px;" type="text" name="retentionschedule" id="retentionschedule_add" class="input-master" placeholder=" Lorem Ipsum">
+                        <input style="margin-top: -2%; width:300px;" type="text" name="retentionschedule" id="retentionschedule_add" class="input-master" placeholder=" Lorem Ipsum" required>
                     </div>
                     <div class="input-1 col" style="left: 95%; margin-top: 5%;">
                         <label for="inputPassword" class="label-top" style=" width: 200px;font-size:12px;">Link to Contract with Processor</label>
-                        <input style="margin-top: -2%; width: 300px;" type="text" name="linkcontractprocessor" id="linkcontractprocessor_add" class="input-master" placeholder=" Lorem Ipsum">
+                        <input style="margin-top: -2%; width: 300px;" type="text" name="linkcontractprocessor" id="linkcontractprocessor_add" class="input-master" placeholder=" Lorem Ipsum" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-1 col " style="left: 1%; margin-top: 10%;">
                         <label for="inputPassword" class="label-top" Style="font-size:12px; width:300px; margin-top:px; Letter:0.2px;">Third Countries or international organizations where personal data
                                 is transferred (if applicable) </label>
-                        <input type="text" style="margin-top: 5%; width:300px;" name="countriesdetailstransferred" id="countriesdetailstransferred_add" class="input-master" placeholder=" Lorem Ipsum" >
+                        <input type="text" style="margin-top: 5%; width:300px;" name="countriesdetailstransferred" id="countriesdetailstransferred_add" class="input-master" placeholder=" Lorem Ipsum" required>
                     </div>
                    <div class="input-1 col " style="left: 1%; margin-top: 10%;">
                         <label for="inputPassword" class="label-top" style="width:300px; ">Safeguards for exceptional transfers of personal data for above (If applicable)</label>
-                        <input type="text" name="safeguardsexternaltransfers" id="safeguardsexternaltransfers_add" style="margin-top: 5%; width:300px;" class="input-master" placeholder=" Lorem ipsum">
+                        <input type="text" name="safeguardsexternaltransfers" id="safeguardsexternaltransfers_add" style="margin-top: 5%; width:300px;" class="input-master" placeholder=" Lorem ipsum" required>
                    </div>
                     <div class="input-1 col" style="left: 95%; margin-top: -40%;">
                         <label for="inputPassword" class="label-top" style="width: 300px; font-size:12px; ">Label General description of technical and organizational security measures (if applicable)</label>
-                        <input style="margin-top: 5%; width:300px;" type="text" name="securitymeasures_desc" id="securitymeasures_desc_add" class="input-master"  placeholder=" Lorem ipsum">
+                        <input style="margin-top: 5%; width:300px;" type="text" name="securitymeasures_desc" id="securitymeasures_desc_add" class="input-master"  placeholder=" Lorem ipsum" required>
                     </div>
                     <div class="input-1 col" style="left: 95%; margin-top: 10%;">
                         <label for="inputPassword" class="label-top" style=" width: 300px;font-size:12px;">Links to contracts, consents, breach records, assessments</label>
-                        <input style="margin-top: 5%; width: 320px;" type="text" name="linkscontracts" id="linkscontracts_add" class="input-master" placeholder=" Lorem ipsum " >
+                        <input style="margin-top: 5%; width: 320px;" type="text" name="linkscontracts" id="linkscontracts_add" class="input-master" placeholder=" Lorem ipsum " required>
                     </div>
                     <input type="text" name="ropaid"  id="ropaid_add" placeholder="lorem ipsum" style="display:none;">
                 </div>
@@ -457,7 +457,7 @@
 <!----------------------------------------------------Edit Form----------------------------------------------------------------------->
     <form method="POST" id="edit_form" class="ropa_form_edit" action="ropa_edit">
          {% csrf_token %}
-        <div id="myModal1" class="modal1" style="overflow-x: hidden;overflow-y: hidden;margin-top:0px; overflow-y: scroll;">
+        <div id="myModal1" class="modal1" style="overflow-x: hidden;overflow-y: scroll; margin-top:0px; overflow-y: scroll;">
           <div class="rect-4" style="min-height:800px; width:760px;margin-left:25%; margin-top:-87px; ">
               <span class="close_edit">&times;</span>
             <div style="position:absolute; left:4%; padding-right: 5%;">
@@ -467,78 +467,78 @@
                 <div class="form-group">
                     <div class="input-1 col " style="left: -1%; margin-top:15%">
                         <label  class="label-top" >Status</label>
-                        <input type="text" style=" width:300px; margin-top: -2%;" name="status" id="status_edit" class="input-master"  placeholder=" Lorem Ipsum">
+                        <input type="text" style=" width:300px; margin-top: -2%;" name="status" id="status_edit" class="input-master"  placeholder=" Lorem Ipsum" required>
                     </div>
                     <div class="input-1 col " style="left: -1%; margin-top:5%">
                         <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px; ">Process Activity Name</label>
-                        <input type="text" name="processingactivityname" id="processingactivityname_edit" style="margin-top: -2%; width:300px;" class="input-master"  placeholder=" Lorem Ipsum">
+                        <input type="text" name="processingactivityname" id="processingactivityname_edit" style="margin-top: -2%; width:300px;" class="input-master"  placeholder=" Lorem Ipsum" required>
                     </div>
                     <div class="input-1 col" style="left: 95%; margin-top:-35% ">
                         <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px;">Business Function  </label>
-                        <input style="margin-top:-2%; width:300px;" type="text" name="businessfunc" id="businessfunc_edit" class="input-master" placeholder=" Lorem Ipsum">
+                        <input style="margin-top:-2%; width:300px;" type="text" name="businessfunc" id="businessfunc_edit" class="input-master" placeholder=" Lorem Ipsum" required>
                     </div>
                     <div class="input-1 col" style="left: 95%;margin-top:8% ">
                         <label for="inputPassword" class="label-top" style=" width: 200px;font-size:12px;">Process Activity Description</label>
-                        <input style="margin-top: -2%;width:300px; height:50px;" type="text" name="processingactivitydesc" id="processingactivitydesc_edit" class="input-master"  placeholder=" Lorem Ipsum " >
+                        <input style="margin-top: -2%;width:300px; height:50px;" type="text" name="processingactivitydesc" id="processingactivitydesc_edit" class="input-master"  placeholder=" Lorem Ipsum " required>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col">
                         <div class="input-1 col " style="left:-5%;margin-top: 10%">
                             <label for="inputPassword" class="label-top" style="width:200px;">Categories of Data Subjects</label>
-                            <input type="text" style="width:300px;" name="categoriesdatasubjects" id="categoriesdatasubjects_edit" class="input-master" placeholder=" Lorem Ipsum">
+                            <input type="text" style="width:300px;" name="categoriesdatasubjects" id="categoriesdatasubjects_edit" class="input-master" placeholder=" Lorem Ipsum" required>
                         </div>
                         <div class="input-1 col " style="left: -5%; margin-top:15%">
                             <label for="inputPassword" class="label-top" style="width:250px;">Name and Contact Details of Joint Controller</label>
-                            <input type="text" style="height:52px; width:300px;margin-top: 2%;" name="controllername" id="controllername_edit" class="input-master"  placeholder=" Lorem ipsum">
+                            <input type="text" style="height:52px; width:300px;margin-top: 2%;" name="controllername" id="controllername_edit" class="input-master"  placeholder=" Lorem ipsum" required>
                          </div>
                      </div>
                     <div class="input-1 col" style="left: 95%; margin-top:-40%;">
                         <label for="inputPassword" class="label-top" style="width: 200px; font-size:12px;">Categories of Recipients </label>
-                        <input style="margin-top: -2px; width:300px; height:52px;" type="text" name="categoriesofrecepients" id="categoriesofrecepients_edit" class="input-master"  placeholder=" Lorem ipsum">
+                        <input style="margin-top: -2px; width:300px; height:52px;" type="text" name="categoriesofrecepients" id="categoriesofrecepients_edit" class="input-master"  placeholder=" Lorem ipsum" required>
                      </div>
                     <div class="input-1 col" style="left: 95%;  margin-top:5%;">
                         <label for="inputPassword" class="label-top" style=" width: 200px;font-size:12px;;">Categories of Personal Data</label>
-                        <input style="margin-top: -2%; width: 300px;" type="text" name="categoriespersonaldata" id="categoriespersonaldata_edit" class="input-master"  placeholder=" Lorem ipsum " >
+                        <input style="margin-top: -2%; width: 300px;" type="text" name="categoriespersonaldata" id="categoriespersonaldata_edit" class="input-master"  placeholder=" Lorem ipsum " required>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-1 col " style="left: 1%; margin-top: 15%;">
                         <label for="inputPassword" class="label-top" style="width:200px;">Lawful Basis of Processing</label>
-                        <input type="text" style="margin-top: -2%; width:300px;" name="lawfulbasisofprocessing" id="lawfulbasisofprocessing_edit"  class="input-master" placeholder=" Lorem Ipsum" >
+                        <input type="text" style="margin-top: -2%; width:300px;" name="lawfulbasisofprocessing" id="lawfulbasisofprocessing_edit"  class="input-master" placeholder=" Lorem Ipsum" required>
                     </div>
                    <div class="input-1 col " style="left: 1%; margin-top: 5%;">
                         <label for="inputPassword" class="label-top">Data Processor</label>
-                        <input type="text" name="dataprocessor" id="dataprocessor_edit" style="margin-top: -2%; width:300px;" class="input-master" placeholder=" Lorem Ipsum">
+                        <input type="text" name="dataprocessor" id="dataprocessor_edit" style="margin-top: -2%; width:300px;" class="input-master" placeholder=" Lorem Ipsum" required>
                    </div>
                    <div class="input-1 col" style="left: 95%;margin-top: -35%;">
                         <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px;">Retention Schedule </label>
-                        <input style="margin-top: -2%; width:300px;" type="text" name="retentionschedule" id="retentionschedule_edit" class="input-master" placeholder=" Lorem Ipsum">
+                        <input style="margin-top: -2%; width:300px;" type="text" name="retentionschedule" id="retentionschedule_edit" class="input-master" placeholder=" Lorem Ipsum" required>
                     </div>
                     <div class="input-1 col" style="left: 95%; margin-top: 5%;">
                         <label for="inputPassword" class="label-top" style=" width: 200px;font-size:12px;">Link to Contract with Processor</label>
-                        <input style="margin-top: -2%; width: 300px;" type="text" name="linkcontractprocessor" id="linkcontractprocessor_edit" class="input-master" placeholder=" Lorem Ipsum">
+                        <input style="margin-top: -2%; width: 300px;" type="text" name="linkcontractprocessor" id="linkcontractprocessor_edit" class="input-master" placeholder=" Lorem Ipsum" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-1 col " style="left: 1%; margin-top: 10%;">
                         <label for="inputPassword" class="label-top" Style="font-size:12px; width:300px; margin-top:px; Letter:0.2px;">Third Countries or international organizations where personal data
                                 is transferred (if applicable) </label>
-                        <input type="text" style="margin-top: 5%; width:300px;" name="countriesdetailstransferred" id="countriesdetailstransferred_edit" class="input-master" placeholder=" Lorem Ipsum" >
+                        <input type="text" style="margin-top: 5%; width:300px;" name="countriesdetailstransferred" id="countriesdetailstransferred_edit" class="input-master" placeholder=" Lorem Ipsum" required>
                     </div>
                    <div class="input-1 col " style="left: 1%; margin-top: 10%;">
                         <label for="inputPassword" class="label-top" style="width:300px; ">Safeguards for exceptional transfers of personal data for above (If applicable)</label>
-                        <input type="text" name="safeguardsexternaltransfers" id="safeguardsexternaltransfers_edit" style="margin-top: 5%; width:300px;" class="input-master" placeholder="Lorem ipsum">
+                        <input type="text" name="safeguardsexternaltransfers" id="safeguardsexternaltransfers_edit" style="margin-top: 5%; width:300px;" class="input-master" placeholder="Lorem ipsum" required>
                    </div>
                     <div class="input-1 col" style="left: 95%; margin-top: -40%;">
                         <label for="inputPassword" class="label-top" style="width: 300px; font-size:12px; ">Label General description of technical and organizational security measures (if applicable)</label>
-                        <input style="margin-top: 5%; width:300px;" type="text" name="securitymeasures_desc" id="securitymeasures_desc_edit" class="input-master"  placeholder="Lorem ipsum">
+                        <input style="margin-top: 5%; width:300px;" type="text" name="securitymeasures_desc" id="securitymeasures_desc_edit" class="input-master"  placeholder="Lorem ipsum" required>
                     </div>
                     <div class="input-1 col" style="left: 95%; margin-top: 10%;">
                         <label for="inputPassword" class="label-top" style=" width: 300px;font-size:12px;">Links to contracts, consents, breach records, assessments</label>
-                        <input style="margin-top: 5%; width: 320px;" type="text" name="linkscontracts" id="linkscontracts_edit" class="input-master" placeholder="Lorem ipsum " >
+                        <input style="margin-top: 5%; width: 320px;" type="text" name="linkscontracts" id="linkscontracts_edit" class="input-master" placeholder="Lorem ipsum " required>
                     </div>
-                    <input type="text" name="ropaid"  id="ropaid_edit" placeholder="lorem ipsum" >
+                    <input type="text" name="ropaid"  id="ropaid_edit" placeholder="lorem ipsum" style="display:none">
                 </div>
 
             </div>
@@ -715,7 +715,7 @@
     }
 
     function deleteRow(tempid){
-        console.log('entering delete function')
+        console.log('entering ropa delete function')
         console.log(tempid)
         console.log(glob_id)
         var modal1 = document.getElementById("myModal1");
@@ -730,9 +730,9 @@
 
     var span2 = document.getElementsByClassName("close_delete")[0];
 
-<!--    function yes_function(){-->
-<!--    window.location.href='{% url 'delete' %}'+'?search='+glob_id-->
-<!--    }-->
+    function yes_function(){
+    window.location.href='{% url 'ropa_delete' %}'+'?search='+glob_id
+    }
 
     // When the user clicks on <span> (x), close the modal
     span1.onclick = function() {

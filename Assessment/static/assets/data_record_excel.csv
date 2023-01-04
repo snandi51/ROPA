@@ -1,5 +1,14 @@
 ropaid,businessfunc,processingactivityname,processingactivitydesc,categoriesdatasubjects,categoriespersonaldata,status,controllername,categoriesofrecepients,lawfulbasisofprocessing,dataprocessor,retentionschedule,linkcontractprocessor,countriesdetailstransferred,safeguardsexternaltransfers,securitymeasures_desc,linkscontracts
-1159,Finance,A,A,Finance,A,Deactive,Manager,Person,A,A,A,A,c,c,e,c
-1159,Finance,A,A,Finance,A,Deactive,Manager,Person,A,A,A,A,c,c,e,c
-1159,Finance,A,A,Finance,A,Deactive,Manager,Person,A,A,A,A,c,c,e,c
-1163,hr department,re,f,f,f,active ,f,f,ff,f,f,f,f,f,f,f
+1003,Finance,Marketing activities and communications,Marketing activities and communications regarding product and services outside the telecommunication domain,"Clients, Potential clients","Contact data, Subscription data, Billing data",Under Review,Telco Company,"Facebook,Google",Consent,"Facebook, Google, Viber, Instagram, Fusion Communications, Direct Media, Wireless Media",1 Year,NA,USA,NA,"Logical access controll,
+Physical access controll",NA
+1004,Marketing,Communications,Promotional activities,"Clients, Potential clients","Contact data, Subscription data, Billing data",Accepted,UNILEVER,"Facebook,Google",Consent,"Facebook, Google, Viber, Instagram, Fusion Communications, Direct Media, Wireless Media",1 Year,NA,USA,NA,"Logical access controll,
+Physical access controll",NA
+1004,HR,Communications,Promotional activities,"Clients, Potential clients","Contact data, Subscription data, Billing data",Accepted,UNILEVER,"Facebook,Google",Consent,"Facebook, Google, Viber, Instagram, Fusion Communications, Direct Media, Wireless Media",1 Year,NA,USA,NA,"Logical access controll,
+Physical access controll",NA
+1004,HR,Communications,Promotional activities,"Clients, Potential clients","Contact data, Subscription data, Billing data",Accepted,UNILEVER,"Facebook,Google",Consent,"Facebook, Google, Viber, Instagram, Fusion Communications, Direct Media, Wireless Media",1 Year,NA,USA,NA,"Logical access controll,
+Physical access controll",NA
+1182,Sales,sales_ext,A,A,S,in progress,SHivani,IT,S,cc,c,c,c,c,c,c
+1183,edit 1,SALES,SALES update,A,a,active ,a,a,a,a,a,a,a,a,a,a
+1193,,,,,,,,,,,,,,,,
+1201,,,,,,In Progress,,,,,,,,,,
+1201,,,,,,In Progress,,,,,,,,,,
