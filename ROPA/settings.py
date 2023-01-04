@@ -97,7 +97,7 @@ DATABASES = {
         'OPTIONS': {
                     'driver': 'ODBC Driver 17 for SQL Server',
                     'extra_params': "Persist Security Info=False;server=ropa.database.windows.net"
-	        }
+        }
     }
 }
 
