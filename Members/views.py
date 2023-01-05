@@ -23,10 +23,10 @@ def login_user(request):
         username = request.session.get('username')
         user = authenticate(request, username=username, password=password)
 
-        if request.user.is_authenticated:
-            return render(request, 'dashboard.html')
-        else:
-            return render(request, 'index.html')
+        # if request.user.is_authenticated:
+        #     return render(request, 'dashboard.html')
+        # else:
+        #     return render(request, 'index.html')
 
         if user is not None:
             login(request, user)
