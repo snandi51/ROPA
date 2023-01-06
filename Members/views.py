@@ -195,7 +195,6 @@ def test(request):
     # import ipdb
     # ipdb.set_trace()
 
-
     if request.method == "POST":
         businessterm = request.POST.get('businessterm')
         definition = request.POST.get('definition')
@@ -217,6 +216,8 @@ def test(request):
 
     result = BgMain.objects.all()
     bg = pd.DataFrame(list(BgMain.objects.all().values()))
+    bg1 = pd.DataFrame(list(BgMain.objects.all().values('businessterm', 'definition', 'dataattribute', 'system', 'datadomain', 'lineofbusiness', 'status')))
+    bg1.to_csv('Assessment/static/assets/bs_glossary_df.csv', index=False)
     # a=len(bg)
     bg_dict = bg.to_dict('records')
 
@@ -440,20 +441,23 @@ def record(request):
         # ropa_type.save()
 
     result = RopaMain.objects.all()
-    print(result)
+    print('result of ropamain', result)
     # key_dict = {'businessfunc': businessfunc, 'processingactivityname': processingactivityname,
     #             'processingactivitydesc': processingactivitydesc, 'categoriesdatasubjects': categoriesdatasubjects,
     #             'categoriespersonaldata': categoriespersonaldata, 'status': status}
     # ropa_df = pd.DataFrame(key_dict)
     # ropa_df.to_csv('Assessment/static/assets/data_record_excel.csv', index=False)
-    ropa_main = pd.DataFrame(list(RopaMain.objects.all().values('ropaid', 'businessfunc', 'processingactivityname','processingactivitydesc',
+    ropa_main = pd.DataFrame(list(RopaMain.objects.all().values('ropamainid','ropaid', 'businessfunc', 'processingactivityname','processingactivitydesc',
                                                                 'categoriesdatasubjects', 'categoriespersonaldata', 'status', 'controllername',
                                                                 'categoriesofrecepients', 'lawfulbasisofprocessing', 'dataprocessor',
                                                                 'retentionschedule', 'linkcontractprocessor', 'countriesdetailstransferred',
                                                                 'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts')))
-    ropa_main.to_csv('Assessment/static/assets/data_record_excel.csv', index=False)
+    ropa_main1 = pd.DataFrame(list(RopaMain.objects.all().values('ropaid', 'businessfunc', 'processingactivityname','processingactivitydesc',
+                                                                 'categoriesdatasubjects', 'categoriespersonaldata', 'status')))
+    ropa_main1.to_csv('Assessment/static/assets/data_record_excel.csv', index=False)
     # a=len(bg)
     ropa_dict = ropa_main.to_dict('records')
+    print('ropa_dict:', ropa_dict)
 
     for i in ropa_dict:
         i.update({'create_timestamp': str(i.get('create_timestamp'))})
@@ -495,11 +499,12 @@ def ropa_edit(request):
 
         #ropa id added from record html which has none display style
         ropaid = request.POST.get('ropaid')
+        ropamainid = request.POST.get('ropamainid')
 
 
         # Id maapping with database then form updated data save to variables
-        ropa_edit_db = RopaMain.objects.get(ropaid=ropaid)
-        ropa_edit_db_filter = RopaMain.objects.filter(ropaid=ropaid)
+        ropa_edit_db = RopaMain.objects.get(ropamainid=ropamainid)
+        ropa_edit_db_filter = RopaMain.objects.filter(ropamainid=ropamainid)
         print(ropa_edit_db)
         print(ropa_edit_db_filter)
         ropa_edit_db.status = status
@@ -522,6 +527,7 @@ def ropa_edit(request):
         # updates data save to new dict
         ropa_edit_db.save()
         print('ropa edit db:', ropa_edit_db)
+
         user_detail = request.session['user_detail']
         # user_detail = UserDetails.objects.get(userid=current_user.id)
         ropa_id = RopaType.objects.get(userid=user_detail)
@@ -538,7 +544,12 @@ def ropa_edit(request):
         ropa_bgmain.save()
 
         result = RopaMain.objects.all()
-        ropa_main = pd.DataFrame(list(RopaMain.objects.all().values()))
+        print('result of edit ropa', result)
+        ropa_main = pd.DataFrame(list(RopaMain.objects.all().values('ropamainid', 'ropaid', 'businessfunc', 'processingactivityname',
+                                          'processingactivitydesc','categoriesdatasubjects', 'categoriespersonaldata', 'status',
+                                          'controllername', 'categoriesofrecepients', 'lawfulbasisofprocessing', 'dataprocessor',
+                                          'retentionschedule', 'linkcontractprocessor', 'countriesdetailstransferred',
+                                          'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts')))
         print('ropa_main in edit', ropa_main)
         # a=len(bg)
         ropa_dict = ropa_main.to_dict('records')
@@ -560,7 +571,7 @@ def ropa_delete(request):
 
     id_delete = request.GET.get('search')
     # Id maapping with database then form updated data save to variables
-    delete_db = RopaMain.objects.get(ropaid=id_delete)
+    delete_db = RopaMain.objects.get(ropamainid=id_delete)
     print(delete_db)
 
 
@@ -568,7 +579,11 @@ def ropa_delete(request):
     delete_db.delete()
 
     result = RopaMain.objects.all()
-    ropa_delete = pd.DataFrame(list(RopaMain.objects.all().values()))
+    ropa_delete = pd.DataFrame(list(RopaMain.objects.all().values('ropamainid', 'ropaid', 'businessfunc', 'processingactivityname',
+                                          'processingactivitydesc','categoriesdatasubjects', 'categoriespersonaldata', 'status',
+                                          'controllername', 'categoriesofrecepients', 'lawfulbasisofprocessing', 'dataprocessor',
+                                          'retentionschedule', 'linkcontractprocessor', 'countriesdetailstransferred',
+                                          'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts')))
     # a=len(bg)
     ropa_dict = ropa_delete.to_dict('records')
 
