@@ -193,72 +193,102 @@
                     background-repeat:no-repeat;
               }
               .Addnew-button{
-              box-sizing: border-box;
+                  box-sizing: border-box;
 
-                /* Auto layout */
+                    /* Auto layout */
 
 
-                width: 120px;
-                height: 40px;
+                    width: 120px;
+                    height: 40px;
 
-                /* Primary/Palette/Primary */
-                background: #12ABDB;
-                border: 1px solid #0E88AF;
-                border-radius: 4px;
-                text-align: center;
+                    /* Primary/Palette/Primary */
+                    background: #12ABDB;
+                    border: 1px solid #0E88AF;
+                    border-radius: 4px;
+                    text-align: center;
 
-                align-items: center;
+                    align-items: center;
 
-                /* Inside auto layout */
+                    /* Inside auto layout */
 
-                color: rgba(255, 255, 255, 0.95);
-                flex: none;
-                order: 0;
-                flex-grow: 0;
-                font-family: 'Ubuntu';
-                font-style: normal;
-                font-weight: 500;
-                font-size: 14px;
-                Letter: 0.75 px;
-                line-height: 16px;
+                    color: rgba(255, 255, 255, 0.95);
+                    flex: none;
+                    order: 0;
+                    flex-grow: 0;
+                    font-family: 'Ubuntu';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 14px;
+                    Letter: 0.75 px;
+                    line-height: 16px;
               }
 
-                    .close {
-                      color: #aaaaaa;
-                      float: right;
-                      font-size: 28px;
-                      font-weight: bold;
-                    }
+               .close {
+                  color: #aaaaaa;
+                  float: right;
+                  font-size: 28px;
+                  font-weight: bold;
+               }
 
-                    .close:hover,
-                    .close:focus {
-                      color: #000;
-                      text-decoration: none;
-                      cursor: pointer;
-                    }
+                .close:hover,
+                .close:focus {
+                  color: #000;
+                  text-decoration: none;
+                  cursor: pointer;
+                }
 
-                   .close_edit {
-                      color: #aaaaaa;
-                      float: right;
-                      font-size: 28px;
-                      font-weight: bold;
-                    }
+               .close_edit {
+                  color: #aaaaaa;
+                  float: right;
+                  font-size: 28px;
+                  font-weight: bold;
+                }
 
-                    .close_edit:hover,
-                    .close_edit:focus {
-                      color: #000;
-                      text-decoration: none;
-                      cursor: pointer;
-                    }
+               .close_edit:hover,
+               .close_edit:focus {
+                  color: #000;
+                  text-decoration: none;
+                  cursor: pointer;
+               }
 
-                    .first-column:focus,
-                    .first-column:hover{
-                      cursor: pointer;
-                    }
+                .first-column:focus,
+                .first-column:hover{
+                  cursor: pointer;
+                }
 
                                  /* The Modal (background) */
-                    .modal {
-                      display:none;
+                .modal {
+                  display:none;
+                  position: fixed; /* Stay in place */
+                  z-index: 1; /* Sit on top */
+                  padding-top: 100px; /* Location of the box */
+                  left: 0;
+                  bottom: 0;
+                  width: 100%; /* Full width */
+                  height: 100%; /* Full height */
+                  overflow: auto; /* Enable scroll if needed */
+                  background-color: rgb(0,0,0); /* Fallback color */
+                  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                }
+
+                 .modal1 {
+                  display:none;
+                  position: fixed; /* Stay in place */
+                  z-index: 1; /* Sit on top */
+                  padding-top: 100px; /* Location of the box */
+                  left: 0;
+                  bottom: 0;
+                  width: 100%; /* Full width */
+                  height: 100%; /* Full height */
+                  overflow: auto; /* Enable scroll if needed */
+                  background-color: rgb(0,0,0); /* Fallback color */
+                  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                }
+
+                /* Modal Content */
+
+                 .modal2 {
+                        display:none;
                       position: fixed; /* Stay in place */
                       z-index: 1; /* Sit on top */
                       padding-top: 100px; /* Location of the box */
@@ -269,64 +299,34 @@
                       overflow: auto; /* Enable scroll if needed */
                       background-color: rgb(0,0,0); /* Fallback color */
                       background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-                    }
-
-                     .modal1 {
-                      display:none;
-                      position: fixed; /* Stay in place */
-                      z-index: 1; /* Sit on top */
-                      padding-top: 100px; /* Location of the box */
-                      left: 0;
-                      bottom: 0;
-                      width: 100%; /* Full width */
-                      height: 100%; /* Full height */
-                      overflow: auto; /* Enable scroll if needed */
-                      background-color: rgb(0,0,0); /* Fallback color */
-                      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-                    }
-
-                    /* Modal Content */
-
-                     .modal2 {
-                            display:none;
-                          position: fixed; /* Stay in place */
-                          z-index: 1; /* Sit on top */
-                          padding-top: 100px; /* Location of the box */
-                          left: 0;
-                          bottom: 0;
-                          width: 100%; /* Full width */
-                          height: 100%; /* Full height */
-                          overflow: auto; /* Enable scroll if needed */
-                          background-color: rgb(0,0,0); /* Fallback color */
-                          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-                        }
-               .close_delete {
+                 }
+                 .close_delete {
                       color: #aaaaaa;
                       float: right;
                       font-size: 28px;
                       font-weight: bold;
-                    }
+                 }
 
-                    .close_delete:hover,
-                    .close_delete:focus {
-                      color: #000;
-                      text-decoration: none;
-                      cursor: pointer;
-                    }
+                .close_delete:hover,
+                .close_delete:focus {
+                  color: #000;
+                  text-decoration: none;
+                  cursor: pointer;
+                }
 
-                     .filter {
-                      display:none;
-                      position: fixed; /* Stay in place */
-                      z-index: 1; /* Sit on top */
-                      padding-top: 100px; /* Location of the box */
-                      left: 0;
-                      bottom: 0;
-                      width: 100%; /* Full width */
-                      height: 100%; /* Full height */
+                 .filter {
+                  display:none;
+                  position: fixed; /* Stay in place */
+                  z-index: 1; /* Sit on top */
+                  padding-top: 100px; /* Location of the box */
+                  left: 0;
+                  bottom: 0;
+                  width: 100%; /* Full width */
+                  height: 100%; /* Full height */
 <!--                      overflow: auto; /* Enable scroll if needed */-->
-                      background-color: rgb(0,0,0); /* Fallback color */
-                      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-                      }
+                  background-color: rgb(0,0,0); /* Fallback color */
+                  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                  }
 
 
 
@@ -349,14 +349,12 @@
     <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 210px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>
     <p style="margin-left:190px;margin-bottom:143px;margin-top:0;font-weight: 500;line-height: 28px;font-size: 24px;"><span class="back-arrow" onclick="history.back()">&#60; </span> Business Glossary </p><br>
 
-
-
-</div>
+  </div>
 
 
 
 
-  <div class="login-box" style="top:165px;left:400px;  width:1165px;min-height:500px;overflow-y: scroll;">
+  <div class="login-box" style="top:165px;left:400px;  width:1165px;min-height:300px;overflow-y:scroll;">
 
       <input type="text" name="search" placeholder="Search.." class="search" id="myInput" onkeyup="myFunction()">
 <!--      <input type="text" name="filter" style="width:108px;border: 2px solid #ccc; margin-left:16px; box-sizing: border-box; height:40px;" placeholder="   Filter        &#x25BC;" class="Filterbox" id="filter" onkeyup="myFunction()">-->
@@ -367,7 +365,7 @@
           <option  value="1">Excel</option>
           <option  value="2">PDF</option>
       </select>
-      <a href="static/assets/bg_excel.csv" id="download_csv" download hidden>download</a>
+      <a href="static/assets/bs_glossary_df.csv" id="download_csv" download hidden>download</a>
 
 
 <!--          -->
@@ -420,8 +418,8 @@
       {% csrf_token %}
 
 
-      <div id="myModal" class="modal" style="overflow-x: hidden;overflow-y: scroll;margin-top:0px;">
-          <div class="rect-4" style="height:575px; max-width:572px;  margin-top:-140px;margin-left:43.45%; overflow-x: hidden;overflow-y: scroll;border: 1px solid #FFFFFF; border-radius: 0px;">
+      <div id="myModal" class="modal" style="overflow-x: hidden;overflow-y: hidden;margin-top:0px;">
+          <div class="rect-4" style="height:575px; max-width:572px;  margin-top: -94px;margin-left:40.30%; overflow-x: hidden;overflow-y: scroll;border: 1px solid #FFFFFF; border-radius: 0px;">
               <span class="close">&times;</span>
               <div onchange="colorChange()" style="position:absolute; left:7%; ">
                   <div>
@@ -437,7 +435,7 @@
                           Business Term</label>
                       <input type="text" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
         border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="businessterm" id="businessterm_add"
-                             placeholder="Account Password" required>
+                             placeholder=" Account Password" required>
                   </div>
 
                   <div class="input-1 col " style="left: -5%; margin-top:4%;">
@@ -445,7 +443,7 @@
                              style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
                     color: rgba(39, 41, 54, 0.85);">Data Attribute</label>
                       <input type="text" name="dataattribute" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
-        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="dataattribute_add" placeholder="Lorem Ipsum" required>
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="dataattribute_add" placeholder=" Lorem Ipsum" required>
                   </div>
 
 
@@ -456,7 +454,7 @@
                       >Definition</label>
                       <input style="box-sizing: border-box;width: 456px;height: 90px;background: #FFFFFF;border: 1px solid #8D8D8D;
         border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" type="text" name="definition" id="definition_add"
-                             placeholder="Describe the meaning of the term with respect to the business" required>
+                             placeholder=" Describe the meaning of the term with respect to the business" required>
                   </div>
 
                   <div class="input-1 col " style="left: -5%; margin-top:12%;">
@@ -466,7 +464,7 @@
                       >System</label>
                       <input type="text" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
         border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="system"  id="system_add"
-                             placeholder="type something" required>
+                             placeholder=" type something" required>
                   </div>
                   <div class="input-1 col " style="left: -5%;margin-top:4%;">
                       <label  class="label-top"
@@ -490,7 +488,7 @@
                       >Domain</label>
                       <input type="text" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
         border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="datadomain"  id="datadomain_add"
-                             placeholder="Lorem ipsum" required >
+                             placeholder=" Lorem ipsum" required >
                   </div>
 
 
@@ -500,7 +498,7 @@
                     color: rgba(39, 41, 54, 0.85);width:300px;"
                       >Line of Business</label>
                       <input type="text" name="lineofbusiness" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
-        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="lineofbusiness_add" placeholder="lorem ipsum" required>
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="lineofbusiness_add" placeholder=" lorem ipsum" required>
                   </div>
 
 
@@ -510,7 +508,7 @@
                     color: rgba(39, 41, 54, 0.85);"
                       >Status</label>
                       <input type="text" name="status" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
-        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="status_add" placeholder="Approved" required>
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="status_add" placeholder=" Approved" required>
                   </div>
 
                   <div  class="input-1 col " style="left: -5%;margin-top:4%;">
@@ -519,16 +517,17 @@
                     color: rgba(39, 41, 54, 0.85);width:300px;"
                       >Created by</label>
                       <input type="text" name="createdby" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
-        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;"class="input-master" id="createdby_add"  placeholder="lorem ipsum" required>
-                  </div>
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;"class="input-master" id="createdby_add"  placeholder=" lorem ipsum" required>
                   </div>
 
-                  <p style="margin-top:55px; margin-left: 42px;"></p>
+                    <p style="margin-top:150px; margin-left: 42px;"></p>
+
+                  </div>
               </div>
 
           <!--                  <form method="POST" id="bform_screen1" class="business_form" action="test">-->
           <!--                     {% csrf_token %}-->
-          <footer style="height:50px;  position: fixed;width:570px; right: 0;bottom: 0; background: #FFFFFF;border: 1px solid #FFFFFF;">
+          <footer style="height:50px;  position: fixed; width:570px; right: 0;bottom: 0; background: #FFFFFF;border: 1px solid #FFFFFF;">
               <button  id="cancel-button"  style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:25px; margin-top:10px;  width:240px; height:30px;">
                   <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Cancel</span></button>
               <button type="submit"  style="background: rgba(39, 41, 54, 0.22);border: 1px solid #0C7799;border-radius: 4px; margin-left:30px; margin-top:10px;  width:240px; height:30px;" id="add_button"  >
@@ -546,8 +545,8 @@
   <form method="POST" id="bform_screen11" class="business_form1" action="edit">
       {% csrf_token %}
 
-      <div id="myModal1" class="modal1" style="overflow-x: hidden;overflow-y: scroll;margin-top:0px;">
-          <div class="rect-4" style="height:575px; max-width:572px;  margin-top:-140px;margin-left:43.45%; overflow-x: hidden;overflow-y: scroll;border: 1px solid #FFFFFF; border-radius: 0px;">
+      <div id="myModal1" class="modal1" style="overflow-x: hidden;overflow-y: hidden;margin-top:0px;">
+          <div class="rect-4" style="height:575px; max-width:572px;   margin-top: -94px;margin-left:40.30%; overflow-x: hidden;overflow-y: scroll;border: 1px solid #FFFFFF; border-radius: 0px;">
               <span class="close_edit">&times;</span>
               <div style="position:absolute; left:7%; ">
                   <div>
@@ -563,7 +562,7 @@
                           Business Term</label>
                       <input type="text" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
         border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="businessterm" id="businessterm_edit"
-                             placeholder="Account Password" required>
+                             placeholder=" Account Password" required>
                   </div>
 
                   <div class="input-1 col " style="left: -5%; margin-top:4%;">
@@ -571,7 +570,7 @@
                              style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
                     color: rgba(39, 41, 54, 0.85);">Data Attribute</label>
                       <input type="text" name="dataattribute" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
-        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="dataattribute_edit" placeholder="Lorem Ipsum" required>
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="dataattribute_edit" placeholder=" Lorem Ipsum" required>
                   </div>
 
 
@@ -582,7 +581,7 @@
                       >Definition</label>
                       <input style="box-sizing: border-box;width: 456px;height: 90px;background: #FFFFFF;border: 1px solid #8D8D8D;
         border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" type="text" name="definition" id="definition_edit"
-                             placeholder="Describe the meaning of the term with respect to the business" required>
+                             placeholder=" Describe the meaning of the term with respect to the business" required>
                   </div>
 
                   <div class="input-1 col " style="left: -5%; margin-top:12%;">
@@ -592,7 +591,7 @@
                       >System</label>
                       <input type="text" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
         border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="system"  id="system_edit"
-                             placeholder="type something" required>
+                             placeholder=" type something" required>
                   </div>
 <!--                  <div class="input-1 col " style="left: -5%;margin-top:4%;">-->
 <!--                      <label for="inputPassword" class="label-top"-->
@@ -616,7 +615,7 @@
                       >Domain</label>
                       <input type="text" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
         border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="datadomain"  id="datadomain_edit"
-                             placeholder="Lorem ipsum" required>
+                             placeholder=" Lorem ipsum" required>
                   </div>
 
 
@@ -626,7 +625,7 @@
                     color: rgba(39, 41, 54, 0.85);width:300px;"
                       >Line of Business</label>
                       <input type="text" name="lineofbusiness" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
-        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="lineofbusiness_edit" placeholder="lorem ipsum" required>
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="lineofbusiness_edit" placeholder=" lorem ipsum" required>
                   </div>
 
 
@@ -636,7 +635,7 @@
                     color: rgba(39, 41, 54, 0.85);"
                       >Staus</label>
                       <input type="text" name="status" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
-        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="status_edit" placeholder="Approved" required>
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="status_edit" placeholder=" Approved" required>
                   </div>
 
                   <div class="input-1 col " style="left: -5%;margin-top:4%;">
@@ -645,32 +644,33 @@
                     color: rgba(39, 41, 54, 0.85);width:300px;"
                       >Created by</label>
                       <input type="text" name="createdby" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
-        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;"class="input-master" id="Createdby_edit" placeholder="lorem ipsum" required>
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;"class="input-master" id="Createdby_edit" placeholder=" lorem ipsum" required>
                   </div>
 
                   <input type="text" name="bgid"  id="bgid_edit" placeholder="lorem ipsum" style="display:none;">
 <!-- invisble -->
 
-                  <p style="margin-top:55px; margin-left: 42px;"></p>
+                  <p style="margin-top:150px; margin-left: 42px;"></p>
               </div>
           </div>
           <!--                  <form method="POST" id="bform_screen1" class="business_form" action="test">-->
           <!--                     {% csrf_token %}-->
 
-          <footer style="height:50px;  position: fixed;width:570px; right: 0;bottom: 0; background: #FFFFFF;border: 1px solid #FFFFFF;">
-<!--               <button   onClick = "deleteRow(this)" id="deleterow"  style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:25px; margin-top:10px;  width:240px; height:30px;">-->
-<!--                           <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Delete</span></button>-->
-              <button type="submit"  style="background: #12ABDB;border: 1px solid #0E88AF;border-radius: 4px; margin-left:300px; margin-top:10px;  width:240px; height:30px;">
-                  <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Edit</span>
-              </button>
+          <footer style="height:50px;  position: fixed; width:550px; right: 0;bottom: 0; background: #FFFFFF;border: 1px solid #FFFFFF;">
+                <button type="button"  onClick = "deleteRow(this)" id="deleterow"  style="position:absolute;background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:50px; margin-top: 10px;  width:200px; height:30px;">
+                   <span style=" text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Delete</span>
+                </button>
+                <button type="submit"  style="background: #12ABDB;border: 1px solid #0E88AF;border-radius: 4px; margin-left:280px; margin-top:10px;  width:200px; height:30px;">
+                   <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Edit</span>
+                </button>
 
           </footer>
 
+
 </form>
-
-   <button type="button"  onClick = "deleteRow(this)" id="deleterow"  style="position:absolute;background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:820px; margin-top:535px;  width:240px; height:30px;">
-                           <span style=" text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Delete</span></button>
-
+<!--    <button type="button"  onClick = "deleteRow(this)" id="deleterow"  style="position:absolute;background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:850px; margin-top:535px;  width:200px; height:30px;">-->
+<!--                 <span style=" text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Delete</span>-->
+<!--    </button>-->
 
 
 
@@ -678,20 +678,21 @@
 
 
     <div id="myModal2" class="modal2" style="overflow-x: hidden;overflow-y: hidden;margin-top:0px;">
-          <div class="rect-4" style="height:575px; max-width:572px;  margin-top:-140px;margin-left:43.45%; overflow-x: hidden;overflow-y: scroll;border: 1px solid #FFFFFF; border-radius: 0px;">
+          <div class="rect-4" style="height:575px; max-width:572px;  margin-top:-140px;margin-left:40.45%; overflow-x: hidden;overflow-y: hidden;border: 1px solid #FFFFFF; border-radius: 0px;">
               <span class="close_delete">&times;</span>
-              <div style="position:absolute; left:7%; ">
-                  <div style="margin_top:4%;">
+              <div style="position:absolute; left:9%; ">
+                  <div style="margin-top:13%;">
 
 <!--                      <button type="button" onclick="history.back()" style="display: none; color:Black" id="back-btn" >  </button>-->
 <!--                      <a href="#" style=" margin-left:80px;"><img src="static/assets/img/Icon.png" onclick="document.getElementById('back-btn').click()"  alt="Back"/><b>BACK</b> </a>-->
-                       <label class="org" style="left:-1%;position:absolute;font-family: 'Ubuntu';font-style: normal;font-weight: 500;
-                    font-size: 16px;line-height: 24px;" > <img src="static/assets/img/Icon.png" onclick="history.back()"  alt="Back"/> Delete Business Term </label>
+                       <label class="org" style="left:-9%;position:absolute;font-family: 'Ubuntu';font-style: normal;font-weight: 500;
+                           font-size: 16px;line-height: 24px;" >
+                       <img src="static/assets/img/Icon.png" onclick="history.back()"  alt="Back"/> Delete Business Term </label>
                   </div>
-                    <p style="margin-top:15%"></p>
-                    <img style="width:70%; height:85%;margin-left: 25%; margin-right: auto;" src="static/assets/img/delete_vector.png">
-                        <p style="margin-left: 25%;font-family: 'Ubuntu';font-style: normal;font-weight: 300;font-size: 24px;line-height: 28px;text-align: center;font-feature-settings: 'pnum' on, 'lnum' on;color: rgba(39, 41, 54, 0.85);">Are you sure you want to Delete?</p>
-                         <p style="margin-left: 25%;">All data you entered will be discarded.</p>
+                    <p style="margin-top:20%"></p>
+                    <img style="width:70%; height:85%;margin-left: 25%; margin-right: auto;margin-top:4%;" src="static/assets/img/delete_vector.png">
+                        <p style="margin-left: 25%;font-family: 'Ubuntu';font-style: normal;font-weight: 300px;font-size: 24px;line-height: 28px;text-align: center;font-feature-settings: 'pnum' on, 'lnum' on;color: rgba(39, 41, 54, 0.85);">Are you sure you want to Delete?</p>
+                         <p style="margin-left: 21%;">All data you entered will be discarded.</p>
 
               </div>
 
@@ -699,13 +700,13 @@
           </div>
 
                 <footer style="height:50px;  position: fixed;width:570px; right: 0;bottom: 0; background: #FFFFFF;border: 1px solid #FFFFFF;">
-               <button  type="button" id="cancel-delete-button"  style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:25px; margin-top:10px;  width:240px; height:30px;">
-                           <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">No</span></button>
-              <button type="button"  onClick = "yes_function()" style="background: #12ABDB;border: 1px solid #0E88AF;border-radius: 4px; margin-left:30px; margin-top:10px;  width:240px; height:30px;">
-                  <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Yes</span>
-              </button>
+                   <button  type="button" id="cancel-delete-button"  style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:40px; margin-top:10px;  width:210px; height:30px;">
+                               <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">No</span></button>
+                  <button type="button"  onClick = "yes_function()" style="background: #12ABDB;border: 1px solid #0E88AF;border-radius: 4px; margin-left:30px; margin-top:10px;  width:210px; height:30px;">
+                      <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Yes</span>
+                  </button>
 
-          </footer>
+                </footer>
     </div>
 
 
@@ -910,14 +911,6 @@ window.location.href='{% url 'delete' %}'+'?search='+glob_id
 <!--}-->
 
 
-<!--// When the user clicks the button, open the modal-->
-<!--btn1.onclick = function() {-->
-<!--  modal1.style.display = "block";-->
-<!--}-->
-
-<!--function myFunction() {-->
-<!--  document.getElementById("myModal");-->
-<!--}-->
 
 // When the user clicks on <span> (x), close the modal
 span1.onclick = function() {

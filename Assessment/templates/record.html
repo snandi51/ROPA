@@ -236,6 +236,20 @@
                   cursor: pointer;
               }
 
+              .close_edit {
+                  color: #aaaaaa;
+                  float: right;
+                  font-size: 28px;
+                  font-weight: bold;
+                }
+
+               .close_edit:hover,
+               .close_edit:focus {
+                  color: #000;
+                  text-decoration: none;
+                  cursor: pointer;
+               }
+
               /* The Modal (background) */
               .modal {
                   display: none; /* Hidden by default */
@@ -296,6 +310,7 @@
                 }
 
 </style>
+
 <script>
 
     function pdf_or_excel(){
@@ -314,7 +329,7 @@
         <p style="margin-left:154px;margin-bottom:143px;margin-top:0;font-weight: 500;line-height: 28px;font-size: 24px;" onclick="history.back()">&#60; Records Register </p><br>
         <p style="padding-left:212px;padding-bottom:143px;padding-top:0px;"> </p>
     </div>
-    <div class="login-box" style="top:165px;left:400px; width:1100px;height:420px; overflow-y: scroll; overflow-x: hidden;">
+    <div class="login-box" style="top:165px;left:400px; width:1100px;min-height:320px; overflow-y: scroll; overflow-x: hidden;">
         <input type="text" name="search" placeholder="Search.." class="search" id="myInput" onkeyup="myFunction()">
         <input type="text" name="filter" style="width:108px;border: 2px solid #ccc; margin-left:16px; box-sizing: border-box; height:40px;" placeholder="   Filter        &#x25BC;" class="Filterbox " >
         <select onchange="pdf_or_excel()" name="cars" id="cars" style="width:168px; height:40px;border: 2px solid #ccc; margin-right:5px; margin-left:280px;">
@@ -342,7 +357,7 @@
                 <tbody>
                  {% for temp in ropa_dict %}
                     <tr>
-                        <td scope="row" id='Myvar' onclick="Mybtn1('{{temp.ropaid}}')" class="first-column">{{temp.ropaid}}</td>
+                        <td scope="row" id='Myvar' onclick="Mybtn1('{{temp.ropamainid}}')" class="first-column">{{temp.ropaid}}</td>
                         <td>{{ temp.businessfunc }}</td>
                         <td>{{ temp.processingactivityname }}</td>
                         <td>{{ temp.processingactivitydesc }}</td>
@@ -361,8 +376,9 @@
          {% csrf_token %}
         <div id="myModal" class="modal" style="overflow-x: hidden;overflow-y: scroll ;margin-top:0px;">
 <!--        <div id="myModal" class="modal" style="overflow-x: hidden;overflow-y: hidden;margin-top:0px; overflow-y: scroll;">-->
-          <div class="rect-4" style="min-height:800px; width:760px;margin-left:25%; margin-top:-87px; ">
-            <div style="position:absolute; left:4%; padding-right: 5%;">
+          <div class="rect-4" style="min-height:800px; width:760px;margin-left:25%; margin-top:-90px; ">
+<!--              <span class="close">&times;</span>-->
+            <div onchange="colorChange()"  style="position:absolute; left:4%; padding-right: 5%;">
                 <div>
                     <label class="org" style="margin-left:-7%; margin-top:-5%;">View ROPA ID Details</label>
                 </div>
@@ -444,10 +460,10 @@
                 </div>
             </div>
           </div>
-            <footer style="height:50px;  position: fixed;width:570px; right: 0;bottom: 0; margin-left:px; ">
-               <button id="cancel-button" style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:-60px; margin-top:10px;  width:280px; height:30px;">
+            <footer style="height:50px;  position: fixed;width:775px; right: 0;bottom: 0; background: #FFFFFF;border: 1px solid #FFFFFF; ">
+               <button id="cancel-button" style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:80px; margin-top:10px;  width:280px; height:30px;">
                <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px; margin-left:-19px;">Cancel</span></button>
-               <button type="submit" id="add_button" style="background: #12ABDB;border: 1px solid #0E88AF;border-radius: 4px; margin-left:30px; margin-top:10px;  width:240px; height:30px;">
+               <button type="submit" id="add_button" style="background: rgba(39, 41, 54, 0.22);border: 1px solid #0E88AF;border-radius: 4px; margin-left:30px; margin-top:10px;  width:280px; height:30px;">
                <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Add</span></button>
             </footer>
         </div>
@@ -458,8 +474,8 @@
     <form method="POST" id="edit_form" class="ropa_form_edit" action="ropa_edit">
          {% csrf_token %}
         <div id="myModal1" class="modal1" style="overflow-x: hidden;overflow-y: scroll; margin-top:0px; overflow-y: scroll;">
-          <div class="rect-4" style="min-height:800px; width:760px;margin-left:25%; margin-top:-87px; ">
-              <span class="close_edit">&times;</span>
+          <div class="rect-4" style="min-height:800px; width:760px;margin-left:25%; margin-top:-90px; ">
+              <span class="close_edit" >&times;</span>
             <div style="position:absolute; left:4%; padding-right: 5%;">
                 <div>
                     <label class="org" style="margin-left:-7%; margin-top:-5%;">View ROPA ID Details</label>
@@ -539,14 +555,15 @@
                         <input style="margin-top: 5%; width: 320px;" type="text" name="linkscontracts" id="linkscontracts_edit" class="input-master" placeholder="Lorem ipsum " required>
                     </div>
                     <input type="text" name="ropaid"  id="ropaid_edit" placeholder="lorem ipsum" style="display:none">
+                    <input type="text" name="ropamainid"  id="ropamainid_edit" placeholder="lorem ipsum" style="display:none">
                 </div>
 
             </div>
           </div>
-            <footer style="height:50px;  position: fixed;width:570px; right: 0;bottom: 0; margin-left:px; ">
-               <button type="button"  onClick = "deleteRow(this)" id="deleterow" style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:-60px; margin-top:10px;  width:280px; height:30px;">
+            <footer style="height:50px;  position: fixed;width:775px; right: 0;bottom: 0;   background: #FFFFFF;border: 1px solid #FFFFFF;">
+               <button type="button"  onClick = "deleteRow(this)" id="deleterow" style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:80px; margin-top:10px;  width:280px; height:30px;">
                <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px; margin-left:-19px;">Delete</span></button>
-               <button type="submit"  style="background: #12ABDB;border: 1px solid #0E88AF;border-radius: 4px; margin-left:30px; margin-top:10px;  width:240px; height:30px;">
+               <button type="submit"  style="background: #12ABDB;border: 1px solid #0E88AF;border-radius: 4px; margin-left:50px; margin-top:10px;  width:280px; height:30px;">
                <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Edit</span></button>
             </footer>
         </div>
@@ -558,7 +575,7 @@
 
 
     <div id="myModal2" class="modal2" style="overflow-x: hidden;overflow-y: hidden;margin-top:0px; ">
-          <div class="rect-4" style="height:575px; max-width:572px;  margin-top:-140px;margin-left:43.45%; overflow-x: hidden;overflow-y: scroll;border: 1px solid #FFFFFF; border-radius: 0px;">
+          <div class="rect-4" style="height:575px; max-width:572px;  margin-top:-140px;margin-left:40.45%; overflow-x: hidden;overflow-y: hidden;border: 1px solid #FFFFFF; border-radius: 0px;">
               <span class="close_delete">&times;</span>
 <!--              <span class="close_delete">&times;</span>-->
               <div style="position:absolute; left:7%; ">
@@ -573,14 +590,13 @@
                          <p style="margin-left: 22%;">All data you entered will be discarded.</p>
               </div>
           </div>
-            <footer style="height:50px;  position: absolute;width:570px; right: 0;bottom: 0; background: #FFFFFF;border: 1px solid #FFFFFF;">
-            <button  type="button" id="cancel-delete-button"  style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:35px; margin-top:10px;  width:200px; height:30px;">
-                <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">No</span>
-            </button>
-             <button type="button"  onClick = "yes_function()" style="background: #12ABDB;border: 1px solid #0E88AF;border-radius: 4px; margin-left:30px; margin-top:10px;  width:200px; height:30px;">
-                  <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Yes</span>
-              </button>
-
+            <footer style="height:50px;  position: absolute;width:500px; right: 0;bottom: 0; background: #FFFFFF;border: 1px solid #FFFFFF;">
+                <button  type="button" id="cancel-delete-button"  style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:15px; margin-top:10px;  width:200px; height:30px;">
+                    <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">No</span>
+                </button>
+                 <button type="button"  onClick = "yes_function()" style="background: #12ABDB;border: 1px solid #0E88AF;border-radius: 4px; margin-left:30px; margin-top:10px;  width:200px; height:30px;">
+                      <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Yes</span>
+                  </button>
           </footer>
     </div>
 
@@ -629,26 +645,6 @@
     }
 
 
-    window.onload= function(){
-          console.log("function called")
-          var status_edit = document.getElementById("status_edit")
-          var processingactivityname_edit = document.getElementById("processingactivityname_edit")
-          var businessfunc_edit = document.getElementById("businessfunc_edit")
-          var processingactivitydesc_edit= document.getElementById("processingactivitydesc_edit")
-          var categoriesdatasubjects_edit = document.getElementById("categoriesdatasubjects_edit")
-          var categoriespersonaldata_edit = document.getElementById("categoriespersonaldata_edit")
-          var controllername_edit = document.getElementById("controllername_edit")
-          var categoriesofrecepients_edit = document.getElementById("categoriesofrecepients_edit")
-          var lawfulbasisofprocessing_edit = document.getElementById("lawfulbasisofprocessing_edit")
-          var retentionschedule_edit = document.getElementById("retentionschedule_edit")
-          var dataprocessor_edit = document.getElementById("dataprocessor_edit")
-          var linkcontractprocessor_edit = document.getElementById("linkcontractprocessor_edit")
-          var countriesdetailstransferred_edit = document.getElementById("countriesdetailstransferred_edit")
-          var safeguardsexternaltransfers_edit = document.getElementById("safeguardsexternaltransfers_edit")
-          var securitymeasures_desc_edit = document.getElementById("securitymeasures_desc_edit")
-          var linkscontracts_edit = document.getElementById("linkscontracts_edit")
-    }
-
 
     // Get the modal
     var modal1 = document.getElementById("myModal1");
@@ -668,7 +664,7 @@
         console.log(ropa_dict)
         console.log('entering index')
         const index = ropa_dict.findIndex(object => {
-            return object.ropaid == id;
+            return object.ropamainid == id;
         });
         console.log(index)
         var edit_dict=ropa_dict[index]
@@ -709,9 +705,12 @@
             linkscontracts_edit.value=edit_dict.linkscontracts
             var ropaid_edit= document.getElementById('ropaid_edit')
             ropaid_edit.value=edit_dict.ropaid
+            var ropamainid_edit= document.getElementById('ropamainid_edit')
+            ropamainid_edit.value=edit_dict.ropamainid
 
         }
         modal1.style.display = "block";
+
     }
 
     function deleteRow(tempid){
@@ -751,6 +750,47 @@
     }
 
 </script>
+<script>
+    window.onload= function(){
+          console.log("function called")
+          var status_edit = document.getElementById("status_edit")
+          var processingactivityname_edit = document.getElementById("processingactivityname_edit")
+          var businessfunc_edit = document.getElementById("businessfunc_edit")
+          var processingactivitydesc_edit= document.getElementById("processingactivitydesc_edit")
+          var categoriesdatasubjects_edit = document.getElementById("categoriesdatasubjects_edit")
+          var categoriespersonaldata_edit = document.getElementById("categoriespersonaldata_edit")
+          var controllername_edit = document.getElementById("controllername_edit")
+          var categoriesofrecepients_edit = document.getElementById("categoriesofrecepients_edit")
+          var lawfulbasisofprocessing_edit = document.getElementById("lawfulbasisofprocessing_edit")
+          var retentionschedule_edit = document.getElementById("retentionschedule_edit")
+          var dataprocessor_edit = document.getElementById("dataprocessor_edit")
+          var linkcontractprocessor_edit = document.getElementById("linkcontractprocessor_edit")
+          var countriesdetailstransferred_edit = document.getElementById("countriesdetailstransferred_edit")
+          var safeguardsexternaltransfers_edit = document.getElementById("safeguardsexternaltransfers_edit")
+          var securitymeasures_desc_edit = document.getElementById("securitymeasures_desc_edit")
+          var linkscontracts_edit = document.getElementById("linkscontracts_edit")
+    }
+
+
+    function colorChange() {
+       if ((document.getElementById("status_add").value != "") & (document.getElementById("processingactivityname_add").value != "") &
+           (document.getElementById("businessfunc_add").value != "") & (document.getElementById("processingactivitydesc_add").value != "") &
+           (document.getElementById("categoriesdatasubjects_add").value != "") & (document.getElementById("categoriespersonaldata_add").value != "") &
+           (document.getElementById("controllername_add").value != "") & (document.getElementById("categoriesofrecepients_add").value != "")
+            & (document.getElementById("lawfulbasisofprocessing_add").value != "")& (document.getElementById("retentionschedule_add").value != "")&
+            (document.getElementById("dataprocessor_add").value != "") & (document.getElementById("linkcontractprocessor_add").value != "")&
+            (document.getElementById("countriesdetailstransferred_add").value != "") & (document.getElementById("safeguardsexternaltransfers_add").value != "")
+            & (document.getElementById("securitymeasures_desc_add").value != "") & (document.getElementById("linkscontracts_add").value != "")) {
+            var x = document.getElementById("add_button").style.background = "#12ABDB";
+    }
+    else {
+       document.getElementById("add_button").style.background = "rgba(39, 41, 54, 0.22)";
+       document.getElementById("add_button").style.color = "white";
+       document.getElementById("add_button").style.border = "#0C7799;";
+      }
+}
+</script>
+
 <script>
     function myFunction() {
         var input, filter, found, table, tr, td, i, j;
