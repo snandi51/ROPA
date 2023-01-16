@@ -13,7 +13,7 @@ class BgAudit(models.Model):
     auditid = models.BigAutoField(db_column='AuditId', primary_key=True)  # Field name made lowercase.
     bgid = models.BigIntegerField(db_column='BGId')  # Field name made lowercase.
     businessterm = models.CharField(db_column='BusinessTerm', max_length=30)  # Field name made lowercase.
-    definition = models.CharField(db_column='Definition', max_length=100)  # Field name made lowercase.
+    definition = models.CharField(db_column='Definition', max_length=8000)  # Field name made lowercase.
     dataattribute = models.CharField(db_column='DataAttribute', max_length=30)  # Field name made lowercase.
     system = models.CharField(db_column='System', max_length=30)  # Field name made lowercase.
     dataclassification = models.CharField(db_column='DataClassification', max_length=30)  # Field name made lowercase.
@@ -27,16 +27,17 @@ class BgAudit(models.Model):
     auditdate = models.DateTimeField(db_column='AuditDate')  # Field name made lowercase.
     audituser = models.CharField(db_column='AuditUser', max_length=50)  # Field name made lowercase.
     auditapp = models.CharField(db_column='AuditApp', max_length=128)  # Field name made lowercase.
+    comments = models.CharField(db_column='Comments', max_length=8000)
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'BG_AUDIT'
 
 
 class BgMain(models.Model):
     bgid = models.BigAutoField(db_column='BGId', primary_key=True)  # Field name made lowercase.
     businessterm = models.CharField(db_column='BusinessTerm', max_length=30)  # Field name made lowercase.
-    definition = models.CharField(db_column='Definition', max_length=100)  # Field name made lowercase.
+    definition = models.CharField(db_column='Definition', max_length=8000)  # Field name made lowercase.
     dataattribute = models.CharField(db_column='DataAttribute', max_length=30)  # Field name made lowercase.
     system = models.CharField(db_column='System', max_length=30)  # Field name made lowercase.
     dataclassification = models.CharField(db_column='DataClassification', max_length=30)  # Field name made lowercase.
@@ -46,9 +47,10 @@ class BgMain(models.Model):
     createdby = models.CharField(db_column='CreatedBy', max_length=30)  # Field name made lowercase.
     create_timestamp = models.DateTimeField(db_column='Create_Timestamp',auto_now_add=True)  # Field name made lowercase.
     update_timestamp = models.DateTimeField(db_column='Update_Timestamp',auto_now_add=True)  # Field name made lowercase.
+    comments = models.CharField(db_column='Comments', max_length=8000)
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'BG_MAIN'
 
 
@@ -60,7 +62,7 @@ class BusinessFunction(models.Model):
     description = models.CharField(db_column='Description', max_length=100, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'BUSINESS_FUNCTION'
 
 
@@ -72,7 +74,7 @@ class Roles(models.Model):
     role_description = models.TextField(db_column='Role_Description', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'ROLES'
 
 
@@ -104,9 +106,10 @@ class RopaAudit(models.Model):
     auditdate = models.DateTimeField(db_column='AuditDate')  # Field name made lowercase.
     audituser = models.CharField(db_column='AuditUser', max_length=50)  # Field name made lowercase.
     auditapp = models.CharField(db_column='AuditApp', max_length=128)  # Field name made lowercase.
+    comments = models.CharField(db_column='Comments', max_length=8000)
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'ROPA_AUDIT'
 
 
@@ -135,9 +138,10 @@ class RopaMain(models.Model):
     # update_timestamp = models.DateTimeField(db_column='Update_Timestamp')  # Field name made lowercase.
     create_timestamp = models.DateTimeField(db_column='Create_Timestamp', auto_now_add=True)  # Field name made lowercase.
     update_timestamp = models.DateTimeField(db_column='Update_Timestamp', auto_now_add=True)
+    comments = models.CharField(db_column='Comments', max_length=8000)
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'ROPA_MAIN'
 
 
@@ -151,9 +155,8 @@ class UserDetails(models.Model):
     businessunithead = models.CharField(db_column='BusinessUnitHead', max_length=30, blank=True, null=True)  # Field name made lowercase.
     logintime = models.DateTimeField(db_column='LoginTime')  # Field name made lowercase.
 
-
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'USER_DETAILS'
 
 
@@ -199,7 +202,7 @@ class RopaType(models.Model):
     rep_phone = models.IntegerField(db_column='Rep_Phone', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'ROPA_TYPE'
 
 
@@ -209,5 +212,5 @@ class roles_dup(models.Model):
     DataSteward = models.CharField(db_column='DataSteward', max_length=100, blank=True, null=True)
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'roles_dup'

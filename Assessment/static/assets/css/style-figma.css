@@ -691,7 +691,6 @@ input[type="radio"]{
     bottom: 65.32%;
 
     /* Grey Scale/Grey 2 */
-
     background: #F4F4F4;
     border-radius: 8px 8px 0px 0px;
 
@@ -2648,3 +2647,66 @@ order: 0;
 align-self: stretch;
 }
 
+/*------------------------------------------------Workflow Dashboard-----------------------------------------------------*/
+/* Risk box 1*/
+.workflow-clickable-box1{
+    position: absolute;
+    height: 222px;
+    width: 180px;
+    left: 90px;
+    top: 162px;
+    border-radius: 8px;
+    box-shadow: 0px 12px 17px rgba(0, 67, 103, 0.14), 0px 5px 22px rgba(0, 67, 103, 0.12), 0px 7px 8px rgba(0, 67, 103, 0.2);
+    background: #FFFFFF;
+}
+
+.workflow-clickable-box1:hover {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.11);
+  transition: .6s ease;
+}
+
+.inside-workflow-clickable-box1{
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 65.32%;
+
+    /* Grey Scale/Grey 2 */
+
+    background: #F4F4F4;
+    border-radius: 8px 8px 0px 0px;
+
+
+
+
+/* Risk box 2*/
+.workflow-clickable-box2{
+    position: absolute;
+    height: 222px;
+    width: 180px;
+    left: 80px;
+    top: 162px;
+    box-shadow: 0px 12px 17px rgba(0, 67, 103, 0.19), 0px 5px 22px rgba(0, 67, 103, 0.19), 0px 7px 8px rgba(0, 67, 103, 0.6);
+    border-radius: 8px;
+    background: #FFFFFF;
+}
+
+.workflow-clickable-box2:hover {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.11);
+  transition: .6s ease;
+}
+
+.inside-workflow-clickable-box2{
+    position: absolute;
+    height: 50px;
+    width: 268px;
+    left: 0px;
+    top: 0px;
+    border-radius: 8px;
+    background: #EBEBEB;
+}

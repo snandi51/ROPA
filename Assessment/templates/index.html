@@ -21,29 +21,16 @@ padding-top: 100px;">
 
     <!--    Risk Summary box 1-->
     <a href="user" onClick="risk_clickable_box1()">
-        <form>
-            {% csrf_token %}
+
         <div class="risk-clickable-box1" id="risk-clickable-box1">
             <div class="inside-risk-clickable-box1" style="height:80px;">
                 <p class="risk_summary_title">User Details</p><br>
                 <p class="us" style="">Information that is used to identify an individual.</p>
                 <img class="users" src="static/assets/img/users.png" >
             </div>
-            <div class="risk-details1">
-                <p></p>
-                <p class="num_risk1">{{ risk_score1.1 }}</p>
-            </div>
-            <div class="risk-details2">
-                <p></p>
-                <p class="num_risk2">{{ risk_score1.0 }}</p>
-            </div>
-            <div class="risk-details3">
-                <p></p>
-<!--                {{ request.user.id }}-->
 
-            </div>
         </div>
-            </form>
+
     </a>
 
 
@@ -54,15 +41,6 @@ padding-top: 100px;">
                 <p class="us" style="right:-5px;">List of business terms and their definitions that organizations use. </p>
                 <img class="users" src="static/assets/img/bussiness.png" >
             </div>
-            <div class="risk-details1">
-                <p></p>
-                <p class="num_risk1">{{ risk_score2.1 }}</p>
-            </div>
-            <div class="risk-details2">
-                <p></p>
-                <p class="num_risk2">{{ risk_score2.0 }}</p>
-            </div>
-
         </div>
     </a>
 
@@ -74,14 +52,7 @@ padding-top: 100px;">
                 <p class="us" style="">Official list or record of people or things. </p>
                 <img class="users" src="static/assets/img/records.png" >
             </div>
-            <div class="risk-details1">
-                <p></p>
-                <p class="num_risk1">{{ risk_score3.1 }}</p>
-            </div>
-            <div class="risk-details2">
-                <p></p>
-                <p class="num_risk2">{{ risk_score3.0 }}</p>
-            </div>
+
 
         </div>
     </a>
@@ -91,18 +62,11 @@ padding-top: 100px;">
         <div class="risk-clickable-box4" id="risk-clickable-box4" style="">
             <div class="inside-risk-clickable-box4 disabled" style="height:80px; opacity: 0.35">
                 <p class="us" style="right:-9px;">Series of steps that are required to complete a specific task. </p>
-                <p class="risk_summary_title">Workflow Management</p><br>
+                <p class="risk_summary_title">Notification</p><br>
 
                 <img class="users" src="static/assets/img/workflow.png" >
             </div>
-            <div class="risk-details1">
-                <p></p>
-                <p class="num_risk1">{{ risk_score4.1 }}</p>
-            </div>
-            <div class="risk-details2">
-                <p></p>
-                <p class="num_risk2">{{ risk_score4.0 }}</p>
-            </div>
+
 
         </div>
     </a>
@@ -115,14 +79,7 @@ padding-top: 100px;">
                 <p class="us" style="">Actions performed on your data in a specific worksheet.</p>
                 <img class="users" src="static/assets/img/action.png" >
             </div>
-            <div class="risk-details1">
-                <p></p>
-                <p class="num_risk1">{{ risk_score5.1 }}</p>
-            </div>
-            <div class="risk-details2">
-                <p></p>
-                <p class="num_risk2">{{ risk_score5.0 }}</p>
-            </div>
+
         </div>
     </a>
 
@@ -134,14 +91,7 @@ padding-top: 100px;">
                 <p class="us" style="right:-18px;">The administration of a business.</p>
                 <img class="users" src="static/assets/img/admin.png" >
             </div>
-            <div class="risk-details1">
-                <p></p>
-                <p class="num_risk1">{{ risk_score6.1 }}</p>
-            </div>
-            <div class="risk-details2">
-                <p></p>
-                <p class="num_risk2">{{ risk_score6.0 }}</p>
-            </div>
+
 
         </div>
     </a>

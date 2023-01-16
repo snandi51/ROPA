@@ -11,10 +11,9 @@ from django.db import connection
 import pandas as pd
 import datetime
 from django.forms.models import model_to_dict
+from django.contrib.auth.decorators import user_passes_test
+# from Assessment.views import group_required
 
-
-
-# Create your views here.
 
 def login_user(request):
     if request.method == 'POST':
@@ -46,12 +45,22 @@ def login_user(request):
     #     return render(request, 'login.html')
 
 
+def group_required(*group_names):
+    """Requires user membership in at least one of the groups passed in."""
+    def in_groups(u):
+        if u.is_authenticated():
+            if bool(u.groups.filter(name__in=group_names)) | u.is_superuser:
+                return True
+        return False
+
+    return user_passes_test(in_groups, login_url='403')
 
 
 @login_required
 def logout_user(request):
     logout(request)
     return render(request, 'logout.html')
+
 
 @login_required
 def index(request):
@@ -202,22 +211,21 @@ def test(request):
         system = request.POST.get('system')
         datadomain = request.POST.get('datadomain')
         lineofbusiness = request.POST.get('lineofbusiness')
-        status = request.POST.get('status')
-        # dataclassification= request.POST.get('dataclassification')
+        status = 'Awaiting Approval'
+        dataclassification= request.POST.get('dataclassification')
         createdby = request.POST.get('createdby')
 
 
-
-# classification value pass pending.
-
-        business_detail = BgMain(businessterm=businessterm, definition=definition, dataattribute=dataattribute, system=system, datadomain=datadomain,lineofbusiness=lineofbusiness,status=status,createdby=createdby)
-
+        # classification value pass pending.
+        business_detail = BgMain(businessterm=businessterm, definition=definition, dataclassification=dataclassification, dataattribute=dataattribute,
+                                 system=system, datadomain=datadomain,
+                                 lineofbusiness=lineofbusiness, status=status, createdby=createdby)
         business_detail.save()
 
     result = BgMain.objects.all()
     bg = pd.DataFrame(list(BgMain.objects.all().values()))
-    bg1 = pd.DataFrame(list(BgMain.objects.all().values('businessterm', 'definition', 'dataattribute', 'system', 'datadomain', 'lineofbusiness', 'status')))
-    bg1.to_csv('Assessment/static/assets/bs_glossary_df.csv', index=False)
+    # bg1 = pd.DataFrame(list(BgMain.objects.all().values('businessterm', 'definition', 'dataattribute', 'system', 'datadomain', 'lineofbusiness', 'status')))
+    bg.to_csv('Assessment/static/assets/bs_glossary_df.csv', index=False)
     # a=len(bg)
     bg_dict = bg.to_dict('records')
 
@@ -225,6 +233,7 @@ def test(request):
 
         i.update({'create_timestamp': str(i.get('create_timestamp'))})
         i.update({'update_timestamp': str(i.get('update_timestamp'))})
+        i.update({'comments': str(i.get('comments'))})
     # import ipdb
     # ipdb.set_trace()
 
@@ -280,7 +289,6 @@ def edit(request):
         print(edit_db)
         # check in  ipdb
 
-
         result = BgMain.objects.all()
         print(result)
         # check in  ipdb
@@ -300,6 +308,11 @@ def edit(request):
         # print(bg_audit_result)
         # bg_audit_result.update_timestamp = datetime.datetime.now()
         # bg_audit_result.save()
+
+        for i in bg_dict:
+            i.update({'create_timestamp': str(i.get('create_timestamp'))})
+            i.update({'update_timestamp': str(i.get('update_timestamp'))})
+            i.update({'comments': str(i.get('comments'))})
 
         context = {
             'bga': result,
@@ -333,6 +346,7 @@ def delete(request):
 
         i.update({'create_timestamp': str(i.get('create_timestamp'))})
         i.update({'update_timestamp': str(i.get('update_timestamp'))})
+        i.update({'comments': str(i.get('comments'))})
 
     context = {
         'bga': result,
@@ -350,7 +364,7 @@ def stored_proc(req):
     cursor = connection.cursor()
     print('sp_add')
     try:
-        cursor.execute('EXEC spauditinsertoperation')
+        cursor.execute('EXEC spauditinsertoperation_bg')
 
         return render(req, 'test.html')
     finally:
@@ -363,7 +377,7 @@ def stored_proc_edit(req):
     cursor = connection.cursor()
     print('sp_edit')
     try:
-        cursor.execute('EXEC spauditupdateoperation')
+        cursor.execute('EXEC spauditupdateoperation_bg')
 
         return render(req, 'test.html')
     finally:
@@ -391,7 +405,7 @@ def dashboard(request):
 def record(request):
     if request.method == "POST":
         print("inside function")
-        status = request.POST.get('status')
+        status = 'Awaiting Approval'
         processingactivityname = request.POST.get('processingactivityname')
         businessfunc = request.POST.get('businessfunc')
         processingactivitydesc = request.POST.get('processingactivitydesc')
@@ -452,9 +466,9 @@ def record(request):
                                                                 'categoriesofrecepients', 'lawfulbasisofprocessing', 'dataprocessor',
                                                                 'retentionschedule', 'linkcontractprocessor', 'countriesdetailstransferred',
                                                                 'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts')))
-    ropa_main1 = pd.DataFrame(list(RopaMain.objects.all().values('ropaid', 'businessfunc', 'processingactivityname','processingactivitydesc',
-                                                                 'categoriesdatasubjects', 'categoriespersonaldata', 'status')))
-    ropa_main1.to_csv('Assessment/static/assets/data_record_excel.csv', index=False)
+    # ropa_main1 = pd.DataFrame(list(RopaMain.objects.all().values('ropaid', 'businessfunc', 'processingactivityname','processingactivitydesc',
+    #                                                              'categoriesdatasubjects', 'categoriespersonaldata', 'status')))
+    ropa_main.to_csv('Assessment/static/assets/data_record_excel.csv', index=False)
     # a=len(bg)
     ropa_dict = ropa_main.to_dict('records')
     print('ropa_dict:', ropa_dict)
@@ -462,6 +476,7 @@ def record(request):
     for i in ropa_dict:
         i.update({'create_timestamp': str(i.get('create_timestamp'))})
         i.update({'update_timestamp': str(i.get('update_timestamp'))})
+        i.update({'comments': str(i.get('comments'))})
     # import ipdb
     # ipdb.set_trace()
 
@@ -591,6 +606,7 @@ def ropa_delete(request):
 
         i.update({'create_timestamp': str(i.get('create_timestamp'))})
         i.update({'update_timestamp': str(i.get('update_timestamp'))})
+        i.update({'comments': str(i.get('comments'))})
 
     context = {
         'result': result,
@@ -638,3 +654,255 @@ def ropa_stored_proc_edit(req):
 #         return render(req, 'record.html')
 #     finally:
 #         cursor.close()
+
+def bfh_dashboard(request):
+    return render(request, 'bfh_dashboard.html')
+
+
+def workflow_dashboard(request):
+    return render(request, 'workflow_dashboard.html')
+
+
+def workflow_business_glossary(request):
+    if request.method == 'POST':
+        if request.POST["act"] == "approve":
+            # import ipdb
+            # ipdb.set_trace()
+            bgid = request.POST.get('bgid')
+            edit_db = BgMain.objects.get(bgid=bgid)
+            edit_db.status = 'Approved'
+            edit_db.comments = request.POST.get('comments')
+            edit_db.save()
+        else:
+            bgid = request.POST.get('bgid')
+            edit_db = BgMain.objects.get(bgid=bgid)
+            edit_db.status = 'Rejected'
+            edit_db.comments = request.POST.get('comments')
+            edit_db.save()
+    result = BgMain.objects.all()
+    bg = pd.DataFrame(list(BgMain.objects.all().values()))
+    # a=len(bg)
+    bg_dict = bg.to_dict('records')
+
+    for i in bg_dict:
+        i.update({'create_timestamp': str(i.get('create_timestamp'))})
+        i.update({'update_timestamp': str(i.get('update_timestamp'))})
+        i.update({'comments': str(i.get('comments'))})
+
+    context = {
+        'bga': result,
+        'bg_dict': bg_dict
+    }
+    return render(request, 'bfh_tab.html', context)
+    # return render(request, 'workflow_business_glossary.html')
+
+
+def workflow_ropa(request):
+    if request.method == 'POST':
+        if request.POST["act"] == "approve":
+            ropamainid = request.POST.get('ropamainid')
+            edit_db = RopaMain.objects.get(ropamainid=ropamainid)
+            edit_db.status = 'Approved'
+            edit_db.comments = request.POST.get('comments')
+            edit_db.save()
+        else:
+            ropamainid = request.POST.get('ropamainid')
+            edit_db = RopaMain.objects.get(ropamainid=ropamainid)
+            edit_db.status = 'Rejected'
+            edit_db.comments = request.POST.get('comments')
+            edit_db.save()
+    result = RopaMain.objects.all()
+    ropa_main = pd.DataFrame(list(RopaMain.objects.all().values('ropamainid', 'ropaid', 'businessfunc', 'processingactivityname',
+                                           'processingactivitydesc', 'categoriesdatasubjects', 'categoriespersonaldata',
+                                           'status','controllername', 'categoriesofrecepients', 'lawfulbasisofprocessing',
+                                           'dataprocessor', 'retentionschedule', 'linkcontractprocessor', 'countriesdetailstransferred',
+                                           'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts')))
+    # a=len(bg)
+    ropa_dict = ropa_main.to_dict('records')
+    # ropa_dict.status = 'Approve'
+
+    for i in ropa_dict:
+        i.update({'create_timestamp': str(i.get('create_timestamp'))})
+        i.update({'update_timestamp': str(i.get('update_timestamp'))})
+        i.update({'comments': str(i.get('comments'))})
+
+    context = {
+        'result': result,
+        'ropa_dict': ropa_dict
+    }
+    return render(request, 'workflow_ropa.html', context)
+
+
+def workflow_dpo(request):
+    bg = pd.DataFrame(list(BgMain.objects.all().values()))
+    # a=len(bg)
+    bg_dict = bg.to_dict('records')
+
+    for i in bg_dict:
+        i.update({'create_timestamp': str(i.get('create_timestamp'))})
+        i.update({'update_timestamp': str(i.get('update_timestamp'))})
+        i.update({'comments': str(i.get('comments'))})
+
+    context = {
+        'bg_dict': bg_dict
+    }
+    return render(request, 'workflow_dpo.html', context)
+
+
+def dpo_dashboard(request):
+    return render(request, 'dpo_dashboard.html')
+
+
+def workflow_dpo_ropa(request):
+
+    context = {
+        'ropa_dict': ropa_dict
+    }
+    return render(request, 'workflow_dpo_ropa.html', context)
+
+
+# @allowed_users(allowed_roles=['Business Function Head'])
+# @group_required('Business Function Head')
+def bfh_tab(request):
+    if request.method == 'POST':
+        ropa_main = pd.DataFrame(list(RopaMain.objects.all().values('ropamainid', 'ropaid', 'businessfunc', 'processingactivityname',
+                                           'processingactivitydesc', 'categoriesdatasubjects', 'categoriespersonaldata',
+                                           'status', 'controllername', 'categoriesofrecepients',
+                                           'lawfulbasisofprocessing',
+                                           'dataprocessor', 'retentionschedule', 'linkcontractprocessor',
+                                           'countriesdetailstransferred',
+                                           'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts')))
+    # a=len(bg)
+        ropa_dict = ropa_main.to_dict('records')
+
+        for i in ropa_dict:
+            i.update({'create_timestamp': str(i.get('create_timestamp'))})
+            i.update({'update_timestamp': str(i.get('update_timestamp'))})
+            i.update({'comments': str(i.get('comments'))})
+
+        if request.POST["act"] == "approve":
+            bgid = request.POST.get('bgid')
+            edit_bg_db = BgMain.objects.get(bgid=bgid)
+            ropamainid = request.POST.get('ropamainid')
+            edit_bg_db.status = 'Approved'
+            edit_bg_db.comments = request.POST.get('comments')
+            edit_bg_db.save()
+            edit_ropa_db = RopaMain.objects.get(ropamainid=ropamainid)
+            edit_ropa_db.status = 'Approved'
+            edit_ropa_db.comments = request.POST.get('comments')
+            edit_ropa_db.save()
+        else:
+            bgid = request.POST.get('bgid')
+            edit_bg_db = BgMain.objects.get(bgid=bgid)
+            ropamainid = request.POST.get('ropamainid')
+            edit_bg_db.status = 'Rejected'
+            edit_bg_db.comments = request.POST.get('comments')
+            edit_bg_db.save()
+            edit_ropa_db = RopaMain.objects.get(ropamainid=ropamainid)
+            edit_ropa_db.status = 'Approved'
+            edit_ropa_db.comments = request.POST.get('comments')
+            edit_ropa_db.save()
+    result = BgMain.objects.all()
+    bg = pd.DataFrame(list(BgMain.objects.all().values()))
+    # a=len(bg)
+    bg_dict = bg.to_dict('records')
+
+    result1 = RopaMain.objects.all()
+    ropa_main = pd.DataFrame(list(RopaMain.objects.all().values('ropamainid', 'ropaid', 'businessfunc', 'processingactivityname',
+                                           'processingactivitydesc', 'categoriesdatasubjects', 'categoriespersonaldata',
+                                           'status', 'controllername', 'categoriesofrecepients',
+                                           'lawfulbasisofprocessing',
+                                           'dataprocessor', 'retentionschedule', 'linkcontractprocessor',
+                                           'countriesdetailstransferred',
+                                           'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts')))
+    # a=len(bg)
+    ropa_dict = ropa_main.to_dict('records')
+
+    for i in bg_dict:
+        i.update({'create_timestamp': str(i.get('create_timestamp'))})
+        i.update({'update_timestamp': str(i.get('update_timestamp'))})
+        i.update({'comments': str(i.get('comments'))})
+
+    for i in ropa_dict:
+        i.update({'create_timestamp': str(i.get('create_timestamp'))})
+        i.update({'update_timestamp': str(i.get('update_timestamp'))})
+        i.update({'comments': str(i.get('comments'))})
+
+    # import ipdb
+    # ipdb.set_trace()
+    context = {
+        'bga': result,
+        'bg_dict': bg_dict,
+        'result1': result1,
+        'ropa_dict': ropa_dict
+    }
+    return render(request,'bfh_tab.html', context)
+
+
+# @allowed_users(allowed_roles=['DPO'])
+def dpo_tab(request):
+    bg = pd.DataFrame(list(BgMain.objects.all().values()))
+    # a=len(bg)
+    bg_dict = bg.to_dict('records')
+
+    for i in bg_dict:
+        i.update({'create_timestamp': str(i.get('create_timestamp'))})
+        i.update({'update_timestamp': str(i.get('update_timestamp'))})
+        i.update({'comments': str(i.get('comments'))})
+
+    ropa_main = pd.DataFrame(list(RopaMain.objects.all().values('ropamainid', 'ropaid', 'businessfunc', 'processingactivityname',
+                                           'processingactivitydesc', 'categoriesdatasubjects', 'categoriespersonaldata',
+                                           'status', 'controllername', 'categoriesofrecepients',
+                                           'lawfulbasisofprocessing',
+                                           'dataprocessor', 'retentionschedule', 'linkcontractprocessor',
+                                           'countriesdetailstransferred',
+                                           'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts')))
+    # a=len(bg)
+    ropa_dict = ropa_main.to_dict('records')
+
+    for i in ropa_dict:
+        i.update({'create_timestamp': str(i.get('create_timestamp'))})
+        i.update({'update_timestamp': str(i.get('update_timestamp'))})
+        i.update({'comments': str(i.get('comments'))})
+
+    context = {
+        'bg_dict': bg_dict,
+        'ropa_dict': ropa_dict
+    }
+    return render(request, 'dpo_tab.html', context)
+
+
+# @allowed_users(allowed_roles=['Data Steward'])
+def data_steward_tab(request):
+    bg = pd.DataFrame(list(BgMain.objects.all().values()))
+    # a=len(bg)
+    bg_dict = bg.to_dict('records')
+
+    for i in bg_dict:
+        i.update({'create_timestamp': str(i.get('create_timestamp'))})
+        i.update({'update_timestamp': str(i.get('update_timestamp'))})
+        i.update({'comments': str(i.get('comments'))})
+
+    ropa_main = pd.DataFrame(
+        list(RopaMain.objects.all().values('ropamainid', 'ropaid', 'businessfunc', 'processingactivityname',
+                                           'processingactivitydesc', 'categoriesdatasubjects', 'categoriespersonaldata',
+                                           'status', 'controllername', 'categoriesofrecepients',
+                                           'lawfulbasisofprocessing',
+                                           'dataprocessor', 'retentionschedule', 'linkcontractprocessor',
+                                           'countriesdetailstransferred',
+                                           'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts', 'comments')))
+    # a=len(bg)
+    ropa_dict = ropa_main.to_dict('records')
+
+    for i in ropa_dict:
+        i.update({'create_timestamp': str(i.get('create_timestamp'))})
+        i.update({'update_timestamp': str(i.get('update_timestamp'))})
+        i.update({'comments': str(i.get('comments'))})
+
+    context = {
+        'bg_dict': bg_dict,
+        'ropa_dict': ropa_dict
+    }
+    return render(request, 'data_steward_tab.html', context)
+
+

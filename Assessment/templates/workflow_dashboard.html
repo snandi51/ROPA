@@ -1,0 +1,55 @@
+{% extends 'base-figma.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<link href="static/assets/css/style-figma.css" rel="stylesheet">
+
+<div class="alt-nav" style="width:100%;height:80px;">
+    <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 210px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>
+    <p onclick="history.back()" style="margin-left:190px;margin-bottom:143px;margin-top:0;font-weight: 500;line-height: 28px;font-size: 24px;">&#60; Workflow Management Dashboard </p><br>
+</div>
+
+<body style="background: linear-gradient(3.47deg, #00649B 13.28%, #66A9CD 93.28%); position: static; width: 1090px; height: 800px; margin-left: 150px; padding-top: 100px;">
+    <div class="admin_box" style="float : left;">
+        <div style="width: 20%; height: 70px; top:20%; ">
+            <!--    Risk Summary box 1-->
+            <a href="{% url 'bfh_dashboard'%}" onClick="risk_clickable_box1()">
+                <div class="risk-clickable-box1" id="risk-clickable-box1" style="margin-top:1%;margin-left:1%;height:150px;width:200px;">
+                    <div class="inside-risk-clickable-box1" style="height:20px;">
+                        <p class="risk_summary_title">Business Function Head</p><br>
+<!--                        <p class="us" style="">Upload Business Glossary</p>-->
+                        <img class="users" style="margin-left:25%;margin-top:10%;" src="static/assets/img/ROPA-Img/contact.png" >
+                    </div>
+                </div>
+            </a>
+            <a href="#" onClick="risk_clickable_box2()">
+                <div class="risk-clickable-box1" id="risk-clickable-box2" style="margin-top:15%;margin-left:1%;height:150px;width:200px;">
+                    <div class="inside-risk-clickable-box1" style="height:20px; ">
+                        <p class="risk_summary_title">Data Steward</p><br>
+<!--                        <p class="us" style=" ">Upload Records Register</p>-->
+                        <img class="users" style="margin-left:25%;margin-top:10%;" src="static/assets/img/ROPA-Img/contact.png" >
+                    </div>
+                </div>
+            </a>
+            <a href="{% url 'dpo_dashboard' %}" onClick="risk_clickable_box3()">
+                <div class="risk-clickable-box1" id="risk-clickable-box3" style="margin-top:29%;margin-left:1%;height:150px;width:200px;">
+                    <div class="inside-risk-clickable-box1" style="height:20px; ">
+                        <p class="risk_summary_title">DPO</p><br>
+<!--                        <p class="us" style=" ">Upload Records Register</p>-->
+                        <img class="users" style="margin-left:25%;margin-top:10%;" src="static/assets/img/ROPA-Img/contact.png" >
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div style="float:right; margin-top:2%; margin-right:10%; width: 630px; height: 510px;">
+        <img  height="510" width="720" src="static/assets/img/workflow1.png">
+    </div>
+
+
+{% endblock %}
+</body>
+
+</html>

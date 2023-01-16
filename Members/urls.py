@@ -22,5 +22,15 @@ urlpatterns = [
     path('record', member_views.record, name='record'),
     path('ropa_edit', member_views.ropa_edit, name='ropa_edit'),
     path('ropa_delete', member_views.ropa_delete, name='ropa_delete'),
+    path('workflow_dashboard', member_views.workflow_dashboard, name='workflow_dashboard'),
+    path('workflow_ropa', member_views.workflow_ropa, name='workflow_ropa'),
+    path('workflow_business_glossary', member_views.workflow_business_glossary, name='workflow_business_glossary'),
+    path('bfh_dashboard', member_views.bfh_dashboard, name='bfh_dashboard'),
+    path('workflow_dpo', member_views.workflow_dpo, name='workflow_dpo'),
+    path('workflow_dpo_ropa', member_views.workflow_dpo_ropa, name='workflow_dpo_ropa'),
+    path('dpo_dashboard', member_views.dpo_dashboard, name='dpo_dashboard'),
+    path('bfh_tab', member_views.bfh_tab, name='bfh_tab'),
+    path('dpo_tab', member_views.dpo_tab, name='dpo_tab'),
+    path('data_steward_tab', member_views.data_steward_tab, name='data_steward_tab'),
 
  ]
