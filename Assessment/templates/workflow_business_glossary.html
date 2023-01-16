@@ -1,0 +1,345 @@
+
+
+
+{% extends 'base-figma.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<link href="static/assets/css/style-figma.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<style>
+
+              .search {
+                      width: 292px;
+                      height:40px;
+                      box-sizing: border-box;
+                      border: 2px solid #ccc;
+                      border-radius: 4px;
+                      font-size: 16px;
+                      background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat 13px center;
+
+                      background-position: 10px 10px;
+                      background-repeat: no-repeat;
+                      margin:24px 0px 0px 32px;
+                      padding: 12px 20px 12px 40px;
+              }
+
+              .modal1 {
+                      display:none;
+                      position: fixed; /* Stay in place */
+                      z-index: 1; /* Sit on top */
+                      padding-top: 100px; /* Location of the box */
+                      left: 0;
+                      bottom: 0;
+                      width: 100%; /* Full width */
+                      height: 100%; /* Full height */
+                      overflow: auto; /* Enable scroll if needed */
+                      background-color: rgb(0,0,0); /* Fallback color */
+                      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                    }
+
+                 .close_edit {
+                      color: #aaaaaa;
+                      float: right;
+                      font-size: 28px;
+                      font-weight: bold;
+                    }
+
+                    .close_edit:hover,
+                    .close_edit:focus {
+                      color: #000;
+                      text-decoration: none;
+                      cursor: pointer;
+                    }
+
+</style>
+
+<body class="body-class" style="overflow-y: hidden;">
+
+  <div class="alt-nav" style="width:100%;height:80px;">
+
+    <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 210px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>
+    <p style="margin-left:190px;margin-bottom:143px;margin-top:0;font-weight: 500;line-height: 28px;font-size: 24px;"><span class="back-arrow" onclick="history.back()">&#60; </span> Business Function Head </p><br>
+
+
+
+</div>
+
+  <div class="login-box" style="top:165px;left:400px;  width:1165px;min-height:500px;overflow-y: scroll;">
+
+      <input type="text" name="search" placeholder="Search.." class="search" id="myInput" onkeyup="myFunction()">
+<!--      <input type="text" name="filter" style="width:108px;border: 2px solid #ccc; margin-left:16px; box-sizing: border-box; height:40px;" placeholder="   Filter        &#x25BC;" class="Filterbox" id="filter" onkeyup="myFunction()">-->
+
+          <select  style="width:108px;border: 2px solid #ccc; margin-left:16px; box-sizing: border-box; height:40px;">
+              <option value="0" selected>Filter</option>
+              <option>Business Glossary</option>
+              <option>Record Register</option>
+          </select>
+
+
+
+<!--          -->
+
+
+
+
+
+        <div class="table" style="margin-top:15px;">
+          <table id="myTable"  class="paginated table table-striped table-hover" style="margin-left:32px;width:1100px;background: #E0E0E0;">
+              <thead>
+              <tr>
+                  <th scope="col">Business Term</th>
+                  <th scope="col">Definition</th>
+                  <th scope="col">Data Attribute</th>
+                  <th scope="col">System</th>
+                  <th scope="col">Data Domain</th>
+                  <th scope="col">Line of Business</th>
+<!--                  <th scope="col">Status</th>-->
+              </tr>
+              </thead>
+              <tbody>
+
+                  {% for temp in bg_dict %}
+                  {% if temp.status == 'Awaiting Approval' %}
+                  <tr>
+                      <td scope="row" id='Myvar' onclick="Mybtn1('{{temp.bgid}}')" class="first-column">{{temp.businessterm}}</td>
+
+    <!--                    <td scope="row" ><button onclick="get_id('{{temp.bgid}}')" >{{temp.businessterm}}</button></td>-->
+    <!--                  <td scope="row" id="bg{{temp.businessterm}}" class="first-column" >{{temp.businessterm}}</a></td>-->
+                      <td>{{ temp.definition }}</td>
+                      <td>{{ temp.dataattribute }}</td>
+                      <td>{{ temp.system }}</td>
+                      <td>{{ temp.datadomain }}</td>
+                      <td>{{ temp.lineofbusiness }}</td>
+    <!--                  <td>-->
+    <!--                      <select>-->
+    <!--                          <option value="0" selected>Status</option>-->
+    <!--                <option style="color:Green;">Approve</option>-->
+    <!--               <option style="color:red;">Reject</option>-->
+    <!--                  </select>-->
+    <!--                  </td>-->
+                  </tr>
+                  {% endif %}
+                  {% endfor %}
+              </tbody>
+          </table>
+         </div>
+  </div>
+
+  <!--# edit form-->
+
+  <form method="POST" id="bform_screen11" class="business_form1" action="workflow_business_glossary">
+      {% csrf_token %}
+
+      <div id="myModal1" class="modal1" style="overflow-x: hidden;overflow-y: hidden;margin-top:0px;">
+          <div class="rect-4" style="height:575px; max-width:572px;   margin-top: -94px;margin-left:40.30%; overflow-x: hidden;overflow-y: scroll;border: 1px solid #FFFFFF; border-radius: 0px;">
+              <span class="close_edit">&times;</span>
+              <div style="position:absolute; left:7%; ">
+                  <div>
+                      <label class="org" style="left:-2%;position:absolute;font-family: 'Ubuntu';font-style: normal;font-weight: 500;
+                    font-size: 16px;line-height: 24px;" >View Business Term Details</label>
+                  </div>
+
+                  <div class="input-1 col " style="padding-top: 2%;left:-5%; margin-top:15%;">
+                      <label for="inputPassword" class="label-top"
+                             style="font-family: 'Ubuntu';
+                    font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);">
+                          Business Term</label>
+                      <input type="text" style="background: rgba(39, 41, 54, 0.22);box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="businessterm" id="businessterm_edit"
+                             placeholder=" Account Password" readonly>
+                  </div>
+
+                  <div class="input-1 col " style="left: -5%; margin-top:4%;">
+                      <label for="inputPassword" class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);">Data Attribute</label>
+                      <input type="text" name="dataattribute" style="background: rgba(39, 41, 54, 0.22);box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="dataattribute_edit" placeholder=" Lorem Ipsum" readonly>
+                  </div>
+
+
+                  <div class="input-1 col" style="left: -5%; margin-top:9.8%;">
+                      <label for="inputPassword" class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);"
+                      >Definition</label>
+                      <input style="background: rgba(39, 41, 54, 0.22);box-sizing: border-box;width: 456px;height: 90px;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" type="text" name="definition" id="definition_edit"
+                             placeholder=" Describe the meaning of the term with respect to the business" readonly>
+                  </div>
+
+                  <div class="input-1 col " style="left: -5%; margin-top:12%;">
+                      <label for="inputPassword" class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);"
+                      >System</label>
+                      <input type="text" style="background: rgba(39, 41, 54, 0.22);box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="system"  id="system_edit"
+                             placeholder=" type something" readonly>
+                  </div>
+<!--                  <div class="input-1 col " style="left: -5%;margin-top:4%;">-->
+<!--                      <label for="inputPassword" class="label-top"-->
+<!--                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;-->
+<!--                    color: rgba(39, 41, 54, 0.85);"-->
+<!--                      >Classification</label>-->
+<!--                      &lt;!&ndash;        <input type="text" name="email" style="margin-top: 5px;" class="input-master" id="inputPassword" placeholder="GDPR">&ndash;&gt;-->
+<!--                      <select id="classification_edit" name="inputPassword"; style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;-->
+<!--        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;">-->
+<!--                          <option value="volvo">GDPR</option>-->
+<!--                          <option value="saab">Saab</option>-->
+<!--                          <option value="fiat">Fiat</option>-->
+<!--                          <option value="audi">Audi</option>-->
+<!--                      </select>-->
+<!--                  </div>-->
+
+                  <div class="input-1 col " style="left: -5%; margin-top:4%;">
+                      <label for="inputPassword" class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);"
+                      >Domain</label>
+                      <input type="text" style="background: rgba(39, 41, 54, 0.22);box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="datadomain"  id="datadomain_edit"
+                             placeholder=" Lorem ipsum" readonly>
+                  </div>
+
+
+                  <div class="input-1 col " style="left: -5%;margin-top:4%;">
+                      <label for="inputPassword" class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);width:300px;"
+                      >Line of Business</label>
+                      <input type="text" name="lineofbusiness" style="background: rgba(39, 41, 54, 0.22);box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="lineofbusiness_edit" placeholder=" lorem ipsum" readonly>
+                  </div>
+
+
+                  <div class="input-1 col " style="left: -5%;margin-top:4%;">
+                      <label for="inputPassword" class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);"
+                      >Status</label>
+                      <input type="text" name="status" style="background: rgba(39, 41, 54, 0.22);box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="status_edit" placeholder=" Approved" readonly>
+                  </div>
+
+                  <div class="input-1 col " style="left: -5%;margin-top:4%;">
+                      <label for="inputPassword" class="label-top" style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                        color: rgba(39, 41, 54, 0.85);width:300px;">Created by</label>
+                      <input type="text" name="createdby" style="background: rgba(39, 41, 54, 0.22);box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
+                        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;"class="input-master" id="Createdby_edit" placeholder=" lorem ipsum" readonly>
+                  </div>
+
+                  <div class="input-1 col " style="left: -5%;margin-top:4%;">
+                      <label for="inputPassword" class="label-top" style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                             color: rgba(39, 41, 54, 0.85);width:300px;">Comments</label>
+                      <input type="text" name="comments" style="background: #FFFFFF;;box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
+                        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;"class="input-master" id="comments_edit" placeholder="Please add comments/reason">
+                  </div>
+
+                  <input type="text" name="bgid"  id="bgid_edit" placeholder="lorem ipsum" style="display:none;">
+<!-- invisble -->
+
+                  <p style="margin-top:150px; margin-left: 42px;"></p>
+              </div>
+          </div>
+          <!--                  <form method="POST" id="bform_screen1" class="business_form" action="test">-->
+          <!--                     {% csrf_token %}-->
+
+          <footer style="height:50px;  position: fixed; width:550px; right: 0;bottom: 0; background: #FFFFFF;border: 1px solid #FFFFFF;">
+                <button type="submit" name="act" value="reject"  style="position:absolute;background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:50px; margin-top: 10px;  width:200px; height:30px;">
+                   <span style=" text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Reject</span>
+                </button>
+                <button type="submit"  name="act" value="approve" style="background: #12ABDB;border: 1px solid #0E88AF;border-radius: 4px; margin-left:280px; margin-top:10px;  width:200px; height:30px;">
+                   <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Approve</span>
+                </button>
+
+          </footer>
+
+
+</form>
+
+<!--   <button type="button"  onClick = "deleteRow(this)" id="deleterow"  style="position:absolute;background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:820px; margin-top:535px;  width:240px; height:30px;">-->
+<!--                           <span style=" text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Reject</span></button>-->
+
+
+
+
+
+<script>
+
+
+// Get the modal
+var modal1 = document.getElementById("myModal1");
+
+// Get the button that opens the modal
+var btn1 = document.getElementById("Myvar");
+
+var glob_id = '0'
+
+var span1 = document.getElementsByClassName("close_edit")[0];
+
+function Mybtn1(id){
+    console.log('Hi!')
+    console.log(id)
+    glob_id = id
+    var bg_dict= {{bg_dict|safe}}
+    console.log(bg_dict)
+    console.log('entering index')
+    const index = bg_dict.findIndex(object => {
+        return object.bgid == id;
+    });
+    console.log(index)
+    var edit_dict=bg_dict[index]
+    console.log(edit_dict)
+    if (edit_dict){
+        var businessterm_edit = document.getElementById('businessterm_edit')
+        businessterm_edit.value=edit_dict.businessterm
+        var dataattribute_edit =document.getElementById('dataattribute_edit')
+        dataattribute_edit.value=edit_dict.dataattribute
+        var definition_edit = document.getElementById('definition_edit')
+        definition_edit.value=edit_dict.definition
+        var system_edit = document.getElementById('system_edit')
+        system_edit.value=edit_dict.system
+<!--        var classification_edit = document.getElementById('classification_edit')-->
+<!--        classification_edit.value=edit_dict.dataclassification-->
+        var datadomain_edit = document.getElementById('datadomain_edit')
+        datadomain_edit.value=edit_dict.datadomain
+        var lineofbusiness_edit = document.getElementById('lineofbusiness_edit')
+        lineofbusiness_edit.value=edit_dict.lineofbusiness
+        var status_edit = document.getElementById('status_edit')
+        status_edit.value=edit_dict.status
+        var Createdby_edit = document.getElementById('Createdby_edit')
+        Createdby_edit.value=edit_dict.createdby
+<!--        var comments = document.getElementById('comments_edit')-->
+<!--        comments.value=edit_dict.comments-->
+        var bgid_edit = document.getElementById('bgid_edit')
+        bgid_edit.value=edit_dict.bgid
+    }
+    modal1.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span1.onclick = function() {
+  modal1.style.display = "none";
+}
+
+
+</script>
+
+
+{% endblock %}
+
+</body>
+
+</html>

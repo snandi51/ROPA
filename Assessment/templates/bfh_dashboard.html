@@ -1,0 +1,54 @@
+{% extends 'base-figma.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<link href="static/assets/css/style-figma.css" rel="stylesheet">
+
+<div class="alt-nav" style="width:100%;height:80px;">
+
+    <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 210px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>
+    <p onclick="history.back()" style="margin-left:190px;margin-bottom:143px;margin-top:0;font-weight: 500;line-height: 28px;font-size: 24px;">&#60; Business Function Head Dashboard </p><br>
+
+</div>
+
+<body style="background: linear-gradient(3.47deg, #00649B 13.28%, #66A9CD 93.28%); position: static; width: 1090px; height: 800px; margin-left: 150px;     padding-top: 100px;">
+    <div class="admin_box">
+      <div style="width: 20%; height: 70px; top:20%; ">
+<!--          <a href="javascript:;" onclick="history.back()" static="margin-top:14px;"><img src="static/assets/img/Icon.png" static="margin-top13"/></a>-->
+
+      </div>
+
+
+        <p style="margin-top:5%"></p>
+
+    <!--    Risk Summary box 1-->
+    <a href="{% url 'workflow_business_glossary'%}" onClick="risk_clickable_box1()">
+        <div class="risk-clickable-box1" id="risk-clickable-box1" style="margin-top:3%;margin-left:14%">
+            <div class="inside-risk-clickable-box1" style="height:80px;">
+                <p class="risk_summary_title">Business Glossary</p><br>
+                <p class="us" style="">Upload Business Glossary</p>
+                <img class="users" style="margin-left:30%;margin-top:35%;" src="static/assets/img/ROPA-Img/book.png" >
+            </div>
+        </div>
+    </a>
+    <a href="{% url 'workflow_ropa'%}" onClick="risk_clickable_box2()">
+        <div class="risk-clickable-box2" id="risk-clickable-box2" style="margin-top:3%;margin-left:20%">
+            <div class="inside-risk-clickable-box2" style="height:80px; ">
+                <p class="risk_summary_title">Records Register</p><br>
+                <p class="us" style=" ">Upload Records Register</p>
+                <img class="users" style="margin-left:30%;margin-top:35%;" src="static/assets/img/ROPA-Img/contact.png" >
+            </div>
+        </div>
+    </a>
+
+
+
+</div>
+
+
+{% endblock %}
+</body>
+
+</html>

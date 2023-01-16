@@ -346,8 +346,8 @@
 
   <div class="alt-nav" style="width:100%;height:80px;">
 
-    <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 210px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>
-    <p style="margin-left:190px;margin-bottom:143px;margin-top:0;font-weight: 500;line-height: 28px;font-size: 24px;"><span class="back-arrow" onclick="history.back()">&#60; </span> Business Glossary </p><br>
+<!--    <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 210px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>-->
+    <p style="margin-left:160px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;"><span class="back-arrow" onclick="history.back()">&#60; </span> Business Glossary </p><br>
 
   </div>
 
@@ -418,7 +418,7 @@
       {% csrf_token %}
 
 
-      <div id="myModal" class="modal" style="overflow-x: hidden;overflow-y: hidden;margin-top:0px;">
+  <div id="myModal" class="modal" style="overflow-x: hidden;overflow-y: hidden;margin-top:0px;">
           <div class="rect-4" style="height:575px; max-width:572px;  margin-top: -94px;margin-left:40.30%; overflow-x: hidden;overflow-y: scroll;border: 1px solid #FFFFFF; border-radius: 0px;">
               <span class="close">&times;</span>
               <div onchange="colorChange()" style="position:absolute; left:7%; ">
@@ -435,7 +435,7 @@
                           Business Term</label>
                       <input type="text" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
         border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="businessterm" id="businessterm_add"
-                             placeholder=" Account Password" required>
+                             placeholder=" Gender Code, First Name, last Name etc" required>
                   </div>
 
                   <div class="input-1 col " style="left: -5%; margin-top:4%;">
@@ -443,7 +443,7 @@
                              style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
                     color: rgba(39, 41, 54, 0.85);">Data Attribute</label>
                       <input type="text" name="dataattribute" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
-        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="dataattribute_add" placeholder=" Lorem Ipsum" required>
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="dataattribute_add" placeholder=" Physical Column Name" required>
                   </div>
 
 
@@ -464,7 +464,7 @@
                       >System</label>
                       <input type="text" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
         border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="system"  id="system_add"
-                             placeholder=" type something" required>
+                             placeholder=" System Name" required>
                   </div>
                   <div class="input-1 col " style="left: -5%;margin-top:4%;">
                       <label  class="label-top"
@@ -472,12 +472,13 @@
                     color: rgba(39, 41, 54, 0.85);"
                       >Classification</label>
                       <!--        <input type="text" name="email" style="margin-top: 5px;" class="input-master" id="inputPassword" placeholder="GDPR">-->
-                      <select id="classification_add" name="classification"; style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
-        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;">
-                          <option value="volvo">GDPR</option>
-                          <option value="saab">Saab</option>
-                          <option value="fiat">Fiat</option>
-                          <option value="audi">Audi</option>
+                      <select id="classification_add" name="dataclassification" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" multiple>
+                          <option value="private">PRIVATE</option>
+                          <option value="public">PUBLIC</option>
+                          <option value="restricted">RESTRICTED</option>
+                          <option value="internal">INTERNAL</option>
+                          <option value="confidential">CONFIDENTIAL</option>
                       </select>
                   </div>
 
@@ -488,7 +489,7 @@
                       >Domain</label>
                       <input type="text" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
         border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="datadomain"  id="datadomain_add"
-                             placeholder=" Lorem ipsum" required >
+                             placeholder="  Clinet, Customer, Credit etc. " required >
                   </div>
 
 
@@ -498,18 +499,18 @@
                     color: rgba(39, 41, 54, 0.85);width:300px;"
                       >Line of Business</label>
                       <input type="text" name="lineofbusiness" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
-        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="lineofbusiness_add" placeholder=" lorem ipsum" required>
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="lineofbusiness_add" placeholder="  Sale, Hr, Marketing etc " required>
                   </div>
 
 
-                  <div class="input-1 col " style="left: -5%;margin-top:4%;">
-                      <label  class="label-top"
-                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
-                    color: rgba(39, 41, 54, 0.85);"
-                      >Status</label>
-                      <input type="text" name="status" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
-        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="status_add" placeholder=" Approved" required>
-                  </div>
+<!--                  <div class="input-1 col " style="left: -5%;margin-top:4%;">-->
+<!--                      <label  class="label-top"-->
+<!--                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;-->
+<!--                    color: rgba(39, 41, 54, 0.85);"-->
+<!--                      >Status</label>-->
+<!--                      <input type="text" name="status" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;-->
+<!--        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="status_add" placeholder=" Approved" required>-->
+<!--                  </div>-->
 
                   <div  class="input-1 col " style="left: -5%;margin-top:4%;">
                       <label  class="label-top"
@@ -517,7 +518,8 @@
                     color: rgba(39, 41, 54, 0.85);width:300px;"
                       >Created by</label>
                       <input type="text" name="createdby" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
-        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;"class="input-master" id="createdby_add"  placeholder=" lorem ipsum" required>
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;"class="input-master" id="createdby_add"  placeholder=" Person Responsible for updating the Business Glossary
+ " required>
                   </div>
 
                     <p style="margin-top:150px; margin-left: 42px;"></p>
@@ -531,7 +533,7 @@
               <button  id="cancel-button"  style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:25px; margin-top:10px;  width:240px; height:30px;">
                   <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Cancel</span></button>
               <button type="submit"  style="background: rgba(39, 41, 54, 0.22);border: 1px solid #0C7799;border-radius: 4px; margin-left:30px; margin-top:10px;  width:240px; height:30px;" id="add_button"  >
-                  <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Add</span>
+                  <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Save</span>
               </button>
 
           </footer>
@@ -591,22 +593,23 @@
                       >System</label>
                       <input type="text" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
         border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="system"  id="system_edit"
-                             placeholder=" type something" required>
+                             placeholder=" System Name" required>
                   </div>
-<!--                  <div class="input-1 col " style="left: -5%;margin-top:4%;">-->
-<!--                      <label for="inputPassword" class="label-top"-->
-<!--                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;-->
-<!--                    color: rgba(39, 41, 54, 0.85);"-->
-<!--                      >Classification</label>-->
-<!--                      &lt;!&ndash;        <input type="text" name="email" style="margin-top: 5px;" class="input-master" id="inputPassword" placeholder="GDPR">&ndash;&gt;-->
-<!--                      <select id="classification_edit" name="inputPassword"; style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;-->
-<!--        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;">-->
-<!--                          <option value="volvo">GDPR</option>-->
-<!--                          <option value="saab">Saab</option>-->
-<!--                          <option value="fiat">Fiat</option>-->
-<!--                          <option value="audi">Audi</option>-->
-<!--                      </select>-->
-<!--                  </div>-->
+                  <div class="input-1 col " style="left: -5%;margin-top:4%;">
+                      <label for="inputPassword" class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);"
+                      >Classification</label>
+                      <!--        <input type="text" name="email" style="margin-top: 5px;" class="input-master" id="inputPassword" placeholder="GDPR">-->
+                      <select id="classification_edit" name="dataclassification" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" >
+                          <option value="private">PRIVATE</option>
+                          <option value="public">PUBLIC</option>
+                          <option value="restricted">RESTRICTED</option>
+                          <option value="internal">INTERNAL</option>
+                          <option value="confidential">CONFIDENTIAL</option>
+                      </select>
+                  </div>
 
                   <div class="input-1 col " style="left: -5%; margin-top:4%;">
                       <label for="inputPassword" class="label-top"
@@ -633,7 +636,7 @@
                       <label for="inputPassword" class="label-top"
                              style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
                     color: rgba(39, 41, 54, 0.85);"
-                      >Staus</label>
+                      >Status</label>
                       <input type="text" name="status" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
         border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="status_edit" placeholder=" Approved" required>
                   </div>
@@ -661,7 +664,7 @@
                    <span style=" text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Delete</span>
                 </button>
                 <button type="submit"  style="background: #12ABDB;border: 1px solid #0E88AF;border-radius: 4px; margin-left:280px; margin-top:10px;  width:200px; height:30px;">
-                   <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Edit</span>
+                   <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Save</span>
                 </button>
 
           </footer>
@@ -710,51 +713,51 @@
     </div>
 
 
-  <div class="filter" id="Filter_box" style="top:223px; margin-left:25%;  width:540px; height:320px; background: white; border-radius: 8px 0px 0px 8px;">
-    <div  style="margin-left: 2%; background:green; ">
-        <lable style="margin-left:1%;"> Filter</lable><br>
-        <lable style="margin-left:1%;"> Domain</lable><br>
-        <div style="padding-top: -23%; margin-left:40%; width:400%;">
-            <input type="checkbox" style="margin-left:-20%;" id="gdpr" onclick="dpo_1()" name="dpo1" value="dpo">
-                <lable class="" style="top:47%;">GDPR</lable>
-            <input type="checkbox" style="margin-left:20px;" id="g_policy" onclick="dpo_1()" name="dpo1" value="dpo">
-                <lable class="" style="top:47%;">Glossary Policy</lable>
-            <input type="checkbox" style="margin-left:20px;" id="ccpa" onclick="dpo_1()" name="dpo1" value="dpo">
-                <lable class="" style="top:47%;">CCPA</lable>
-            <input type="checkbox" style="margin-left:20px;" id="standard" onclick="dpo_1()" name="dpo1" value="dpo">
-                <lable class="" style="top:47%;">Standard</lable>
-        </div>
+<!--  <div class="filter" id="Filter_box" style="top:223px; margin-left:25%;  width:540px; height:320px; background: white; border-radius: 8px 0px 0px 8px;">-->
+<!--    <div  style="margin-left: 2%; background:green; ">-->
+<!--        <label style="margin-left:1%;"> Filter</label><br>-->
+<!--        <label style="margin-left:1%;"> Domain</label><br>-->
+<!--        <div style="padding-top: -23%; margin-left:40%; width:400%;">-->
+<!--            <input type="checkbox" style="margin-left:-20%;" id="gdpr" onclick="dpo_1()" name="dpo1" value="dpo">-->
+<!--                <label class="" style="top:47%;">GDPR</label>-->
+<!--            <input type="checkbox" style="margin-left:20px;" id="g_policy" onclick="dpo_1()" name="dpo1" value="dpo">-->
+<!--                <label class="" style="top:47%;">Glossary Policy</label>-->
+<!--            <input type="checkbox" style="margin-left:20px;" id="ccpa" onclick="dpo_1()" name="dpo1" value="dpo">-->
+<!--                <label class="" style="top:47%;">CCPA</label>-->
+<!--            <input type="checkbox" style="margin-left:20px;" id="standard" onclick="dpo_1()" name="dpo1" value="dpo">-->
+<!--                <label class="" style="top:47%;">Standard</label>-->
+<!--        </div>-->
 
-        <div style="width:400px; margin-left:-120px;">
-            <lable style=""> Line of Business</lable>
-        </div>
-        <div style="padding-top: -23%; margin-left:40%; width:400%;">
-            <input type="checkbox" style="margin-left:-65%;" id="cust" onclick="dpo_1()" name="dpo1" value="dpo">
-                <lable class="" style="top:47%;">Customer</lable>
-            <input type="checkbox" style="margin-left:30px;" id="credit" onclick="dpo_1()" name="dpo1" value="dpo">
-                <lable class="" style="top:47%; margin-left:;">Credit</lable>
+<!--        <div style="width:400px; margin-left:-120px;">-->
+<!--            <label style=""> Line of Business</label>-->
+<!--        </div>-->
+<!--        <div style="padding-top: -23%; margin-left:40%; width:400%;">-->
+<!--            <input type="checkbox" style="margin-left:-65%;" id="cust" onclick="dpo_1()" name="dpo1" value="dpo">-->
+<!--                <label class="" style="top:47%;">Customer</label>-->
+<!--            <input type="checkbox" style="margin-left:30px;" id="credit" onclick="dpo_1()" name="dpo1" value="dpo">-->
+<!--                <label class="" style="top:47%; margin-left:;">Credit</label>-->
 
-        </div>
+<!--        </div>-->
 
-        <lable style="margin-left:10px;"> Status</lable>
-        <div style="padding-top: -23%; margin-left:40%; width:400%;">
-            <input type="checkbox" style="margin-left:-12%;" id="approval" onclick="dpo_1()" name="dpo1" value="dpo">
-                <lable class="" style="top:47%;">Awaiting Approval</lable>
-            <input type="checkbox" style="margin-left:30px;" id="review" onclick="dpo_1()" name="dpo1" value="dpo">
-                <lable class="" style="top:47%;">Awaiting Review</lable>
-            <input type="checkbox" style="margin-left:30px;" id="dpo1" onclick="approved" name="dpo1" value="dpo">
-                <lable class="" style="top:47%;">Approved</lable>
+<!--        <label style="margin-left:10px;"> Status</label>-->
+<!--        <div style="padding-top: -23%; margin-left:40%; width:400%;">-->
+<!--            <input type="checkbox" style="margin-left:-12%;" id="approval" onclick="dpo_1()" name="dpo1" value="dpo">-->
+<!--                <label class="" style="top:47%;">Awaiting Approval</label>-->
+<!--            <input type="checkbox" style="margin-left:30px;" id="review" onclick="dpo_1()" name="dpo1" value="dpo">-->
+<!--                <label class="" style="top:47%;">Awaiting Review</label>-->
+<!--            <input type="checkbox" style="margin-left:30px;" id="dpo1" onclick="approved" name="dpo1" value="dpo">-->
+<!--                <label class="" style="top:47%;">Approved</label>-->
 
-        </div>
+<!--        </div>-->
 
-        <div style="margin-top:20px; background-color:; width:600px; margin-left:10px;">
-<!--            <input type="submit" style="width:240px; margin-top:20px; margin-left:50px;" button>-->
-<!--            <input type="submit" style="width:240px; margin-top:-20px; margin-left:300px;" button>-->
-            <button class="" type="submit" id="cancel" style="margin-top:; position: static;  margin-left:20px; width:230px;">Cancel</button>
-            <button class="" type="submit" id ="filter" style="margin-top:; position: static;  margin-left:20px; width:230px;">Apply filters</button>
-        </div>
-     </div>
- </div>
+<!--        <div style="margin-top:20px; background-color:; width:600px; margin-left:10px;">-->
+<!--&lt;!&ndash;            <input type="submit" style="width:240px; margin-top:20px; margin-left:50px;" button>&ndash;&gt;-->
+<!--&lt;!&ndash;            <input type="submit" style="width:240px; margin-top:-20px; margin-left:300px;" button>&ndash;&gt;-->
+<!--            <button class="" type="submit" id="cancel" style="margin-top:; position: static;  margin-left:20px; width:230px;">Cancel</button>-->
+<!--            <button class="" type="submit" id ="filter" style="margin-top:; position: static;  margin-left:20px; width:230px;">Apply filters</button>-->
+<!--        </div>-->
+<!--     </div>-->
+<!-- </div>-->
 
   <script>
 // Get the modal
@@ -815,7 +818,7 @@ window.onload= function(){
 
 }
 function colorChange() {
-       if ((document.getElementById("createdby_add").value != "") & (document.getElementById("status_add").value != "") &
+       if ((document.getElementById("createdby_add").value != "")  &
            (document.getElementById("lineofbusiness_add").value != "") & (document.getElementById("datadomain_add").value != "") &
            (document.getElementById("classification_add").value != "") & (document.getElementById("system_add").value != "") &
            (document.getElementById("definition_add").value != "") & (document.getElementById("dataattribute_add").value != "")
@@ -864,8 +867,8 @@ function Mybtn1(id){
         definition_edit.value=edit_dict.definition
         var system_edit = document.getElementById('system_edit')
         system_edit.value=edit_dict.system
-<!--        var classification_edit = document.getElementById('classification_edit')-->
-<!--        classification_edit.value=edit_dict.dataclassification-->
+        var classification_edit = document.getElementById('classification_edit')
+        classification_edit.value=edit_dict.dataclassification
         var datadomain_edit = document.getElementById('datadomain_edit')
         datadomain_edit.value=edit_dict.datadomain
         var lineofbusiness_edit = document.getElementById('lineofbusiness_edit')

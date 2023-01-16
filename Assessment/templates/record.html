@@ -325,8 +325,8 @@
 <body class="body-class" style="overflow-y: hidden; overflow-x: hidden;">
   <!-- The dots/circles -->
     <div class="alt-nav" style="width:1372px;height:80px">
-        <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 176px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>
-        <p style="margin-left:154px;margin-bottom:143px;margin-top:0;font-weight: 500;line-height: 28px;font-size: 24px;" onclick="history.back()">&#60; Records Register </p><br>
+<!--        <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 176px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>-->
+        <p style="margin-left:190px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;" onclick="history.back()">&#60; Records Register </p><br>
         <p style="padding-left:212px;padding-bottom:143px;padding-top:0px;"> </p>
     </div>
     <div class="login-box" style="top:165px;left:400px; width:1100px;min-height:320px; overflow-y: scroll; overflow-x: hidden;">
@@ -382,84 +382,80 @@
                 <div>
                     <label class="org" style="margin-left:-7%; margin-top:-5%;">View ROPA ID Details</label>
                 </div>
-                <div class="form-group">
+                <div style="margin-top:2%">
                     <div class="input-1 col " style="left: -1%; margin-top:15%">
-                        <label for="inputPassword" class="label-top" >Status</label>
-                        <input type="text" style=" width:300px; margin-top: -2%;" name="status" id="status_add" class="input-master"  placeholder=" Lorem Ipsum" required>
+                        <label for="inputPassword" class="label-top" style="width: 200px;" >Process Activity Name</label>
+                        <input type="text" style=" width:300px; margin-top: -2%;" name="processactivityname" id="processactivityname_add" class="input-master"  placeholder=" Marketing activities and communications " readonly>
                     </div>
                     <div class="input-1 col " style="left: -1%; margin-top:5%">
-                        <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px; ">Process Activity Name</label>
-                        <input type="text" name="processingactivityname" id="processingactivityname_add" style="margin-top: -2%; width:300px;" class="input-master"  placeholder=" Lorem Ipsum" required>
+                        <label for="inputPassword" class="label-top" style="width: 200px; font-size:12px; ">Categories of Data Subjects</label>
+                        <input type="text" name="categoriesofdatasubjects" id="CategoriesofdataSubjects_add" style="margin-top: -2%; width:300px;" class="input-master"  placeholder=" Clinet,Custmoer,etc " required>
                     </div>
                     <div class="input-1 col" style="left: 95%; margin-top:-35% ">
                         <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px;">Business Function  </label>
-                        <input style="margin-top:-2%; width:300px;" type="text" name="businessfunc" id="businessfunc_add" class="input-master" placeholder=" Lorem Ipsum" required>
+                        <input style="margin-top:-2%; width:300px;" type="text" name="businessfunc" id="businessfunc_add" class="input-master" placeholder=" Finance, HR, Marketing " required>
                     </div>
                     <div class="input-1 col" style="left: 95%;margin-top:8% ">
                         <label for="inputPassword" class="label-top" style=" width: 200px;font-size:12px;">Process Activity Description</label>
-                        <input style="margin-top: -2%;width:300px; height:50px;" type="text" name="processingactivitydesc" id="processingactivitydesc_add" class="input-master"  placeholder=" Lorem Ipsum " required>
+                        <input style="margin-top: -2%;width:300px; height:50px;" type="text" name="processingactivitydesc" id="processingactivitydesc_add" class="input-master"  placeholder=" Description of processing activity in detail " required>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col">
-                        <div class="input-1 col " style="left:-5%;margin-top: 10%">
-                            <label for="inputPassword" class="label-top" style="width:200px;">Categories of Data Subjects</label>
-                            <input type="text" style="width:300px;" name="categoriesdatasubjects" id="categoriesdatasubjects_add" class="input-master" placeholder=" Lorem Ipsum" required>
-                        </div>
-                        <div class="input-1 col " style="left: -5%; margin-top:15%">
+                        <div class="input-1 col " style="left: -2%; margin-top:12%">
                             <label for="inputPassword" class="label-top" style="width:250px;">Name and Contact Details of Joint Controller</label>
-                            <input type="text" style="height:52px; width:300px;margin-top: 2%;" name="controllername" id="controllername_add" class="input-master"  placeholder=" Lorem ipsum" required>
+                            <input type="text" style="height:52px; width:300px;margin-top: 2%;" name="controllername" id="controllername_add" class="input-master"  placeholder=" Name of the controller organization " required>
                          </div>
                      </div>
-                    <div class="input-1 col" style="left: 95%; margin-top:-40%;">
+                    <div class="input-1 col" style="left: 95%; margin-top:-13%;">
                         <label for="inputPassword" class="label-top" style="width: 200px; font-size:12px;">Categories of Recipients </label>
-                        <input style="margin-top: -2px; width:300px; height:52px;" type="text" name="categoriesofrecepients" id="categoriesofrecepients_add" class="input-master"  placeholder=" Lorem ipsum" required>
+                        <input style="margin-top: -2px; width:300px; height:52px;" type="text" name="categoriesofrecepients" id="categoriesofrecepients_add" class="input-master"  placeholder=" Type something " required>
                      </div>
-                    <div class="input-1 col" style="left: 95%;  margin-top:5%;">
+                    <div class="input-1 col" style="left: 95%;  margin-top:10%;">
                         <label for="inputPassword" class="label-top" style=" width: 200px;font-size:12px;;">Categories of Personal Data</label>
-                        <input style="margin-top: -2%; width: 300px;" type="text" name="categoriespersonaldata" id="categoriespersonaldata_add" class="input-master"  placeholder=" Lorem ipsum " required>
+                        <input style="margin-top: -2%; width: 300px;" type="text" name="categoriespersonaldata" id="categoriespersonaldata_add" class="input-master"  placeholder=" Personal data categories " required>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-1 col " style="left: 1%; margin-top: 15%;">
+
+
+                    <div class="input-1 col " style="left: -2%; margin-top: -15%;">
                         <label for="inputPassword" class="label-top" style="width:200px;">Lawful Basis of Processing</label>
-                        <input type="text" style="margin-top: -2%; width:300px;" name="lawfulbasisofprocessing" id="lawfulbasisofprocessing_add"  class="input-master" placeholder=" Lorem Ipsum" required>
+                        <input type="text" style="margin-top: -2%; width:300px;" name="lawfulbasisofprocessing" id="lawfulbasisofprocessing_add"  class="input-master" placeholder=" Type something " required>
                     </div>
-                   <div class="input-1 col " style="left: 1%; margin-top: 5%;">
+                   <div class="input-1 col " style="left: -2%; margin-top: 8%;">
                         <label for="inputPassword" class="label-top">Data Processor</label>
-                        <input type="text" name="dataprocessor" id="dataprocessor_add" style="margin-top: -2%; width:300px;" class="input-master" placeholder="Lorem Ipsum" required>
+                        <input type="text" name="dataprocessor" id="dataprocessor_add" style="margin-top: -2%; width:300px;" class="input-master" placeholder=" Name of the processor organization " required>
                    </div>
-                   <div class="input-1 col" style="left: 95%;margin-top: -35%;">
+                   <div class="input-1 col" style="left: 95%;margin-top: -14%;">
                         <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px;">Retention Schedule </label>
-                        <input style="margin-top: -2%; width:300px;" type="text" name="retentionschedule" id="retentionschedule_add" class="input-master" placeholder=" Lorem Ipsum" required>
+                        <input style="margin-top: -2%; width:300px;" type="text" name="retentionschedule" id="retentionschedule_add" class="input-master" placeholder=" Type something " required>
                     </div>
                     <div class="input-1 col" style="left: 95%; margin-top: 5%;">
                         <label for="inputPassword" class="label-top" style=" width: 200px;font-size:12px;">Link to Contract with Processor</label>
-                        <input style="margin-top: -2%; width: 300px;" type="text" name="linkcontractprocessor" id="linkcontractprocessor_add" class="input-master" placeholder=" Lorem Ipsum" required>
+                        <input style="margin-top: -2%; width: 300px;" type="text" name="linkcontractprocessor" id="linkcontractprocessor_add" class="input-master" placeholder=" Link/website address of the contract processor " required>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-1 col " style="left: 1%; margin-top: 10%;">
+
+
+                    <div class="input-1 col " style="left: -2%; margin-top: -10%;">
                         <label for="inputPassword" class="label-top" Style="font-size:12px; width:300px; margin-top:px; Letter:0.2px;">Third Countries or international organizations where personal data
                                 is transferred (if applicable) </label>
-                        <input type="text" style="margin-top: 5%; width:300px;" name="countriesdetailstransferred" id="countriesdetailstransferred_add" class="input-master" placeholder=" Lorem Ipsum" required>
+                        <input type="text" style="margin-top: 5%; width:300px;" name="countriesdetailstransferred" id="countriesdetailstransferred_add" class="input-master" placeholder=" Countries Names where data is transferred " required>
                     </div>
-                   <div class="input-1 col " style="left: 1%; margin-top: 10%;">
+                   <div class="input-1 col " style="left: -2%; margin-top: 10%;">
                         <label for="inputPassword" class="label-top" style="width:300px; ">Safeguards for exceptional transfers of personal data for above (If applicable)</label>
-                        <input type="text" name="safeguardsexternaltransfers" id="safeguardsexternaltransfers_add" style="margin-top: 5%; width:300px;" class="input-master" placeholder=" Lorem ipsum" required>
+                        <input type="text" name="safeguardsexternaltransfers" id="safeguardsexternaltransfers_add" style="margin-top: 5%; width:300px;" class="input-master" placeholder=" Type something " required>
                    </div>
-                    <div class="input-1 col" style="left: 95%; margin-top: -40%;">
+                    <div class="input-1 col" style="left: 95%; margin-top: -13%;">
                         <label for="inputPassword" class="label-top" style="width: 300px; font-size:12px; ">Label General description of technical and organizational security measures (if applicable)</label>
-                        <input style="margin-top: 5%; width:300px;" type="text" name="securitymeasures_desc" id="securitymeasures_desc_add" class="input-master"  placeholder=" Lorem ipsum" required>
+                        <input style="margin-top: 5%; width:300px;" type="text" name="securitymeasures_desc" id="securitymeasures_desc_add" class="input-master"  placeholder=" Type something" required>
                     </div>
-                    <div class="input-1 col" style="left: 95%; margin-top: 10%;">
+                    <div class="input-1 col" style="left: 95%; margin-top: 15%;">
                         <label for="inputPassword" class="label-top" style=" width: 300px;font-size:12px;">Links to contracts, consents, breach records, assessments</label>
-                        <input style="margin-top: 5%; width: 320px;" type="text" name="linkscontracts" id="linkscontracts_add" class="input-master" placeholder=" Lorem ipsum " required>
+                        <input style="margin-top: 5%; width: 320px;" type="text" name="linkscontracts" id="linkscontracts_add" class="input-master" placeholder=" Contract link with the processor organization " required>
                     </div>
-                    <input type="text" name="ropaid"  id="ropaid_add" placeholder="lorem ipsum" style="display:none;">
+                    <div class="input-1 col" style="left: -2%; margin-top: -17%;">
+                            <label for="inputPassword" class="label-top" style=" width: 100px;font-size:12px;">Status</label>
+                            <input style="margin-top: 5%; width: 320px;" type="text" name="status1" id="status1_add" class="input-master" placeholder=" Awaiting Approval " required>
+                    </div>
+                        <input type="text" name="ropaid"  id="ropaid_add" placeholder="lorem ipsum" style="display:none;">
                 </div>
             </div>
-          </div>
             <footer style="height:50px;  position: fixed;width:775px; right: 0;bottom: 0; background: #FFFFFF;border: 1px solid #FFFFFF; ">
                <button id="cancel-button" style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:80px; margin-top:10px;  width:280px; height:30px;">
                <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px; margin-left:-19px;">Cancel</span></button>
@@ -773,7 +769,7 @@
 
 
     function colorChange() {
-       if ((document.getElementById("status_add").value != "") & (document.getElementById("processingactivityname_add").value != "") &
+       if (((document.getElementById("processingactivityname_add").value != "") &
            (document.getElementById("businessfunc_add").value != "") & (document.getElementById("processingactivitydesc_add").value != "") &
            (document.getElementById("categoriesdatasubjects_add").value != "") & (document.getElementById("categoriespersonaldata_add").value != "") &
            (document.getElementById("controllername_add").value != "") & (document.getElementById("categoriesofrecepients_add").value != "")

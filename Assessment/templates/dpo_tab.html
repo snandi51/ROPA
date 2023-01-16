@@ -1,0 +1,647 @@
+{% extends 'base-figma.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<link href="static/assets/css/style-figma.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!--<style>-->
+<!--  th,td{-->
+<!--    border: 1px black solid;-->
+<!--    background-color: #D6EEEE;-->
+<!--  }-->
+<!--</style>-->
+<style>
+        .container {
+            width: 50%
+        }
+        .scroll {
+              overflow-y: scroll;
+              height: 120px;
+              width: 300px;
+              margin: 10px 15px; padding: 5px;
+              text-align: justify;
+          }
+          .scroll::-webkit-scrollbar {
+              width:5px;
+          }
+          .scroll::-webkit-scrollbar-track {
+              -webkit-box-shadow:inset 0 0 0px rgba(0,0,0,0.3);
+              border-radius:5px;
+          }
+          .scroll::-webkit-scrollbar-thumb {
+              border-radius:15px;
+              -webkit-box-shadow: inset 20px 0 10px grey;
+          }
+        .d-flex{
+          display: flex;
+           width: 100%;
+        }
+        .d-flex-col{
+          display: flex;
+          width: 100%;
+          flex-direction: column;
+        }
+        .text-center {
+          text-align: left;
+        }
+        .TabButton {
+            width: 100%;
+            color: #5A5A61;
+            border: 0;
+            border-bottom: 1px solid #e0e0e0;
+            background-color:  #CDCDCF;
+            margin: 0;
+            font-size: 14px;
+            line-height: 16px;
+            font-weight: normal;
+            padding: 16px;
+            cursor: pointer;
+        }
+        .TabButtonSelected {
+
+          border-bottom-color: #C94927 !important;
+            background-color:  #CDCDCF !important;
+            font-weight: 500;
+        }
+
+
+        .d-chart-n {
+          display: none;
+        }
+
+        .d-chart-show {
+          display: block;
+        }
+
+        #wrapper11 {
+            display: grid;
+            grid-template-rows: 30px 1fr 30px;
+        }
+
+        #content11 {
+           overflow-y: scroll;
+           width: 830px;
+           height: 340px;
+        }
+
+        /* Optional */
+        #wrapper11 > * {
+           padding: 5px;
+        }
+        #header11 {
+        height: 40px;
+    }
+        .rounded-checkbox {
+          width:15px;
+          height: 15px;
+          border-radius: 50%;
+          vertical-align: middle;
+          border: 1px solid black;
+          appearance: none;
+          -webkit-appearance: none;
+          outline: none;
+          cursor: pointer;
+        }
+        .rounded-checkbox:checked {
+          appearance: auto;
+          clip-path: circle(50% at 50% 50%);
+          background-color: blue;
+        }
+        .tab {
+              overflow: hidden;
+              border-bottom: 1px solid #ccc;
+              background-color: white;
+            }
+
+            .tab button {
+              background-color: inherit;
+              float: left;
+              border: none;
+              outline: none;
+              cursor: pointer;
+              padding: 12px 14px;
+              transition: 0.3s;
+              font-size: 17px;
+            }
+            .tablinks {
+              background-color: #E0E0E0;
+              color: white;
+              float: left;
+              border: none;
+              outline: none;
+              cursor: pointer;
+              padding: 14px 16px;
+              font-size: 17px;
+              width: 25%;
+            }
+            .tablinks:hover {
+              background-color: #777;
+            }
+
+            .tab button:hover {
+              background-color: #ddd;
+            }
+
+            .tab button.active {
+              background-color: blue;
+            }
+
+            .tabcontent {
+              display: block;
+              padding: 6px 12px;
+              border: 1px solid #ccc;
+              border-top: none;
+            }
+
+</style>
+<style>
+    .modal1 {
+          display:none;
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          padding-top: 100px; /* Location of the box */
+          left: 0;
+          bottom: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(0,0,0); /* Fallback color */
+          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+     .close_edit {
+          color: #aaaaaa;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+        }
+
+        .close_edit:hover,
+        .close_edit:focus {
+          color: #000;
+          text-decoration: none;
+          cursor: pointer;
+        }
+
+    .modal2 {
+          display:none;
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          padding-top: 100px; /* Location of the box */
+          left: 0;
+          bottom: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(0,0,0); /* Fallback color */
+          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+     .close_edit2 {
+          color: #aaaaaa;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+        }
+
+        .close_edit2:hover,
+        .close_edit2:focus {
+          color: #000;
+          text-decoration: none;
+          cursor: pointer;
+        }
+</style>
+<script>
+        function activeTab(evt, id) {
+
+           // Get all elements with class="tablinks" and remove the class "active"
+            let tabactive = document.getElementsByClassName("TabButtonSelected");
+            tabactive[0].className = tabactive[0].className.replace(" TabButtonSelected", "");
+            document.getElementById(id).style.display = "block";
+            evt.currentTarget.className += " TabButtonSelected";
+            displaySection(evt,id)
+        }
+
+        function displaySection(evt, id) {
+
+            let tabactive = document.getElementsByClassName("tab-section");
+            tabactive[0].className = tabactive[0].className.replace(" d-chart-show", "d-chart-n");
+            // add below line of codes
+            [...document.querySelectorAll('div.tab-section')].forEach(item => item.style.display='none')
+            document.getElementById("Section" + id).style.display = "block";
+            evt.currentTarget.className += " d-chart-show";
+        }
+</script>
+
+
+<div class="alt-nav" style="width:100%;height:80px;">
+        <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 210px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>
+        <p style="margin-left:190px;margin-bottom:143px;margin-top:0;font-weight: 500;line-height: 28px;font-size: 24px;"><span class="back-arrow" onclick="history.back()">&#60; </span> DPO Notification </p><br>
+  </div>
+    <button type="button" onclick="history.back()" style="display: none;" id="back-btn"></button>
+    <a href="introduction" style="color:Green; margin-left:90px;" onclick="document.getElementById('back-btn').click()" alt="Back"><img src="static/assets/img/Icon.png" />Back</a>
+
+
+<body class="body-class" style="overflow-y: hidden;">
+
+<div class="rect-meta-1" style="height:480px; margin-top: 50px;">
+<!--    <form method="POST" enctype="multipart/form-data" action="score" name="bfh_tab">-->
+<!--        {% csrf_token %}-->
+        <div class="container" id="wrapper11">
+            <div class="d-flex" >
+                <div class="d-flex text-center" style="margin-left: -140px; height: 65px; margin-top: 10px; width:940px;">
+                    <div class="TabButton TabButtonSelected tablinks" id="Tab1" style="width:660px; font-size: 12px; color: black; font-weight: 500; font-family: 'Ubuntu';" onclick="activeTab(event, 'Tab1')"><b>Business Glossary</b></div>
+                    <div class="TabButton tab tablinks" id="Tab2" style="width:650px; font-size: 12px; font-weight: 500; font-family: 'Ubuntu'; color: black; " onclick="activeTab(event, 'Tab2')">Record Register</div>
+
+                </div>
+            </div>
+
+            <div class="d-flex-col scroll" id="content11" style="width:970px;margin-top: 70px; margin-left: -140px; font-size: 13px; font-weight: 400; font-family: 'Ubuntu';">
+                <div id="SectionTab1" class="tab-section d-chart-n d-chart-show" onchange="form_change()">
+                   <table id="myTable"  class="paginated table table-striped table-hover" style="width:940px;background: #E0E0E0;">
+                      <thead>
+                      <tr>
+                          <th scope="col">Business Term</th>
+                          <th scope="col">Definition</th>
+                          <th scope="col">Data Attribute</th>
+                          <th scope="col">System</th>
+                          <th scope="col">Data Domain</th>
+                          <th scope="col">Line of Business</th>
+                          <th scope="col">Status</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                          {% for temp in bg_dict %}
+                          {% if temp.status == 'Approved' %}
+                          <tr>
+                              <td scope="row" onclick="Mybtn1('{{temp.bgid}}')" class="first-column">{{temp.businessterm}}</td>
+                              <td>{{ temp.definition }}</td>
+                              <td>{{ temp.dataattribute }}</td>
+                              <td>{{ temp.system }}</td>
+                              <td>{{ temp.datadomain }}</td>
+                              <td>{{ temp.lineofbusiness }}</td>
+                              <td>{{ temp.status }}</td>
+                          </tr>
+                          {% endif %}
+                          {% endfor %}
+                      </tbody>
+                  </table>
+                </div>
+
+                <div id="SectionTab2" class="tab-section d-chart-n">
+                     <table id="myTable2"  class="paginated table table-striped table-hover" style="width:940px; background: #E0E0E0;">
+                          <thead>
+                              <tr>
+                                   <th scope="col">ROPA ID</th>
+                                   <th scope="col">Business Function</th>
+                                   <th scope="col">Processing Activity Name</th>
+                                   <th scope="col">Processing Activity Description </th>
+                                   <th scope="col">Categories of Data Subjects</th>
+                                   <th scope="col">Categories of Personal Data</th>
+                                   <th scope="col">Status</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+
+                              {% for i in ropa_dict %}
+                              {% if i.status == 'Approved' %}
+                              <tr>
+                                  <td scope="row" onclick="Mybtn2('{{i.ropamainid}}')" class="first-column">{{i.ropaid}}</td>
+                                  <td>{{ i.businessfunc }}</td>
+                                  <td>{{ i.processingactivityname }}</td>
+                                  <td>{{ i.processingactivitydesc }}</td>
+                                  <td>{{ i.categoriesdatasubjects }}</td>
+                                  <td>{{ i.categoriespersonaldata }}</td>
+                                  <td>{{ i.status }}</td>
+                              </tr>
+                              {% endif %}
+                              {% endfor %}
+                          </tbody>
+                     </table>
+                </div>
+            </div>
+<!--    </form>-->
+        </div>
+
+<!--     <form method="POST" id="bform_screen11" class="business_form1" action="workflow_business_glossary">-->
+<!--          {% csrf_token %}-->
+<!-----------------------------------------------Business Glossary form-------------------------------------------------->
+        <div id="myModal1" class="modal1" style="overflow-x: hidden;overflow-y: hidden;margin-top:20px;">
+          <div class="rect-4" style="height:575px; max-width:572px;  margin-top:-97px;margin-left:40.30%; overflow-x: hidden;overflow-y: scroll;border: 1px solid #FFFFFF; border-radius: 0px;">
+              <span class="close_edit">&times;</span>
+              <div style="position:absolute; left:7%; ">
+                  <div>
+                      <label class="org" style="left:-2%;position:absolute;font-family: 'Ubuntu';font-style: normal;font-weight: 500;
+                    font-size: 16px;line-height: 24px;" >View Business Term Details</label>
+                  </div>
+
+                  <div class="input-1 col " style="padding-top: 2%;left:-5%; margin-top:15%;">
+                      <label for="inputPassword" class="label-top"
+                             style="font-family: 'Ubuntu';
+                    font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);">Business Term</label>
+                      <input type="text" style="background: #E0E0E0; box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
+                            border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="businessterm" id="businessterm_edit"
+                             placeholder="Account Password" readonly>
+                  </div>
+
+                  <div class="input-1 col " style="left: -5%; margin-top:4%;">
+                      <label for="inputPassword" class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);">Data Attribute</label>
+                      <input type="text" name="dataattribute" style="background: #E0E0E0;box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
+                      border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="dataattribute_edit" placeholder="Lorem Ipsum" readonly>
+                  </div>
+
+
+                  <div class="input-1 col" style="left: -5%; margin-top:9.8%;">
+                      <label for="inputPassword" class="label-top"
+                             style="vfont-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);">Definition</label>
+                      <input style="background: #E0E0E0;box-sizing: border-box;width: 456px;height: 90px;border: 1px solid #8D8D8D;
+                     border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" type="text" name="definition" id="definition_edit"
+                             placeholder="Describe the meaning of the term with respect to the business" readonly>
+                  </div>
+
+                  <div class="input-1 col " style="left: -5%; margin-top:12%;">
+                      <label for="inputPassword" class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);"
+                      >System</label>
+                      <input type="text" style="background: #E0E0E0;box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
+                         border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="system"  id="system_edit"
+                             placeholder="type something" readonly>
+                  </div>
+
+
+                  <div class="input-1 col " style="left: -5%; margin-top:4%;">
+                      <label for="inputPassword" class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                    color: rgba(39, 41, 54, 0.85);">Domain</label>
+                      <input type="text" style="background: #E0E0E0;box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
+                       border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="datadomain"  id="datadomain_edit"
+                             placeholder="Lorem ipsum" readonly >
+                  </div>
+
+
+                  <div class="input-1 col " style="left: -5%;margin-top:4%;">
+                      <label for="inputPassword" class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                         color: rgba(39, 41, 54, 0.85);width:300px;">Line of Business</label>
+                      <input type="text" name="lineofbusiness" style="background: #E0E0E0; box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
+                       border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="lineofbusiness_edit" placeholder="lorem ipsum" readonly>
+                  </div>
+
+
+                  <div class="input-1 col " style="left: -5%;margin-top:4%;">
+                      <label for="inputPassword" class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                          color: rgba(39, 41, 54, 0.85);">Status</label>
+                      <input type="text" name="status" style="background: #E0E0E0; box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
+                        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="status_edit" placeholder="Approved" readonly>
+                  </div>
+
+                  <div class="input-1 col " style="left: -5%;margin-top:4%;">
+                      <label for="inputPassword" class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                            color: rgba(39, 41, 54, 0.85);width:300px;">Created by</label>
+                      <input type="text" name="createdby" style="background: #E0E0E0; box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
+                             border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;"class="input-master" id="Createdby_edit" placeholder="lorem ipsum" readonly>
+                  </div>
+                  <input type="text" name="bgid"  id="bgid_edit" placeholder="lorem ipsum" style="display:none;">
+                  <p style="margin-top:120px; margin-left: 42px;"></p>
+              </div>
+          </div>
+        </div>
+
+
+<!--    </form>-->
+
+<!---------------------------------------------Record Register Form----------------------------------------------------------->
+<!--     <form method="POST" id="edit_form" class="ropa_form_edit" action="workflow_ropa">-->
+<!--         {% csrf_token %}-->
+        <div id="myModal2" class="modal2" style="overflow-x: hidden;overflow-y: scroll; margin-top:0px; ">
+          <div class="rect-4" style="min-height:800px; width:760px;margin-left:25%; margin-top:-90px; ">
+              <span class="close_edit2" >&times;</span>
+            <div style="position:absolute; left:4%; padding-right: 5%;">
+                <div>
+                    <label class="org" style="margin-left:-7%; margin-top:-5%;">View ROPA ID Details</label>
+                </div>
+                <div class="form-group">
+                    <div class="input-1 col " style="left: -1%; margin-top:15%">
+                        <label  class="label-top" >Status</label>
+                        <input type="text" style=" background: #E0E0E0; width:300px; margin-top: -2%;" name="status" id="ropa_status_edit" class="input-master"  placeholder=" Lorem Ipsum" readonly>
+                    </div>
+                    <div class="input-1 col " style="left: -1%; margin-top:5%">
+                        <label for="inputPassword" class="label-top" style=" width: 140px; font-size:12px; ">Process Activity Name</label>
+                        <input type="text" name="processingactivityname" id="processingactivityname_edit" style="background: #E0E0E0;margin-top: -2%; width:300px;" class="input-master"  placeholder=" Lorem Ipsum" readonly>
+                    </div>
+                    <div class="input-1 col" style="left: 95%; margin-top:-35% ">
+                        <label for="inputPassword" class="label-top" style=" width: 140px; font-size:12px;">Business Function  </label>
+                        <input style="background: #E0E0E0;margin-top:-2%; width:300px;" type="text" name="businessfunc" id="businessfunc_edit" class="input-master" placeholder=" Lorem Ipsum" readonly>
+                    </div>
+                    <div class="input-1 col" style="left: 95%;margin-top:8% ">
+                        <label for="inputPassword" class="label-top" style=" width: 200px;font-size:12px;">Process Activity Description</label>
+                        <input style="background: #E0E0E0; margin-top: -2%;width:300px; height:50px;" type="text" name="processingactivitydesc" id="processingactivitydesc_edit" class="input-master"  placeholder=" Lorem Ipsum " readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col">
+                        <div class="input-1 col " style="left:-5%;margin-top: 10%">
+                            <label for="inputPassword" class="label-top" style="width:200px;">Categories of Data Subjects</label>
+                            <input type="text" style="background: #E0E0E0;width:300px;" name="categoriesdatasubjects" id="categoriesdatasubjects_edit" class="input-master" placeholder=" Lorem Ipsum" readonly>
+                        </div>
+                        <div class="input-1 col " style="left: -5%; margin-top:15%">
+                            <label for="inputPassword" class="label-top" style="width:250px;">Name and Contact Details of Joint Controller</label>
+                            <input type="text" style="background: #E0E0E0;height:52px; width:300px;margin-top: 2%;" name="controllername" id="controllername_edit" class="input-master"  placeholder=" Lorem ipsum" readonly>
+                         </div>
+                     </div>
+                    <div class="input-1 col" style="left: 95%; margin-top:-40%;">
+                        <label for="inputPassword" class="label-top" style="width: 200px; font-size:12px;">Categories of Recipients </label>
+                        <input style="background: #E0E0E0;margin-top: -2px; width:300px; height:52px;" type="text" name="categoriesofrecepients" id="categoriesofrecepients_edit" class="input-master"  placeholder=" Lorem ipsum" readonly>
+                     </div>
+                    <div class="input-1 col" style="left: 95%;  margin-top:5%;">
+                        <label for="inputPassword" class="label-top" style=" width: 200px;font-size:12px;;">Categories of Personal Data</label>
+                        <input style="background: #E0E0E0;margin-top: -2%; width: 300px;" type="text" name="categoriespersonaldata" id="categoriespersonaldata_edit" class="input-master"  placeholder=" Lorem ipsum " readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-1 col " style="left: 1%; margin-top: 15%;">
+                        <label for="inputPassword" class="label-top" style="width:200px;">Lawful Basis of Processing</label>
+                        <input type="text" style="background:#E0E0E0;margin-top: -2%; width:300px;" name="lawfulbasisofprocessing" id="lawfulbasisofprocessing_edit"  class="input-master" placeholder=" Lorem Ipsum" readonly>
+                    </div>
+                   <div class="input-1 col " style="left: 1%; margin-top: 5%;">
+                        <label for="inputPassword" class="label-top">Data Processor</label>
+                        <input type="text" name="dataprocessor" id="dataprocessor_edit" style="background: #E0E0E0;margin-top: -2%; width:300px;" class="input-master" placeholder=" Lorem Ipsum" readonly>
+                   </div>
+                   <div class="input-1 col" style="left: 95%;margin-top: -35%;">
+                        <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px;">Retention Schedule </label>
+                        <input style="background: #E0E0E0;margin-top: -2%; width:300px;" type="text" name="retentionschedule" id="retentionschedule_edit" class="input-master" placeholder=" Lorem Ipsum" readonly>
+                    </div>
+                    <div class="input-1 col" style="left: 95%; margin-top: 5%;">
+                        <label for="inputPassword" class="label-top" style=" width: 200px;font-size:12px;">Link to Contract with Processor</label>
+                        <input style="background: #E0E0E0;margin-top: -2%; width: 300px;" type="text" name="linkcontractprocessor" id="linkcontractprocessor_edit" class="input-master" placeholder=" Lorem Ipsum" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-1 col " style="left: 1%; margin-top: 10%;">
+                        <label for="inputPassword" class="label-top" Style="font-size:12px; width:300px; margin-top:px; Letter:0.2px;">Third Countries or international organizations where personal data
+                                is transferred (if applicable) </label>
+                        <input type="text" style="background: #E0E0E0;margin-top: 5%; width:300px;background:" name="countriesdetailstransferred" id="countriesdetailstransferred_edit" class="input-master" placeholder=" Lorem Ipsum" readonly>
+                    </div>
+                   <div class="input-1 col " style="left: 1%; margin-top: 10%;">
+                        <label for="inputPassword" class="label-top" style="width:300px; ">Safeguards for exceptional transfers of personal data for above (If applicable)</label>
+                        <input type="text" name="safeguardsexternaltransfers" id="safeguardsexternaltransfers_edit" style="background: #E0E0E0;margin-top: 5%; width:300px;" class="input-master" placeholder="Lorem ipsum" readonly>
+                   </div>
+                    <div class="input-1 col" style="left: 95%; margin-top: -40%;">
+                        <label for="inputPassword" class="label-top" style="width: 300px; font-size:12px; ">Label General description of technical and organizational security measures (if applicable)</label>
+                        <input style="margin-top: 5%; width:300px;background: #E0E0E0;" type="text" name="securitymeasures_desc" id="securitymeasures_desc_edit" class="input-master"  placeholder="Lorem ipsum" readonly>
+                    </div>
+                    <div class="input-1 col" style="left: 95%; margin-top: 10%;">
+                        <label for="inputPassword" class="label-top" style=" width: 300px;font-size:12px;">Links to contracts, consents, breach records, assessments</label>
+                        <input style="margin-top: 5%; width: 320px;background: #E0E0E0;" type="text" name="linkscontracts" id="linkscontracts_edit" class="input-master" placeholder="Lorem ipsum " readonly>
+                    </div>
+                    <input type="text" name="ropaid"  id="ropaid_edit" placeholder="lorem ipsum" style="display:none">
+                    <input type="text" name="ropamainid"  id="ropamainid_edit" placeholder="lorem ipsum" style="display:none">
+                </div>
+            </div>
+          </div>
+        </div>
+
+<!--    </form>-->
+
+
+<script>
+    // Get the modal
+    var modal1 = document.getElementById("myModal1");
+
+    var glob_id = '0'
+
+    var span1 = document.getElementsByClassName("close_edit")[0];
+
+    function Mybtn1(id){
+        console.log('Hi!')
+        console.log(id)
+        glob_id = id
+        var bg_dict= {{bg_dict|safe}}
+        console.log(bg_dict)
+        console.log('entering index')
+        const index = bg_dict.findIndex(object => {
+            return object.bgid == id;
+        });
+        console.log(index)
+        var edit_dict=bg_dict[index]
+        console.log(edit_dict)
+        if (edit_dict){
+            var businessterm_edit = document.getElementById('businessterm_edit')
+            businessterm_edit.value=edit_dict.businessterm
+            var dataattribute_edit =document.getElementById('dataattribute_edit')
+            dataattribute_edit.value=edit_dict.dataattribute
+            var definition_edit = document.getElementById('definition_edit')
+            definition_edit.value=edit_dict.definition
+            var system_edit = document.getElementById('system_edit')
+            system_edit.value=edit_dict.system
+    <!--        var classification_edit = document.getElementById('classification_edit')-->
+    <!--        classification_edit.value=edit_dict.dataclassification-->
+            var datadomain_edit = document.getElementById('datadomain_edit')
+            datadomain_edit.value=edit_dict.datadomain
+            var lineofbusiness_edit = document.getElementById('lineofbusiness_edit')
+            lineofbusiness_edit.value=edit_dict.lineofbusiness
+            var status_edit = document.getElementById('status_edit')
+            status_edit.value=edit_dict.status
+            var Createdby_edit = document.getElementById('Createdby_edit')
+            Createdby_edit.value=edit_dict.createdby
+            var bgid_edit = document.getElementById('bgid_edit')
+            bgid_edit.value=edit_dict.bgid
+        }
+        modal1.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span1.onclick = function() {
+      modal1.style.display = "none";
+    }
+
+<!-------------------------------------------Record Register Script------------------------------------------->
+    // Get the modal
+    var modal2 = document.getElementById("myModal2");
+
+    var ropa_glob_id = '0'
+
+    var span2 = document.getElementsByClassName("close_edit2")[0];
+
+    function Mybtn2(id){
+        console.log('Hi!')
+        console.log(id)
+        ropa_glob_id = id
+        var ropa_dict= {{ropa_dict|safe}}
+        console.log(ropa_dict)
+        console.log('entering index')
+        const index_ropa = ropa_dict.findIndex(object => {
+            return object.ropamainid == id;
+        });
+        console.log(index_ropa)
+        var ropa_edit_dict=ropa_dict[index_ropa]
+        console.log('ropa_edit_dict', ropa_edit_dict)
+        if (ropa_edit_dict){
+            console.log("inside function")
+            var ropa_status_edit = document.getElementById('ropa_status_edit')
+            ropa_status_edit.value=ropa_edit_dict.status
+            var processingactivityname_edit =document.getElementById('processingactivityname_edit')
+            processingactivityname_edit.value=ropa_edit_dict.processingactivityname
+            var businessfunc_edit = document.getElementById('businessfunc_edit')
+            businessfunc_edit.value=ropa_edit_dict.businessfunc
+            var processingactivitydesc_edit = document.getElementById('processingactivitydesc_edit')
+            processingactivitydesc_edit.value=ropa_edit_dict.processingactivitydesc
+            var categoriesdatasubjects_edit= document.getElementById('categoriesdatasubjects_edit')
+            categoriesdatasubjects_edit.value=ropa_edit_dict.categoriesdatasubjects
+            var categoriespersonaldata_edit = document.getElementById('categoriespersonaldata_edit')
+            categoriespersonaldata_edit.value=ropa_edit_dict.categoriespersonaldata
+            var controllername_edit = document.getElementById('controllername_edit')
+            controllername_edit.value=ropa_edit_dict.controllername
+            var categoriesofrecepients_edit = document.getElementById('categoriesofrecepients_edit')
+            categoriesofrecepients_edit.value=ropa_edit_dict.categoriesofrecepients
+            var lawfulbasisofprocessing_edit= document.getElementById('lawfulbasisofprocessing_edit')
+            lawfulbasisofprocessing_edit.value=ropa_edit_dict.lawfulbasisofprocessing
+            var retentionschedule_edit= document.getElementById('retentionschedule_edit')
+            retentionschedule_edit.value=ropa_edit_dict.retentionschedule
+            var dataprocessor_edit= document.getElementById('dataprocessor_edit')
+            dataprocessor_edit.value=ropa_edit_dict.dataprocessor
+            var linkcontractprocessor_edit= document.getElementById('linkcontractprocessor_edit')
+            linkcontractprocessor_edit.value=ropa_edit_dict.linkcontractprocessor
+            var countriesdetailstransferred_edit= document.getElementById('countriesdetailstransferred_edit')
+            countriesdetailstransferred_edit.value=ropa_edit_dict.countriesdetailstransferred
+            var safeguardsexternaltransfers_edit= document.getElementById('safeguardsexternaltransfers_edit')
+            safeguardsexternaltransfers_edit.value=ropa_edit_dict.safeguardsexternaltransfers
+            var securitymeasures_desc_edit= document.getElementById('securitymeasures_desc_edit')
+            securitymeasures_desc_edit.value=ropa_edit_dict.securitymeasures_desc
+            var linkscontracts_edit= document.getElementById('linkscontracts_edit')
+            linkscontracts_edit.value=ropa_edit_dict.linkscontracts
+            var ropaid_edit= document.getElementById('ropaid_edit')
+            ropaid_edit.value=ropa_edit_dict.ropaid
+            var ropamainid_edit= document.getElementById('ropamainid_edit')
+            ropamainid_edit.value=ropa_edit_dict.ropamainid
+
+        }
+        modal2.style.display = "block";
+
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span2.onclick = function() {
+      modal2.style.display = "none";
+    }
+
+
+</script>
+{% endblock %}
+</body>
+
+</html>
