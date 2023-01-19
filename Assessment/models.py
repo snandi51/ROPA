@@ -147,7 +147,7 @@ class RopaMain(models.Model):
 
 class UserDetails(models.Model):
     userid = models.BigAutoField(db_column='UserId', primary_key=True)  # Field name made lowercase.
-    # id = models.ForeignKey(auth_user, on_delete=models.DO_NOTHING, db_column='id', null=True)
+    id = models.IntegerField(db_column='id', null=False)
     organization = models.CharField(db_column='Organization', max_length=8000)  # Field name made lowercase.
     businessfunc = models.CharField(db_column='BusinessFunc', max_length=30, blank=True, null=True)  # Field name made lowercase.
     ropaty = models.CharField(db_column='ROPATy', max_length=30)  # Field name made lowercase.
@@ -160,11 +160,8 @@ class UserDetails(models.Model):
         db_table = 'USER_DETAILS'
 
 
-
-
-
-# class auth_users(models.model):
-#     id = models.BigAutoField(db_column='id', primary_key=True, null=True)
+# class auth_user(models.Model):
+#     id = models.BigAutoField(db_column='id', primary_key=True)
 #     # password nvarchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 #     last_login = models.DateTimeField(db_column='logintime')
 #     # is_superuser bit NOT NULL,
@@ -175,10 +172,20 @@ class UserDetails(models.Model):
 #     # is_staff bit NOT NULL,
 #     # is_active bit NOT NULL,
 #     # date_joined datetime2(7) NOT NULL,
-#     class Meta:
-#         managed = False
-#         db_table = 'auth_user'
 #
+#     class Meta:
+#         # managed = False
+#         db_table = 'auth_user'
+
+
+# class auth_user_groups(models.Model):
+#     id = models.BigAutoField(db_column='id', primary_key=True, null=False)
+#     userid = models.IntegerField(db_column='user_id', null=True)
+#     groupid = models.IntegerField(db_column='group_id', null=True)
+#
+#     class Meta:
+#         # managed = False
+#         db_table = 'auth_user_groups'
 
 
 class RopaType(models.Model):

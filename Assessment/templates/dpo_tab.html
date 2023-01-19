@@ -275,6 +275,7 @@
                           <th scope="col">Data Domain</th>
                           <th scope="col">Line of Business</th>
                           <th scope="col">Status</th>
+                          <th scope="col">Comments</th>
                       </tr>
                       </thead>
                       <tbody>
@@ -288,6 +289,7 @@
                               <td>{{ temp.datadomain }}</td>
                               <td>{{ temp.lineofbusiness }}</td>
                               <td>{{ temp.status }}</td>
+                              <td>{{ temp.comments }}</td>
                           </tr>
                           {% endif %}
                           {% endfor %}
@@ -306,6 +308,7 @@
                                    <th scope="col">Categories of Data Subjects</th>
                                    <th scope="col">Categories of Personal Data</th>
                                    <th scope="col">Status</th>
+                                   <th scope="col">Comments</th>
                               </tr>
                           </thead>
                           <tbody>
@@ -320,6 +323,7 @@
                                   <td>{{ i.categoriesdatasubjects }}</td>
                                   <td>{{ i.categoriespersonaldata }}</td>
                                   <td>{{ i.status }}</td>
+                                  <td>{{ i.comments }}</td>
                               </tr>
                               {% endif %}
                               {% endfor %}
@@ -430,6 +434,13 @@
                       <input type="text" name="createdby" style="background: #E0E0E0; box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
                              border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;"class="input-master" id="Createdby_edit" placeholder="lorem ipsum" readonly>
                   </div>
+                  <div class="input-1 col " style="left: -5%;margin-top:4%;">
+                      <label for="inputPassword" class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                            color: rgba(39, 41, 54, 0.85);width:300px;">Comments</label>
+                      <input type="text" name="comments" style="background: #E0E0E0; box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
+                             border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;"class="input-master" id="commnets_edit" placeholder="lorem ipsum" readonly>
+                  </div>
                   <input type="text" name="bgid"  id="bgid_edit" placeholder="lorem ipsum" style="display:none;">
                   <p style="margin-top:120px; margin-left: 42px;"></p>
               </div>
@@ -523,6 +534,13 @@
                         <label for="inputPassword" class="label-top" style=" width: 300px;font-size:12px;">Links to contracts, consents, breach records, assessments</label>
                         <input style="margin-top: 5%; width: 320px;background: #E0E0E0;" type="text" name="linkscontracts" id="linkscontracts_edit" class="input-master" placeholder="Lorem ipsum " readonly>
                     </div>
+                    <div class="input-1 col " style="left: -5%;margin-top:4%;">
+                      <label for="inputPassword" class="label-top"
+                             style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                            color: rgba(39, 41, 54, 0.85);width:300px;">Comments</label>
+                      <input type="text" name="ropa_comments" style="background: #E0E0E0; box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
+                             border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;"class="input-master" id="ropa_commnets_edit" placeholder="lorem ipsum" readonly>
+                  </div>
                     <input type="text" name="ropaid"  id="ropaid_edit" placeholder="lorem ipsum" style="display:none">
                     <input type="text" name="ropamainid"  id="ropamainid_edit" placeholder="lorem ipsum" style="display:none">
                 </div>
@@ -573,6 +591,8 @@
             status_edit.value=edit_dict.status
             var Createdby_edit = document.getElementById('Createdby_edit')
             Createdby_edit.value=edit_dict.createdby
+            var comments = document.getElementById('comments_edit')
+            comments_edit.value=edit_dict.comments
             var bgid_edit = document.getElementById('bgid_edit')
             bgid_edit.value=edit_dict.bgid
         }
@@ -639,6 +659,8 @@
             securitymeasures_desc_edit.value=ropa_edit_dict.securitymeasures_desc
             var linkscontracts_edit= document.getElementById('linkscontracts_edit')
             linkscontracts_edit.value=ropa_edit_dict.linkscontracts
+            var ropa_comments = document.getElementById('ropa_comments_edit')
+            ropa_comments_edit.value=edit_dict.ropa_comments
             var ropaid_edit= document.getElementById('ropaid_edit')
             ropaid_edit.value=ropa_edit_dict.ropaid
             var ropamainid_edit= document.getElementById('ropamainid_edit')

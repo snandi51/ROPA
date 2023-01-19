@@ -12,6 +12,7 @@ import pandas as pd
 import datetime
 from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.models import Group
 # from Assessment.views import group_required
 
 
@@ -28,8 +29,26 @@ def login_user(request):
         #     return render(request, 'index.html')
 
         if user is not None:
+            # import ipdb
+            # ipdb.set_trace()
             login(request, user)
-            return render(request, 'index.html')
+            print('user', request.user)
+            print('user_id', request.user.id)
+            userid = request.user.id
+
+            # result = UserDetails.objects.all().filter()
+            result = UserDetails.objects.all().values().filter(userid=userid)
+            bg = pd.DataFrame(list(UserDetails.objects.all().values().filter(userid=userid)))
+            bg_dict = bg.to_dict('records')[0]
+            print(result)
+            print(bg_dict)
+            print(bg_dict['ropaty'])
+            output = bg_dict['ropaty']
+            print(output)
+            if output is not None:
+                return render(request, 'dashboard.html')
+            else:
+                return render(request, 'index.html')
         else:
             context = {
                 'text': 'Invalid Username or Password'
@@ -38,22 +57,6 @@ def login_user(request):
             return render(request, 'login.html', context)
 
     return render(request, 'login.html')
-
-    # if request.user.is_authenticated:
-    #     return render(request, 'dashboard.html')
-    # else:
-    #     return render(request, 'login.html')
-
-
-def group_required(*group_names):
-    """Requires user membership in at least one of the groups passed in."""
-    def in_groups(u):
-        if u.is_authenticated():
-            if bool(u.groups.filter(name__in=group_names)) | u.is_superuser:
-                return True
-        return False
-
-    return user_passes_test(in_groups, login_url='403')
 
 
 @login_required
@@ -70,6 +73,7 @@ def index(request):
 @login_required
 def user(request):
     if request.method == "POST":
+        id = request.user.id
         organization = request.POST.get('organization')
         department = request.POST.get('department')
         date = request.POST.get('date')
@@ -78,9 +82,8 @@ def user(request):
 
         # import ipdb
         # ipdb.set_trace()
-        user_detail = UserDetails(organization=organization, businessfunc=business_function, businessunithead=business_function_head, logintime=date)
-        user_detail.save()
-        request.session['user_detail'] = user_detail.userid
+
+
 
         ropaty = request.POST.get('ropaty')
         userid = request.POST.get('userid')
@@ -102,8 +105,18 @@ def user(request):
         # current_user = request.user
         # print(current_user.id)
 
+        # user_detail = UserDetails(id=id, organization=organization, businessfunc=business_function,
+        #                           businessunithead=business_function_head, logintime=date)
+        # user_detail.save()
+        #
+        # request.session['user_detail'] = user_detail.userid
+
+        userdetail = UserDetails.objects.get(userid=id)
+        userdetail.ropaty = ropaty
+        userdetail.save()
+
         # user_detail = UserDetails.objects.get(userid= current_user.id)
-        ropa_type = RopaType(userid=user_detail, ropaty=ropaty, name=name, email=email, telephone=telephone, address=address, dpo_name=dpo_name, dpo_email=dpo_email, dpo_phone=dpo_telephone, dpo_address=dpo_address, rep_name=rep_name, rep_email=rep_email, rep_phone=rep_telephone, rep_address=rep_address)
+        ropa_type = RopaType(userid=userdetail, ropaty=ropaty, name=name, email=email, telephone=telephone, address=address, dpo_name=dpo_name, dpo_email=dpo_email, dpo_phone=dpo_telephone, dpo_address=dpo_address, rep_name=rep_name, rep_email=rep_email, rep_phone=rep_telephone, rep_address=rep_address)
         ropa_type.save()
 
         # result = RopaType.objects.all()
@@ -111,7 +124,7 @@ def user(request):
         # # a=len(bg)
         # bg_dict = bg.to_dict('records')
         context = {
-            'user_detail': user_detail,
+            'user_detail': userdetail,
         }
         return render(request, 'dashboard.html', context)
     return render(request, 'user.html')
@@ -396,7 +409,7 @@ def stored_proc_edit(req):
 #     finally:
 #         cursor.close()
 
-
+# @login_required(login_url='/index/')
 def dashboard(request):
     return render(request, 'dashboard.html')
 
@@ -471,7 +484,7 @@ def record(request):
     ropa_main.to_csv('Assessment/static/assets/data_record_excel.csv', index=False)
     # a=len(bg)
     ropa_dict = ropa_main.to_dict('records')
-    print('ropa_dict:', ropa_dict)
+    # print('ropa_dict:', ropa_dict)
 
     for i in ropa_dict:
         i.update({'create_timestamp': str(i.get('create_timestamp'))})
@@ -659,7 +672,167 @@ def bfh_dashboard(request):
     return render(request, 'bfh_dashboard.html')
 
 
+@login_required
 def workflow_dashboard(request):
+    user1 = request.user
+    print('user1:', user1)
+    user_id = request.user.id
+    print('user_id:', user_id)
+    group1 = request.user.groups.all()
+    print('group1:', group1)
+    dahboard_df = pd.DataFrame(list(request.user.groups.all().values()))
+    print(dahboard_df)
+    print(dahboard_df['name'].to_string(index=False))
+    result = dahboard_df['name'].to_string(index=False)
+
+    if result == "Business Function Head":
+        if request.method == 'POST':
+            ropa_main = pd.DataFrame(
+                list(RopaMain.objects.all().values('ropamainid', 'ropaid', 'businessfunc', 'processingactivityname',
+                                                   'processingactivitydesc', 'categoriesdatasubjects',
+                                                   'categoriespersonaldata',
+                                                   'status', 'controllername', 'categoriesofrecepients',
+                                                   'lawfulbasisofprocessing',
+                                                   'dataprocessor', 'retentionschedule', 'linkcontractprocessor',
+                                                   'countriesdetailstransferred',
+                                                   'safeguardsexternaltransfers', 'securitymeasures_desc',
+                                                   'linkscontracts', 'comments')))
+            # a=len(bg)
+            ropa_dict = ropa_main.to_dict('records')
+
+            for i in ropa_dict:
+                i.update({'create_timestamp': str(i.get('create_timestamp'))})
+                i.update({'update_timestamp': str(i.get('update_timestamp'))})
+                i.update({'comments': str(i.get('comments'))})
+
+            if request.POST["act"] == "approve":
+                bgid = request.POST.get('bgid')
+                edit_bg_db = BgMain.objects.get(bgid=bgid)
+                ropamainid = request.POST.get('ropamainid')
+                edit_bg_db.status = 'Approved'
+                edit_bg_db.comments = request.POST.get('comments')
+                edit_bg_db.save()
+                edit_ropa_db = RopaMain.objects.get(ropamainid=ropamainid)
+                edit_ropa_db.status = 'Approved'
+                edit_ropa_db.comments = request.POST.get('comments')
+                edit_ropa_db.save()
+            else:
+                bgid = request.POST.get('bgid')
+                edit_bg_db = BgMain.objects.get(bgid=bgid)
+                ropamainid = request.POST.get('ropamainid')
+                edit_bg_db.status = 'Rejected'
+                edit_bg_db.comments = request.POST.get('comments')
+                edit_bg_db.save()
+                edit_ropa_db = RopaMain.objects.get(ropamainid=ropamainid)
+                edit_ropa_db.status = 'Approved'
+                edit_ropa_db.comments = request.POST.get('comments')
+                edit_ropa_db.save()
+        result = BgMain.objects.all()
+        bg = pd.DataFrame(list(BgMain.objects.all().values()))
+        # a=len(bg)
+        bg_dict = bg.to_dict('records')
+
+        result1 = RopaMain.objects.all()
+        ropa_main = pd.DataFrame(
+            list(RopaMain.objects.all().values('ropamainid', 'ropaid', 'businessfunc', 'processingactivityname',
+                                               'processingactivitydesc', 'categoriesdatasubjects',
+                                               'categoriespersonaldata',
+                                               'status', 'controllername', 'categoriesofrecepients',
+                                               'lawfulbasisofprocessing',
+                                               'dataprocessor', 'retentionschedule', 'linkcontractprocessor',
+                                               'countriesdetailstransferred',
+                                               'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts',
+                                               'comments')))
+        # a=len(bg)
+        ropa_dict = ropa_main.to_dict('records')
+
+        for i in bg_dict:
+            i.update({'create_timestamp': str(i.get('create_timestamp'))})
+            i.update({'update_timestamp': str(i.get('update_timestamp'))})
+            i.update({'comments': str(i.get('comments'))})
+
+        for i in ropa_dict:
+            i.update({'create_timestamp': str(i.get('create_timestamp'))})
+            i.update({'update_timestamp': str(i.get('update_timestamp'))})
+            i.update({'comments': str(i.get('comments'))})
+
+        # import ipdb
+        # ipdb.set_trace()
+        context = {
+            'bga': result,
+            'bg_dict': bg_dict,
+            'result1': result1,
+            'ropa_dict': ropa_dict
+        }
+        return render(request, 'bfh_tab.html', context)
+    elif result == "DPO":
+        bg = pd.DataFrame(list(BgMain.objects.all().values()))
+        # a=len(bg)
+        bg_dict = bg.to_dict('records')
+
+        for i in bg_dict:
+            i.update({'create_timestamp': str(i.get('create_timestamp'))})
+            i.update({'update_timestamp': str(i.get('update_timestamp'))})
+            i.update({'comments': str(i.get('comments'))})
+
+        ropa_main = pd.DataFrame(
+            list(RopaMain.objects.all().values('ropamainid', 'ropaid', 'businessfunc', 'processingactivityname',
+                                               'processingactivitydesc', 'categoriesdatasubjects',
+                                               'categoriespersonaldata',
+                                               'status', 'controllername', 'categoriesofrecepients',
+                                               'lawfulbasisofprocessing',
+                                               'dataprocessor', 'retentionschedule', 'linkcontractprocessor',
+                                               'countriesdetailstransferred',
+                                               'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts',
+                                               'comments')))
+        # a=len(bg)
+        ropa_dict = ropa_main.to_dict('records')
+
+        for i in ropa_dict:
+            i.update({'create_timestamp': str(i.get('create_timestamp'))})
+            i.update({'update_timestamp': str(i.get('update_timestamp'))})
+            i.update({'comments': str(i.get('comments'))})
+
+        context = {
+            'bg_dict': bg_dict,
+            'ropa_dict': ropa_dict
+        }
+        return render(request, 'dpo_tab.html', context)
+    elif result == "Data Steward":
+        bg = pd.DataFrame(list(BgMain.objects.all().values()))
+        # a=len(bg)
+        bg_dict = bg.to_dict('records')
+
+        for i in bg_dict:
+            i.update({'create_timestamp': str(i.get('create_timestamp'))})
+            i.update({'update_timestamp': str(i.get('update_timestamp'))})
+            i.update({'comments': str(i.get('comments'))})
+
+        ropa_main = pd.DataFrame(
+            list(RopaMain.objects.all().values('ropamainid', 'ropaid', 'businessfunc', 'processingactivityname',
+                                               'processingactivitydesc', 'categoriesdatasubjects',
+                                               'categoriespersonaldata',
+                                               'status', 'controllername', 'categoriesofrecepients',
+                                               'lawfulbasisofprocessing',
+                                               'dataprocessor', 'retentionschedule', 'linkcontractprocessor',
+                                               'countriesdetailstransferred',
+                                               'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts',
+                                               'comments')))
+        # a=len(bg)
+        ropa_dict = ropa_main.to_dict('records')
+
+        for i in ropa_dict:
+            i.update({'create_timestamp': str(i.get('create_timestamp'))})
+            i.update({'update_timestamp': str(i.get('update_timestamp'))})
+            i.update({'comments': str(i.get('comments'))})
+
+        context = {
+            'bg_dict': bg_dict,
+            'ropa_dict': ropa_dict
+        }
+        return render(request, 'data_steward_tab.html', context)
+    else:
+        return render(request, 'workflow_dashboard.html')
     return render(request, 'workflow_dashboard.html')
 
 
@@ -716,7 +889,7 @@ def workflow_ropa(request):
                                            'processingactivitydesc', 'categoriesdatasubjects', 'categoriespersonaldata',
                                            'status','controllername', 'categoriesofrecepients', 'lawfulbasisofprocessing',
                                            'dataprocessor', 'retentionschedule', 'linkcontractprocessor', 'countriesdetailstransferred',
-                                           'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts')))
+                                           'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts', 'comments')))
     # a=len(bg)
     ropa_dict = ropa_main.to_dict('records')
     # ropa_dict.status = 'Approve'
@@ -771,7 +944,7 @@ def bfh_tab(request):
                                            'lawfulbasisofprocessing',
                                            'dataprocessor', 'retentionschedule', 'linkcontractprocessor',
                                            'countriesdetailstransferred',
-                                           'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts')))
+                                           'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts', 'comments')))
     # a=len(bg)
         ropa_dict = ropa_main.to_dict('records')
 
@@ -814,7 +987,7 @@ def bfh_tab(request):
                                            'lawfulbasisofprocessing',
                                            'dataprocessor', 'retentionschedule', 'linkcontractprocessor',
                                            'countriesdetailstransferred',
-                                           'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts')))
+                                           'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts', 'comments')))
     # a=len(bg)
     ropa_dict = ropa_main.to_dict('records')
 
@@ -856,7 +1029,7 @@ def dpo_tab(request):
                                            'lawfulbasisofprocessing',
                                            'dataprocessor', 'retentionschedule', 'linkcontractprocessor',
                                            'countriesdetailstransferred',
-                                           'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts')))
+                                           'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts','comments')))
     # a=len(bg)
     ropa_dict = ropa_main.to_dict('records')
 

@@ -4,86 +4,86 @@
 
 
 <script>
- function dpo_1(){
+  function dpo_1() {
     var dpo1_chk_box = document.getElementById('dpo1')
 
-    if (dpo1_chk_box.checked == true){
-        var dpo1_name = document.getElementById('dpo1_name')
-        dpo1_name.style.backgroundColor = 'white';
-        dpo1_name.disabled = false;
+    if (dpo1_chk_box.checked == true) {
+      var dpo1_name = document.getElementById('dpo1_name')
+      dpo1_name.style.backgroundColor = 'white';
+      dpo1_name.disabled = false;
 
-        var dpo1_email = document.getElementById('dpo1_email')
-        dpo1_email.style.backgroundColor = 'white';
-        dpo1_email.disabled = false;
+      var dpo1_email = document.getElementById('dpo1_email')
+      dpo1_email.style.backgroundColor = 'white';
+      dpo1_email.disabled = false;
 
-        var dpo1_telephone = document.getElementById('dpo1_telephone')
-        dpo1_telephone.style.backgroundColor = 'white';
-        dpo1_telephone.disabled = false;
+      var dpo1_telephone = document.getElementById('dpo1_telephone')
+      dpo1_telephone.style.backgroundColor = 'white';
+      dpo1_telephone.disabled = false;
 
-        var dpo1_address = document.getElementById('dpo1_address')
-        dpo1_address.style.backgroundColor = 'white';
-        dpo1_address.disabled = false;
+      var dpo1_address = document.getElementById('dpo1_address')
+      dpo1_address.style.backgroundColor = 'white';
+      dpo1_address.disabled = false;
     } else {
-        var dpo1_name = document.getElementById('dpo1_name')
-        dpo1_name.style.backgroundColor = '#F4F4F4';
-        dpo1_name.disabled = true;
+      var dpo1_name = document.getElementById('dpo1_name')
+      dpo1_name.style.backgroundColor = '#F4F4F4';
+      dpo1_name.disabled = true;
 
-        var dpo1_email = document.getElementById('dpo1_email')
-        dpo1_email.style.backgroundColor = '#F4F4F4';
-        dpo1_email.disabled = true;
+      var dpo1_email = document.getElementById('dpo1_email')
+      dpo1_email.style.backgroundColor = '#F4F4F4';
+      dpo1_email.disabled = true;
 
-        var dpo1_telephone = document.getElementById('dpo1_telephone')
-        dpo1_telephone.style.backgroundColor = '#F4F4F4';
-        dpo1_telephone.disabled = true;
+      var dpo1_telephone = document.getElementById('dpo1_telephone')
+      dpo1_telephone.style.backgroundColor = '#F4F4F4';
+      dpo1_telephone.disabled = true;
 
-        var dpo1_address = document.getElementById('dpo1_address')
-        dpo1_address.style.backgroundColor = '#F4F4F4';
-        dpo1_address.disabled = true;
+      var dpo1_address = document.getElementById('dpo1_address')
+      dpo1_address.style.backgroundColor = '#F4F4F4';
+      dpo1_address.disabled = true;
     }
- }
+  }
 
- function rep_1(){
+  function rep_1() {
     var rep1_chk_box = document.getElementById('rep')
 
-    if (rep1_chk_box.checked == true){
-        var rep1_name = document.getElementById('rep1_name')
-        rep1_name.style.backgroundColor = 'white';
-        rep1_name.disabled = false;
+    if (rep1_chk_box.checked == true) {
+      var rep1_name = document.getElementById('rep1_name')
+      rep1_name.style.backgroundColor = 'white';
+      rep1_name.disabled = false;
 
-        var rep1_email = document.getElementById('rep1_email')
-        rep1_email.style.backgroundColor = 'white';
-        rep1_email.disabled = false;
+      var rep1_email = document.getElementById('rep1_email')
+      rep1_email.style.backgroundColor = 'white';
+      rep1_email.disabled = false;
 
-        var rep1_telephone = document.getElementById('rep1_telephone')
-        rep1_telephone.style.backgroundColor = 'white';
-        rep1_telephone.disabled = false;
+      var rep1_telephone = document.getElementById('rep1_telephone')
+      rep1_telephone.style.backgroundColor = 'white';
+      rep1_telephone.disabled = false;
 
-        var rep1_address = document.getElementById('rep1_address')
-        rep1_address.style.backgroundColor = 'white';
-        rep1_address.disabled = false;
+      var rep1_address = document.getElementById('rep1_address')
+      rep1_address.style.backgroundColor = 'white';
+      rep1_address.disabled = false;
     } else {
-        var rep1_name = document.getElementById('rep1_name')
-        rep1_name.style.backgroundColor = '#F4F4F4';
-        rep1_name.disabled = false;
+      var rep1_name = document.getElementById('rep1_name')
+      rep1_name.style.backgroundColor = '#F4F4F4';
+      rep1_name.disabled = false;
 
-        var rep1_email = document.getElementById('rep1_email')
-        rep1_email.style.backgroundColor = '#F4F4F4';
-        rep1_email.disabled = false;
+      var rep1_email = document.getElementById('rep1_email')
+      rep1_email.style.backgroundColor = '#F4F4F4';
+      rep1_email.disabled = false;
 
-        var rep1_telephone = document.getElementById('rep1_telephone')
-        rep1_telephone.style.backgroundColor = '#F4F4F4';
-        rep1_telephone.disabled = false;
+      var rep1_telephone = document.getElementById('rep1_telephone')
+      rep1_telephone.style.backgroundColor = '#F4F4F4';
+      rep1_telephone.disabled = false;
 
-        var rep1_address = document.getElementById('rep1_address')
-        rep1_address.style.backgroundColor = '#F4F4F4';
-        rep1_address.disabled = false;
+      var rep1_address = document.getElementById('rep1_address')
+      rep1_address.style.backgroundColor = '#F4F4F4';
+      rep1_address.disabled = false;
 
     }
- }
+  }
 </script>
 
 <script>
-    window.onload = function() {
+  window.onload = function () {
     var datetime = document.getElementById('datetime')
     var today = new Date();
     var day = today.getDate() + "";
@@ -98,40 +98,41 @@
     var final_date = year + "-" + month + "-" + day;
     datetime.value = final_date;
 
-    function checkZero(data){
-      if(data.length === 1){
+    function checkZero(data) {
+      if (data.length === 1) {
         data = "0" + data;
       }
       return data;
     }
-};
+  };
 </script>
 <script>
-    function ColorChange() {
-       if (document.getElementById("dpo1_address").value == "") {
-       var x = document.getElementById("save_btn").style.background = "#12ABDB";
-       document.getElementById("save_btn").style.color = "white";
-       document.getElementById("save_btn").style.border = "#0C7799";
+  function ColorChange() {
+    if (document.getElementById("dpo1_address").value == "") {
+      var x = document.getElementById("save_btn").style.background = "#12ABDB";
+      document.getElementById("save_btn").style.color = "white";
+      document.getElementById("save_btn").style.border = "#0C7799";
     }
 
-    }
+  }
 </script>
+
 <body style="background: linear-gradient(3.47deg, #00649B 13.28%, #66A9CD 93.28%);
 position: static;
 width: 900px;
 height: 1220px;
 padding-top: 100px;">
 
-<!--<div style="background-color: blue; margin-top: -70px;">-->
-<!--    Title-->
-<!--</div>-->
-<!-- Form Name -->
+  <!--<div style="background-color: blue; margin-top: -70px;">-->
+  <!--    Title-->
+  <!--</div>-->
+  <!-- Form Name -->
 
 
-<form method="POST" id="screen_1_form" class="form-horizontal" action="user">
+  <form method="POST" id="screen_1_form" class="form-horizontal" action="user">
     {% csrf_token %}
-        <div class="alt-nav" style="width: 100%;">
-        <div style="position: absolute;
+    <div class="alt-nav" style="width: 100%;">
+      <div style="position: absolute;
         height: 22px;
         left: 11.39%;
         right: 38.75%;
@@ -149,175 +150,190 @@ padding-top: 100px;">
         /* Typography/On Surface/High Emphasis */
 
         color: rgba(39, 41, 54, 0.85);">
-<!--            <label class="tit" style="margin-left:39px;">TITLE</label>-->
-<!--            <a href="javascript:;" onclick="history.back()"><img src="static/assets/img/Icon.png" static="margin-top13"/></a>-->
-<!--            <a href="javascript:;" onclick="history.back()"><img src="static/assets/img/Icon.png"/></a>-->
-            <p class="" style=" margin-left: 34px; margin-top:10px"><span class="back-arrow" onclick="history.back()">&#60; </span>ROPA Dashboard<b></b></p>
+<!--        <label class="tit" style="margin-left:39px;">TITLE</label>-->
+        <!--            <a href="javascript:;" onclick="history.back()"><img src="static/assets/img/Icon.png" static="margin-top13"/></a>-->
+        <a href="javascript:;"  style="margin-left: 21px;"><img src="static/assets/img/Icon.png" onclick="history.back()"></a>
+        <p class="" style=" margin-left: 58px; margin-top:-35px">ROPA Dashboard<b></b></p>
+      </div>
+
+
+      <!--          <div style="position: absolute;-->
+      <!--        height: 26px;-->
+      <!--        left: 62.00%;-->
+      <!--        top: 30%;">-->
+      <!--              <button type="submit" class="button" style="margin-left: 220px;"><span> </span></button>-->
+      <!--          </div>-->
+    </div>
+    <div class="rect-4" style=" width:850px;height:auto; ">
+    <!-- <div class="rect-4" style="min-height:1025px; width:850px; margin-top:-15px;">
+      <div style="position:absolute; left:4%; padding-right: 5%;">
+        <div style="padding-top: 2%;">
+          <label class="org" style="left:-5%;">Organisation Details</label>
         </div>
-          <div style="position: absolute;
-        height: 26px;
-        left: 70.39%;
-        top: 40%;">
+
+        <div class="form-group">
+          <div class="input-1 col " style="left: -5%; top: 25%;">
+            <label for="inputPassword" class="label-top">Organization</label>
+            <input type="text" style="margin-top: 5px; width:235px;" name="organization" class="input-master"
+              id="organization" placeholder="Name of organisation">
           </div>
-          <div style="position: absolute;
-        height: 26px;
-        left: 90.00%;
-        top: 28%;">
-            <input type="reset" id="resetbuttonid" style="display:none;">
-            <a href="javascript:;">
-            </a>
-        </div>
-<!--          <div style="position: absolute;-->
-<!--        height: 26px;-->
-<!--        left: 62.00%;-->
-<!--        top: 30%;">-->
-<!--              <button type="submit" class="button" style="margin-left: 220px;"><span> </span></button>-->
-<!--          </div>-->
-      </div>
- </div>
-      <div class="rect-4" style="min-height:1025px; width:850px; margin-top:-15px;">
-        <div style="position:absolute; left:4%; padding-right: 5%;">
-            <div style="padding-top: 2%;">
-                <label class="org" style="left:-5%;">Organisation Details</label>
-            </div>
-
-            <div class="form-group">
-                <div class="input-1 col " style="left: -5%; top: 25%;">
-        <label for="inputPassword" class="label-top">Organization</label>
-        <input type="text" style="margin-top: 5px; width:235px;" name="organization" class="input-master" id="organization"
-          placeholder=" Name of organisation " >
-                </div>
-      <div class="input-1 col " style="left: -5%;top: 48%;">
-        <label for="inputPassword" class="label-top">Department</label>
-        <input type="text" name="department" style="margin-top: 5px; width:235px;" class="input-master" id="department" placeholder=" IT "
-          >
-      </div>
-
-            </div>
-       <div class="input-1 col" style="left: -5%; top: 73%;">
-        <label for="inputPassword" class="label-top">Date</label>
-        <input style="margin-top: 5px; width:235px;" type="date" name="date" id="datetime"  class="input-master-box">
-       </div>
-
-      <div class="input-1 col" style="left: 312%; top: 24%;">
-
-        <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px;">Business Function Head </label>
-        <input style="margin-top: 5px; width:235px;" type="text" name="business_function_head" class="input-master" id="business_function_head" placeholder=" John Doe "
-          >
-      </div>
-
-
-      <div class="input-1 col" style="left: 312%; top: 48%;">
-
-        <label for="inputPassword" class="label-top" style=" width: 140px;font-size:12px;">Business Function</label>
-        <input style="margin-top: 5px;width:235px;" type="text" name="business_function" class="input-master" id="business_function" placeholder=" For e.g IT/Admin etc " >
-      </div>
-<!--        <button type="submit" class="button" style=" margin-top: 240px;  margin-left: 600px;"><span></span></button>-->
-      <p style="margin-top: 270px; margin-left: 42px;"></p>
-
+          <div class="input-1 col " style="left: -5%;top: 48%;">
+            <label for="inputPassword" class="label-top">Department</label>
+            <input type="text" name="department" style="margin-top: 5px; width:235px;" class="input-master"
+              id="department" placeholder="Lorem Ipsum">
+          </div>
 
         </div>
+        <div class="input-1 col" style="left: -5%; top: 73%;">
+          <label for="inputPassword" class="label-top">Date</label>
+          <input style="margin-top: 5px; width:235px;" type="date" name="date" id="datetime" class="input-master-box">
+        </div>
+
+        <div class="input-1 col" style="left: 312%; top: 24%;">
+
+          <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px;">Business Function Head
+          </label>
+          <input style="margin-top: 5px; width:235px;" type="text" name="business_function_head" class="input-master"
+            id="business_function_head" placeholder="For e.g IT/Admin etc">
+        </div>
+
+
+        <div class="input-1 col" style="left: 312%; top: 48%;">
+
+          <label for="inputPassword" class="label-top" style=" width: 140px;font-size:12px;">Business Function</label>
+          <input style="margin-top: 5px;width:235px;" type="text" name="business_function" class="input-master"
+            id="business_function" placeholder="John Doe ">
+        </div>
+        <--        <button type="submit" class="button" style=" margin-top: 240px;  margin-left: 600px;"><span></span></button>->
+        <p style="margin-top: 270px; margin-left: 42px;"></p>
+
+
+      </div> -->
+
+      <div class="form-group">
+        <div style="padding-top: 0px;">
+          <label class="controller" style="left:3%" name="">Controller/Processor Details</label>
+        </div>
+        <div class="col">
+          <label class="con" style="margin-left:30px; font-size: 12px;margin-top: 3rem;" name="ropaty"> User Type
+          </label>
+
+          <div class="con" style="font-size: 14px; width: 750px; margin-left: -20px; margin-top: -14px;">
+            <input type="radio" style="margin-left:48px;" id="sap" value="Controller" onchange="toggleInputHide()"
+              name="ropaty1">Controller
+            <input type="radio" id="sap" value="Processer" onchange="toggleInputHide()" name="ropaty1">Processer
+          </div>
+
+          <div class="input-1 col " style="left: 3%;">
+            <label for="inputPassword" class="label-top">Name</label>
+            <input type="text" style="margin-top: 5px;" name="name" class="input-master" id="name"
+              placeholder=" Name of Organization">
+          </div>
+
+          <div class="input-1 col" style="left: 35%;">
+            <!--        <label for="inputPassword" class="label-top">Project Name</label>-->
+            <!--        <input style="margin-top: 5px;" type="text" name="role" class="input-master" id="inputPassword" placeholder="eg: Project name"-->
+            <!--          required>-->
+
+            <label for="inputPassword" class="label-top" style="width: 140px;">Telephone </label>
+            <input style="margin-top: 5px;" type="text" name="telephone" class="input-master" id="telephone"
+              placeholder=" 044-71117006">
+          </div>
+
+          <div class="input-1 col " style="left: 3%; margin-top:4rem">
+            <label for="inputPassword" class="label-top">Email</label>
+            <input type="text" name="email" style="margin-top: 5px;" class="input-master" id="email"
+              placeholder=" johndoe@capgemini.com">
+          </div>
+
+
+
+          <div class="input-1 col" style="left: 35%; margin-top: 4rem;">
+            <!--        <label for="inputPassword" class="label-top">Department</label>-->
+            <!--        <input style="margin-top: 5px;" type="text" name="department" class="input-master" id="inputPassword" placeholder="eg: IT" required>-->
+            <label for="inputPassword" class="label-top" style=" width: 140px;">Address</label>
+            <input style="margin-top: 5px; width: 282px;" type="text" name="address" class="input-master" id="address"
+              placeholder=" Whitefield, Bangalore, 560036">
+          </div>
 
           <div class="form-group">
-                <div style="padding-top: px;">
-                <label class="controller" style="left:3%" name="">Controller/Processor Details</label>
-            </div>
-      <div class="col">
-                    <label class="con" style="margin-top:322px; margin-left:30px; font-size: 12px;" name="ropaty"> User Type </label>
-                    <div class="con" style="font-size: 14px; width: 750px; margin-left: -20px; margin-top: -14px;">
-                        <input type="radio"style="margin-left:48px;" id="sap" value="Controller" onchange="toggleInputHide()" name="ropaty1">Controller
-                        <input type="radio" id="sap" value="Processer" onchange="toggleInputHide()" name="ropaty1">Processer
-                    </div>
-                <div class="input-1 col " style="left: 3%; top: 37%;">
-        <label for="inputPassword" class="label-top">Name</label>
-        <input type="text" style="margin-top: 5px;" name="name" class="input-master" id="name"
-          placeholder=" John Doe ">
-      </div>
-       <div class="input-1 col " style="left: 3%;top: 43%;">
-        <label for="inputPassword" class="label-top">Email</label>
-        <input type="text" name="email" style="margin-top: 5px;" class="input-master" id="email" placeholder=" johndoe@capgemini.com"
-          >
-      </div>
-        <div class="input-1 col" style="left: 35%; top: 37%;">
-<!--        <label for="inputPassword" class="label-top">Project Name</label>-->
-<!--        <input style="margin-top: 5px;" type="text" name="role" class="input-master" id="inputPassword" placeholder="eg: Project name"-->
-<!--          required>-->
-
-        <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px;">Telephone </label>
-        <input style="margin-top: 5px;" type="text" name="telephone" class="input-master" id="telephone" placeholder=" 044-71117006 "
-          >
-      </div>
-
-
-      <div class="input-1 col" style="left: 35%; top: 43%;">
-<!--        <label for="inputPassword" class="label-top">Department</label>-->
-<!--        <input style="margin-top: 5px;" type="text" name="department" class="input-master" id="inputPassword" placeholder="eg: IT" required>-->
-        <label for="inputPassword" class="label-top" style=" width: 140px;font-size:12px;">Address</label>
-        <input style="margin-top: 5px; width: 282px;" type="text" name="address" class="input-master" id="address" placeholder=" Whitefield, Bangalore, 560036 " >
-      </div>
-            <div class="form-group">
-                <div class="input-1 col " style="left: 3%; top: 52%;">
-                    <div style="padding-top: -23%;">
-                        <input type="checkbox" id="dpo1" onclick="dpo_1()" name="dpo1" value="dpo">
-                <lable class="dpo" style="top:47%;">DPO (If applicable)</lable>
-                    </div>
-        <label for="inputPassword" class="label-top">Name</label>
-        <input type="text" style="margin-top: 5px; background-color: #F4F4F4;" name="dpo_name" class="input-master" id="dpo1_name"
-          placeholder=" John Doe " disabled>
-                </div>
-       <div class="input-1 col " style="left: 3%;top: 60%;">
-        <label for="inputPassword" class="label-top">Email</label>
-        <input type="text" style="margin-top: 5px; background-color: #F4F4F4;" name="dpo_email" style="margin-top: 5px;" class="input-master" id="dpo1_email" placeholder=" johndoe@capgemini.com "disabled>
-       </div>
-        <div class="input-1 col" style="left: 35%; top: 53.2%;">
-
-        <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px;">Telephone </label>
-        <input style="margin-top: 5px; margin-top: 5px; background-color: #F4F4F4;" type="text"  name="dpo_telephone" class="input-master" id="dpo1_telephone" placeholder=" 044-71117006 " disabled>
-        </div>
-
-
-      <div class="input-1 col" style="left: 35%; top: 60%;">
-        <label for="inputPassword" class="label-top" style=" width: 140px;font-size:12px;">Address</label>
-        <input style="margin-top: 5px; width: 282px; margin-top: 5px; background-color: #F4F4F4;" type="text" name="dpo_address" class="input-master" id="dpo1_address" placeholder=" Whitefield, Bangalore, 560036 " onclick="ColorChange()" disabled>
-      </div>
-
-
-
-        <div style="position:absolute; left:95%; padding-right: 5%;">
-<!--                <a href="javascript:;" id="button_1"><img src="static/assets/img/icon-right-inside.png" onclick="toggleText()" alt="Info"></a>-->
-        </div>
-            <div class="form-group">
-                <div class="input-1 col " style="left: 3%; top: 69%;">
-                    <div style="padding-top: 2%;">
-                        <input type="checkbox" id="rep" name="rep1" onclick="rep_1()" value="repr">
-                <lable class="dpo" style="margin-top:400px;">Representative (If applicable)</lable>
-                    </div>
-        <label for="inputPassword" class="label-top">Name</label>
-        <input type="text" style="margin-top: 5px; background-color: #F4F4F4;" name="rep_name" class="input-master" id="rep1_name"
-          placeholder=" John Doe "disabled >
-                </div>
-       <div class="input-1 col " style="left: 3%;top: 77%;">
-        <label for="inputPassword" class="label-top">Email</label>
-        <input type="text" name="rep_email" style="margin-top: 5px; background-color: #F4F4F4;" class="input-master" id="rep1_email" placeholder=" johndeo@capgemini.com " disabled>
-       </div>
-        <div class="input-1 col" style="left: 35%; top: 70.5%;">
-
-
-        <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px; ">Telephone </label>
-        <input style="margin-top: 5px; background-color: #F4F4F4;" type="text" name="rep_telephone" class="input-master" id="rep1_telephone" placeholder="  044-71117006 " disabled>
-        </div>
-
-
-      <div class="input-1 col" style="left: 35%; top: 77%;">
-        <label for="inputPassword" class="label-top" style=" width: 140px;font-size:12px;">Address</label>
-        <input style="margin-top: 5px; width: 282px; background-color: #F4F4F4;" type="text" name="rep_address" class="input-master" id="rep1_address" placeholder=" Whitefield, Bangalore, 560036 " disabled>
-      </div>
-            </div>
-
-
-                    <button class="" type="submit" style="margin-top:500px; position: static; float: right; margin-right: 590px; width:240px; backgorund:rgba(39, 41, 54, 0.22); border:1px solid #0C7799; border-radius:4px; disabled" id="save_btn">Save</button>
+            <div class="input-1 col " style="left: 3%; margin-top: 10rem;">
+              <div>
+                <input type="checkbox" id="dpo1" onclick="dpo_1()" name="dpo1" value="dpo">
+                <label class="dpo" style="top:30%;">DPO (If applicable)</label>
               </div>
-      </form>
+
+              <label for="inputPassword" class="label-top">Name</label>
+              <input type="text" style="margin-top: 5px; background-color: #F4F4F4;" name="dpo_name"
+                class="input-master" id="dpo1_name" placeholder=" John Doe" disabled>
+            </div>
+
+            <div class="input-1 col" style="left: 35%; margin-top: 11rem;">
+
+              <label for="inputPassword" class="label-top" style="width: 140px;">Telephone </label>
+              <input style="margin-top: 5px; margin-top: 5px; background-color: #F4F4F4;" type="text"
+                name="dpo_telephone" class="input-master" id="dpo1_telephone" placeholder=" 044-71117006" disabled>
+            </div>
+
+            <div class="input-1 col " style="left: 3%; margin-top: 15rem;">
+              <label for="inputPassword" class="label-top">Email</label>
+              <input type="text" style="margin-top: 5px; background-color: #F4F4F4;" name="dpo_email"
+                style="margin-top: 5px;" class="input-master" id="dpo1_email" placeholder=" johndoe@capgemini.com"
+                disabled>
+            </div>
+
+
+
+            <div class="input-1 col" style="left: 35%; margin-top: 15rem;">
+              <label for="inputPassword" class="label-top" style=" width: 140px;">Address</label>
+              <input style="margin-top: 5px; width: 282px; margin-top: 5px; background-color: #F4F4F4;" type="text"
+                name="dpo_address" class="input-master" id="dpo1_address" placeholder=" Whitefield, Bangalore, 560036"
+                onclick="ColorChange()" disabled>
+            </div>
+
+            <div class="form-group">
+              <div class="input-1 col " style="left: 3%; margin-top: 22rem;">
+                <div style="padding-top: 2%;">
+                  <input type="checkbox" id="rep" name="rep1" onclick="rep_1()" value="repr">
+                  <lable class="dpo" style="margin-top:400px;">Representative (If applicable)</lable>
+                </div>
+
+                <label for="inputPassword" class="label-top">Name</label>
+                <input type="text" style="margin-top: 5px; background-color: #F4F4F4;" name="rep_name"
+                  class="input-master" id="rep1_name" placeholder=" John Doe" disabled>
+              </div>
+
+              <div class="input-1 col" style="left: 35%; margin-top: 23rem;">
+
+                <label for="inputPassword" class="label-top" style="width: 140px;  ">Telephone </label>
+                <input style="margin-top: 5px; background-color: #F4F4F4;" type="text" name="rep_telephone"
+                  class="input-master" id="rep1_telephone" placeholder=" 044-71117006" disabled>
+              </div>
+
+              <div class="input-1 col " style="left: 3%; margin-top: 28rem;">
+                <label for="inputPassword" class="label-top">Email</label>
+                <input type="text" name="rep_email" style="margin-top: 5px; background-color: #F4F4F4;"
+                  class="input-master" id="rep1_email" placeholder=" johndoe@capgemini.com" disabled>
+              </div>
+
+
+              <div class="input-1 col" style="left: 35%; margin-top: 28rem;">
+                <label for="inputPassword" class="label-top" style=" width: 140px;">Address</label>
+                <input style="margin-top: 5px; width: 282px; background-color: #F4F4F4;" type="text" name="rep_address"
+                  class="input-master" id="rep1_address" placeholder=" Whitefield, Bangalore, 560036 " disabled>
+              </div>
+            </div>
+
+
+            <button type="submit"
+              style="margin-top:36rem; position: static; margin-left: 28px; width:220px; height:30px; border:1px solid #0C7799; border-radius:4px;color: rgba(255, 255, 255, 0.95);background: rgba(39, 41, 54, 0.22); disabled"
+              id="save_btn">Save</button>
+              <div style="padding-bottom:29px;"></div>
+          </div>
+        </div>
+    </div>
+  </form>
+</div>
 
 </body>
 {% endblock %}

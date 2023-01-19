@@ -385,11 +385,11 @@
                 <div style="margin-top:2%">
                     <div class="input-1 col " style="left: -1%; margin-top:15%">
                         <label for="inputPassword" class="label-top" style="width: 200px;" >Process Activity Name</label>
-                        <input type="text" style=" width:300px; margin-top: -2%;" name="processactivityname" id="processactivityname_add" class="input-master"  placeholder=" Marketing activities and communications " readonly>
+                        <input type="text" style=" width:300px; margin-top: -2%;" name="processactivityname" id="processactivityname_add" class="input-master"  placeholder=" Marketing activities and communications " required>
                     </div>
                     <div class="input-1 col " style="left: -1%; margin-top:5%">
                         <label for="inputPassword" class="label-top" style="width: 200px; font-size:12px; ">Categories of Data Subjects</label>
-                        <input type="text" name="categoriesofdatasubjects" id="CategoriesofdataSubjects_add" style="margin-top: -2%; width:300px;" class="input-master"  placeholder=" Clinet,Custmoer,etc " required>
+                        <input type="text" name="categoriesofdatasubjects" id="categoriesdatasubjects_add" style="margin-top: -2%; width:300px;" class="input-master"  placeholder=" Clinet,Custmoer,etc " required>
                     </div>
                     <div class="input-1 col" style="left: 95%; margin-top:-35% ">
                         <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px;">Business Function  </label>
@@ -451,7 +451,7 @@
                     </div>
                     <div class="input-1 col" style="left: -2%; margin-top: -17%;">
                             <label for="inputPassword" class="label-top" style=" width: 100px;font-size:12px;">Status</label>
-                            <input style="margin-top: 5%; width: 320px;" type="text" name="status1" id="status1_add" class="input-master" placeholder=" Awaiting Approval " required>
+                            <input style="margin-top: 5%; width: 320px;" type="text" name="status1" id="status1_add" class="input-master" placeholder=" Awaiting Approval " readonly>
                     </div>
                         <input type="text" name="ropaid"  id="ropaid_add" placeholder="lorem ipsum" style="display:none;">
                 </div>
@@ -776,7 +776,7 @@
             & (document.getElementById("lawfulbasisofprocessing_add").value != "")& (document.getElementById("retentionschedule_add").value != "")&
             (document.getElementById("dataprocessor_add").value != "") & (document.getElementById("linkcontractprocessor_add").value != "")&
             (document.getElementById("countriesdetailstransferred_add").value != "") & (document.getElementById("safeguardsexternaltransfers_add").value != "")
-            & (document.getElementById("securitymeasures_desc_add").value != "") & (document.getElementById("linkscontracts_add").value != "")) {
+            & (document.getElementById("securitymeasures_desc_add").value != "") & (document.getElementById("linkscontracts_add").value != "") & (document.getElementById(status1_add").value != "")) {
             var x = document.getElementById("add_button").style.background = "#12ABDB";
     }
     else {
