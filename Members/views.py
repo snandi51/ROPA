@@ -435,22 +435,26 @@ def record(request):
         securitymeasures_desc = request.POST.get('securitymeasures_desc')
         linkscontracts = request.POST.get('linkscontracts')
 
-        # import ipdb
-        # ipdb.set_trace()
 
-        user_detail = request.session['user_detail']
-        # user_detail = UserDetails.objects.get(userid=current_user.id)
-        ropa_id = RopaType.objects.get(userid=user_detail)
-        print(ropa_id)
-        ropa_id_dict = model_to_dict(ropa_id)
-        print(ropa_id_dict)
+
+        # user_detail = request.session['user_detail']
+        # id = request.user.id
+        # user_detail = RopaType.objects.get(userid=id)
+        # # user_detail.ropaid = ropaid
+        # user_detail.save()
+
+        user_detail = request.user.id
+        ropa_obj = RopaType.objects.get(userid=user_detail)
+        print('ropa_obj', ropa_obj)
+        ropa_id_dict = model_to_dict(ropa_obj)
+        print('ropa_id_dict', ropa_id_dict)
         main_ropa_id = ropa_id_dict['ropaid']
-        # ropa_type = RopaType()
+        print('main_ropa_id', main_ropa_id)
         ropa_type = RopaType.objects.get(ropaid=main_ropa_id)
-        # ropa_type = RopaType.objects.values('ropaid')
         ropa_type.save()
 
-        ropa_bgmain = BgMain()
+        ropa_bgmain = BgMain.objects.get(bgid=user_detail)
+        print('ropa_bgmain', ropa_bgmain)
         ropa_bgmain.save()
 
         ropa_detail = RopaMain(ropaid=ropa_type, bgid=ropa_bgmain, status=status, processingactivityname=processingactivityname,
@@ -460,8 +464,7 @@ def record(request):
                                lawfulbasisofprocessing=lawfulbasisofprocessing, dataprocessor=dataprocessor,
                                retentionschedule=retentionschedule, linkcontractprocessor=linkcontractprocessor,
                                countriesdetailstransferred=countriesdetailstransferred, safeguardsexternaltransfers=safeguardsexternaltransfers,
-                               securitymeasures_desc=securitymeasures_desc, linkscontracts=linkscontracts
-                               )
+                               securitymeasures_desc=securitymeasures_desc, linkscontracts=linkscontracts)
         ropa_detail.save()
 
         # ropa_type = RopaType(ropaid=ropa_detail)
@@ -490,6 +493,7 @@ def record(request):
         i.update({'create_timestamp': str(i.get('create_timestamp'))})
         i.update({'update_timestamp': str(i.get('update_timestamp'))})
         i.update({'comments': str(i.get('comments'))})
+        i.update({'categoriesdatasubjects': str(i.get('categoriesdatasubjects'))})
     # import ipdb
     # ipdb.set_trace()
 

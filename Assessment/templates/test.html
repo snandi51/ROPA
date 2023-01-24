@@ -402,7 +402,51 @@
                   <td>{{ temp.system }}</td>
                   <td>{{ temp.datadomain }}</td>
                   <td>{{ temp.lineofbusiness }}</td>
-                  <td>{{ temp.status }}</td>
+                  {% if temp.status == 'Awaiting Approval' %}
+                    <td class="approved approved-box" style="display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 4px;
+    width: 121px;
+    height: 24px;
+    background: #9E4780;
+    border-radius: 2px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.95);">{{ temp.status }}</td>
+                  {% else %}
+                    <td style="display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 4px;
+    width: 82px;
+    height: 16px;
+    background: #007E6E;
+    border-radius: 2px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.95);">{{ temp.status }}</td>
+                  {% endif %}
               </tr>
               {% endfor %}
       </div>
