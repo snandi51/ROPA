@@ -45,8 +45,14 @@ def login_user(request):
             print(bg_dict['ropaty'])
             output = bg_dict['ropaty']
             print(output)
+
             if output is not None:
-                return render(request, 'dashboard.html')
+                if output == 'Processor':
+                    print(output, 'function inner dashboard')
+                    return render(request, 'processor_dashboard.html')
+                else:
+                    print('else function inner dashboard')
+                    return render(request, 'dashboard.html')
             else:
                 return render(request, 'index.html')
         else:
@@ -126,7 +132,24 @@ def user(request):
         context = {
             'user_detail': userdetail,
         }
-        return render(request, 'dashboard.html', context)
+
+        bg = pd.DataFrame(list(UserDetails.objects.all().values().filter(userid=id)))
+        bg_dict = bg.to_dict('records')[0]
+
+        print(bg_dict)
+
+        output = bg_dict['ropaty']
+        print('Ropa Type:', output)
+        if output is not None:
+            if output == 'Processor':
+                print(output, 'function inner dashboard')
+                return render(request, 'processor_dashboard.html')
+            else:
+                print('else function inner dashboard')
+                return render(request, 'dashboard.html')
+        else:
+            return render(request, 'index.html')
+
     return render(request, 'user.html')
 
 
@@ -225,7 +248,13 @@ def test(request):
         datadomain = request.POST.get('datadomain')
         lineofbusiness = request.POST.get('lineofbusiness')
         status = 'Awaiting Approval'
-        dataclassification= request.POST.get('dataclassification')
+
+
+        dataclassification_list = request.POST.getlist('dataclassification')
+        print(dataclassification_list)
+        dataclassification = ' , '.join([str(elem) for elem in dataclassification_list])
+        print(dataclassification)
+
         createdby = request.POST.get('createdby')
 
 
@@ -280,6 +309,11 @@ def edit(request):
         status = request.POST.get('status')
         createdby = request.POST.get('createdby')
 
+        dataclassification_list = request.POST.getlist('dataclassification')
+        print(dataclassification_list)
+        dataclassification = ' , '.join([str(elem) for elem in dataclassification_list])
+        print(dataclassification)
+
         # Id maapping with database then form updated data save to variables
         edit_db = BgMain.objects.get(bgid=bgid)
         edit_db_filter = BgMain.objects.filter(bgid=bgid)
@@ -292,6 +326,7 @@ def edit(request):
         edit_db.system = system
         edit_db.datadomain = datadomain
         edit_db.lineofbusiness = lineofbusiness
+        edit_db.dataclassification = dataclassification
         edit_db.status = status
         edit_db.createdby = createdby
         edit_db.update_timestamp=datetime.datetime.now()
@@ -425,7 +460,10 @@ def record(request):
         categoriesdatasubjects = request.POST.get('categoriesdatasubjects')
         controllername = request.POST.get('controllername')
         categoriesofrecepients = request.POST.get('categoriesofrecepients')
-        categoriespersonaldata = request.POST.get('categoriespersonaldata')
+        categoriespersonaldata_list = request.POST.getlist('categoriespersonaldata')
+        print(categoriespersonaldata_list)
+        categoriespersonaldata = ' , '.join([str(elem) for elem in categoriespersonaldata_list])
+        print(categoriespersonaldata)
         lawfulbasisofprocessing = request.POST.get('lawfulbasisofprocessing')
         dataprocessor = request.POST.get('dataprocessor')
         retentionschedule = request.POST.get('retentionschedule')
@@ -443,8 +481,9 @@ def record(request):
         # # user_detail.ropaid = ropaid
         # user_detail.save()
 
-        user_detail = request.user.id
-        ropa_obj = RopaType.objects.get(userid=user_detail)
+        userid = request.user.id
+        print(userid)
+        ropa_obj = RopaType.objects.get(userid=userid)
         print('ropa_obj', ropa_obj)
         ropa_id_dict = model_to_dict(ropa_obj)
         print('ropa_id_dict', ropa_id_dict)
@@ -453,11 +492,11 @@ def record(request):
         ropa_type = RopaType.objects.get(ropaid=main_ropa_id)
         ropa_type.save()
 
-        ropa_bgmain = BgMain.objects.get(bgid=user_detail)
-        print('ropa_bgmain', ropa_bgmain)
-        ropa_bgmain.save()
+        # ropa_bgmain = BgMain.objects.get(bgid=user_detail)
+        # print('ropa_bgmain', ropa_bgmain)
+        # ropa_bgmain.save()
 
-        ropa_detail = RopaMain(ropaid=ropa_type, bgid=ropa_bgmain, status=status, processingactivityname=processingactivityname,
+        ropa_detail = RopaMain(ropaid=ropa_type, status=status, processingactivityname=processingactivityname,
                                businessfunc=businessfunc, processingactivitydesc=processingactivitydesc,
                                categoriesdatasubjects=categoriesdatasubjects, controllername=controllername,
                                categoriesofrecepients=categoriesofrecepients,  categoriespersonaldata=categoriespersonaldata,
@@ -494,6 +533,7 @@ def record(request):
         i.update({'update_timestamp': str(i.get('update_timestamp'))})
         i.update({'comments': str(i.get('comments'))})
         i.update({'categoriesdatasubjects': str(i.get('categoriesdatasubjects'))})
+        i.update({'processingactivityname': str(i.get('processingactivityname'))})
     # import ipdb
     # ipdb.set_trace()
 
@@ -519,7 +559,13 @@ def ropa_edit(request):
         categoriesdatasubjects = request.POST.get('categoriesdatasubjects')
         controllername = request.POST.get('controllername')
         categoriesofrecepients = request.POST.get('categoriesofrecepients')
-        categoriespersonaldata = request.POST.get('categoriespersonaldata')
+
+
+        categoriespersonaldata_list = request.POST.getlist('categoriespersonaldata')
+        print(categoriespersonaldata_list)
+        categoriespersonaldata = ' , '.join([str(elem) for elem in categoriespersonaldata_list])
+        print(categoriespersonaldata)
+
         lawfulbasisofprocessing = request.POST.get('lawfulbasisofprocessing')
         dataprocessor = request.POST.get('dataprocessor')
         retentionschedule = request.POST.get('retentionschedule')
@@ -560,8 +606,9 @@ def ropa_edit(request):
         ropa_edit_db.save()
         print('ropa edit db:', ropa_edit_db)
 
-        user_detail = request.session['user_detail']
+        # user_detail = request.session['user_detail']
         # user_detail = UserDetails.objects.get(userid=current_user.id)
+        user_detail = request.user.id
         ropa_id = RopaType.objects.get(userid=user_detail)
         print(ropa_id)
         ropa_id_dict = model_to_dict(ropa_id)
@@ -572,8 +619,8 @@ def ropa_edit(request):
         # ropa_type = RopaType.objects.values('ropaid')
         ropa_type.save()
 
-        ropa_bgmain = BgMain()
-        ropa_bgmain.save()
+        # ropa_bgmain = BgMain()
+        # ropa_bgmain.save()
 
         result = RopaMain.objects.all()
         print('result of edit ropa', result)
@@ -586,6 +633,13 @@ def ropa_edit(request):
         # a=len(bg)
         ropa_dict = ropa_main.to_dict('records')
         print('ropa_dict in edit', ropa_dict)
+
+        for i in ropa_dict:
+            i.update({'create_timestamp': str(i.get('create_timestamp'))})
+            i.update({'update_timestamp': str(i.get('update_timestamp'))})
+            i.update({'comments': str(i.get('comments'))})
+            i.update({'categoriesdatasubjects': str(i.get('categoriesdatasubjects'))})
+            i.update({'processingactivityname': str(i.get('processingactivityname'))})
 
         context = {
             'result': result,
@@ -624,6 +678,8 @@ def ropa_delete(request):
         i.update({'create_timestamp': str(i.get('create_timestamp'))})
         i.update({'update_timestamp': str(i.get('update_timestamp'))})
         i.update({'comments': str(i.get('comments'))})
+        i.update({'categoriesdatasubjects': str(i.get('categoriesdatasubjects'))})
+        i.update({'processingactivityname': str(i.get('processingactivityname'))})
 
     context = {
         'result': result,
@@ -1083,3 +1139,5 @@ def data_steward_tab(request):
     return render(request, 'data_steward_tab.html', context)
 
 
+def processor_dashboard(request):
+    return render(request, 'processor_dashboard.html')

@@ -32,5 +32,5 @@ urlpatterns = [
     path('bfh_tab', member_views.bfh_tab, name='bfh_tab'),
     path('dpo_tab', member_views.dpo_tab, name='dpo_tab'),
     path('data_steward_tab', member_views.data_steward_tab, name='data_steward_tab'),
-
+    path('processor_dashboard', member_views.processor_dashboard, name='processor_dashboard'),
  ]
