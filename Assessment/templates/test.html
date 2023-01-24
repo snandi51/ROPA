@@ -424,6 +424,23 @@
     letter-spacing: 0.4px;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.95);">{{ temp.status }}</td>
+                  {% elif temp.status == 'Rejected' %}
+                            <td class="approved approved-box" style="display: flex;flex-direction: row; align-items: center;padding: 0px 4px;width: 100px;height: 20px;
+                                background: red;
+                                border-radius: 2px;
+                                flex: none;
+                                order: 0;
+                                flex-grow: 0;
+                                font-family: 'Ubuntu';
+                                font-style: normal;
+                                font-weight: 700;
+                                font-size: 10px;
+                                line-height: 16px;
+                                display: flex;
+                                align-items: center;
+                                letter-spacing: 0.4px;
+                                text-transform: uppercase;
+                                color: rgba(255, 255, 255, 0.95);">{{ temp.status }}</td>
                   {% else %}
                     <td style="display: flex;
     flex-direction: row;
@@ -446,6 +463,7 @@
     letter-spacing: 0.4px;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.95);">{{ temp.status }}</td>
+
                   {% endif %}
               </tr>
               {% endfor %}
@@ -517,7 +535,7 @@
                       >Classification</label>
                       <!--        <input type="text" name="email" style="margin-top: 5px;" class="input-master" id="inputPassword" placeholder="GDPR">-->
                       <select id="classification_add" name="dataclassification" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
-        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" multiple>
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" multiple required>
                           <option value="private">PRIVATE</option>
                           <option value="public">PUBLIC</option>
                           <option value="restricted">RESTRICTED</option>
@@ -646,7 +664,7 @@
                       >Classification</label>
                       <!--        <input type="text" name="email" style="margin-top: 5px;" class="input-master" id="inputPassword" placeholder="GDPR">-->
                       <select id="classification_edit" name="dataclassification" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
-        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" >
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" multiple required >
                           <option value="private">PRIVATE</option>
                           <option value="public">PUBLIC</option>
                           <option value="restricted">RESTRICTED</option>

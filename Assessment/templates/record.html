@@ -380,6 +380,23 @@
                             letter-spacing: 0.4px;
                             text-transform: uppercase;
                             color: rgba(255, 255, 255, 0.95);">{{ temp.status }}</td>
+                        {% elif temp.status == 'Rejected' %}
+                            <td class="approved approved-box" style="display: flex;flex-direction: row; align-items: center;padding: 0px 4px;width: 100px;height: 20px;
+                                background: red;
+                                border-radius: 2px;
+                                flex: none;
+                                order: 0;
+                                flex-grow: 0;
+                                font-family: 'Ubuntu';
+                                font-style: normal;
+                                font-weight: 700;
+                                font-size: 10px;
+                                line-height: 16px;
+                                display: flex;
+                                align-items: center;
+                                letter-spacing: 0.4px;
+                                text-transform: uppercase;
+                                color: rgba(255, 255, 255, 0.95);">{{ temp.status }}</td>
                         {% else %}
                             <td style="display: flex;
                                 flex-direction: row;
@@ -449,7 +466,19 @@
                      </div>
                     <div class="input-1 col" style="left: 95%;  margin-top:10%;">
                         <label for="inputPassword" class="label-top" style=" width: 200px;font-size:12px;;">Categories of Personal Data</label>
-                        <input style="margin-top: -2%; width: 300px;" type="text" name="categoriespersonaldata" id="categoriespersonaldata_add" class="input-master"  placeholder=" Personal data categories " required>
+
+<!--                        <input style="margin-top: -2%; width: 300px;" type="text" name="categoriespersonaldata" id="categoriespersonaldata_add" class="input-master"  placeholder=" Personal data categories " required>-->
+                        <select style="margin-top: -2%; width: 300px; box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="categoriespersonaldata" id="categoriespersonaldata_add" multiple required>
+                            <option value="volvo">Volvo</option>
+                            <option value="saab">Saab</option>
+                            <option value="opel">Opel</option>
+                            <option value="audi">Audi</option>
+                        </select>
+
+
+
+
                     </div>
 
 
@@ -815,7 +844,7 @@
             & (document.getElementById("lawfulbasisofprocessing_add").value != "")& (document.getElementById("retentionschedule_add").value != "")&
             (document.getElementById("dataprocessor_add").value != "") & (document.getElementById("linkcontractprocessor_add").value != "")&
             (document.getElementById("countriesdetailstransferred_add").value != "") & (document.getElementById("safeguardsexternaltransfers_add").value != "")
-            & (document.getElementById("securitymeasures_desc_add").value != "") & (document.getElementById("linkscontracts_add").value != "") & (document.getElementById(status1_add").value != "")) {
+            & (document.getElementById("securitymeasures_desc_add").value != "") & (document.getElementById("linkscontracts_add").value != "") & (document.getElementById("status1_add").value != "")) {
             var x = document.getElementById("add_button").style.background = "#12ABDB";
     }
     else {
