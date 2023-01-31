@@ -160,6 +160,8 @@
               border-top: none;
             }
 
+
+
 </style>
 <style>
     .modal1 {
@@ -242,23 +244,24 @@
 
 
 <div class="alt-nav" style="width:100%;height:80px;">
-        <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 210px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>
-        <p style="margin-left:190px;margin-bottom:143px;margin-top:0;font-weight: 500;line-height: 28px;font-size: 24px;"><span class="back-arrow" onclick="history.back()">&#60; </span> DPO Notification </p><br>
+<!--        <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 210px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>-->
+<!--        <p style="margin-left:190px;margin-bottom:143px;margin-top:0;font-weight: 500;line-height: 28px;font-size: 24px;"><span class="back-arrow" onclick="history.back()">&#60; </span> DPO Notification </p><br>-->
+        <p style="margin-left:180px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;" onclick="history.back()"><a href="{% url 'dashboard' %}" style="text-decoration:none;color:black;"><img src="static/assets/img/Icon.png"></a> DPO Notification </p>
   </div>
-    <button type="button" onclick="history.back()" style="display: none;" id="back-btn"></button>
-    <a href="introduction" style="color:Green; margin-left:90px;" onclick="document.getElementById('back-btn').click()" alt="Back"><img src="static/assets/img/Icon.png" />Back</a>
+<!--    <button type="button" onclick="history.back()" style="display: none;" id="back-btn"></button>-->
+<!--    <a href="introduction" style="color:Green; margin-left:90px;" onclick="document.getElementById('back-btn').click()" alt="Back"><img src="static/assets/img/Icon.png" />Back</a>-->
 
 
 <body class="body-class" style="overflow-y: hidden;">
 
-<div class="rect-meta-1" style="height:480px; margin-top: 50px;">
+<div class="rect-meta-1" style="height:480px; margin-top: 110px;">
 <!--    <form method="POST" enctype="multipart/form-data" action="score" name="bfh_tab">-->
 <!--        {% csrf_token %}-->
         <div class="container" id="wrapper11">
             <div class="d-flex" >
                 <div class="d-flex text-center" style="margin-left: -140px; height: 65px; margin-top: 10px; width:940px;">
-                    <div class="TabButton TabButtonSelected tablinks" id="Tab1" style="width:660px; font-size: 12px; color: black; font-weight: 500; font-family: 'Ubuntu';" onclick="activeTab(event, 'Tab1')"><b>Business Glossary</b></div>
-                    <div class="TabButton tab tablinks" id="Tab2" style="width:650px; font-size: 12px; font-weight: 500; font-family: 'Ubuntu'; color: black; " onclick="activeTab(event, 'Tab2')">Record Register</div>
+                    <div class="TabButton TabButtonSelected tablinks" id="Tab1" style="text-align:center;width:660px; font-size: 14px; color: black; font-weight: 500; font-family: 'Ubuntu';" onclick="activeTab(event, 'Tab1')"><b>Business Glossary</b></div>
+                    <div class="TabButton tab tablinks" id="Tab2" style="text-align:center;width:650px; font-size: 14px; font-weight: 500; font-family: 'Ubuntu'; color: black; " onclick="activeTab(event, 'Tab2')">Record Register</div>
 
                 </div>
             </div>
@@ -268,30 +271,30 @@
                    <table id="myTable"  class="paginated table table-striped table-hover" style="width:940px;background: #E0E0E0;">
                       <thead>
                       <tr>
-                          <th scope="col">Business Term</th>
-                          <th scope="col">Definition</th>
-                          <th scope="col">Data Attribute</th>
-                          <th scope="col">System</th>
-                          <th scope="col">Data Domain</th>
-                          <th scope="col">Line of Business</th>
-                          <th scope="col">Status</th>
-                          <th scope="col">Comments</th>
+                          <th scope="col" class="tab-header">Business Term</th>
+                          <th scope="col" class="tab-header">Definition</th>
+                          <th scope="col" class="tab-header">Data Attribute</th>
+                          <th scope="col" class="tab-header">System</th>
+                          <th scope="col" class="tab-header">Data Domain</th>
+                          <th scope="col" class="tab-header">Line of Business</th>
+                          <th scope="col" class="tab-header">Status</th>
+                          <th scope="col" class="tab-header">Comments</th>
                       </tr>
                       </thead>
                       <tbody>
                           {% for temp in bg_dict %}
-                          {% if temp.status == 'Approved' %}
-                          <tr>
-                              <td scope="row" onclick="Mybtn1('{{temp.bgid}}')" class="first-column">{{temp.businessterm}}</td>
-                              <td>{{ temp.definition }}</td>
-                              <td>{{ temp.dataattribute }}</td>
-                              <td>{{ temp.system }}</td>
-                              <td>{{ temp.datadomain }}</td>
-                              <td>{{ temp.lineofbusiness }}</td>
-                              <td>{{ temp.status }}</td>
-                              <td>{{ temp.comments }}</td>
-                          </tr>
-                          {% endif %}
+                              {% if temp.status == 'Approved' %}
+                              <tr>
+                                  <td scope="row" onclick="Mybtn1('{{temp.bgid}}')" class="first-column tab-text">{{temp.businessterm}}</td>
+                                  <td class="tab-text">{{ temp.definition }}</td>
+                                  <td class="tab-text">{{ temp.dataattribute }}</td>
+                                  <td class="tab-text">{{ temp.system }}</td>
+                                  <td class="tab-text">{{ temp.datadomain }}</td>
+                                  <td class="tab-text">{{ temp.lineofbusiness }}</td>
+                                  <td class="tab-text">{{ temp.status }}</td>
+                                  <td class="tab-text">{{ temp.comments }}</td>
+                              </tr>
+                              {% endif %}
                           {% endfor %}
                       </tbody>
                   </table>
@@ -301,31 +304,31 @@
                      <table id="myTable2"  class="paginated table table-striped table-hover" style="width:940px; background: #E0E0E0;">
                           <thead>
                               <tr>
-                                   <th scope="col">ROPA ID</th>
-                                   <th scope="col">Business Function</th>
-                                   <th scope="col">Processing Activity Name</th>
-                                   <th scope="col">Processing Activity Description </th>
-                                   <th scope="col">Categories of Data Subjects</th>
-                                   <th scope="col">Categories of Personal Data</th>
-                                   <th scope="col">Status</th>
-                                   <th scope="col">Comments</th>
+                                   <th scope="col" class="tab-header">ROPA ID</th>
+                                   <th scope="col" class="tab-header">Business Function</th>
+                                   <th scope="col" class="tab-header">Processing Activity Name</th>
+                                   <th scope="col" class="tab-header">Processing Activity Description </th>
+                                   <th scope="col" class="tab-header">Categories of Data Subjects</th>
+                                   <th scope="col" class="tab-header">Categories of Personal Data</th>
+                                   <th scope="col" class="tab-header">Status</th>
+                                   <th scope="col" class="tab-header">Comments</th>
                               </tr>
                           </thead>
                           <tbody>
 
                               {% for i in ropa_dict %}
-                              {% if i.status == 'Approved' %}
-                              <tr>
-                                  <td scope="row" onclick="Mybtn2('{{i.ropamainid}}')" class="first-column">{{i.ropaid}}</td>
-                                  <td>{{ i.businessfunc }}</td>
-                                  <td>{{ i.processingactivityname }}</td>
-                                  <td>{{ i.processingactivitydesc }}</td>
-                                  <td>{{ i.categoriesdatasubjects }}</td>
-                                  <td>{{ i.categoriespersonaldata }}</td>
-                                  <td>{{ i.status }}</td>
-                                  <td>{{ i.comments }}</td>
-                              </tr>
-                              {% endif %}
+                                  {% if i.status == 'Approved' %}
+                                  <tr>
+                                      <td scope="row" onclick="Mybtn2('{{i.ropamainid}}')" class="first-column tab-text">{{i.ropaid}}</td>
+                                      <td class="tab-text">{{ i.businessfunc }}</td>
+                                      <td class="tab-text">{{ i.processingactivityname }}</td>
+                                      <td class="tab-text">{{ i.processingactivitydesc }}</td>
+                                      <td class="tab-text">{{ i.categoriesdatasubjects }}</td>
+                                      <td class="tab-text">{{ i.categoriespersonaldata }}</td>
+                                      <td class="tab-text">{{ i.status }}</td>
+                                      <td class="tab-text">{{ i.comments }}</td>
+                                  </tr>
+                                  {% endif %}
                               {% endfor %}
                           </tbody>
                      </table>

@@ -1,0 +1,85 @@
+{% extends 'base-figma.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<link href="static/assets/css/style-figma.css" rel="stylesheet">
+
+
+<body style="background: linear-gradient(3.47deg, #00649B 13.28%, #66A9CD 93.28%);
+position: static;
+width: 1090px;
+height: 800px; margin-left: 150px;
+padding-top: 100px;">
+    <div class="user-info1">
+
+    </div>
+
+
+    <img src="static/assets/img/Error.png" style="">
+    <div style="position: absolute;
+            width: 393px;
+            height: 36px;
+            left: 782px;
+            top: 274px;
+
+            /* Headings/h1 */
+
+            font-family: 'Ubuntu';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 32px;
+            line-height: 36px;
+            /* identical to box height, or 112% */
+
+
+            align-items: center;
+
+            /* Accent/Accent – Primary */
+
+            color: #FFFFFF;">
+    <h3 style="width:110%;">Error 404: Page Not Found</h3>
+    <p style="  font-family: 'Ubuntu';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 20px;">
+        The page was not found.Please revert back to the dashboard page.</p>
+    </div>
+    <button onclick="window.location.href='admin_screen.html'" class="Addnew-button" id="myBtn" style="padding-left:0px;
+                    box-sizing: border-box;
+
+                    /* Auto layout */
+
+
+                    width: 160px;
+                    height: 40px;
+
+                    /* Primary/Palette/Primary */
+                    background: #12ABDB;
+                    border: 1px solid #0E88AF;
+                    border-radius: 4px;
+                    text-align: center;
+
+                    align-items: center;
+
+                    /* Inside auto layout */
+                    margin-left:12%;
+                    color: rgba(255, 255, 255, 0.95);
+                    flex: none;
+                    order: 0;
+                    flex-grow: 0;
+                    font-family: 'Ubuntu';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 14px;
+                    Letter: 0.75 px;
+                    line-height: 16px;">
+          Home Page
+      </button>
+
+{% endblock %}
+</body>
+
+</html>

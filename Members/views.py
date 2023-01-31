@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_protect
-from Assessment.models import UserDetails, RopaType, BgMain, RopaMain, RopaAudit
+from Assessment.models import UserDetails, RopaType, BgMain, RopaMain, RopaAudit, BusinessFunction
 from datetime import date
 from django.conf import settings
 from django.db import connection
@@ -534,11 +534,17 @@ def record(request):
         i.update({'comments': str(i.get('comments'))})
         i.update({'categoriesdatasubjects': str(i.get('categoriesdatasubjects'))})
         i.update({'processingactivityname': str(i.get('processingactivityname'))})
+
+
+    ropa_stored_proc(request)
+
     # import ipdb
     # ipdb.set_trace()
 
-    ropa_stored_proc(request)
+    distinct_values = BgMain.objects.order_by().values('businessterm').distinct()
+    print(distinct_values)
     context = {
+        'distinct_values':distinct_values,
         'result': result,
         'ropa_dict': ropa_dict,
 
@@ -641,7 +647,11 @@ def ropa_edit(request):
             i.update({'categoriesdatasubjects': str(i.get('categoriesdatasubjects'))})
             i.update({'processingactivityname': str(i.get('processingactivityname'))})
 
+        distinct_values = BgMain.objects.order_by().values('businessterm').distinct()
+        print(distinct_values)
+
         context = {
+            'distinct_values': distinct_values,
             'result': result,
             'ropa_dict': ropa_dict
         }
@@ -764,6 +774,8 @@ def workflow_dashboard(request):
                 i.update({'create_timestamp': str(i.get('create_timestamp'))})
                 i.update({'update_timestamp': str(i.get('update_timestamp'))})
                 i.update({'comments': str(i.get('comments'))})
+                i.update({'categoriesdatasubjects': str(i.get('categoriesdatasubjects'))})
+                i.update({'processingactivityname': str(i.get('processingactivityname'))})
 
             if request.POST["act"] == "approve":
                 bgid = request.POST.get('bgid')
@@ -1141,3 +1153,298 @@ def data_steward_tab(request):
 
 def processor_dashboard(request):
     return render(request, 'processor_dashboard.html')
+
+
+def admin_screen(request):
+    result = RopaType.objects.all()
+    ropaty = []
+    name = []
+    address = []
+    email = []
+    country_code = []
+    telephone = []
+    dpo_name = []
+    dpo_address = []
+    dpo_email = []
+    dpo_country_code = []
+    dpo_phone = []
+    rep_name = []
+    rep_address = []
+    rep_email = []
+    rep_country_code = []
+    rep_phone = []
+
+    # import ipdb
+    # ipdb.set_trace()
+    for i in result:
+
+        ropaty.append(i.ropaty)
+        name.append(i.name)
+        address.append(i.address)
+        email.append(i.email)
+        country_code.append(i.country_code)
+        telephone.append(i.telephone)
+        dpo_name.append(i.dpo_name)
+        dpo_address.append(i.dpo_address)
+        dpo_email.append(i.dpo_email)
+        dpo_country_code.append(i.dpo_country_code)
+        dpo_phone.append(i.dpo_phone)
+        rep_name.append(i.rep_name)
+        rep_address.append(i.rep_address)
+        rep_email.append(i.rep_email)
+        rep_country_code.append(i.rep_country_code)
+        rep_phone.append(i.rep_phone)
+
+        # result = RopaType.objects.all()
+        key_dict = {'ropaty': ropaty, 'name': name,'address':address, 'email':email, 'country_code': country_code, 'telephone':telephone,'dpo_name':dpo_name, 'dpo_address':dpo_address, 'dpo_email': dpo_email,'dpo_country_code': dpo_country_code, 'dpo_phone': dpo_phone, 'rep_name':rep_name,'rep_address': rep_address, 'rep_email': rep_email, 'rep_country_code': rep_country_code,'rep_phone': rep_phone}
+        user_roll_mapping_df = pd.DataFrame(key_dict)
+        user_roll_mapping_df.to_csv('Assessment/static/assets/user_roll_mapping_excel.csv', index=False)
+
+    result1 = RopaMain.objects.all()
+    ropa_main = pd.DataFrame(list(RopaMain.objects.all().values()))
+    ropa_main.to_csv('Assessment/static/assets/record_register_excel.csv', index=False)
+
+    result2 = BgMain.objects.all()
+    bg = pd.DataFrame(list(BgMain.objects.all().values()))
+    bg.to_csv('Assessment/static/assets/bs_glossary_excel (2).csv', index=False)
+
+    result3 = BusinessFunction.objects.all()
+    bu = pd.DataFrame(list(BusinessFunction.objects.all().values()))
+    bu.to_csv('Assessment/static/assets/business_function_excel.csv', index=False)
+
+    if request.method == 'POST':
+        # BgMain_resource = BgMainResource()
+        # dataset = Dataset()
+        print('inside debugger')
+        # import ipdb
+        # ipdb.set_trace()
+        new_BgMain = request.FILES['document']
+        # imported_data = dataset.load(new_BgMain.read(),format='csv')
+        try:
+            imported_data = pd.read_csv(new_BgMain)
+            print(imported_data)
+            # df = list(imported_data.columns)
+            # print(df)
+            # ideal_list=['businessterm','definition','dataattribute','system','datadomain','lineofbusiness','status','dataclassification','createdby']
+            #
+            # if df==ideal_list:
+            #     print('matched')
+            # else:
+            #     return render(request, 'error_data.html')
+
+
+        except:
+            print('error due to incorrect format')
+            return render(request, 'error_data.html')
+
+        count = 0
+        for i in range(len(imported_data)):
+            try:
+                a = BgMain.objects.bulk_create([
+                    BgMain(businessterm=imported_data["businessterm"][count],
+                           definition=imported_data["definition"][count],
+                           dataattribute=imported_data["dataattribute"][count],
+                           system=imported_data["system"][count],
+                           datadomain=imported_data["datadomain"][count],
+                           lineofbusiness=imported_data["lineofbusiness"][count],
+                           status=imported_data["status"][count],
+                           dataclassification=imported_data["dataclassification"][count],
+                           createdby=imported_data["createdby"][count],
+                           )])
+                print(a)
+                count += 1
+            except:
+
+                return render(request, 'error_data.html')
+
+        if a is not None:
+            print('Success', a)
+            success = '1'
+        else:
+            print('Failure', a)
+
+        print('success', success)
+
+        context = {
+            'success': success,
+            'result': result,
+            'result1': result1,
+            'result2': result2,
+            'result3': result3,
+        }
+        return render(request, 'upload_screen.html', context)
+
+    return render(request, 'admin_screen.html')
+
+
+def map_role(request):
+    if request.method == 'POST':
+        # BgMain_resource = BgMainResource()
+        # dataset = Dataset()
+        print('inside debugger')
+        # import ipdb
+        # ipdb.set_trace()
+        new_RopaType = request.FILES['document']
+        # imported_data = dataset.load(new_BgMain.read(),format='csv')
+        imported_data = pd.read_csv(new_RopaType)
+        print(imported_data)
+
+        count = 0
+        for i in range(len(imported_data)):
+            a = RopaType.objects.bulk_create([
+                RopaType(ropaty=imported_data["ropaty"][count],
+                         name=imported_data["name"][count],
+                         address=imported_data["address"][count],
+                         email=imported_data["email"][count],
+                         country_code=imported_data["country_code"][count],
+                         telephone=imported_data["telephone"][count],
+                         dpo_name=imported_data["dpo_name"][count],
+                         dpo_address=imported_data["dpo_address"][count],
+                         dpo_email=imported_data["dpo_email"][count],
+                         dpo_country_code=imported_data["dpo_country_code"][count],
+                         dpo_phone=imported_data["dpo_phone"][count],
+                         rep_name=imported_data["rep_name"][count],
+                         rep_address=imported_data["rep_address"][count],
+                         rep_email=imported_data["rep_email"][count],
+                         rep_country_code=imported_data["rep_country_code"][count],
+                         rep_phone=imported_data["rep_phone"][count],
+
+                         )
+            ])
+            print(a)
+            count += 1
+
+        if a is not None:
+            print('Success', a)
+            success = '1';
+        else:
+            print('Failure', a)
+
+        print('success', success)
+
+        context = {
+            'success': success,
+        }
+        return render(request, 'upload_screen.html', context)
+    return render(request, 'map_role.html')
+
+
+def bfunction(request):
+    if request.method == 'POST':
+        # BgMain_resource = BgMainResource()
+        # dataset = Dataset()
+        print('inside debugger')
+        bfunc = pd.DataFrame(list(BusinessFunction.objects.all().values()))
+        bfunc_dict = bfunc.to_dict('records')
+        print("bfunc", bfunc)
+        print("bfunc_dict", bfunc_dict)
+        new_BusinessFunction = request.FILES['document']
+        imported_data = pd.read_csv(new_BusinessFunction)
+        print(imported_data)
+        count = 0
+        for i in range(len(imported_data)):
+            a = BusinessFunction.objects.bulk_create([
+                BusinessFunction(
+                    organization=imported_data["organization"][count],
+                    businessfunc=imported_data["businessfunc"][count],
+                    description=imported_data["description"][count])])
+            print(a)
+            count += 1
+
+
+
+        if a is not None:
+            print('Success', a)
+            success = '1'
+        else:
+            print('Failure', a)
+
+        print('success', success)
+
+        context = {
+            'success': success,
+            'bfunc_dict': bfunc_dict
+        }
+        return render(request, 'upload_screen.html', context)
+    return render(request, 'bfunction.html')
+
+
+def up_screen(request):
+    if request.method == 'POST':
+        # import ipdb
+        # ipdb.set_trace()
+        print('inside debugger')
+
+        new_RopaMain = request.FILES['document']
+        # imported_data = dataset.load(new_BgMain.read(),format='csv')
+        try:
+            imported_data = pd.read_csv(new_RopaMain)
+            print(imported_data)
+
+        except:
+            print('error due to incorrect format')
+            return render(request, 'error_data.html')
+
+        count = 0
+        for i in range(len(imported_data)):
+            try:
+                a = RopaMain.objects.bulk_create([
+                    RopaMain(
+                             ropaty=imported_data["ropaty"][count],
+                             businessfunc=imported_data["businessfunc"][count],
+                             processingactivityname=imported_data["processingactivityname"][count],
+                             processingactivitydesc=imported_data["processingactivitydesc"][count],
+                             categoriesdatasubjects=imported_data["categoriesdatasubjects"][count],
+                             categoriespersonaldata=imported_data["categoriespersonaldata"][count],
+                             controllername=imported_data["controllername"][count],
+                             categoriesofrecepients=imported_data["categoriesofrecepients"][count],
+                             lawfulbasisofprocessing=imported_data["lawfulbasisofprocessing"][count],
+                             retentionschedule=imported_data["retentionschedule"][count],
+                             dataprocessor=imported_data["dataprocessor"][count],
+                             countriesdetailstransferred=imported_data["countriesdetailstransferred"][count],
+                             securitymeasures_desc=imported_data["securitymeasures_desc"][count],
+                             status=imported_data["status"][count])])
+                print(a)
+                count += 1
+
+            except:
+
+                return render(request, 'error_data.html')
+
+        if a is not None:
+            print('record_success', a)
+            record_success = '1'
+        else:
+            print('Failure', a)
+
+        print('record_success', record_success)
+
+        context = {
+            'record_success': record_success,
+
+        }
+        return render(request, 'upload_screen.html', context)
+    return render(request, 'admin_screen.html')
+
+
+def error_data(request):
+    return render(request, 'error_data.html')
+
+
+def map_role(req):
+    # import ipdb
+    # ipdb.set_trace()
+    cursor = connection.cursor()
+    print('sp_admin_map_roles')
+    try:
+        cursor.execute('EXEC sp_admin_map_roles')
+        result_set = cursor.fetchall()
+
+        print(result_set)
+        context={
+            'admin_dict':result_set,
+        }
+
+        return render(req, 'map_role.html',context)
+    finally:
+        cursor.close()
