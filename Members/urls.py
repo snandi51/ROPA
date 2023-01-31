@@ -33,4 +33,10 @@ urlpatterns = [
     path('dpo_tab', member_views.dpo_tab, name='dpo_tab'),
     path('data_steward_tab', member_views.data_steward_tab, name='data_steward_tab'),
     path('processor_dashboard', member_views.processor_dashboard, name='processor_dashboard'),
+    path('admin_screen', member_views.admin_screen, name='admin_screen'),
+    path('upload_screen', member_views.admin_screen, name='upload_screen'),
+    path('up_screen', member_views.up_screen, name='up_screen'),
+    path('map_role', member_views.map_role, name='map_role'),
+    path('bfunction', member_views.bfunction, name='bfunction'),
+    path('error_data', member_views.error_data, name='error_data'),
  ]

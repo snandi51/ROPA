@@ -333,7 +333,26 @@
 
 
 </style>
-
+<style>
+    .scroll {
+        overflow-y: scroll;
+        height: 120px;
+        width: 300px;
+        margin: 10px 15px; padding: 5px;
+        text-align: justify;
+    }
+    .scroll::-webkit-scrollbar {
+      width:10px;
+    }
+    .scroll::-webkit-scrollbar-track {
+      -webkit-box-shadow:inset 0 0 0px rgba(0,0,0,0.3);
+      border-radius:10px;
+    }
+    .scroll::-webkit-scrollbar-thumb {
+      border-radius:15px;
+      -webkit-box-shadow: inset 20px 0 10px grey;
+    }
+</style>
 
 
 
@@ -347,14 +366,16 @@
   <div class="alt-nav" style="width:100%;height:80px;">
 
 <!--    <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 210px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>-->
-    <p style="margin-left:160px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;"><span class="back-arrow" onclick="history.back()">&#60; </span> Business Glossary </p><br>
+<!--      <a href="javascript:;"  style="margin-left: 160px;margin-top:30px;"><img src="static/assets/img/Icon.png" onclick="history.back()"></a>-->
+<!--      <p class="" style=" margin-left:160px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;">Business Glossary<b></b></p>-->
+      <p style="margin-left:180px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;"><a href="{% url 'dashboard' %}" style="text-decoration:none;color:black;"><img src="static/assets/img/Icon.png"></a> Business Glossary </p>
 
   </div>
 
 
 
 
-  <div class="login-box" style="top:165px;left:400px;  width:1165px;min-height:300px;overflow-y:scroll;">
+  <div class="login-box scroll" style="top:165px;left:80px;  width:1140px;height:500px;">
 
       <input type="text" name="search" placeholder="Search.." class="search" id="myInput" onkeyup="myFunction()">
 <!--      <input type="text" name="filter" style="width:108px;border: 2px solid #ccc; margin-left:16px; box-sizing: border-box; height:40px;" placeholder="   Filter        &#x25BC;" class="Filterbox" id="filter" onkeyup="myFunction()">-->
@@ -368,42 +389,39 @@
       <a href="static/assets/bs_glossary_df.csv" id="download_csv" download hidden>download</a>
 
 
-<!--          -->
-
-
 
       <button class="Addnew-button" id="myBtn" style="padding-left:0px;">
           <span style="font-size:30px; margin-right:10px;">&plus; </span>  Add New
       </button>
 
-      <div class="table" style="margin-top:15px;">
-          <table id="myTable"  class="paginated table table-striped table-hover" style="margin-left:32px;width:1100px;background: #E0E0E0;">
+      <div class="table " style="margin-top:15px;">
+          <table id="myTable"  class="paginated table table-striped table-hover" style="margin-left:32px;width:1080px;background: #E0E0E0;">
               <thead>
               <tr>
-                  <th scope="col">Business Term</th>
-                  <th scope="col">Definition</th>
-                  <th scope="col">Data Attribute</th>
-                  <th scope="col">System</th>
-                  <th scope="col">Data Domain</th>
-                  <th scope="col">Line of Business</th>
-                  <th scope="col">Status</th>
+                  <th scope="col" class="tab-header">Business Term</th>
+                  <th scope="col" class="tab-header">Definition</th>
+                  <th scope="col" class="tab-header">Data Attribute</th>
+                  <th scope="col" class="tab-header">System</th>
+                  <th scope="col" class="tab-header">Data Domain</th>
+                  <th scope="col" class="tab-header">Line of Business</th>
+                  <th scope="col" class="tab-header">Status</th>
               </tr>
               </thead>
               <tbody>
 
               {% for temp in bg_dict %}
               <tr>
-                  <td scope="row" id='Myvar' onclick="Mybtn1('{{temp.bgid}}')" class="first-column">{{temp.businessterm}}</td>
+                  <td scope="row" id='Myvar' onclick="Mybtn1('{{temp.bgid}}')" class="first-column tab-text">{{temp.businessterm}}</td>
 
 <!--                    <td scope="row" ><button onclick="get_id('{{temp.bgid}}')" >{{temp.businessterm}}</button></td>-->
 <!--                  <td scope="row" id="bg{{temp.businessterm}}" class="first-column" >{{temp.businessterm}}</a></td>-->
-                  <td>{{ temp.definition }}</td>
-                  <td>{{ temp.dataattribute }}</td>
-                  <td>{{ temp.system }}</td>
-                  <td>{{ temp.datadomain }}</td>
-                  <td>{{ temp.lineofbusiness }}</td>
+                  <td class="tab-text">{{ temp.definition }}</td>
+                  <td class="tab-text">{{ temp.dataattribute }}</td>
+                  <td class="tab-text">{{ temp.system }}</td>
+                  <td class="tab-text">{{ temp.datadomain }}</td>
+                  <td class="tab-text">{{ temp.lineofbusiness }}</td>
                   {% if temp.status == 'Awaiting Approval' %}
-                    <td class="approved approved-box" style="display: flex;
+                    <td class="approved approved-box tab-text" style="display: flex;
     flex-direction: row;
     align-items: center;
     padding: 0px 4px;
@@ -425,7 +443,7 @@
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.95);">{{ temp.status }}</td>
                   {% elif temp.status == 'Rejected' %}
-                            <td class="approved approved-box" style="display: flex;flex-direction: row; align-items: center;padding: 0px 4px;width: 100px;height: 20px;
+                            <td class="approved approved-box tab-text" style="display: flex;flex-direction: row; align-items: center;padding: 0px 4px;width: 100px;height: 20px;
                                 background: red;
                                 border-radius: 2px;
                                 flex: none;

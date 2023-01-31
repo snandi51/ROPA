@@ -1,0 +1,474 @@
+{% extends 'base-figma.html' %}
+{% block content %}
+{% load static %}
+
+<link href="static/assets/css/style-figma.css" rel="stylesheet">
+<style>
+     /* The Modal (background) */
+  .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      bottom: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+    /* The Modal (background) */
+  .modal2 {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      bottom: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  .modal3 {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      bottom: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+        /* The Modal (background) */
+  .modal4 {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      bottom: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  .close_upload{
+      color: #aaaaaa;
+      float: right;
+      margin-right:2%;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+  }
+  .close:hover,
+  .close_upload:focus{
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+  }
+
+  .close_up{
+      color: #aaaaaa;
+      float: right;
+      margin-right:2%;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+  }
+  .close_up:hover,
+  .close_up:focus{
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+  }
+  .close_upl{
+      color: #aaaaaa;
+      float: right;
+      margin-right:2%;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+  }
+  .close:hover,
+  .close_upl:focus{
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+  }
+
+  .close_u{
+      color: #aaaaaa;
+      float: right;
+      margin-right:2%;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+  }
+  .close_u:hover,
+  .close_u:focus{
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+  }
+
+
+</style>
+
+
+<script>
+
+    function download_files(){
+        console.log('downloading files...');
+        getSelectValue = document.getElementById("cars").value;
+        if(getSelectValue == '2'){
+            document.getElementById("select_1").click();
+        }else{
+           console.log('pdf')
+        }
+        if(getSelectValue == '5'){
+            document.getElementById("select_2").click();
+        }else{
+           console.log('pdf')
+        }
+        if(getSelectValue == '3'){
+            document.getElementById("select_3").click();
+        }else{
+           console.log('pdf')
+        }
+        if(getSelectValue == '4'){
+            document.getElementById("select_4").click();
+        }else{
+           console.log('pdf')
+        }
+    }
+</script>
+
+
+
+<div class="alt-nav" style="width:1372px;height:80px">
+<!--        <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 176px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>-->
+        <p style="margin-left:170px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;" onclick="history.back()"><a href="{% url 'dashboard' %}" style="text-decoration:none;color:black;"><img src="static/assets/img/Icon.png"></a> Admin </p>
+        <p style="padding-left:212px;padding-bottom:143px;padding-top:0px;"> </p>
+</div>
+
+<body style="background: linear-gradient(3.47deg, #00649B 13.28%, #66A9CD 93.28%);position: static;width: 1090px;height: 800px; margin-left: 150px;
+padding-top: 100px;">
+<!--    <div class="user-info1">-->
+<!--      <div style="width: 20%; height: 70px; top:20%; ">-->
+<!--&lt;!&ndash;          <a href="javascript:;" onclick="history.back()" static="margin-top:14px;"><img src="static/assets/img/Icon.png" static="margin-top13"/></a>&ndash;&gt;-->
+<!--&lt;!&ndash;          <p class="tit" style="margin-top:-10px;">TITLE</p>&ndash;&gt;-->
+<!--&lt;!&ndash;          <p class="gdpr_font1" style=" margin-left: 24px; margin-top:10px;">Admin<b>&nbsp;</b></p>&ndash;&gt;-->
+<!--          <p style="margin-left:190px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;" onclick="history.back()">&#60; Admin </p>-->
+<!--      </div>-->
+<!--    </div>-->
+
+
+    <a href="/static/assets/bs_glossaryy_excel.csv" id="select_1" download hidden></a>
+    <a href="/static/assets/record_registerr_excel.csv" id="select_2" download hidden></a>
+    <a href="/static/assets/user_roll_mappingg_excel.csv" id="select_3" download hidden></a>
+    <a href="/static/assets/business_functionn_excel.csv" id="select_4" download hidden></a>
+    <div style="margin-left:50%; position: absolute;margin-top:-18px; ">
+        <select class="download" onchange="download_files()" name="cars" id="cars">
+            <option value= "1" > Download Template </option>
+            <option value="2" id="">Business Glossary</option>
+            <option value="3">User Mapping</option>
+            <option value="4">Business Function</option>
+            <option value="5">ROPA ID</option>
+        </select>
+    </div>
+
+    <!--    Risk Summary box 1-->
+<!--    <a href=""  onClick="risk_clickable_box1()" id="myBtn">-->
+        <div class="risk-clickable-box1" id="myBtn" >
+            <div class="inside-risk-clickable-box1" style="height:80px;">
+                <p class="risk_summary_title">Set Business Glossary</p><br>
+                <p class="us" style="right:-40px;">Upload Business Glossary.</p>
+                <img class="users" style="margin-top:74px; margin-left:80px;" src="static/assets/img/setb.png" >
+            </div>
+        </div>
+<!--    </a>-->
+
+
+    <a href="{% url 'map_role' %}" onClick="risk_clickable_box2()">
+        <div class="risk-clickable-box2" id="risk-clickable-box2" style="">
+            <div class="inside-risk-clickable-box2 disabled" style="height:80px;">
+                <p class="risk_summary_title">Map Roles to Users</p><br>
+                <p class="us" style="right:-40px;">Upload Map Roles to Users </p>
+                <img class="users"style="margin-top:74px; margin-left:83px;" src="static/assets/img/mapr.png" >
+            </div>
+        </div>
+    </a>
+
+
+    <a href="{% url 'bfunction' %}" onClick="risk_clickable_box3()">
+        <div class="risk-clickable-box3" id="risk-clickable-box3" style="">
+            <div class="inside-risk-clickable-box3 disabled" style="height:80px;">
+                <p class="risk_summary_title">Set Business Functions</p><br>
+                <p class="us" style="right:-40px;">Upload files for Business Function </p>
+                <img class="users" style="margin-top:74px; margin-left:83px;"src="static/assets/img/setf.png" >
+            </div>
+        </div>
+    </a>
+
+
+    <a href="#" onClick="risk_clickable_box4()">
+        <div class="risk-clickable-box4" id="box4" style="">
+            <div class="inside-risk-clickable-box4 disabled" style="height:80px;">
+                <p class="us" style="right:-40px;">Upload Records Register </p>
+                <p class="risk_summary_title">Set Records Register</p><br>
+
+                <img class="users" style="margin-top:74px; margin-left:83px;"src="static/assets/img/setr.png" >
+            </div>
+        </div>
+    </a>
+
+    <!----------------------------------- uploadFiles -------------------------------->
+
+    <form action="admin_screen" onsubmit="setTimeout(Mybtn1('{{success}}'), 3000)" enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+
+
+        <div id="myModal" class="modal" style="overflow-x: hidden;overflow-y: hidden;margin-top:0px;">
+
+                <div class="rect-4" style="min-height:515px; width:480px; margin-left:47%; margin-top:-110px; background-color:white;">
+                    <div style="position:absolute; left:4%; padding-right: 10%;">
+                        <span class="close_upload">&times;</span>
+                        <div class="dow" style="margin-left:100px; margin-top:150px;">
+                            <p style="padding-top:100px;">Click on the "Choose File" button to upload a file:</p>
+                            <input type="file"  id="document"  onchange="colorChange()" name="document" accept=".csv" required>
+                        </div>
+
+
+                    </div>
+
+
+                    <footer style="height:50px;  position: fixed;width:480px; right: 0;bottom: 0; background: #FFFFFF;border: 1px solid #FFFFFF; ">
+                        <button id="cancel-button" style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:40px; margin-top:10px;  width:200px; height:30px;">
+                       <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px; margin-left:-19px;">Cancel</span></button>
+                       <button id="upload_button" type="submit" style="background: rgba(39, 41, 54, 0.22);border: 1px solid #0E88AF;border-radius: 4px; margin-left:50px; margin-top:10px;  width:180px; height:30px;">
+                       <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">upload</span></button>
+                    </footer>
+
+                    <img src="static/assets/img/upload.png" style="margin-left:200px; margin-top:100px; width:120px;" >
+                </div>
+        </div>
+
+   </form>
+
+
+
+
+
+    <div id="upload_logo" class="modal2" style="overflow-x: hidden;overflow-y: hidden;margin-top:0px;">
+          <div class="rect-4" style="min-height:530px; width:480px; margin-left:47%; margin-top:-110px; background-color:white;">
+              <span class="close_up">&times;</span>
+              <div style="position:absolute; left:9%; ">
+                  <div style="margin-top:13%;">
+                       <label class="org" style="left:-9%;position:absolute;font-family: 'Ubuntu';font-style: normal;font-weight: 500;
+                           font-size: 16px;line-height: 24px; margin-top:-30px;" >
+                       <img src="static/assets/img/Icon.png" onclick="history.back()"  alt="Back"/> Set Business Glossary </label>
+                  </div>
+                  <img src="static/assets/img/bro.png" style="margin-top:30px; width:250px; margin-left:50px;">
+                    <p style="margin-top:20%"></p>
+                        <p style="margin-left: 15%; margin-top:-40px;font-family: 'Ubuntu';font-style: normal;font-weight: 300px;font-size: 24px;line-height: 28px;text-align: center;font-feature-settings: 'pnum' on, 'lnum' on;color: rgba(39, 41, 54, 0.85);">Uploaded!</p>
+                         <p style="margin-left: 23%;">Your file has been uploaded.<br>
+                    <a href="test">
+                        Go to Business Glossary.
+                    </a>
+
+              </div>
+
+
+          </div>
+
+
+    </div>
+
+
+
+    <form action="admin_screen" onsubmit="setTimeout(Mybtn1('{{record_success}}'), 3000)" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+
+        <div id="myModal17" class="modal3" style="overflow-x: hidden;overflow-y: hidden;margin-top:0px;">
+                <div class="rect-4" style="min-height:515px; width:480px; margin-left:47%; margin-top:-110px; background-color:white;">
+                    <div style="position:absolute; left:4%; padding-right: 10%;">
+                        <span class="close_upl">&times;</span>
+                        <div class="dow" style="margin-left:100px; margin-top:150px;">
+                            <p style="padding-top:100px;">Click on the "Choose File" button to upload a file:</p>
+                            <input type="file"  onchange="colorChange()" id="document_record" name="document" accept=".csv" required>
+                        </div>
+                    </div>
+                    <footer style="height:50px;  position: fixed;width:480px; right: 0;bottom: 0; background: #FFFFFF;border: 1px solid #FFFFFF; ">
+                        <button id="cancel-button1" style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:40px; margin-top:10px;  width:200px; height:30px;">
+                       <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px; margin-left:-19px;">Cancel</span></button>
+                       <button type="submit"  id="upload_record"  style="background: rgba(39, 41, 54, 0.22);border: 1px solid #0E88AF;border-radius: 4px; margin-left:50px; margin-top:10px;  width:180px; height:30px;">
+                       <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">upload</span></button>
+                    </footer>
+
+                    <img src="static/assets/img/upload.png" style="margin-left:200px; margin-top:100px; width:120px;" >
+                </div>
+        </div>
+   </form>
+
+
+    <div id="upload_logo1" class="modal4" style="overflow-x: hidden;overflow-y: hidden;margin-top:0px;">
+          <div class="rect-4" style="min-height:530px; width:480px; margin-left:47%; margin-top:-110px; background-color:white;">
+              <span class="close_u">&times;</span>
+              <div style="position:absolute; left:9%; ">
+                  <div style="margin-top:13%;">
+                       <label class="" style="left:-9%;position:absolute;font-family: 'Ubuntu';font-style: normal;font-weight: 500;
+                           font-size: 16px;line-height: 24px; margin-top:-30px;" >
+                       <img src="static/assets/img/Icon.png" onclick="history.back()"  alt="Back"/> Set Records Register </label>
+                  </div>
+                  <img src="static/assets/img/bro.png" style="margin-top:30px; width:250px; margin-left:50px;">
+                    <p style="margin-top:20%"></p>
+                        <p style="margin-left: 15%; margin-top:-40px;font-family: 'Ubuntu';font-style: normal;font-weight: 300px;font-size: 24px;line-height: 28px;text-align: center;font-feature-settings: 'pnum' on, 'lnum' on;color: rgba(39, 41, 54, 0.85);">Uploaded!</p>
+                         <p style="margin-left: 23%;">Your file has been uploaded.<br>
+                   <p  class ="" style="text-align:center;"><a href="test">Go to Records Register.</a></p>
+              </div>
+          </div>
+    </div>
+
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close_upload")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+
+    var upload_screen = document.getElementById("upload_logo");
+
+
+
+
+    function Mybtn1(id){
+        console.log('Hi!')
+        console.log(id, "esfesdfsed")
+        if (id=='1'){
+        console.log('Inside id')
+        modal.style.display = "none";
+        upload_screen.style.display = "block";
+        }
+        }
+
+
+    var upload_close = document.getElementsByClassName("close_up")[0];
+
+
+     // When the user clicks on <span> (x), close the modal
+    upload_close.onclick = function() {
+      upload_screen.style.display = "none";
+    }
+
+
+
+
+
+// Get the modal
+    var modal = document.getElementById("myModal17");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("box4");
+
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close_upload")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+
+    var upload = document.getElementById("upload_logo1");
+
+
+
+
+    function Mybtn1(id){
+        console.log('Hi!')
+        console.log(id, "esfesdfsed")
+        if (id=='1'){
+        console.log('Inside id')
+        modal.style.display = "none";
+        upload_screen.style.display = "block";
+        }
+        }
+
+
+    var upload_close = document.getElementsByClassName("close_u")[0];
+
+
+     // When the user clicks on <span> (x), close the modal
+    upload_close.onclick = function() {
+      upload_screen.style.display = "none";
+    }
+
+
+function colorChange(){
+      console.log("color")
+      if(document.getElementById("document_record").value!= " ")
+      {
+        document.getElementById("upload_record").style.background = "#12ABDB";
+      }
+      else
+      {
+        document.getElementById("upload_record").style.background = "rgba(39, 41, 54, 0.22)";
+        document.getElementById("upload_record").style.color = "white";
+        document.getElementById("upload_record").style.border = "#0C7799;";
+      }
+    }
+
+
+</script>
+
+{% endblock %}
+</body>
+
+
+
+

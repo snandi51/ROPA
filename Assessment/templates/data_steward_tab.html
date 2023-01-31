@@ -245,23 +245,24 @@
 
 
 <div class="alt-nav" style="width:100%;height:80px;">
-        <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 210px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>
-        <p style="margin-left:190px;margin-bottom:143px;margin-top:0;font-weight: 500;line-height: 28px;font-size: 24px;"><span class="back-arrow" onclick="history.back()">&#60; </span> Data Steward Notification</p><br>
+<!--        <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 210px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>-->
+<!--        <p style="margin-left:190px;margin-bottom:143px;margin-top:0;font-weight: 500;line-height: 28px;font-size: 24px;"><span class="back-arrow" onclick="history.back()">&#60; </span> Data Steward Notification</p><br>-->
+        <p style="margin-left:180px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;" onclick="history.back()"><a href="{% url 'dashboard' %}" style="text-decoration:none;color:black;"><img src="static/assets/img/Icon.png"></a> Data Steward Notification </p>
   </div>
-    <button type="button" onclick="history.back()" style="display: none;" id="back-btn"></button>
-    <a href="introduction" style="color:Green; margin-left:90px;" onclick="document.getElementById('back-btn').click()" alt="Back"><img src="static/assets/img/Icon.png" />Back</a>
+<!--    <button type="button" onclick="history.back()" style="display: none;" id="back-btn"></button>-->
+<!--    <a href="introduction" style="color:Green; margin-left:90px;" onclick="document.getElementById('back-btn').click()" alt="Back"><img src="static/assets/img/Icon.png" />Back</a>-->
 
 
 <body class="body-class" style="overflow-y: hidden;">
 
-<div class="rect-meta-1" style="height:480px; margin-top: 50px;">
+<div class="rect-meta-1" style="height:480px; margin-top: 100px;">
 <!--    <form method="POST" enctype="multipart/form-data" action="score" name="bfh_tab">-->
 <!--        {% csrf_token %}-->
         <div class="container" id="wrapper11">
             <div class="d-flex" >
                 <div class="d-flex text-center" style="margin-left: -140px; height: 65px; margin-top: 10px; width:940px;">
-                    <div class="TabButton TabButtonSelected tablinks" id="Tab1" style="width:660px; font-size: 12px; color: black; font-weight: 500; font-family: 'Ubuntu';" onclick="activeTab(event, 'Tab1')"><b>Business Glossary</b></div>
-                    <div class="TabButton tab tablinks" id="Tab2" style="width:650px; font-size: 12px; font-weight: 500; font-family: 'Ubuntu'; color: black; " onclick="activeTab(event, 'Tab2')">Record Register</div>
+                    <div class="TabButton TabButtonSelected tablinks" id="Tab1" style="width:660px; font-size: 14px; color: black; font-weight: 500; font-family: 'Ubuntu';" onclick="activeTab(event, 'Tab1')"><b>Business Glossary</b></div>
+                    <div class="TabButton tab tablinks" id="Tab2" style="width:650px; font-size: 14px; font-weight: 500; font-family: 'Ubuntu'; color: black; " onclick="activeTab(event, 'Tab2')">Record Register</div>
 
                 </div>
             </div>
@@ -271,15 +272,15 @@
                    <table id="myTable"  class="paginated table table-striped table-hover" style="width:940px;background: #E0E0E0;">
                       <thead>
                       <tr>
-                          <th scope="col">BgID</th>
+                          <th scope="col" class="tab-header">BgID</th>
 <!--                          <th scope="col">Business Term</th>-->
 <!--                          <th scope="col">Definition</th>-->
 <!--                          <th scope="col">Data Attribute</th>-->
 <!--                          <th scope="col">System</th>-->
 <!--                           <th scope="col">Data Domain</th>-->
 <!--                           <th scope="col">Line of Business</th>-->
-                          <th scope="col">Status</th>
-                          <th scope="col">Comments</th>
+                          <th scope="col" class="tab-header">Status</th>
+                          <th scope="col" class="tab-header">Comments</th>
 
                       </tr>
                       </thead>
@@ -287,15 +288,15 @@
 
                           {% for temp in bg_dict %}
                           <tr>
-                              <td scope="row" id='Myvar' onclick="Mybtn1('{{temp.bgid}}')" class="first-column">{{temp.bgid}}</td>
+                              <td scope="row" id='Myvar' onclick="Mybtn1('{{temp.bgid}}')" class="first-column tab-text">{{temp.bgid}}</td>
 <!--                              <td>{{ temp.businessterm }}</td>-->
 <!--                              <td>{{ temp.definition }}</td>-->
 <!--                              <td>{{ temp.dataattribute }}</td>-->
 <!--                              <td>{{ temp.system }}</td>-->
 <!--                              <td>{{ temp.datadomain }}</td>-->
 <!--                              <td>{{ temp.lineofbusiness }}</td>-->
-                              <td>{{ temp.status }}</td>
-                              <td>{{ temp.comments }}</td>
+                              <td class="tab-text">{{ temp.status }}</td>
+                              <td class="tab-text">{{ temp.comments }}</td>
                           </tr>
                           {% endfor %}
                       </tbody>
@@ -306,28 +307,28 @@
                      <table id="myTable2"  class="paginated table table-striped table-hover" style="width:940px;background: #E0E0E0;;">
                           <thead>
                               <tr>
-                                   <th scope="col">ROPA ID</th>
+                                   <th scope="col" class="tab-header">ROPA ID</th>
 <!--                                   <th scope="col">Business Function</th>-->
 <!--                                   <th scope="col">Processing Activity Name</th>-->
 <!--                                   <th scope="col">Processing Activity Description </th>-->
 <!--                                   <th scope="col">Categories of Data Subjects</th>-->
 <!--                                   <th scope="col">Categories of Personal Data</th>-->
-                                   <th scope="col">Status</th>
-                                   <th scope="col">Comments</th>
+                                   <th scope="col" class="tab-header">Status</th>
+                                   <th scope="col" class="tab-header">Comments</th>
                               </tr>
                           </thead>
                           <tbody>
 
                               {% for temp in ropa_dict %}
                               <tr>
-                                  <td scope="row" id='Myvar2' onclick="Mybtn2('{{temp.ropamainid}}')" class="first-column">{{temp.ropaid}}</td>
+                                  <td scope="row" id='Myvar2' onclick="Mybtn2('{{temp.ropamainid}}')" class="first-column tab-text">{{temp.ropaid}}</td>
 <!--                                  <td>{{ temp.businessfunc }}</td>-->
 <!--                                  <td>{{ temp.processingactivityname }}</td>-->
 <!--                                  <td>{{ temp.processingactivitydesc }}</td>-->
 <!--                                  <td>{{ temp.categoriesdatasubjects }}</td>-->
 <!--                                  <td>{{ temp.categoriespersonaldata }}</td>-->
-                                  <td>{{ temp.status }}</td>
-                                  <td>{{ temp.comments }}</td>
+                                  <td class="tab-text">{{ temp.status }}</td>
+                                  <td class="tab-text">{{ temp.comments }}</td>
                               </tr>
                               {% endfor %}
                           </tbody>
@@ -353,7 +354,7 @@
                           <label for="inputPassword" class="label-top"
                                  style="font-family: 'Ubuntu'; font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
                                   color: rgba(39, 41, 54, 0.85);">Business Term</label>
-                          <input type="text" style="background: rgba(39, 41, 54, 0.22);box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
+                          <input type="text" style="background: #F4F4F4;box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
                                  border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="businessterm" id="businessterm_edit"
                                  placeholder=" Account Password" readonly>
                       </div>
@@ -362,7 +363,7 @@
                           <label for="inputPassword" class="label-top"
                                  style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
                               color: rgba(39, 41, 54, 0.85);">Data Attribute</label>
-                          <input type="text" name="dataattribute" style="background: rgba(39, 41, 54, 0.22);box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
+                          <input type="text" name="dataattribute" style="background: #F4F4F4;box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
                                border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="dataattribute_edit" placeholder=" Lorem Ipsum" readonly>
                       </div>
 
@@ -371,7 +372,7 @@
                           <label for="inputPassword" class="label-top"
                                  style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
                                  color: rgba(39, 41, 54, 0.85);">Definition</label>
-                          <input style="background: rgba(39, 41, 54, 0.22);box-sizing: border-box;width: 456px;height: 90px;border: 1px solid #8D8D8D;
+                          <input style="background: #F4F4F4;box-sizing: border-box;width: 456px;height: 90px;border: 1px solid #8D8D8D;
                                     border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" type="text" name="definition" id="definition_edit"
                                  placeholder=" Describe the meaning of the term with respect to the business" readonly>
                       </div>
@@ -380,31 +381,31 @@
                           <label for="inputPassword" class="label-top"
                                  style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
                                  color: rgba(39, 41, 54, 0.85);">System</label>
-                          <input type="text" style="background: rgba(39, 41, 54, 0.22);box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
+                          <input type="text" style="background: #F4F4F4;box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
                                border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="system"  id="system_edit"
                                  placeholder=" type something" readonly>
                       </div>
-                      <div class="input-1 col " style="left: -5%;margin-top:4%;" readonly>
-                          <label for="inputPassword" class="label-top"
-                                 style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
-                        color: rgba(39, 41, 54, 0.85);"
-                          >Classification</label>
-                          <!--        <input type="text" name="email" style="margin-top: 5px;" class="input-master" id="inputPassword" placeholder="GDPR">-->
-                          <select id="classification_edit" name="inputPassword"; style="box-sizing: border-box;width: 456px;height: 32px;background: rgba(39, 41, 54, 0.22);border: 1px solid #8D8D8D;
-            border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" >
-                              <option value="private" >PRIVATE</option>
-                              <option value="public">PUBLIC</option>
-                              <option value="restricted">RESTRICTED</option>
-                              <option value="internal">INTERNAL</option>
-                              <option value="confidential">CONFIDENTIAL</option>
-                          </select>
-                      </div>
+<!--                      <div class="input-1 col " style="left: -5%;margin-top:4%;" readonly>-->
+<!--                          <label for="inputPassword" class="label-top"-->
+<!--                                 style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;-->
+<!--                        color: rgba(39, 41, 54, 0.85);"-->
+<!--                          >Classification</label>-->
+<!--                          &lt;!&ndash;        <input type="text" name="email" style="margin-top: 5px;" class="input-master" id="inputPassword" placeholder="GDPR">&ndash;&gt;-->
+<!--                          <select id="classification_edit" name="inputPassword"; style="box-sizing: border-box;width: 456px;height: 32px;background: #F4F4F4;border: 1px solid #8D8D8D;-->
+<!--            border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" >-->
+<!--                              <option value="private" >PRIVATE</option>-->
+<!--                              <option value="public">PUBLIC</option>-->
+<!--                              <option value="restricted">RESTRICTED</option>-->
+<!--                              <option value="internal">INTERNAL</option>-->
+<!--                              <option value="confidential">CONFIDENTIAL</option>-->
+<!--                          </select>-->
+<!--                      </div>-->
 
                       <div class="input-1 col " style="left: -5%; margin-top:4%;">
                           <label for="inputPassword" class="label-top"
                                  style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
                                  color: rgba(39, 41, 54, 0.85);">Domain</label>
-                          <input type="text" style="background: rgba(39, 41, 54, 0.22);box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
+                          <input type="text" style="background: #F4F4F4;box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
                                   border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="datadomain"  id="datadomain_edit"
                                  placeholder=" Lorem ipsum" readonly>
                       </div>
@@ -414,7 +415,7 @@
                           <label for="inputPassword" class="label-top"
                                  style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
                                      color: rgba(39, 41, 54, 0.85);width:300px;">Line of Business</label>
-                          <input type="text" name="lineofbusiness" style="background: rgba(39, 41, 54, 0.22);box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
+                          <input type="text" name="lineofbusiness" style="background: #F4F4F4;box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
                             border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="lineofbusiness_edit" placeholder=" lorem ipsum" readonly>
                       </div>
 
@@ -423,21 +424,21 @@
                           <label for="inputPassword" class="label-top"
                                  style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
                                    color: rgba(39, 41, 54, 0.85);">Status</label>
-                          <input type="text" name="status" style="background: rgba(39, 41, 54, 0.22);box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
+                          <input type="text" name="status" style="background: #F4F4F4;box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
                                border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="status_edit" placeholder=" Approved" readonly>
                       </div>
 
                       <div class="input-1 col " style="left: -5%;margin-top:4%;">
                           <label for="inputPassword" class="label-top" style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
                             color: rgba(39, 41, 54, 0.85);width:300px;">Created by</label>
-                          <input type="text" name="createdby" style="background: rgba(39, 41, 54, 0.22);box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
+                          <input type="text" name="createdby" style="background: #F4F4F4;box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
                             border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;"class="input-master" id="Createdby_edit" placeholder=" lorem ipsum" readonly>
                       </div>
 
                       <div class="input-1 col " style="left: -5%;margin-top:4%;">
                           <label for="inputPassword" class="label-top" style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
                                  color: rgba(39, 41, 54, 0.85);width:300px;">Comments</label>
-                          <input type="text" name="comments" style="background: rgba(39, 41, 54, 0.22);;box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
+                          <input type="text" name="comments" style="background: #F4F4F4;box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
                             border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;"class="input-master" id="comments_edit" placeholder="Please add comments/reason" readonly>
                       </div>
 
@@ -473,88 +474,85 @@
                 <div>
                     <label class="org" style="margin-left:-7%; margin-top:-5%;">View ROPA ID Details</label>
                 </div>
-                <div class="form-group">
-                    <div class="input-1 col " style="left: -1%; margin-top:15%">
-                        <label  class="label-top" >Status</label>
-                        <input type="text" style=" background: rgba(39, 41, 54, 0.22);width:300px; margin-top: -2%;" name="status" id="ropa_status_edit" class="input-master"  placeholder=" Lorem Ipsum" readonly>
-                    </div>
-                    <div class="input-1 col " style="left: -1%; margin-top:5%">
-                        <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px; ">Process Activity Name</label>
-                        <input type="text" name="processingactivityname" id="processingactivityname_edit" style="background: rgba(39, 41, 54, 0.22);margin-top: -2%; width:300px;" class="input-master"  placeholder=" Lorem Ipsum" readonly>
-                    </div>
-                    <div class="input-1 col" style="left: 95%; margin-top:-35% ">
-                        <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px;">Business Function  </label>
-                        <input style="background: rgba(39, 41, 54, 0.22);margin-top:-2%; width:300px;" type="text" name="businessfunc" id="businessfunc_edit" class="input-master" placeholder=" Lorem Ipsum" readonly>
-                    </div>
-                    <div class="input-1 col" style="left: 95%;margin-top:8% ">
-                        <label for="inputPassword" class="label-top" style=" width: 200px;font-size:12px;">Process Activity Description</label>
-                        <input style="background: rgba(39, 41, 54, 0.22);margin-top: -2%;width:300px; height:50px;" type="text" name="processingactivitydesc" id="processingactivitydesc_edit" class="input-master"  placeholder=" Lorem Ipsum " readonly>
-                    </div>
+                <div class="input-1 col " style="left: -1%; margin-top:15%">
+                        <label for="inputPassword" class="label-top" style="width: 200px;" >Process Activity Name</label>
+                        <input type="text" style=" width:300px; margin-top: -2%;background-color:#F4F4F4;" name="processingactivityname" id="processingactivityname_edit" class="input-master"  placeholder=" Marketing activities and communications " readonly>
                 </div>
-                <div class="form-group">
-                    <div class="col">
-                        <div class="input-1 col " style="left:-5%;margin-top: 10%">
-                            <label for="inputPassword" class="label-top" style="width:200px;">Categories of Data Subjects</label>
-                            <input type="text" style="background: rgba(39, 41, 54, 0.22);width:300px;" name="categoriesdatasubjects" id="categoriesdatasubjects_edit" class="input-master" placeholder=" Lorem Ipsum" readonly>
-                        </div>
-                        <div class="input-1 col " style="left: -5%; margin-top:15%">
-                            <label for="inputPassword" class="label-top" style="width:250px;">Name and Contact Details of Joint Controller</label>
-                            <input type="text" style="background: rgba(39, 41, 54, 0.22);height:52px; width:300px;margin-top: 2%;" name="controllername" id="controllername_edit" class="input-master"  placeholder=" Lorem ipsum" readonly>
-                         </div>
-                     </div>
-                    <div class="input-1 col" style="left: 95%; margin-top:-40%;">
-                        <label for="inputPassword" class="label-top" style="width: 200px; font-size:12px;">Categories of Recipients </label>
-                        <input style="background: rgba(39, 41, 54, 0.22);margin-top: -2px; width:300px; height:52px;" type="text" name="categoriesofrecepients" id="categoriesofrecepients_edit" class="input-master"  placeholder=" Lorem ipsum" readonly>
-                     </div>
-                    <div class="input-1 col" style="left: 95%;  margin-top:5%;">
-                        <label for="inputPassword" class="label-top" style=" width: 200px;font-size:12px;;">Categories of Personal Data</label>
-                        <input style="background: rgba(39, 41, 54, 0.22);margin-top: -2%; width: 300px;" type="text" name="categoriespersonaldata" id="categoriespersonaldata_edit" class="input-master"  placeholder=" Lorem ipsum " readonly>
-                    </div>
+                <div class="input-1 col " style="left: -1%; margin-top:5%">
+                    <label for="inputPassword" class="label-top" style="width: 200px; font-size:12px; ">Categories of Data Subjects</label>
+                    <input type="text" name="categoriesdatasubjects" id="categoriesdatasubjects_edit" style="margin-top: -2%; width:300px;background-color:#F4F4F4;" class="input-master"  placeholder=" Clinet,Custmoer,etc " readonly>
                 </div>
-                <div class="form-group">
-                    <div class="input-1 col " style="left: 1%; margin-top: 15%;">
-                        <label for="inputPassword" class="label-top" style="width:200px;">Lawful Basis of Processing</label>
-                        <input type="text" style="background: rgba(39, 41, 54, 0.22);margin-top: -2%; width:300px;" name="lawfulbasisofprocessing" id="lawfulbasisofprocessing_edit"  class="input-master" placeholder=" Lorem Ipsum" readonly>
-                    </div>
-                   <div class="input-1 col " style="left: 1%; margin-top: 5%;">
-                        <label for="inputPassword" class="label-top">Data Processor</label>
-                        <input type="text" name="dataprocessor" id="dataprocessor_edit" style="background: rgba(39, 41, 54, 0.22);margin-top: -2%; width:300px;" class="input-master" placeholder=" Lorem Ipsum" readonly>
-                   </div>
-                   <div class="input-1 col" style="left: 95%;margin-top: -35%;">
-                        <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px;">Retention Schedule </label>
-                        <input style="background: rgba(39, 41, 54, 0.22);margin-top: -2%; width:300px;" type="text" name="retentionschedule" id="retentionschedule_edit" class="input-master" placeholder=" Lorem Ipsum" readonly>
-                    </div>
-                    <div class="input-1 col" style="left: 95%; margin-top: 5%;">
-                        <label for="inputPassword" class="label-top" style=" width: 200px;font-size:12px;">Link to Contract with Processor</label>
-                        <input style="background: rgba(39, 41, 54, 0.22);margin-top: -2%; width: 300px;" type="text" name="linkcontractprocessor" id="linkcontractprocessor_edit" class="input-master" placeholder=" Lorem Ipsum" readonly>
-                    </div>
+                <div class="input-1 col" style="left: 95%; margin-top:-35% ">
+                    <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px;">Business Function  </label>
+                    <input style="margin-top:-2%; width:300px;background-color:#F4F4F4;" type="text" name="businessfunc" id="businessfunc_edit" class="input-master" placeholder=" Finance, HR, Marketing " readonly>
                 </div>
-                <div class="form-group">
-                    <div class="input-1 col " style="left: 1%; margin-top: 10%;">
-                        <label for="inputPassword" class="label-top" Style="font-size:12px; width:300px; margin-top:px; Letter:0.2px;">Third Countries or international organizations where personal data
-                                is transferred (if applicable) </label>
-                        <input type="text" style="background: rgba(39, 41, 54, 0.22);margin-top: 5%; width:300px;" name="countriesdetailstransferred" id="countriesdetailstransferred_edit" class="input-master" placeholder=" Lorem Ipsum" readonly>
-                    </div>
-                   <div class="input-1 col " style="left: 1%; margin-top: 10%;">
-                        <label for="inputPassword" class="label-top" style="width:300px; ">Safeguards for exceptional transfers of personal data for above (If applicable)</label>
-                        <input type="text" name="safeguardsexternaltransfers" id="safeguardsexternaltransfers_edit" style="background: rgba(39, 41, 54, 0.22);margin-top: 5%; width:300px;" class="input-master" placeholder="Lorem ipsum" readonly>
-                   </div>
-                    <div class="input-1 col" style="left: 95%; margin-top: -40%;">
-                        <label for="inputPassword" class="label-top" style="width: 300px; font-size:12px; ">Label General description of technical and organizational security measures (if applicable)</label>
-                        <input style="background: rgba(39, 41, 54, 0.22);margin-top: 5%; width:300px;" type="text" name="securitymeasures_desc" id="securitymeasures_desc_edit" class="input-master"  placeholder="Lorem ipsum" readonly>
-                    </div>
-                    <div class="input-1 col" style="left: 95%; margin-top: 10%;">
-                        <label for="inputPassword" class="label-top" style=" width: 300px;font-size:12px;">Links to contracts, consents, breach records, assessments</label>
-                        <input style="background: rgba(39, 41, 54, 0.22);margin-top: 5%; width: 320px;" type="text" name="linkscontracts" id="linkscontracts_edit" class="input-master" placeholder="Lorem ipsum " readonly>
-                    </div>
-                    <div class="input-1 col" style="left: 95%; margin-top: 10%;">
-                        <label for="inputPassword" class="label-top" style=" width: 300px;font-size:12px;">Comments</label>
-                        <input style="background:rgba(39, 41, 54, 0.22);margin-top: 1%; width: 320px;" type="text" name="comments" id="ropa_comments_edit" class="input-master" placeholder="Please add comments" readonly>
-                    </div>
+                <div class="input-1 col" style="left: 95%;margin-top:8% ">
+                    <label for="inputPassword" class="label-top" style=" width: 200px;font-size:12px;">Process Activity Description</label>
+                    <input style="margin-top: -2%;width:300px; height:50px; background-color:#F4F4F4;" type="text" name="processingactivitydesc" id="processingactivitydesc_edit" class="input-master"  placeholder=" Description of processing activity in detail " readonly>
+                </div>
+                <div class="input-1 col " style="left: -2%; margin-top:12%">
+                        <label for="inputPassword" class="label-top" style="width:250px;">Name and Contact Details of Joint Controller</label>
+                        <input type="text" style="height:52px; width:300px;margin-top: 2%; background-color:#F4F4F4;" name="controllername" id="controllername_edit" class="input-master"  placeholder=" Name of the controller organization " readonly>
+                 </div>
+                <div class="input-1 col" style="left: 95%; margin-top:-13%;">
+                    <label for="inputPassword" class="label-top" style="width: 200px; font-size:12px;">Categories of Recipients </label>
+                    <input style="margin-top: -2px; width:300px; height:52px;background-color:#F4F4F4;" type="text" name="categoriesofrecepients" id="categoriesofrecepients_edit" class="input-master"  placeholder=" Type something " readonly>
+                 </div>
+                <div class="input-1 col" style="left: 95%;  margin-top:10%;">
+                    <label for="inputPassword" class="label-top" style=" width: 200px;font-size:12px;;">Categories of Personal Data</label>
+                    <input style="margin-top: -2%; width: 300px;background-color:#F4F4F4;" type="text" name="categoriespersonaldata" id="categoriespersonaldata_edit" class="input-master"  placeholder=" Personal data categories " readonly>
+<!--                    <select  style="margin-top: -2%; width: 300px; box-sizing: border-box;width: 456px;height: 32px;background-color:#F4F4F4;border: 1px solid #8D8D8D;-->
+<!--                                                border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="categoriespersonaldata" id="categoriespersonaldata_edit" multiple read>-->
+<!--                        {% for temp in distinct_values %}-->
+<!--                          <option value='{{ temp.businessterm }}'>{{ temp.businessterm }}</option>-->
+<!--                        {% endfor %}-->
+<!--                    </select>-->
+                </div>
+                <div class="input-1 col " style="left: -2%; margin-top: -15%;">
+                    <label for="inputPassword" class="label-top" style="width:200px;">Lawful Basis of Processing</label>
+                    <input type="text" style="margin-top: -2%; width:300px;background-color:#F4F4F4;" name="lawfulbasisofprocessing" id="lawfulbasisofprocessing_edit"  class="input-master" placeholder=" Type something " readonly>
+                </div>
+               <div class="input-1 col " style="left: -2%; margin-top: 8%;">
+                    <label for="inputPassword" class="label-top">Data Processor</label>
+                    <input type="text" name="dataprocessor" id="dataprocessor_edit" style="margin-top: -2%; width:300px;background-color:#F4F4F4;" class="input-master" placeholder=" Name of the processor organization " readonly>
+               </div>
+               <div class="input-1 col" style="left: 95%;margin-top: -14%;">
+                    <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px;">Retention Schedule </label>
+                    <input style="margin-top: -2%; width:300px;background-color:#F4F4F4;" type="text" name="retentionschedule" id="retentionschedule_edit" class="input-master" placeholder=" Type something " readonly>
+               </div>
+                <div class="input-1 col" style="left: 95%; margin-top: 5%;">
+                    <label for="inputPassword" class="label-top" style=" width: 200px;font-size:12px;">Link to Contract with Processor</label>
+                    <input style="margin-top: -2%; width: 300px;background-color:#F4F4F4;" type="text" name="linkcontractprocessor" id="linkcontractprocessor_edit" class="input-master" placeholder=" Link/website address of the contract processor " readonly>
+                </div>
+
+                <div class="input-1 col " style="left: -2%; margin-top: -10%;">
+                    <label for="inputPassword" class="label-top" Style="font-size:12px; width:300px; margin-top:px; Letter:0.2px;">Third Countries or international organizations where personal data
+                            is transferred (if applicable) </label>
+                    <input type="text" style="margin-top: 5%; width:300px;background-color:#F4F4F4;" name="countriesdetailstransferred" id="countriesdetailstransferred_edit" class="input-master" placeholder=" Countries Names where data is transferred " readonly>
+                </div>
+               <div class="input-1 col " style="left: -2%; margin-top: 10%;">
+                    <label for="inputPassword" class="label-top" style="width:300px; ">Safeguards for exceptional transfers of personal data for above (If applicable)</label>
+                    <input type="text" name="safeguardsexternaltransfers" id="safeguardsexternaltransfers_edit" style="margin-top: 5%; width:300px;background-color:#F4F4F4;" class="input-master" placeholder=" Type something " readonly>
+               </div>
+                <div class="input-1 col" style="left: 95%; margin-top: -13%;">
+                    <label for="inputPassword" class="label-top" style="width: 300px; font-size:12px; ">Label General description of technical and organizational security measures (if applicable)</label>
+                    <input style="margin-top: 5%; width:300px;background-color:#F4F4F4;" type="text" name="securitymeasures_desc" id="securitymeasures_desc_edit" class="input-master"  placeholder=" Type something" readonly>
+                </div>
+                <div class="input-1 col" style="left: 95%; margin-top: 15%;">
+                    <label for="inputPassword" class="label-top" style=" width: 300px;font-size:12px;">Links to contracts, consents, breach records, assessments</label>
+                    <input style="margin-top: 5%; width: 320px;background-color:#F4F4F4;" type="text" name="linkscontracts" id="linkscontracts_edit" class="input-master" placeholder=" Contract link with the processor organization " readonly>
+                </div>
+                <div class="input-1 col" style="left: -2%; margin-top: -17%;">
+                        <label for="inputPassword" class="label-top" style=" width: 100px;font-size:12px;">Status</label>
+                        <input style="margin-top: 5%; width: 320px;background-color:#F4F4F4;" type="text" name="status" id="ropa_status_edit" class="input-master" placeholder=" Awaiting Approval " readonly>
+                </div>
+                <div class="input-1 col" style="left: -2%; margin-top: -17%;">
+                        <label for="inputPassword" class="label-top" style=" width: 100px;font-size:12px;">Comments</label>
+                        <input style="margin-top: 5%; width: 320px;background-color:#F4F4F4;" type="text" name="comments" id="ropa_comments_edit" class="input-master" placeholder=" Awaiting Approval " readonly>
+                </div>
+
                     <input type="text" name="ropaid"  id="ropaid_edit" placeholder="lorem ipsum" style="display:none">
                     <input type="text" name="ropamainid"  id="ropamainid_edit" placeholder="lorem ipsum" style="display:none">
-                    <p style="margin-top:67px; margin-left: 42px;"></p>
-                </div>
             </div>
           </div>
             <footer style="height:50px;  position: fixed;width:775px; right: 0;bottom: 0;   background: #FFFFFF;border: 1px solid #FFFFFF;">

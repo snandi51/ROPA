@@ -1,0 +1,725 @@
+{% extends 'base-figma.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<link href="static/assets/css/style-figma.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:600|Noto+Sans|Open+Sans:400,700&display=swap');
+    *{
+      margin: 0;
+      padding: 0;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    .container{
+      position: relative;
+      width: 400px;
+      padding: 60px 40px;
+    }
+    .input-field, form .button{
+      margin: 25px 0;
+      position: relative;
+      height: 35px;
+      width: 100%;
+    }
+    .input-field input{
+      height: 100%;
+      width: 100%;
+      border: 1px solid silver;
+      padding-left: 15px;
+      outline: none;
+      font-size: 19px;
+      transition: .4s;
+    }
+    input:focus{
+      border: 1px solid #1DA1F2;
+    }
+    .input-field label, span.show{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .input-field label{
+      left: 15px;
+      pointer-events: none;
+      color: grey;
+      font-size: 14px;
+      transition: .3s;
+    }
+    span.show{
+      right: 20px;
+      color: #111;
+      font-size: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+      visibility: hidden;
+      font-family: 'Open Sans', sans-serif;
+    }
+    input:valid ~ span.show{
+      visibility: visible;
+    }
+    input:focus ~ label,
+    input:valid ~ label{
+      transform: translateY(-25px);
+      background: rgba(245, 245, 248, 10);
+      font-size: 12px;
+      color: #1DA1F2;
+    }
+    form .button{
+      margin-top: 30px;
+      overflow: hidden;
+      z-index: 111;
+    }
+    .button .inner{
+      position: absolute;
+      height: 100%;
+      width: 300%;
+      left: -100%;
+      z-index: -1;
+      transition: all .4s;
+      background: -webkit-linear-gradient(right,#00dbde,#fc00ff,#00dbde,#fc00ff);
+    }
+    .button:hover .inner{
+      left: 0;
+    }
+    .button button{
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: none;
+      outline: none;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .container .auth{
+      margin: 35px 0 20px 0;
+      font-size: 19px;
+      color: grey;
+    }
+    .links{
+      display: flex;
+      cursor: pointer;
+    }
+    .facebook, .google{
+      height: 40px;
+      width: 100%;
+      border: 1px solid silver;
+      border-radius: 3px;
+      margin: 0 10px;
+      transition: .4s;
+    }
+    .facebook:hover{
+      border: 1px solid #4267B2;
+    }
+    .google:hover{
+      border: 1px solid #dd4b39;
+    }
+    .facebook i, .facebook span{
+      color: #4267B2;
+    }
+    .google i, .google span{
+      color: #dd4b39;
+    }
+    .links i{
+      font-size: 23px;
+      line-height: 40px;
+      margin-left: -90px;
+    }
+    .links span{
+      position: absolute;
+      font-size: 17px;
+      font-weight: bold;
+      padding-left: 8px;
+      font-family: 'Open Sans', sans-serif;
+    }
+    .signup{
+      margin-top: 50px;
+      font-family: 'Noto Sans', sans-serif;
+    }
+    .signup a{
+      color: #3498db;
+      text-decoration: none;
+    }
+    .signup a:hover{
+      text-decoration: underline;
+    }
+
+              .search {
+              width: 292px;
+              height:40px;
+              box-sizing: border-box;
+              border: 2px solid #ccc;
+              border-radius: 4px;
+              font-size: 16px;
+              background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat 13px center;
+
+              background-position: 10px 10px;
+              background-repeat: no-repeat;
+              margin:24px 0px 0px 32px;
+              padding: 12px 20px 12px 40px; }
+
+              .drop-down {
+              width: 108px;
+              height:40px;
+              margin-left:16px;
+              box-sizing: border-box;
+              border: 2px solid #ccc;
+              border-radius: 4px;
+              font-size: 16px;
+              background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat 13px center;
+
+              background-position: 10px 10px;
+              background-repeat: no-repeat;
+              margin:24px 0px 0px 32px;
+              padding: 12px 20px 12px 40px; }
+
+              .Filterbox{
+                    background-image: transparent url(static/assets/img/ROPA-Img/drop-down.png') no-repeat 13px center;
+                    background-repeat:no-repeat;
+              }
+              .Addnew-button{
+                 box-sizing: border-box;
+
+                /* Auto layout */
+
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                padding -left: 0px;
+
+                width: 120px;
+                height: 40px;
+
+                /* Primary/Palette/Primary */
+
+                background: #12ABDB;
+                border: 1px solid #0E88AF;
+                border-radius: 4px;
+                margin-left:10px;
+                /* Inside auto layout */
+
+                color: rgba(255, 255, 255, 0.95);
+                flex: none;
+                order: 0;
+                flex-grow: 0;
+                font-family: 'Ubuntu';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 16px;
+              }
+              .close {
+                  color: #aaaaaa;
+                  float: right;
+                  margin-right:2%;
+                  font-size: 28px;
+                  font-weight: bold;
+              }
+              .close:hover,
+              .close:focus{
+                  color: #000;
+                  text-decoration: none;
+                  cursor: pointer;
+              }
+
+              .close_edit {
+                  color: #aaaaaa;
+                  float: right;
+                  font-size: 28px;
+                  font-weight: bold;
+                }
+
+               .close_edit:hover,
+               .close_edit:focus {
+                  color: #000;
+                  text-decoration: none;
+                  cursor: pointer;
+               }
+
+              /* The Modal (background) */
+              .modal {
+                  display: none; /* Hidden by default */
+                  position: fixed; /* Stay in place */
+                  z-index: 1; /* Sit on top */
+                  padding-top: 100px; /* Location of the box */
+                  left: 0;
+                  bottom: 0;
+                  width: 100%; /* Full width */
+                  height: 100%; /* Full height */
+                  overflow: auto; /* Enable scroll if needed */
+                  background-color: rgb(0,0,0); /* Fallback color */
+                  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+              }
+
+               /* Modal Content */
+               .modal1 {
+                      display:none;
+                      position: fixed; /* Stay in place */
+                      z-index: 1; /* Sit on top */
+                      padding-top: 100px; /* Location of the box */
+                      left: 0;
+                      bottom: 0;
+                      width: 100%; /* Full width */
+                      height: 100%; /* Full height */
+                      overflow: auto; /* Enable scroll if needed */
+                      background-color: rgb(0,0,0); /* Fallback color */
+                      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+               }
+
+                /* Modal Content */
+
+                .modal2 {
+                      display:none;
+                      position: fixed; /* Stay in place */
+                      z-index: 1; /* Sit on top */
+                      padding-top: 100px; /* Location of the box */
+                      left: 0;
+                      bottom: 0;
+                      width: 100%; /* Full width */
+                      height: 100%; /* Full height */
+                      overflow: auto; /* Enable scroll if needed */
+                      background-color: rgb(0,0,0); /* Fallback color */
+                      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                }
+                .close_delete {
+                      color: #aaaaaa;
+                      float: right;
+                      font-size: 28px;
+                      font-weight: bold;
+                }
+
+                .close_delete:hover,
+                .close_delete:focus {
+                    color: #000;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+
+</style>
+<style>
+     /* The Modal (background) */
+  .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      bottom: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+    /* The Modal (background) */
+  .modal2 {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      bottom: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  .close_upload{
+      color: #aaaaaa;
+      float: right;
+      margin-right:2%;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+  }
+  .close:hover,
+  .close_upload:focus{
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+  }
+
+  .close_up{
+      color: #aaaaaa;
+      float: right;
+      margin-right:2%;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+  }
+  .close_up:hover,
+  .close_up:focus{
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+  }
+
+
+</style>
+
+<script>
+
+    function download_files(){
+        console.log('downloading files...');
+        getSelectValue = document.getElementById("cars").value;
+        if(getSelectValue == '2'){
+            document.getElementById("select_1").click();
+        }else{
+           console.log('pdf')
+        }
+        if(getSelectValue == '5'){
+            document.getElementById("select_2").click();
+        }else{
+           console.log('pdf')
+        }
+        if(getSelectValue == '3'){
+            document.getElementById("select_3").click();
+        }else{
+           console.log('pdf')
+        }
+        if(getSelectValue == '4'){
+            document.getElementById("select_4").click();
+        }else{
+           console.log('pdf')
+        }
+    }
+</script>
+<body class="body-class" style="overflow-y: hidden; overflow-x: hidden;">
+  <!-- The dots/circles -->
+    <div class="alt-nav" style="width:1372px;height:80px">
+<!--        <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 176px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>-->
+        <p style="margin-left:190px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;" onclick="history.back()">&#60; Admin - Business Functions </p><br>
+        <p style="padding-left:212px;padding-bottom:143px;padding-top:0px;"> </p>
+    </div>
+        <div class="login-box" style="top:165px;left:400px; width:1100px;height:420px; overflow-y: scroll; overflow-x: hidden;">
+
+<!--        <input type="text" name="search" placeholder="Search.." class="search" id="myInput" onkeyup="myFunction()">-->
+<!--        <input type="text" name="filter" style="width:108px;border: 2px solid #ccc; margin-left:16px; box-sizing: border-box; height:40px;" placeholder="   Filter        &#x25BC;" class="Filterbox " >-->
+
+        <button class="Addnew-button" style="margin-left:920px; margin-top:10px; position:absolute; height:35px;" id="myBtn"  >
+           <span style="font-size:30px; margin-right:10px;">&plus; </span>  Upload
+        </button>
+
+    <a href="/static/assets/bs_glossaryy_excel.csv" id="select_1" download hidden></a>
+    <a href="/static/assets/record_registerr_excel.csv" id="select_2" download hidden></a>
+    <a href="/static/assets/user_roll_mappingg_excel.csv" id="select_3" download hidden></a>
+    <a href="/static/assets/business_functionn_excel.csv" id="select_4" download hidden></a>
+    <div style="margin-left:63%; position: absolute; margin-top:10px;">
+        <select class="download" onchange="download_files()" name="cars" id="cars">
+            <option value= "1" > Download Template </option>
+            <option value="2" id="">Business Glossary</option>
+            <option value="3">User Mapping</option>
+            <option value="4">Business Function</option>
+            <option value="5">ROPA ID</option>
+        </select>
+    </div>
+        <div class="table" style="margin-top:60px;">
+            <table id="mTable" class="paginated table table-striped table-hover" style="margin-left:24px;width:1030px;background: #E0E0E0;">
+              <thead>
+                    <tr>
+                        <th scope="col">Business Function</th>
+                        <th scope="col">Organization</th>
+                        <th scope="col">Description</th>
+
+                    </tr>
+              </thead>
+                <tbody>
+                 {% for temp in bfunc_dict %}
+                    <tr>
+<!--                        <td scope="row" id='Myvar' onclick="Mybtn1('{{temp.businessfuncid}}')" class="first-column">{{temp.businessfuncid}}</td>-->
+                        <td>{{ temp.businessfunc }}</td>
+                        <td>{{ temp.organization }}</td>
+                        <td>{{ temp.description }}</td>
+
+                        </tr>
+                 {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+<!-------------------------------------------------- Add Form -------------------------------------------------------------------------->
+    <form method="POST" id="add_form" onsubmit="setTimeout(Mybtn1('{{success}}'), 3000)" enctype="multipart/form-data" class="ropa_form_add" action="bfunction">
+         {% csrf_token %}
+        <div id="myModal" class="modal" style="overflow-x: hidden;overflow-y: hidden;margin-top:0px;">
+<!--            <img src="static/assets/img/upload.png" style="margin-left:900px; padding-top:40px;" >-->
+
+                <div class="rect-4" style="min-height:515px; width:480px; margin-left:47%; margin-top:-110px; background-color:white;">
+                    <div style="position:absolute; left:4%; padding-right: 10%;">
+                        <span class="close_upload">&times;</span>
+                        <div class="dow" style="margin-left:100px; margin-top:150px;">
+
+<!--                            <img class="us" src="static/assets/img/upload.png" style="margin-left:100px;" >-->
+                            <p style="padding-top:100px;">Click on the "Choose File" button to upload a file:</p>
+                            <input type="file" id="document" onchange="colorChange()" name="document" accept=".csv" required>
+<!--                        <input type="submit">-->
+                        </div>
+
+
+                    </div>
+
+
+                    <footer style="height:50px;  position: fixed;width:480px; right: 0;bottom: 0; background: #FFFFFF;border: 1px solid #FFFFFF; ">
+                        <button id="cancel-button" style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:40px; margin-top:10px;  width:200px; height:30px;">
+                       <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px; margin-left:-19px;">Cancel</span></button>
+                       <button type="submit"  id="upload_button" style="background: rgba(39, 41, 54, 0.22);border: 1px solid #0E88AF;border-radius: 4px; margin-left:50px; margin-top:10px;  width:180px; height:30px;">
+                       <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">upload</span></button>
+                    </footer>
+
+                    <img src="static/assets/img/upload.png" style="margin-left:200px; margin-top:100px; width:120px;" >
+                </div>
+        </div>
+
+    </form>
+
+
+
+
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    var btn1 = document.getElementById("myBtn1");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+
+
+<!--    // When the user clicks on <span> (x), close the modal-->
+<!--    span.onclick = function() {-->
+<!--      modal.style.display = "none";-->
+<!--    }-->
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    var cancel = document.getElementById("cancel-button");
+
+    cancel.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    var canceldelete = document.getElementById("cancel-delete-button")
+
+
+    canceldelete.onclick = function() {
+      myModal2.style.display = "none";
+    }
+
+
+
+    // Get the modal
+    var modal1 = document.getElementById("myModal1");
+
+
+
+    // Get the button that opens the modal
+    var btn1 = document.getElementById("Myvar");
+
+    var glob_id = '0'
+
+    function Mybtn1(id){
+        console.log('Hi!')
+        console.log(id)
+        glob_id = id
+        var ropa_dict= {{ropa_dict|safe}}
+        console.log(ropa_dict)
+        console.log('entering index')
+        const index = ropa_dict.findIndex(object => {
+            return object.ropamainid == id;
+        });
+        console.log(index)
+        var edit_dict=ropa_dict[index]
+        console.log('edit_dict', edit_dict)
+        if (edit_dict){
+            console.log("inside function")
+            var status_edit = document.getElementById('status_edit')
+            status_edit.value=edit_dict.status
+            var processingactivityname_edit =document.getElementById('processingactivityname_edit')
+            processingactivityname_edit.value=edit_dict.processingactivityname
+            var businessfunc_edit = document.getElementById('businessfunc_edit')
+            businessfunc_edit.value=edit_dict.businessfunc
+            var processingactivitydesc_edit = document.getElementById('processingactivitydesc_edit')
+            processingactivitydesc_edit.value=edit_dict.processingactivitydesc
+            var categoriesdatasubjects_edit= document.getElementById('categoriesdatasubjects_edit')
+            categoriesdatasubjects_edit.value=edit_dict.categoriesdatasubjects
+            var categoriespersonaldata_edit = document.getElementById('categoriespersonaldata_edit')
+            categoriespersonaldata_edit.value=edit_dict.categoriespersonaldata
+            var controllername_edit = document.getElementById('controllername_edit')
+            controllername_edit.value=edit_dict.controllername
+            var categoriesofrecepients_edit = document.getElementById('categoriesofrecepients_edit')
+            categoriesofrecepients_edit.value=edit_dict.categoriesofrecepients
+            var lawfulbasisofprocessing_edit= document.getElementById('lawfulbasisofprocessing_edit')
+            lawfulbasisofprocessing_edit.value=edit_dict.lawfulbasisofprocessing
+            var retentionschedule_edit= document.getElementById('retentionschedule_edit')
+            retentionschedule_edit.value=edit_dict.retentionschedule
+            var dataprocessor_edit= document.getElementById('dataprocessor_edit')
+            dataprocessor_edit.value=edit_dict.dataprocessor
+            var linkcontractprocessor_edit= document.getElementById('linkcontractprocessor_edit')
+            linkcontractprocessor_edit.value=edit_dict.linkcontractprocessor
+            var countriesdetailstransferred_edit= document.getElementById('countriesdetailstransferred_edit')
+            countriesdetailstransferred_edit.value=edit_dict.countriesdetailstransferred
+            var safeguardsexternaltransfers_edit= document.getElementById('safeguardsexternaltransfers_edit')
+            safeguardsexternaltransfers_edit.value=edit_dict.safeguardsexternaltransfers
+            var securitymeasures_desc_edit= document.getElementById('securitymeasures_desc_edit')
+            securitymeasures_desc_edit.value=edit_dict.securitymeasures_desc
+            var linkscontracts_edit= document.getElementById('linkscontracts_edit')
+            linkscontracts_edit.value=edit_dict.linkscontracts
+            var ropaid_edit= document.getElementById('ropaid_edit')
+            ropaid_edit.value=edit_dict.ropaid
+            var ropamainid_edit= document.getElementById('ropamainid_edit')
+            ropamainid_edit.value=edit_dict.ropamainid
+
+        }
+        modal1.style.display = "block";
+
+    }
+
+    function deleteRow(tempid){
+        console.log('entering ropa delete function')
+        console.log(tempid)
+        console.log(glob_id)
+        var modal1 = document.getElementById("myModal1");
+        modal1.style.display = "none";
+        var modal2 = document.getElementById("myModal2");
+        modal2.style.display = "block";
+    }
+
+
+    // Get the <span> element that closes the modal
+    var span1 = document.getElementsByClassName("close_edit")[0];
+
+    var span2 = document.getElementsByClassName("close_delete")[0];
+
+    function yes_function(){
+    window.location.href='{% url 'ropa_delete' %}'+'?search='+glob_id
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span1.onclick = function() {
+      modal1.style.display = "none";
+      modal2.style.display = "none";
+    }
+
+    var span2 = document.getElementsByClassName("close_delete")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span1.onclick = function() {
+      modal1.style.display = "none";
+    }
+    span2.onclick = function() {
+      modal2.style.display = "none";
+    }
+
+</script>
+<script>
+    window.onload= function(){
+          console.log("function called")
+          var status_edit = document.getElementById("status_edit")
+          var processingactivityname_edit = document.getElementById("processingactivityname_edit")
+          var businessfunc_edit = document.getElementById("businessfunc_edit")
+          var processingactivitydesc_edit= document.getElementById("processingactivitydesc_edit")
+          var categoriesdatasubjects_edit = document.getElementById("categoriesdatasubjects_edit")
+          var categoriespersonaldata_edit = document.getElementById("categoriespersonaldata_edit")
+          var controllername_edit = document.getElementById("controllername_edit")
+          var categoriesofrecepients_edit = document.getElementById("categoriesofrecepients_edit")
+          var lawfulbasisofprocessing_edit = document.getElementById("lawfulbasisofprocessing_edit")
+          var retentionschedule_edit = document.getElementById("retentionschedule_edit")
+          var dataprocessor_edit = document.getElementById("dataprocessor_edit")
+          var linkcontractprocessor_edit = document.getElementById("linkcontractprocessor_edit")
+          var countriesdetailstransferred_edit = document.getElementById("countriesdetailstransferred_edit")
+          var safeguardsexternaltransfers_edit = document.getElementById("safeguardsexternaltransfers_edit")
+          var securitymeasures_desc_edit = document.getElementById("securitymeasures_desc_edit")
+          var linkscontracts_edit = document.getElementById("linkscontracts_edit")
+    }
+
+
+    function colorChange() {
+       if (((document.getElementById("processingactivityname_add").value != "") &
+           (document.getElementById("businessfunc_add").value != "") & (document.getElementById("processingactivitydesc_add").value != "") &
+           (document.getElementById("categoriesdatasubjects_add").value != "") & (document.getElementById("categoriespersonaldata_add").value != "") &
+           (document.getElementById("controllername_add").value != "") & (document.getElementById("categoriesofrecepients_add").value != "")
+            & (document.getElementById("lawfulbasisofprocessing_add").value != "")& (document.getElementById("retentionschedule_add").value != "")&
+            (document.getElementById("dataprocessor_add").value != "") & (document.getElementById("linkcontractprocessor_add").value != "")&
+            (document.getElementById("countriesdetailstransferred_add").value != "") & (document.getElementById("safeguardsexternaltransfers_add").value != "")
+            & (document.getElementById("securitymeasures_desc_add").value != "") & (document.getElementById("linkscontracts_add").value != "")) {
+            var x = document.getElementById("add_button").style.background = "#12ABDB";
+    }
+    else {
+       document.getElementById("add_button").style.background = "rgba(39, 41, 54, 0.22)";
+       document.getElementById("add_button").style.color = "white";
+       document.getElementById("add_button").style.border = "#0C7799;";
+      }
+}
+</script>
+
+<script>
+    function myFunction() {
+        var input, filter, found, table, tr, td, i, j;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("mTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td");
+            for (j = 0; j < td.length; j++) {
+                if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    found = true;
+                }
+            }
+            if (found) {
+                tr[i].style.display = "";
+                found = false;
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+
+    function colorChange(){
+      console.log("color")
+      if(document.getElementById("document").value!= " ")
+      {
+        document.getElementById("upload_button").style.background = "#12ABDB";
+      }
+      else
+      {
+        document.getElementById("upload_button").style.background = "rgba(39, 41, 54, 0.22)";
+        document.getElementById("upload_button").style.color = "white";
+        document.getElementById("upload_button").style.border = "#0C7799;";
+      }
+    }
+
+</script>
+{% endblock %}
+</body>
+
+</html>
