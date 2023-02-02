@@ -65,18 +65,18 @@ def login_user(request):
     return render(request, 'login.html')
 
 
-@login_required
+# @login_required
 def logout_user(request):
     logout(request)
     return render(request, 'logout.html')
 
 
-@login_required
+# @login_required
 def index(request):
     return render(request, 'index.html')
 
 
-@login_required
+# @login_required
 def user(request):
     if request.method == "POST":
         id = request.user.id
@@ -88,8 +88,6 @@ def user(request):
 
         # import ipdb
         # ipdb.set_trace()
-
-
 
         ropaty = request.POST.get('ropaty')
         userid = request.POST.get('userid')
@@ -143,10 +141,10 @@ def user(request):
         if output is not None:
             if output == 'Processor':
                 print(output, 'function inner dashboard')
-                return render(request, 'processor_dashboard.html')
+                return render(request, 'processor_dashboard.html', context)
             else:
                 print('else function inner dashboard')
-                return render(request, 'dashboard.html')
+                return render(request, 'dashboard.html', context)
         else:
             return render(request, 'index.html')
 
@@ -265,10 +263,11 @@ def test(request):
         business_detail.save()
 
     result = BgMain.objects.all()
-    bg = pd.DataFrame(list(BgMain.objects.all().values()))
+    bg1 = pd.DataFrame(list(BgMain.objects.all().values()))
     # bg1 = pd.DataFrame(list(BgMain.objects.all().values('businessterm', 'definition', 'dataattribute', 'system', 'datadomain', 'lineofbusiness', 'status')))
-    bg.to_csv('Assessment/static/assets/bs_glossary_df.csv', index=False)
+    bg1.to_csv('Assessment/static/assets/bs_glossary_df.csv', index=False)
     # a=len(bg)
+    bg = bg1.sort_values(by='update_timestamp', ascending=False)
     bg_dict = bg.to_dict('records')
 
     for i in bg_dict:
@@ -449,7 +448,7 @@ def dashboard(request):
     return render(request, 'dashboard.html')
 
 
-@login_required
+# @login_required
 def record(request):
     if request.method == "POST":
         print("inside function")
@@ -516,14 +515,15 @@ def record(request):
     #             'categoriespersonaldata': categoriespersonaldata, 'status': status}
     # ropa_df = pd.DataFrame(key_dict)
     # ropa_df.to_csv('Assessment/static/assets/data_record_excel.csv', index=False)
-    ropa_main = pd.DataFrame(list(RopaMain.objects.all().values('ropamainid','ropaid', 'businessfunc', 'processingactivityname','processingactivitydesc',
+    ropa_main1 = pd.DataFrame(list(RopaMain.objects.all().values('ropamainid','ropaid', 'businessfunc', 'processingactivityname','processingactivitydesc',
                                                                 'categoriesdatasubjects', 'categoriespersonaldata', 'status', 'controllername',
                                                                 'categoriesofrecepients', 'lawfulbasisofprocessing', 'dataprocessor',
                                                                 'retentionschedule', 'linkcontractprocessor', 'countriesdetailstransferred',
-                                                                'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts')))
+                                                                'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts', 'update_timestamp')))
     # ropa_main1 = pd.DataFrame(list(RopaMain.objects.all().values('ropaid', 'businessfunc', 'processingactivityname','processingactivitydesc',
     #                                                              'categoriesdatasubjects', 'categoriespersonaldata', 'status')))
-    ropa_main.to_csv('Assessment/static/assets/data_record_excel.csv', index=False)
+    ropa_main1.to_csv('Assessment/static/assets/data_record_excel.csv', index=False)
+    ropa_main = ropa_main1.sort_values(by='update_timestamp', ascending=False)
     # a=len(bg)
     ropa_dict = ropa_main.to_dict('records')
     # print('ropa_dict:', ropa_dict)
@@ -742,7 +742,7 @@ def bfh_dashboard(request):
     return render(request, 'bfh_dashboard.html')
 
 
-@login_required
+# @login_required
 def workflow_dashboard(request):
     user1 = request.user
     print('user1:', user1)
@@ -838,8 +838,9 @@ def workflow_dashboard(request):
         }
         return render(request, 'bfh_tab.html', context)
     elif result == "DPO":
-        bg = pd.DataFrame(list(BgMain.objects.all().values()))
+        bg1 = pd.DataFrame(list(BgMain.objects.all().values()))
         # a=len(bg)
+        bg = bg1.sort_values(by='update_timestamp', ascending=False)
         bg_dict = bg.to_dict('records')
 
         for i in bg_dict:
@@ -847,7 +848,7 @@ def workflow_dashboard(request):
             i.update({'update_timestamp': str(i.get('update_timestamp'))})
             i.update({'comments': str(i.get('comments'))})
 
-        ropa_main = pd.DataFrame(
+        ropa_main1 = pd.DataFrame(
             list(RopaMain.objects.all().values('ropamainid', 'ropaid', 'businessfunc', 'processingactivityname',
                                                'processingactivitydesc', 'categoriesdatasubjects',
                                                'categoriespersonaldata',
@@ -856,8 +857,9 @@ def workflow_dashboard(request):
                                                'dataprocessor', 'retentionschedule', 'linkcontractprocessor',
                                                'countriesdetailstransferred',
                                                'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts',
-                                               'comments')))
+                                               'comments', 'update_timestamp')))
         # a=len(bg)
+        ropa_main = ropa_main1.sort_values(by='update_timestamp', ascending=False)
         ropa_dict = ropa_main.to_dict('records')
 
         for i in ropa_dict:
@@ -1448,3 +1450,16 @@ def map_role(req):
         return render(req, 'map_role.html',context)
     finally:
         cursor.close()
+
+
+def user_details(request):
+    print('inside user details page')
+    user_id = request.user.id
+    user_detail = pd.DataFrame(list(RopaType.objects.all().values().filter(userid=user_id)))
+    user_dict = user_detail.to_dict('records')[0]
+    print('user_dict', user_dict)
+    context = {
+        'user_dict': user_dict
+    }
+    return render(request, 'user_details.html', context)
+

@@ -402,8 +402,7 @@
 
 
                       <div class="input-1 col " style="left: -5%;margin-top:4%;">
-                          <label for="inputPassword" class="label-top"
-                                 style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
+                          <label for="inputPassword" class="label-top" style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
                                      color: rgba(39, 41, 54, 0.85);width:300px;">Line of Business</label>
                           <input type="text" name="lineofbusiness" style="background: #F4F4F4;box-sizing: border-box;width: 456px;height: 32px;border: 1px solid #8D8D8D;
                             border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="lineofbusiness_edit" placeholder=" lorem ipsum" readonly>
@@ -458,7 +457,7 @@
      <form method="POST" id="edit_form" class="ropa_form_edit" action="workflow_ropa">
          {% csrf_token %}
         <div id="myModal2" class="modal2" style="overflow-x: hidden;overflow-y: scroll; margin-top:0px; overflow-y: scroll;">
-          <div class="rect-4" style="min-height:800px; width:760px;margin-left:25%; margin-top:-90px; ">
+          <div class="rect-4" style="min-height:880px; width:760px;margin-left:25%; margin-top:-90px; ">
               <span class="close_edit2" >&times;</span>
             <div style="position:absolute; left:4%; padding-right: 5%;">
                 <div>
@@ -524,7 +523,7 @@
                     <label for="inputPassword" class="label-top" style="width:300px; ">Safeguards for exceptional transfers of personal data for above (If applicable)</label>
                     <input type="text" name="safeguardsexternaltransfers" id="safeguardsexternaltransfers_edit" style="margin-top: 5%; width:300px;background-color:#F4F4F4;" class="input-master" placeholder=" Type something " readonly>
                </div>
-                <div class="input-1 col" style="left: 95%; margin-top: -13%;">
+                <div class="input-1 col" style="left: 95%; margin-top: -18%;">
                     <label for="inputPassword" class="label-top" style="width: 300px; font-size:12px; ">Label General description of technical and organizational security measures (if applicable)</label>
                     <input style="margin-top: 5%; width:300px;background-color:#F4F4F4;" type="text" name="securitymeasures_desc" id="securitymeasures_desc_edit" class="input-master"  placeholder=" Type something" readonly>
                 </div>
@@ -532,13 +531,13 @@
                     <label for="inputPassword" class="label-top" style=" width: 300px;font-size:12px;">Links to contracts, consents, breach records, assessments</label>
                     <input style="margin-top: 5%; width: 320px;background-color:#F4F4F4;" type="text" name="linkscontracts" id="linkscontracts_edit" class="input-master" placeholder=" Contract link with the processor organization " readonly>
                 </div>
-                <div class="input-1 col" style="left: -2%; margin-top: -17%;">
+                <div class="input-1 col" style="left: -2%; margin-top: -15%;">
                         <label for="inputPassword" class="label-top" style=" width: 100px;font-size:12px;">Status</label>
-                        <input style="margin-top: 5%; width: 320px;background-color:#F4F4F4;" type="text" name="status" id="ropa_status_edit" class="input-master" placeholder=" Awaiting Approval " readonly>
+                        <input style="margin-top: 2%; width: 320px;background-color:#F4F4F4;" type="text" name="status" id="ropa_status_edit" class="input-master" placeholder=" Awaiting Approval " readonly>
                 </div>
-                <div class="input-1 col" style="left: -2%; margin-top: -17%;">
+                <div class="input-1 col" style="left: -2%; margin-top: 10%;">
                         <label for="inputPassword" class="label-top" style=" width: 100px;font-size:12px;">Comments</label>
-                        <input style="margin-top: 5%; width: 320px;background-color:#FFFFFF;" type="text" name="comments" id="ropa_comments_edit" class="input-master" placeholder=" Awaiting Approval " required>
+                        <input style="margin-top: 2%; width: 320px;background-color:#FFFFFF;" type="text" name="comments" id="ropa_comments_edit" class="input-master" placeholder=" Please add comments/ reason " required>
                 </div>
 
                     <input type="text" name="ropaid"  id="ropaid_edit" placeholder="lorem ipsum" style="display:none">

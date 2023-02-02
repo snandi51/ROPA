@@ -273,7 +273,7 @@
                       <thead>
                       <tr>
                           <th scope="col" class="tab-header">BgID</th>
-<!--                          <th scope="col">Business Term</th>-->
+                          <th scope="col">Business Term</th>
 <!--                          <th scope="col">Definition</th>-->
 <!--                          <th scope="col">Data Attribute</th>-->
 <!--                          <th scope="col">System</th>-->
@@ -289,7 +289,7 @@
                           {% for temp in bg_dict %}
                           <tr>
                               <td scope="row" id='Myvar' onclick="Mybtn1('{{temp.bgid}}')" class="first-column tab-text">{{temp.bgid}}</td>
-<!--                              <td>{{ temp.businessterm }}</td>-->
+                              <td>{{ temp.businessterm }}</td>
 <!--                              <td>{{ temp.definition }}</td>-->
 <!--                              <td>{{ temp.dataattribute }}</td>-->
 <!--                              <td>{{ temp.system }}</td>-->
@@ -309,7 +309,7 @@
                               <tr>
                                    <th scope="col" class="tab-header">ROPA ID</th>
 <!--                                   <th scope="col">Business Function</th>-->
-<!--                                   <th scope="col">Processing Activity Name</th>-->
+                                   <th scope="col">Processing Activity Name</th>
 <!--                                   <th scope="col">Processing Activity Description </th>-->
 <!--                                   <th scope="col">Categories of Data Subjects</th>-->
 <!--                                   <th scope="col">Categories of Personal Data</th>-->
@@ -323,7 +323,7 @@
                               <tr>
                                   <td scope="row" id='Myvar2' onclick="Mybtn2('{{temp.ropamainid}}')" class="first-column tab-text">{{temp.ropaid}}</td>
 <!--                                  <td>{{ temp.businessfunc }}</td>-->
-<!--                                  <td>{{ temp.processingactivityname }}</td>-->
+                                  <td>{{ temp.processingactivityname }}</td>
 <!--                                  <td>{{ temp.processingactivitydesc }}</td>-->
 <!--                                  <td>{{ temp.categoriesdatasubjects }}</td>-->
 <!--                                  <td>{{ temp.categoriespersonaldata }}</td>-->
@@ -468,7 +468,7 @@
     <form method="POST" id="edit_form" class="ropa_form_edit" action="workflow_ropa">
          {% csrf_token %}
         <div id="myModal2" class="modal2" style="overflow-x: hidden;overflow-y: scroll; margin-top:0px; overflow-y: scroll;">
-          <div class="rect-4" style="min-height:800px; width:760px;margin-left:25%; margin-top:-90px; ">
+          <div class="rect-4" style="min-height:880px; width:760px;margin-left:25%; margin-top:-90px; ">
               <span class="close_edit2" >&times;</span>
             <div style="position:absolute; left:4%; padding-right: 5%;">
                 <div>
@@ -534,7 +534,7 @@
                     <label for="inputPassword" class="label-top" style="width:300px; ">Safeguards for exceptional transfers of personal data for above (If applicable)</label>
                     <input type="text" name="safeguardsexternaltransfers" id="safeguardsexternaltransfers_edit" style="margin-top: 5%; width:300px;background-color:#F4F4F4;" class="input-master" placeholder=" Type something " readonly>
                </div>
-                <div class="input-1 col" style="left: 95%; margin-top: -13%;">
+                <div class="input-1 col" style="left: 95%; margin-top: -18%;">
                     <label for="inputPassword" class="label-top" style="width: 300px; font-size:12px; ">Label General description of technical and organizational security measures (if applicable)</label>
                     <input style="margin-top: 5%; width:300px;background-color:#F4F4F4;" type="text" name="securitymeasures_desc" id="securitymeasures_desc_edit" class="input-master"  placeholder=" Type something" readonly>
                 </div>
@@ -542,13 +542,13 @@
                     <label for="inputPassword" class="label-top" style=" width: 300px;font-size:12px;">Links to contracts, consents, breach records, assessments</label>
                     <input style="margin-top: 5%; width: 320px;background-color:#F4F4F4;" type="text" name="linkscontracts" id="linkscontracts_edit" class="input-master" placeholder=" Contract link with the processor organization " readonly>
                 </div>
-                <div class="input-1 col" style="left: -2%; margin-top: -17%;">
+                <div class="input-1 col" style="left: -2%; margin-top: -15%;">
                         <label for="inputPassword" class="label-top" style=" width: 100px;font-size:12px;">Status</label>
-                        <input style="margin-top: 5%; width: 320px;background-color:#F4F4F4;" type="text" name="status" id="ropa_status_edit" class="input-master" placeholder=" Awaiting Approval " readonly>
+                        <input style="margin-top: 2%; width: 320px;background-color:#F4F4F4;" type="text" name="status" id="ropa_status_edit" class="input-master" placeholder=" Awaiting Approval " readonly>
                 </div>
-                <div class="input-1 col" style="left: -2%; margin-top: -17%;">
+                <div class="input-1 col" style="left: -2%; margin-top: 10%;">
                         <label for="inputPassword" class="label-top" style=" width: 100px;font-size:12px;">Comments</label>
-                        <input style="margin-top: 5%; width: 320px;background-color:#F4F4F4;" type="text" name="comments" id="ropa_comments_edit" class="input-master" placeholder=" Awaiting Approval " readonly>
+                        <input style="margin-top: 2%; width: 320px;background-color:#F4F4F4;" type="text" name="comments" id="ropa_comments_edit" class="input-master" placeholder=" Awaiting Approval " readonly>
                 </div>
 
                     <input type="text" name="ropaid"  id="ropaid_edit" placeholder="lorem ipsum" style="display:none">
