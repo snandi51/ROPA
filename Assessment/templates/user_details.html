@@ -13,7 +13,8 @@
       dpo1_name.disabled = false;
 
       var dpo1_email = document.getElementById('dpo1_email')
-      dpo1_email.style.backgroundColor = 'white';
+      dpo1_email.style.back
+      groundColor = 'white';
       dpo1_email.disabled = false;
 
       var dpo1_telephone = document.getElementById('dpo1_telephone')
@@ -108,7 +109,7 @@
 </script>
 <script>
   function ColorChange() {
-    if (document.getElementById("address").value == "") {
+    if (document.getElementById("dpo1_address").value == "") {
       var x = document.getElementById("save_btn").style.background = "#12ABDB";
       document.getElementById("save_btn").style.color = "white";
       document.getElementById("save_btn").style.border = "#0C7799";
@@ -129,11 +130,9 @@ padding-top: 100px;">
   <!-- Form Name -->
 
 
-  <form method="POST" id="screen_1_form" class="form-horizontal" action="user">
-    {% csrf_token %}
-     <div class="alt-nav" style="width:100%;height:80px;">
-        <p style="margin-left:180px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;"><a href="{% url 'dashboard' %}" style="text-decoration:none;color:black;"><img src="static/assets/img/Icon.png"></a> User Details </p>
-     </div>
+   <div class="alt-nav" style="width:100%;height:80px;">
+      <p style="margin-left:180px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;"><a href="{% url 'dashboard' %}" style="text-decoration:none;color:black;"><img src="static/assets/img/Icon.png"></a> User Details </p>
+   </div>
     <div class="rect-4" style=" width:850px;height:auto; ">
     <!-- <div class="rect-4" style="min-height:1025px; width:850px; margin-top:-15px;">
       <div style="position:absolute; left:4%; padding-right: 5%;">
@@ -182,127 +181,110 @@ padding-top: 100px;">
 
       <div class="form-group">
         <div style="padding-top: 0px;">
-          <label class="controller" style="left:3%; top:2%;" name="">Controller/Processor Details</label>
+          <label class="controller" style="left:3%; top:2%;" name="">Controller/ Processor Details</label>
         </div>
         <div class="col">
-          <label class="con" style="margin-left:30px; font-size: 12px;margin-top: 3rem;" name="ropaty"> User Type
-          </label>
+          <label class="con" style="margin-left:26px; font-size: 12px;margin-top: 3rem;font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;" name="ropaty"> User Type</label>
+          <input type="text" class="input-master" id="sap" name="ropaty1" placeholder=" {{user_dict.ropaty}}" style="font-size: 12px; margin-left:20px;width: 140px;background-color: #F4F4F4;" readonly>
 
-          <div class="con" style="font-size: 14px; width: 750px; margin-left: -20px; margin-top: -14px;">
-            <input type="radio" style="margin-left:48px;" id="sap" value="Controller" onchange="toggleInputHide()"
-              name="ropaty1">Controller
-            <input type="radio" id="sap" value="Processor" onchange="toggleInputHide()" name="ropaty1">Processor
-          </div>
+<!--          <div class="con" style="font-size: 14px; width: 750px; margin-left: -20px; margin-top: -14px;">-->
+<!--&lt;!&ndash;            <input type="radio" style="margin-left:48px;" id="sap" value="Controller" onchange="toggleInputHide()"&ndash;&gt;-->
+<!--&lt;!&ndash;              name="ropaty1">Controller&ndash;&gt;-->
+<!--            <input type="text" id="sap" name="ropaty1" placeholder="{{user_dict.ropaty}}" style="margin-left:45px;" readonly>-->
+<!--          </div>-->
+          <div style="margin-top:2%;">
+            <div class="input-1 col " style="left: 3%;">
+              <label for="inputPassword" class="label-top">Name</label>
+              <input type="text" style="margin-top: 5px;background-color: #F4F4F4;" name="name" class="input-master" id="name"
+                placeholder=" {{user_dict.name}}" readonly>
+            </div>
 
-          <div class="input-1 col " style="left: 3%;">
-            <label for="inputPassword" class="label-top">Name</label>
-            <input type="text" style="margin-top: 5px;" name="name" class="input-master" id="name"
-              placeholder=" Name of Organization">
-          </div>
+            <div class="input-1 col" style="left: 35%;">
 
-          <div class="input-1 col" style="left: 35%;">
-            <!--        <label for="inputPassword" class="label-top">Project Name</label>-->
-            <!--        <input style="margin-top: 5px;" type="text" name="role" class="input-master" id="inputPassword" placeholder="eg: Project name"-->
-            <!--          required>-->
+              <label for="inputPassword" class="label-top" style="width: 140px;">Telephone </label>
+              <input style="margin-top: 5px;background-color: #F4F4F4;" type="text" name="telephone" class="input-master" id="telephone" placeholder=" {{user_dict.telephone}}" readonly>
+            </div>
 
-            <label for="inputPassword" class="label-top" style="width: 140px;">Telephone </label>
-            <input style="margin-top: 5px;" type="text" name="telephone" class="input-master" id="telephone"
-              placeholder=" 044-71117006">
-          </div>
-
-          <div class="input-1 col " style="left: 3%; margin-top:4rem">
-            <label for="inputPassword" class="label-top">Email</label>
-            <input type="text" name="email" style="margin-top: 5px;" class="input-master" id="email"
-              placeholder=" johndoe@capgemini.com">
-          </div>
-
+            <div class="input-1 col " style="left: 3%; margin-top:4rem">
+              <label for="inputPassword" class="label-top">Email</label>
+              <input type="text" name="email" style="margin-top: 5px;background-color: #F4F4F4;" class="input-master" id="email" placeholder=" {{user_dict.email}}" readonly>
+            </div>
 
 
-          <div class="input-1 col" style="left: 35%; margin-top: 4rem;">
-            <!--        <label for="inputPassword" class="label-top">Department</label>-->
-            <!--        <input style="margin-top: 5px;" type="text" name="department" class="input-master" id="inputPassword" placeholder="eg: IT" required>-->
-            <label for="inputPassword" class="label-top" style=" width: 140px;">Address</label>
-            <input onclick="ColorChange()"  style="margin-top: 5px; width: 282px;" type="text" name="address" class="input-master" id="address"
-              placeholder=" Whitefield, Bangalore, 560036">
+
+            <div class="input-1 col" style="left: 35%; margin-top: 4rem;">
+              <!--        <label for="inputPassword" class="label-top">Department</label>--><!--        <input style="margin-top: 5px;" type="text" name="department" class="input-master" id="inputPassword" placeholder="eg: IT" required>-->
+              <label for="inputPassword" class="label-top" style=" width: 140px;">Address</label>
+              <input style="margin-top: 5px; width: 282px;background-color: #F4F4F4;" type="text" name="address" class="input-master" id="address" placeholder=" {{user_dict.address}}" readonly>
+            </div>
           </div>
 
           <div class="form-group">
             <div class="input-1 col " style="left: 3%; margin-top: 10rem;">
-              <div>
-                <input type="checkbox" id="dpo1" onclick="dpo_1()" name="dpo1" value="dpo">
+              <div >
+                <input type="checkbox" id="dpo1" onclick="dpo_1()" name="dpo1" value="dpo" disabled>
                 <label class="dpo" style="top:30%;">DPO (If applicable)</label>
               </div>
 
               <label for="inputPassword" class="label-top">Name</label>
-              <input type="text" style="margin-top: 5px; background-color: #F4F4F4;" name="dpo_name"
-                class="input-master" id="dpo1_name" placeholder=" John Doe" disabled>
+              <input type="text" style="margin-top: 5px; background-color: #F4F4F4;" name="dpo_name"  class="input-master" id="dpo1_name" placeholder=" {{user_dict.dpo_name}}" disabled>
             </div>
 
             <div class="input-1 col" style="left: 35%; margin-top: 11rem;">
-
               <label for="inputPassword" class="label-top" style="width: 140px;">Telephone </label>
-              <input style="margin-top: 5px; margin-top: 5px; background-color: #F4F4F4;" type="text"
-                name="dpo_telephone" class="input-master" id="dpo1_telephone" placeholder=" 044-71117006" disabled>
+              <input style="margin-top: 5px; margin-top: 5px; background-color: #F4F4F4;" type="text" name="dpo_telephone" class="input-master" id="dpo1_telephone" placeholder=" {{user_dict.dpo_phone}}" disabled>
             </div>
 
             <div class="input-1 col " style="left: 3%; margin-top: 15rem;">
               <label for="inputPassword" class="label-top">Email</label>
-              <input type="text" style="margin-top: 5px; background-color: #F4F4F4;" name="dpo_email"
-                style="margin-top: 5px;" class="input-master" id="dpo1_email" placeholder=" johndoe@capgemini.com"
-                disabled>
+              <input type="text" style="margin-top: 5px; background-color: #F4F4F4;" name="dpo_email" style="margin-top: 5px;" class="input-master" id="dpo1_email" placeholder=" {{user_dict.dpo_email}}" disabled>
             </div>
-
-
 
             <div class="input-1 col" style="left: 35%; margin-top: 15rem;">
               <label for="inputPassword" class="label-top" style=" width: 140px;">Address</label>
-              <input style="margin-top: 5px; width: 282px; margin-top: 5px; background-color: #F4F4F4;" type="text"
-                name="dpo_address" class="input-master" id="dpo1_address" placeholder=" Whitefield, Bangalore, 560036"
-                onclick="ColorChange()" disabled>
+              <input style="margin-top: 5px; width: 282px; margin-top: 5px; background-color: #F4F4F4;" type="text" name="dpo_address" class="input-master" id="dpo1_address" placeholder="{{user_dict.dpo_address}}" onclick="ColorChange()" disabled>
             </div>
 
             <div class="form-group">
               <div class="input-1 col " style="left: 3%; margin-top: 22rem;">
                 <div style="padding-top: 2%;">
-                  <input type="checkbox" id="rep" name="rep1" onclick="rep_1()" value="repr">
+                  <input type="checkbox" id="rep" name="rep1" onclick="rep_1()" value="repr" disabled>
                   <lable class="dpo" style="margin-top:400px;">Representative (If applicable)</lable>
                 </div>
 
                 <label for="inputPassword" class="label-top">Name</label>
-                <input type="text" style="margin-top: 5px; background-color: #F4F4F4;" name="rep_name"
-                  class="input-master" id="rep1_name" placeholder=" John Doe" disabled>
+                <input type="text" style="margin-top: 5px; background-color: #F4F4F4;" name="rep_name" class="input-master" id="rep1_name" placeholder=" {{user_dict.rep_name}}" disabled>
               </div>
 
               <div class="input-1 col" style="left: 35%; margin-top: 23rem;">
-
                 <label for="inputPassword" class="label-top" style="width: 140px;  ">Telephone </label>
-                <input style="margin-top: 5px; background-color: #F4F4F4;" type="text" name="rep_telephone"
-                  class="input-master" id="rep1_telephone" placeholder=" 044-71117006" disabled>
+                <input style="margin-top: 5px; background-color: #F4F4F4;" type="text" name="rep_telephone" class="input-master" id="rep1_telephone" placeholder=" {{user_dict.rep_phone}}" disabled>
               </div>
 
               <div class="input-1 col " style="left: 3%; margin-top: 28rem;">
                 <label for="inputPassword" class="label-top">Email</label>
-                <input type="text" name="rep_email" style="margin-top: 5px; background-color: #F4F4F4;"
-                  class="input-master" id="rep1_email" placeholder=" johndoe@capgemini.com" disabled>
+                <input type="text" name="rep_email" style="margin-top: 5px; background-color: #F4F4F4;" class="input-master" id="rep1_email" placeholder=" {{user_dict.rep_email}}" disabled>
               </div>
 
 
               <div class="input-1 col" style="left: 35%; margin-top: 28rem;">
                 <label for="inputPassword" class="label-top" style=" width: 140px;">Address</label>
-                <input style="margin-top: 5px; width: 282px; background-color: #F4F4F4;" type="text" name="rep_address"
-                  class="input-master" id="rep1_address" placeholder=" Whitefield, Bangalore, 560036 " disabled>
+                <input style="margin-top: 5px; width: 282px; background-color: #F4F4F4;" type="text" name="rep_address" class="input-master" id="rep1_address" placeholder=" {{user_dict.rep_address}} " disabled>
               </div>
             </div>
 
 
-            <button type="submit"
-              style="margin-top:36rem; position: static; margin-left: 28px; width:220px; height:30px; border:1px solid #0C7799; border-radius:4px;color: rgba(255, 255, 255, 0.95);background: rgba(39, 41, 54, 0.22); disabled"
-              id="save_btn">Save</button>
+            <button type="button"
+              style=" margin-top:36rem; position: static; margin-left: 28px; width:220px; height:30px; border:1px solid #0C7799; border-radius:4px;color: rgba(255, 255, 255, 0.95);background: rgba(39, 41, 54, 0.22); "
+              id="save_btn" disabled>Save</button>
               <div style="padding-bottom:29px;"></div>
           </div>
         </div>
     </div>
-  </form>
 </div>
 
 </body>

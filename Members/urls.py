@@ -39,4 +39,5 @@ urlpatterns = [
     path('map_role', member_views.map_role, name='map_role'),
     path('bfunction', member_views.bfunction, name='bfunction'),
     path('error_data', member_views.error_data, name='error_data'),
+    path('user_details', member_views.user_details, name='user_details'),
  ]
