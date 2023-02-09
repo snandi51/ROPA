@@ -245,8 +245,16 @@
 
 
 <div class="alt-nav" style="width:100%;height:80px;">
-    <p style="margin-left:180px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;" onclick="history.back()"><a href="{% url 'dashboard' %}" style="text-decoration:none;color:black;"><img src="static/assets/img/Icon.png"></a> Business Function Head Notification </p>
-<!--        <p style="margin-left:180px;margin-bottom:143px;margin-top:28px;font-weight: 500;line-height: 28px;font-size: 24px;"><span class="back-arrow" onclick="history.back()">&#60; </span> Business Function Head </p><br>-->
+
+<!--    <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 210px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>-->
+<!--      <a href="javascript:;"  style="margin-left: 160px;margin-top:30px;"><img src="static/assets/img/Icon.png" onclick="history.back()"></a>-->
+<!--      <p class="" style=" margin-left:160px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;">Business Glossary<b></b></p>-->
+      {% if output == 'Processor' %}
+        <p style="margin-left:180px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;"><a href="{% url 'processor_dashboard' %}" style="text-decoration:none;color:black;"><img src="static/assets/img/Icon.png"></a> Business Function Head Notification </p>
+      {% else %}
+        <p style="margin-left:180px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;"><a href="{% url 'dashboard' %}" style="text-decoration:none;color:black;"><img src="static/assets/img/Icon.png"></a> Business Function Head Notification </p>
+      {% endif %}
+
 </div>
 <!--    <button type="button" onclick="history.back()" style="display: none;" id="back-btn"></button>-->
 <!--    <a href="introduction" style="color:Green; margin-left:90px;" onclick="document.getElementById('back-btn').click()" alt="Back"><img src="static/assets/img/Icon.png" />Back</a>-->

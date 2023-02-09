@@ -2712,3 +2712,19 @@ align-self: stretch;
     background: #EBEBEB;
 }
 
+
+.tab-text{
+    font-size: 12px;
+    font-family: 'Ubuntu';
+    color: black;
+}
+
+.tab-header{
+    font-size: 12px;
+    font-weight: 500;
+    font-family: 'Ubuntu';
+    color: black;
+}
+
+
+

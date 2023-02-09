@@ -14,6 +14,7 @@ from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import Group
 # from Assessment.views import group_required
+from IPython.display import display, HTML
 
 
 def login_user(request):
@@ -45,7 +46,7 @@ def login_user(request):
             print(bg_dict['ropaty'])
             output = bg_dict['ropaty']
             print(output)
-
+            request.session['output'] = output
             if output is not None:
                 if output == 'Processor':
                     print(output, 'function inner dashboard')
@@ -65,7 +66,7 @@ def login_user(request):
     return render(request, 'login.html')
 
 
-# @login_required
+@login_required
 def logout_user(request):
     logout(request)
     return render(request, 'logout.html')
@@ -138,6 +139,7 @@ def user(request):
 
         output = bg_dict['ropaty']
         print('Ropa Type:', output)
+        request.session['output'] = output
         if output is not None:
             if output == 'Processor':
                 print(output, 'function inner dashboard')
@@ -251,6 +253,7 @@ def test(request):
         dataclassification_list = request.POST.getlist('dataclassification')
         print(dataclassification_list)
         dataclassification = ' , '.join([str(elem) for elem in dataclassification_list])
+        dataclassification = dataclassification.upper()
         print(dataclassification)
 
         createdby = request.POST.get('createdby')
@@ -264,8 +267,19 @@ def test(request):
 
     result = BgMain.objects.all()
     bg1 = pd.DataFrame(list(BgMain.objects.all().values()))
-    # bg1 = pd.DataFrame(list(BgMain.objects.all().values('businessterm', 'definition', 'dataattribute', 'system', 'datadomain', 'lineofbusiness', 'status')))
-    bg1.to_csv('Assessment/static/assets/bs_glossary_df.csv', index=False)
+    # bg1 = pd.DataFrame(list(BgMain.objects.all().values('businessterm', 'definition','dataclassification', 'dataattribute', 'system', 'datadomain', 'lineofbusiness', 'status', 'createdby')))
+    # bg1 = bg1.drop(['bgid'])
+    # bg2 = pd.DataFrame(bg1)
+    bg2 = bg1.copy()
+    # bg1 = bg1.rename(columns={'businessterm': 'business_term', 'dataclassification': 'data_classification',
+    #                           'datadomain': 'data_domain', 'lineofbusiness':'line_of_business', 'createdby':'created_by'}, inplace=True)
+    bg2.columns = bg2.columns.str.replace('businessterm', 'business_term')
+    bg2.columns = bg2.columns.str.replace('dataclassification', 'data_classification')
+    bg2.columns = bg2.columns.str.replace('datadomain', 'data_domain')
+    bg2.columns = bg2.columns.str.replace('lineofbusiness', 'line_of_business')
+    bg2.columns = bg2.columns.str.replace('createdby', 'created_by')
+    bg2.columns = bg2.columns.str.replace('dataattribute', 'data_attribute')
+    bg2.to_csv('Assessment/static/assets/bs_glossary_df.csv', index=False)
     # a=len(bg)
     bg = bg1.sort_values(by='update_timestamp', ascending=False)
     bg_dict = bg.to_dict('records')
@@ -278,10 +292,14 @@ def test(request):
     # import ipdb
     # ipdb.set_trace()
 
+    output = request.session.get('output')
+
     context = {
             'bga': result,
-            'bg_dict': bg_dict
-             }
+            'bg_dict': bg_dict,
+            'output': output
+
+     }
     stored_proc(request)
 
     return render(request, 'test.html', context)
@@ -311,6 +329,7 @@ def edit(request):
         dataclassification_list = request.POST.getlist('dataclassification')
         print(dataclassification_list)
         dataclassification = ' , '.join([str(elem) for elem in dataclassification_list])
+        dataclassification = dataclassification.upper()
         print(dataclassification)
 
         # Id maapping with database then form updated data save to variables
@@ -462,6 +481,7 @@ def record(request):
         categoriespersonaldata_list = request.POST.getlist('categoriespersonaldata')
         print(categoriespersonaldata_list)
         categoriespersonaldata = ' , '.join([str(elem) for elem in categoriespersonaldata_list])
+        categoriespersonaldata = categoriespersonaldata.upper()
         print(categoriespersonaldata)
         lawfulbasisofprocessing = request.POST.get('lawfulbasisofprocessing')
         dataprocessor = request.POST.get('dataprocessor')
@@ -520,13 +540,87 @@ def record(request):
                                                                 'categoriesofrecepients', 'lawfulbasisofprocessing', 'dataprocessor',
                                                                 'retentionschedule', 'linkcontractprocessor', 'countriesdetailstransferred',
                                                                 'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts', 'update_timestamp')))
-    # ropa_main1 = pd.DataFrame(list(RopaMain.objects.all().values('ropaid', 'businessfunc', 'processingactivityname','processingactivitydesc',
-    #                                                              'categoriesdatasubjects', 'categoriespersonaldata', 'status')))
-    ropa_main1.to_csv('Assessment/static/assets/data_record_excel.csv', index=False)
+    ropa_csv = pd.DataFrame(list(RopaMain.objects.all().values('ropaid', 'businessfunc', 'processingactivityname','processingactivitydesc',
+                                                                'categoriesdatasubjects', 'categoriespersonaldata', 'status', 'controllername',
+                                                                'categoriesofrecepients', 'lawfulbasisofprocessing', 'dataprocessor',
+                                                                'retentionschedule', 'linkcontractprocessor', 'countriesdetailstransferred',
+                                                                'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts')))
+    ropa_csv = ropa_csv.drop(['ropaid'], axis=1)
+    # style = ropa_csv.style.set_table_styles(
+    #     [{"selector": "", "props": [("border", "1px solid grey")]},
+    #      {"selector": "tbody td", "props": [("border", "1px solid grey")]},
+    #      {"selector": "th", "props": [("border", "1px solid grey")]}
+    #      ])
+    # ropa_csv.style.set_table_styles(style).to_csv('Assessment/static/assets/data_record_excel.csv', index=False)
+    table1 = ropa_csv.style.set_precision(2).background_gradient().hide_index().to_excel('Assessment/static/assets/data_record_excel1.xlsx', engine='openpyxl')
     ropa_main = ropa_main1.sort_values(by='update_timestamp', ascending=False)
     # a=len(bg)
     ropa_dict = ropa_main.to_dict('records')
     # print('ropa_dict:', ropa_dict)
+
+    user_id = request.user.id
+    user_detail = pd.DataFrame(list(RopaType.objects.all().values().filter(userid=user_id)))
+    user_detail = user_detail.drop(['ropaid', 'userid_id', 'ropaty', 'country_code', 'dpo_country_code', 'rep_country_code'], axis=1)
+    table2 = user_detail.style.set_precision(2).background_gradient().hide_index().to_excel('Assessment/static/assets/data_record_excel2.xlsx', engine='openpyxl')
+
+    # result = pd.concat([ropa_table, user_table])
+    # table_combined = ropa_csv.merge(user_detail, left_on='ropaid', right_on='ropaid', how='left')
+    # table_combined =  user_detail.append(ropa_csv, ignore_index = True)
+    # table_combined.to_excel("Assessment/static/assets/data_record_excel3.xlsx", index=False)
+
+    # writer = pd.ExcelWriter(r'Assessment/static/assets/data_record_excel.xlsx', engine='xlsxwriter')
+    # table_combined.to_excel(writer, index=False, sheet_name='report')
+
+    # workbook = writer.book
+    # worksheet = writer.sheets['report']
+
+    writer = pd.ExcelWriter('Assessment/static/assets/data_record_excel.xlsx', engine='xlsxwriter')
+    workbook = writer.book
+    worksheet = workbook.add_worksheet('report')
+    writer.sheets['report'] = worksheet
+
+    user_detail.to_excel(writer, sheet_name='report', startrow=2, startcol=0)
+    ropa_csv.to_excel(writer, sheet_name='report', startrow=8, startcol=0)
+    # Now we have the worksheet object. We can manipulate it
+    worksheet.set_zoom(90)
+    #header formatting
+    header_format = workbook.add_format({
+        "valign": "vcenter",
+        "align": "center",
+        "bg_color": "#951F06",
+        "bold": True,
+        'font_color': '#FFFFFF',
+        'border': 1,
+        'border_color': ''  # D3D3D3'
+    })
+    # Full border formatting for conditional formatted cells
+    full_border = workbook.add_format({"border": 1, "border_color": "#D3D3D3"})
+    # add title
+    title = "Controller "
+    title2 = 'Records of Processing Activity'
+    # merge cells
+    format = workbook.add_format()
+    format.set_font_size(20)
+    format.set_font_color("#333333")
+    #
+    subheader = "Article 30 Record of Processing Activities"
+    subheader1 = 'Name and contact details'
+    subheader2 = 'Data Protection Officer (if applicable)'
+    subheader3 = 'Representative (if applicable)'
+    worksheet.merge_range('A1:M1', title, format)
+    worksheet.merge_range('A7:Q7', title2, format)
+    worksheet.merge_range('A8:E8', subheader)
+    worksheet.merge_range('A2:E2', subheader1)
+    worksheet.merge_range('F2:I2', subheader2)
+    worksheet.merge_range('J2:M2', subheader3)
+    worksheet.set_row(2, 15)  # Set the header row height to 15
+    # puting it all together
+    # Write the column headers with the defined format.
+    # for col_num, value in enumerate(writer.columns.values):
+    #     # print(col_num, value)
+    #     worksheet.write(2, col_num, value, header_format)
+
+    writer.save()
 
     for i in ropa_dict:
         i.update({'create_timestamp': str(i.get('create_timestamp'))})
@@ -543,11 +637,13 @@ def record(request):
 
     distinct_values = BgMain.objects.order_by().values('businessterm').distinct()
     print(distinct_values)
+
+    output = request.session.get('output')
     context = {
-        'distinct_values':distinct_values,
+        'distinct_values': distinct_values,
         'result': result,
         'ropa_dict': ropa_dict,
-
+        'output': output
     }
     return render(request, 'record.html', context)
 
@@ -570,6 +666,7 @@ def ropa_edit(request):
         categoriespersonaldata_list = request.POST.getlist('categoriespersonaldata')
         print(categoriespersonaldata_list)
         categoriespersonaldata = ' , '.join([str(elem) for elem in categoriespersonaldata_list])
+        categoriespersonaldata = categoriespersonaldata.upper()
         print(categoriespersonaldata)
 
         lawfulbasisofprocessing = request.POST.get('lawfulbasisofprocessing')
@@ -754,7 +851,7 @@ def workflow_dashboard(request):
     print(dahboard_df)
     print(dahboard_df['name'].to_string(index=False))
     result = dahboard_df['name'].to_string(index=False)
-
+    output = request.session.get('output')
     if result == "Business Function Head":
         if request.method == 'POST':
             ropa_main = pd.DataFrame(
@@ -834,7 +931,8 @@ def workflow_dashboard(request):
             'bga': result,
             'bg_dict': bg_dict,
             'result1': result1,
-            'ropa_dict': ropa_dict
+            'ropa_dict': ropa_dict,
+            'output' :output
         }
         return render(request, 'bfh_tab.html', context)
     elif result == "DPO":
@@ -869,7 +967,8 @@ def workflow_dashboard(request):
 
         context = {
             'bg_dict': bg_dict,
-            'ropa_dict': ropa_dict
+            'ropa_dict': ropa_dict,
+            'output': output
         }
         return render(request, 'dpo_tab.html', context)
     elif result == "Data Steward":
@@ -902,7 +1001,8 @@ def workflow_dashboard(request):
 
         context = {
             'bg_dict': bg_dict,
-            'ropa_dict': ropa_dict
+            'ropa_dict': ropa_dict,
+            'output': output
         }
         return render(request, 'data_steward_tab.html', context)
     else:
@@ -1266,13 +1366,14 @@ def admin_screen(request):
             print('Failure', a)
 
         print('success', success)
-
+        output = request.session['output']
         context = {
             'success': success,
             'result': result,
             'result1': result1,
             'result2': result2,
             'result3': result3,
+            'output': output
         }
         return render(request, 'upload_screen.html', context)
 
@@ -1318,7 +1419,7 @@ def map_role(request):
 
         if a is not None:
             print('Success', a)
-            success = '1';
+            success = '1'
         else:
             print('Failure', a)
 
@@ -1352,8 +1453,6 @@ def bfunction(request):
                     description=imported_data["description"][count])])
             print(a)
             count += 1
-
-
 
         if a is not None:
             print('Success', a)
@@ -1410,7 +1509,6 @@ def up_screen(request):
                 count += 1
 
             except:
-
                 return render(request, 'error_data.html')
 
         if a is not None:
@@ -1455,11 +1553,15 @@ def map_role(req):
 def user_details(request):
     print('inside user details page')
     user_id = request.user.id
+    # group = Group.objects.get(id=user_id)
+    # print('group', group)
     user_detail = pd.DataFrame(list(RopaType.objects.all().values().filter(userid=user_id)))
     user_dict = user_detail.to_dict('records')[0]
     print('user_dict', user_dict)
+    output = request.session['output']
     context = {
-        'user_dict': user_dict
+        'user_dict': user_dict,
+        'output': output
     }
     return render(request, 'user_details.html', context)
 
