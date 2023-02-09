@@ -348,12 +348,18 @@
 </script>
 <body class="body-class" style="overflow-y: hidden; overflow-x: hidden;">
   <!-- The dots/circles -->
-    <div class="alt-nav" style="width:1372px;height:80px">
-<!--        <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 176px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>-->
-        <p style="margin-left:170px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;" onclick="history.back()"><a href="{% url 'dashboard' %}" style="text-decoration:none;color:black;"><img src="static/assets/img/Icon.png"></a> Records Register </p>
-        <p style="padding-left:212px;padding-bottom:143px;padding-top:0px;"> </p>
+    <div class="alt-nav" style="width:100%;height:80px;">
+
+<!--    <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 210px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>-->
+<!--      <a href="javascript:;"  style="margin-left: 160px;margin-top:30px;"><img src="static/assets/img/Icon.png" onclick="history.back()"></a>-->
+<!--      <p class="" style=" margin-left:160px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;">Business Glossary<b></b></p>-->
+        {% if output == 'Processor' %}
+            <p style="margin-left:180px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;"><a href="{% url 'processor_dashboard' %}" style="text-decoration:none;color:black;"><img src="static/assets/img/Icon.png"></a> Record Register </p>
+        {% else %}
+            <p style="margin-left:180px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;"><a href="{% url 'dashboard' %}" style="text-decoration:none;color:black;"><img src="static/assets/img/Icon.png"></a> Record Register </p>
+        {% endif %}
     </div>
-    <div class="login-box scroll" style="top:165px;left:90px; width:1070px;height:500px; ">
+    <div class="login-box scroll" style="top:165px;left:90px; width:1070px;height:380px; ">
         <input type="text" name="search" placeholder="Search.." class="search" id="myInput" onkeyup="myFunction()">
         <input type="text" name="filter" style="width:108px;border: 2px solid #ccc; margin-left:16px; box-sizing: border-box; height:40px;" placeholder="   Filter        &#x25BC;" class="Filterbox " >
         <select onchange="pdf_or_excel()" name="cars" id="cars" style="width:168px; height:40px;border: 2px solid #ccc; margin-right:5px; margin-left:280px;">
@@ -364,7 +370,7 @@
        <button class="Addnew-button" style="margin-left:920px; margin-top:-39px;" id="myBtn"  >
            <span style="font-size:30px; margin-right:10px;">&plus; </span>  Add New
         </button>
-        <a href="static/assets/data_record_excel.csv" id="download_csv" download hidden>download</a>
+        <a href="static/assets/data_record_excel.xlsx" id="download_csv" download hidden>download</a>
         <div class="table" style="margin-top:15px;">
             <table id="mTable" class="paginated table table-striped table-hover" style="margin-left:24px;width:1020px;background: #E0E0E0;">
               <thead>
@@ -381,7 +387,7 @@
                 <tbody>
                  {% for temp in ropa_dict %}
                     <tr>
-                        <td scope="row" id='Myvar' onclick="Mybtn1('{{temp.ropamainid}}')" class="first-column tab-text">{{temp.ropaid}}</td>
+                        <td scope="row" id='Myvar' onclick="Mybtn1('{{temp.ropamainid}}')" class="first-column tab-text"><u>{{temp.ropaid}}</u></td>
                         <td class="tab-text">{{ temp.businessfunc }}</td>
                         <td class="tab-text">{{ temp.processingactivityname }}</td>
                         <td class="tab-text">{{ temp.processingactivitydesc }}</td>
@@ -481,84 +487,91 @@
                 </div>
                 <div style="margin-top:2%">
                     <div class="input-1 col " style="left: -1%; margin-top:15%">
-                        <label for="inputPassword" class="label-top" style="width: 200px;" >Process Activity Name</label>
-                        <input type="text" style=" width:300px; margin-top: -2%;" name="processingactivityname" id="processingactivityname_add" class="input-master"  placeholder=" Marketing activities and communications " >
+                        <label for="inputPassword" class="label-top" style="width: 200px;color: rgba(39, 41, 54, 0.85);" >Process Activity Name</label>
+                        <input type="text" style="width:300px; margin-top: -2%;" name="processingactivityname" id="processingactivityname_add" class="input-master"  placeholder=" Marketing activities and communications " >
                     </div>
                     <div class="input-1 col " style="left: -1%; margin-top:5%">
-                        <label for="inputPassword" class="label-top" style="width: 200px; font-size:12px; ">Categories of Data Subjects</label>
-                        <input type="text" name="categoriesdatasubjects" id="categoriesdatasubjects_add" style="margin-top: -2%; width:300px;" class="input-master"  placeholder=" Clinet,Custmoer,etc " >
+                        <label for="inputPassword" class="label-top" style="color: rgba(39, 41, 54, 0.85);width: 200px; font-size:12px; ">Categories of Data Subjects</label>
+                        <input type="text" name="categoriesdatasubjects" id="categoriesdatasubjects_add" style="margin-top: -2%; width:300px;" class="input-master"  placeholder=" Client, Customer etc " >
                     </div>
                     <div class="input-1 col" style="left: 95%; margin-top:-35% ">
-                        <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px;">Business Function  </label>
+                        <label for="inputPassword" class="label-top" style="color: rgba(39, 41, 54, 0.85);width: 140px; font-size:12px;">Business Function  </label>
                         <input style="margin-top:-2%; width:300px;" type="text" name="businessfunc" id="businessfunc_add" class="input-master" placeholder=" Finance, HR, Marketing " >
                     </div>
                     <div class="input-1 col" style="left: 95%;margin-top:8% ">
-                        <label for="inputPassword" class="label-top" style=" width: 200px;font-size:12px;">Process Activity Description</label>
+                        <label for="inputPassword" class="label-top" style="color: rgba(39, 41, 54, 0.85); width: 200px;font-size:12px;">Process Activity Description</label>
                         <input style="margin-top: -2%;width:300px; height:50px;" type="text" name="processingactivitydesc" id="processingactivitydesc_add" class="input-master"  placeholder=" Description of processing activity in detail " >
                     </div>
                         <div class="input-1 col " style="left: -2%; margin-top:12%">
-                            <label for="inputPassword" class="label-top" style="width:250px;">Name and Contact Details of Joint Controller</label>
+                            <label for="inputPassword" class="label-top" style="color: rgba(39, 41, 54, 0.85);width:250px;">Name and Contact Details of Joint Controller</label>
                             <input type="text" style="height:52px; width:300px;margin-top: 2%;" name="controllername" id="controllername_add" class="input-master"  placeholder=" Name of the controller organization " >
                          </div>
                      </div>
                     <div class="input-1 col" style="left: 95%; margin-top:-13%;">
-                        <label for="inputPassword" class="label-top" style="width: 200px; font-size:12px;">Categories of Recipients </label>
+                        <label for="inputPassword" class="label-top" style="color: rgba(39, 41, 54, 0.85);width: 200px; font-size:12px;">Categories of Recipients </label>
                         <input style="margin-top: -2px; width:300px; height:52px;" type="text" name="categoriesofrecepients" id="categoriesofrecepients_add" class="input-master"  placeholder=" Type something " >
                      </div>
                     <div class="input-1 col" style="left: 95%;  margin-top:10%;">
-                        <label for="inputPassword" class="label-top" style=" width: 200px;font-size:12px;;">Categories of Personal Data</label>
+                        <label for="inputPassword" class="label-top" style=" color: rgba(39, 41, 54, 0.85);width: 200px;font-size:12px;;">Categories of Personal Data</label>
 <!--                        <input style="margin-top: -2%; width: 300px;" type="text" name="categoriespersonaldata" id="categoriespersonaldata_add" class="input-master"  placeholder=" Personal data categories " required>-->
-                        <select id='pets' style="margin-top: -2%; width: 300px; box-sizing: border-box;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
-                                                    border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="categoriespersonaldata" id="categoriespersonaldata_add" multiple >
+                        <select class="input-master" id='pets' style="margin-top: -2%; width: 300px; height: 32px;background: #FFFFFF;" name="categoriespersonaldata" id="categoriespersonaldata_add" multiple>
                             {% for temp in distinct_values %}
-                              <option value='{{ temp.businessterm }}'>{{ temp.businessterm }}</option>
+                              <option   value='{{ temp.businessterm }}'>{{ temp.businessterm }}</option>
                             {% endfor %}
                         </select>
                     </div>
                     <div class="input-1 col " style="left: -2%; margin-top: -15%;">
-                        <label for="inputPassword" class="label-top" style="width:200px;">Lawful Basis of Processing</label>
-                        <input type="text" style="margin-top: -2%; width:300px;" name="lawfulbasisofprocessing" id="lawfulbasisofprocessing_add"  class="input-master" placeholder=" Type something " >
+                        <label for="inputPassword" class="label-top" style="color: rgba(39, 41, 54, 0.85);width:200px;">Lawful Basis of Processing</label>
+<!--                        <input type="text" style="margin-top: -2%; width:300px;" name="lawfulbasisofprocessing" id="lawfulbasisofprocessing_add"  class="input-master" placeholder=" Type something " >-->
+                        <select style="margin-top: -2%; width:300px;" name="lawfulbasisofprocessing" id="lawfulbasisofprocessing_add">
+                            <option>Consent</option>
+                            <option>Contract</option>
+                            <option>Legal Obligation</option>
+                            <option>Public Interest</option>
+                            <option>Vital Reasons</option>
+                            <option>Legitimate interests</option>
+                        </select>
                     </div>
                    <div class="input-1 col " style="left: -2%; margin-top: 8%;">
-                        <label for="inputPassword" class="label-top">Data Processor</label>
+                        <label for="inputPassword" class="label-top" style="color: rgba(39, 41, 54, 0.85);">Data Processor</label>
                         <input type="text" name="dataprocessor" id="dataprocessor_add" style="margin-top: -2%; width:300px;" class="input-master" placeholder=" Name of the processor organization " >
                    </div>
                    <div class="input-1 col" style="left: 95%;margin-top: -14%;">
-                        <label for="inputPassword" class="label-top" style="width: 140px; font-size:12px;">Retention Schedule </label>
+                        <label for="inputPassword" class="label-top" style="color: rgba(39, 41, 54, 0.85);width: 140px; font-size:12px;">Retention Schedule </label>
                         <input style="margin-top: -2%; width:300px;" type="text" name="retentionschedule" id="retentionschedule_add" class="input-master" placeholder=" Type something " >
                     </div>
                     <div class="input-1 col" style="left: 95%; margin-top: 5%;">
-                        <label for="inputPassword" class="label-top" style=" width: 200px;font-size:12px;">Link to Contract with Processor</label>
-                        <input style="margin-top: -2%; width: 300px;" type="text" name="linkcontractprocessor" id="linkcontractprocessor_add" class="input-master" placeholder=" Link/website address of the contract processor " >
+                        <label for="inputPassword" class="label-top" style="color: rgba(39, 41, 54, 0.85); width: 200px;font-size:12px;">Link to Contract with Processor</label>
+                        <input style="margin-top: -2%; width: 300px;" type="text" name="linkcontractprocessor" id="linkcontractprocessor_add" class="input-master" placeholder=" Link/ website address of the contract processor " >
                     </div>
 
 
                     <div class="input-1 col " style="left: -2%; margin-top: -10%;">
-                        <label for="inputPassword" class="label-top" Style="font-size:12px; width:300px; margin-top:px; Letter:0.2px;">Third Countries or international organizations where personal data
+                        <label for="inputPassword" class="label-top" Style="color: rgba(39, 41, 54, 0.85);font-size:12px; width:300px; margin-top:px; Letter:0.2px;">Third Countries or international organizations where personal data
                                 is transferred (if applicable) </label>
                         <input type="text" style="margin-top: 5%; width:300px;" name="countriesdetailstransferred" id="countriesdetailstransferred_add" class="input-master" placeholder=" Countries Names where data is transferred " >
                     </div>
                    <div class="input-1 col " style="left: -2%; margin-top: 10%;">
-                        <label for="inputPassword" class="label-top" style="width:300px; ">Safeguards for exceptional transfers of personal data for above (If applicable)</label>
+                        <label for="inputPassword" class="label-top" style="color: rgba(39, 41, 54, 0.85);width:300px; ">Safeguards for exceptional transfers of personal data for above (If applicable)</label>
                         <input type="text" name="safeguardsexternaltransfers" id="safeguardsexternaltransfers_add" style="margin-top: 5%; width:300px;" class="input-master" placeholder=" Type something " >
                    </div>
                     <div class="input-1 col" style="left: 95%; margin-top: -13%;">
-                        <label for="inputPassword" class="label-top" style="width: 300px; font-size:12px; ">Label General description of technical and organizational security measures (if applicable)</label>
+                        <label for="inputPassword" class="label-top" style="color: rgba(39, 41, 54, 0.85);width: 300px; font-size:12px; ">Label General description of technical and organizational security measures (if applicable)</label>
                         <input style="margin-top: 5%; width:300px;" type="text" name="securitymeasures_desc" id="securitymeasures_desc_add" class="input-master"  placeholder=" Type something" >
                     </div>
                     <div class="input-1 col" style="left: 95%; margin-top: 15%;">
-                        <label for="inputPassword" class="label-top" style=" width: 300px;font-size:12px;">Links to contracts, consents, breach records, assessments</label>
+                        <label for="inputPassword" class="label-top" style="color: rgba(39, 41, 54, 0.85); width: 300px;font-size:12px;">Links to contracts, consents, breach records, assessments</label>
                         <input style="margin-top: 5%; width: 320px;" type="text" name="linkscontracts" id="linkscontracts_add" class="input-master" placeholder=" Contract link with the processor organization " >
                     </div>
                     <div class="input-1 col" style="left: -2%; margin-top: -17%;">
-                            <label for="inputPassword" class="label-top" style=" width: 100px;font-size:12px;">Status</label>
+                            <label for="inputPassword" class="label-top" style="color: rgba(39, 41, 54, 0.85); width: 100px;font-size:12px;">Status</label>
                             <input style="margin-top: 5%; width: 320px;" type="text" name="status1" id="status1_add" class="input-master" placeholder=" Awaiting Approval " readonly>
                     </div>
                         <input type="text" name="ropaid"  id="ropaid_add" placeholder="lorem ipsum" style="display:none;">
                 </div>
             </div>
             <footer style="height:50px;  position: fixed;width:775px; right: 0;bottom: 0; background: #FFFFFF;border: 1px solid #FFFFFF; ">
-               <button id="cancel-button" style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:80px; margin-top:10px;  width:280px; height:30px;">
+               <button type="reset" id="cancel-button" style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:80px; margin-top:10px;  width:280px; height:30px;">
                <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px; margin-left:-19px;">Cancel</span></button>
                <button type="submit" id="add_button" style="background: rgba(39, 41, 54, 0.22);border: 1px solid #0E88AF;border-radius: 4px; margin-left:30px; margin-top:10px;  width:280px; height:30px;">
                <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Add</span></button>
@@ -613,7 +626,15 @@
                 </div>
                 <div class="input-1 col " style="left: -2%; margin-top: -15%;">
                     <label for="inputPassword" class="label-top" style="width:200px;">Lawful Basis of Processing</label>
-                    <input type="text" style="margin-top: -2%; width:300px;" name="lawfulbasisofprocessing" id="lawfulbasisofprocessing_edit"  class="input-master" placeholder=" Type something " >
+                    <input type="text" style="margin-top: -2%; width:300px;"  id="lawfulbasisofprocessing_edit"  class="input-master" placeholder=" Type something " >
+                    <select style="margin-top: -2%; width:300px;" name="lawfulbasisofprocessing"  class="input-master" >
+                        <option>Consent</option>
+                        <option>Contract</option>
+                        <option>Legal Obligation</option>
+                        <option>Public Interest</option>
+                        <option>Vital Reasons</option>
+                        <option>Legitimate interests</option>
+                    </select>
                 </div>
                <div class="input-1 col " style="left: -2%; margin-top: 8%;">
                     <label for="inputPassword" class="label-top">Data Processor</label>

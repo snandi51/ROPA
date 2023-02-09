@@ -1,22 +1,19 @@
-bgid,businessterm,definition,dataattribute,system,dataclassification,datadomain,lineofbusiness,status,createdby,create_timestamp,update_timestamp,comments
-18,Last Name,Last name of a person ,LAST_NM ,CAPGEMINI ,PRIVATE,CUSTOMER ,SALES ,Approved,Satish beura class,2022-11-28 12:16:40.256963+00:00,2023-01-06 11:25:16.979184+00:00,
-25,Customer Name,Customer Identifier,CUST_NAME,UNILEVER,PRIVATE,Client,SALES,Approved,yash,2022-11-30 06:48:57.517957+00:00,2023-01-11 17:51:00.167905+00:00,fine
+bgid,business_term,definition,data_attribute,system,data_classification,data_domain,line_of_business,status,created_by,create_timestamp,update_timestamp,comments
+25,Customer,Customer Identifier,CUST_NAME,UNILEVER,restricted,Client,SALES,Approved,yash,2022-11-30 06:48:57.517957+00:00,2023-02-08 10:04:13.411472+00:00,fine
 43,Gender Code,Sex code of a person,SEX_CD,CAPGEMINI,PRIVATE,CUSTOMER,SALES,Approved,Satish beura ,2022-12-07 07:42:03.202814+00:00,2022-12-29 15:10:42.241880+00:00,
 44,Customer Id,Customer Identifier,CUST_ID,CAPGEMINI,PRIVATE,CUSTOMER,SALES,Approved,Satish beura,2022-12-09 08:30:46.223776+00:00,2022-12-26 12:39:21.546666+00:00,
-45,Birth Date update,Date of Birth of a person,BRTH_DT,CAPGEMINI,PRIVATE,CUSTOMER,SALES,Approved,Satish beura,2022-12-09 08:34:09.491147+00:00,2022-12-29 15:23:42.817416+00:00,
+45,Birth Date,Date of Birth of a person,BRTH_DT,CAPGEMINI,PRIVATE,CUSTOMER,SALES,Approved,Satish beura,2022-12-09 08:34:09.491147+00:00,2022-12-29 15:23:42.817416+00:00,
 46,Customer Id,Customer Identifier,CUST_ID,CAPGEMINI,PRIVATE,CUSTOMER,SALES,Approved,Satish beura,2022-12-09 08:36:43.211206+00:00,2022-12-26 12:39:21.546666+00:00,
 91,Email Identifier,Email Address of a person,Email_id,CAPGEMINI,PRIVATE,CUSTOMER,MARKETING,Approved,Satish beura,2022-12-22 06:23:50.023145+00:00,2022-12-26 12:39:21.546666+00:00,
 92,Birth Date,Date of Birth of a person,BRTH_DT,CAPGEMINI,PRIVATE,CUSTOMER,SALES,Approved,Satish beura,2022-12-22 06:24:18.570157+00:00,2022-12-26 12:39:21.546666+00:00,
 93,Telephone Number,Phone Number of a person,PH_NUM,CAPGEMINI,PRIVATE,CUSTOMER,SALES,Approved,Satish beura,2022-12-22 06:25:35.351785+00:00,2022-12-26 12:39:21.546666+00:00,
 239,Social Security Number,SSN of a person,SSN,CAPGEMINI,PRIVATE,CLIENT,SALES,Approved,Satish beura,2023-01-09 05:20:03.030714+00:00,2023-01-09 05:20:03.030000+00:00,
 240,TAX Identification Number,Tax Identifier of a person,TIN,CAPGEMINI,PRIVATE,CUSTOMER,SALES,Approved,Satish beura,2023-01-09 05:20:10.093272+00:00,2023-01-09 17:31:24.783735+00:00,
-241,Email,Email Address of a person,Email_id,CAPGEMINI,PRIVATE,CUSTOMER,SALES,Approved,Satish beura,2023-01-09 05:20:14.905848+00:00,2023-01-09 05:20:14.903333+00:00,
+241,Email,Email Address of a person,Email_id,CAPGEMINI,"restricted , internal",CUSTOMER,SALES,Approved,Satish beura,2023-01-09 05:20:14.905848+00:00,2023-02-01 11:14:27.952329+00:00,
 242,Birth Date,Date of Birth of a person,BRTH_DT,CAPGEMINI,PRIVATE,CUSTOMER,SALES,Rejected,Satish beura,2023-01-09 05:20:18.858975+00:00,2023-01-10 10:06:24.069531+00:00,rejected
-243,First Name,First name of person,First,Dell,,Domain,A,Rejected,Shivani,2023-01-09 06:06:01.358040+00:00,2023-01-10 10:05:31.105063+00:00,None
-280,First,first name of person ,Frst_cst,HP,private,IT,IT,Rejected,Shivani,2023-01-12 07:06:28.422909+00:00,2023-01-12 07:06:28.422909+00:00,Missing data
-282,Last name,last of the customer,last_cust,asus,public,IT,marketing,Rejected,shivani,2023-01-12 10:17:17.281084+00:00,2023-01-12 10:17:17.281084+00:00,Mismatch data
-284,o,o,o,o,public,o,o,Approved,o,2023-01-12 11:41:43.857955+00:00,2023-01-12 11:41:43.857955+00:00,correct
-285,p,p,p,p,public,p,p,Approved,p,2023-01-12 12:16:07.378090+00:00,2023-01-12 12:16:07.378090+00:00,correct
-293,,,,,,,,,,2023-01-13 06:23:06.783035+00:00,2023-01-13 06:23:06.783035+00:00,
-294,l,l,l,l,private,l,l,Awaiting Approval,SSS,2023-01-13 10:33:45.902603+00:00,2023-01-13 10:33:45.902603+00:00,
-295,XYZ,x,XYZ,x,confidential,x,x,Awaiting Approval,Shivani,2023-01-16 04:58:35.383754+00:00,2023-01-16 10:35:35.244593+00:00,
+2254,Personal Address,Address,Address,HP,private,customer,Hr,Awaiting Approval,John,2023-02-06 07:03:30.660513+00:00,2023-02-06 07:03:30.660542+00:00,
+2255,Biometrics data,Biometrics,Biometrics,HP,private,customer,Hr,Approved,John,2023-02-06 07:04:51.195411+00:00,2023-02-07 10:30:10.620469+00:00,
+2260,Date of Birth,Birth date of the customer,DOB,CRM,private,Customer,Marketing,Awaiting Approval,Ritu Patil,2023-02-07 10:17:17.451975+00:00,2023-02-07 10:17:17.452015+00:00,
+2261,Date of Birth,Birth Date of the employee,DOB,HRS,private,Employee,HR,Awaiting Approval,Ritu Patil,2023-02-07 11:13:32.773838+00:00,2023-02-07 11:13:32.773866+00:00,
+2262,a,a,a,a,"PRIVATE , PUBLIC",a,s,Awaiting Approval,d,2023-02-08 09:58:38.877046+00:00,2023-02-08 09:58:38.877046+00:00,
+2263,Health Data,Health Data,Health Data,HP,private,customer,Hr,Awaiting Approval,John,2023-02-08 10:03:25.599287+00:00,2023-02-08 10:03:25.599317+00:00,

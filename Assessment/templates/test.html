@@ -373,14 +373,17 @@
 <!--    <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 210px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>-->
 <!--      <a href="javascript:;"  style="margin-left: 160px;margin-top:30px;"><img src="static/assets/img/Icon.png" onclick="history.back()"></a>-->
 <!--      <p class="" style=" margin-left:160px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;">Business Glossary<b></b></p>-->
-      <p style="margin-left:180px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;"><a href="{% url 'dashboard' %}" style="text-decoration:none;color:black;"><img src="static/assets/img/Icon.png"></a> Business Glossary </p>
-
+      {% if output == 'Processor' %}
+        <p style="margin-left:180px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;"><a href="{% url 'processor_dashboard' %}" style="text-decoration:none;color:black;"><img src="static/assets/img/Icon.png"></a> Business Glossary </p>
+      {% else %}
+        <p style="margin-left:180px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;"><a href="{% url 'dashboard' %}" style="text-decoration:none;color:black;"><img src="static/assets/img/Icon.png"></a> Business Glossary </p>
+      {% endif %}
   </div>
 
 
 
 
-  <div class="login-box scroll" style="top:165px;left:80px;  width:1140px;height:500px;">
+  <div class="login-box scroll" style="top:165px;left:80px;  width:1140px;height:380px;">
 
       <input type="text" name="search" placeholder="Search.." class="search" id="myInput" onkeyup="myFunction()">
 <!--      <input type="text" name="filter" style="width:108px;border: 2px solid #ccc; margin-left:16px; box-sizing: border-box; height:40px;" placeholder="   Filter        &#x25BC;" class="Filterbox" id="filter" onkeyup="myFunction()">-->
@@ -403,7 +406,7 @@
           <table id="myTable"  class="paginated table table-striped table-hover" style="margin-left:32px;width:1080px;background: #E0E0E0;">
               <thead>
               <tr>
-                  <th scope="col" class="tab-header">Business Term</th>
+                  <th scope="col" class="tab-header" >Business Term</th>
                   <th scope="col" class="tab-header">Definition</th>
                   <th scope="col" class="tab-header">Data Attribute</th>
                   <th scope="col" class="tab-header">System</th>
@@ -416,7 +419,7 @@
 
               {% for temp in bg_dict %}
               <tr>
-                  <td scope="row" id='Myvar' onclick="Mybtn1('{{temp.bgid}}')" class="first-column tab-text">{{temp.businessterm}}</td>
+                  <td scope="row" id='Myvar' onclick="Mybtn1('{{temp.bgid}}')" class="first-column tab-text"><u>{{temp.businessterm}}</u></td>
 
 <!--                    <td scope="row" ><button onclick="get_id('{{temp.bgid}}')" >{{temp.businessterm}}</button></td>-->
 <!--                  <td scope="row" id="bg{{temp.businessterm}}" class="first-column" >{{temp.businessterm}}</a></td>-->
@@ -581,7 +584,7 @@
                     color: rgba(39, 41, 54, 0.85);width:300px;"
                       >Line of Business</label>
                       <input type="text" name="lineofbusiness" style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
-        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="lineofbusiness_add" placeholder="  Sale, Hr, Marketing etc " required>
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="lineofbusiness_add" placeholder="  Sales, Hr, Marketing etc " required>
                   </div>
 
 
