@@ -14,7 +14,7 @@ from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import Group
 # from Assessment.views import group_required
-from IPython.display import display, HTML
+# from IPython.display import display, HTML
 
 
 def login_user(request):
