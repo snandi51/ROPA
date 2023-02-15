@@ -10,19 +10,18 @@
 <body style="background: linear-gradient(3.47deg, #00649B 13.28%, #66A9CD 93.28%);
 position: static;
 width: 1090px;
-height: 800px; margin-left: 150px;
-padding-top: 100px;">
-    <div class="user-info1">
-
-    </div>
+height: auto; margin-left: 150px;
+overflow-x: hidden;
+overflow-y: hidden;">
 
 
-    <img src="static/assets/img/Error.png" style="">
+
+    <img src="static/assets/img/Error.png" >
     <div style="position: absolute;
             width: 393px;
             height: 36px;
             left: 782px;
-            top: 274px;
+            top: 190px;
 
             /* Headings/h1 */
 
@@ -47,7 +46,7 @@ padding-top: 100px;">
                 line-height: 20px;">
         The page was not found.Please revert back to the dashboard page.</p>
     </div>
-    <button onclick="window.location.href='admin_screen.html'" class="Addnew-button" id="myBtn" style="padding-left:0px;
+    <button type="button" onclick="location.href = '{% url 'admin_screen' %}';" class="Addnew-button" id="myBtn" style="padding-left:0px;
                     box-sizing: border-box;
 
                     /* Auto layout */

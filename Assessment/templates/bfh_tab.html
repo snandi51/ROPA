@@ -292,7 +292,7 @@
                           {% for temp in bg_dict %}
                               {% if temp.status == 'Awaiting Approval' %}
                               <tr>
-                                  <td scope="row" id='Myvar' onclick="Mybtn1('{{temp.bgid}}')" class="first-column tab-text">{{temp.businessterm}}</td>
+                                  <td scope="row" id='Myvar' onclick="Mybtn1('{{temp.bgid}}')" class="first-column tab-text"><u>{{temp.businessterm}}</u></td>
                                   <td class="tab-text">{{ temp.definition }}</td>
                                   <td class="tab-text">{{ temp.dataattribute }}</td>
                                   <td class="tab-text">{{ temp.system }}</td>
@@ -322,7 +322,7 @@
                               {% for temp in ropa_dict %}
                                   {% if temp.status == 'Awaiting Approval' %}
                                   <tr>
-                                      <td scope="row" id='Myvar2' onclick="Mybtn2('{{temp.ropamainid}}')" class="first-column tab-text">{{temp.ropaid}}</td>
+                                      <td scope="row" id='Myvar2' onclick="Mybtn2('{{temp.ropamainid}}')" class="first-column tab-text"><u>{{temp.ropaid}}</u></td>
                                       <td class="tab-text">{{ temp.businessfunc }}</td>
                                       <td class="tab-text">{{ temp.processingactivityname }}</td>
                                       <td class="tab-text">{{ temp.processingactivitydesc }}</td>

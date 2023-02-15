@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_protect
-from Assessment.models import UserDetails, RopaType, BgMain, RopaMain, RopaAudit, BusinessFunction
+from Assessment.models import UserDetails, RopaType, BgMain, RopaMain, RopaAudit, BusinessFunction, BgAudit
 from datetime import date
 from django.conf import settings
 from django.db import connection
@@ -579,8 +579,8 @@ def record(request):
     worksheet = workbook.add_worksheet('report')
     writer.sheets['report'] = worksheet
 
-    user_detail.to_excel(writer, sheet_name='report', startrow=2, startcol=0)
-    ropa_csv.to_excel(writer, sheet_name='report', startrow=8, startcol=0)
+    user_detail.to_excel(writer, sheet_name='report', startrow=3, startcol=0)
+    ropa_csv.to_excel(writer, sheet_name='report', startrow=9, startcol=0)
     # Now we have the worksheet object. We can manipulate it
     worksheet.set_zoom(90)
     #header formatting
@@ -591,7 +591,7 @@ def record(request):
         "bold": True,
         'font_color': '#FFFFFF',
         'border': 1,
-        'border_color': ''  # D3D3D3'
+        'border_color': '# D3D3D3'
     })
     # Full border formatting for conditional formatted cells
     full_border = workbook.add_format({"border": 1, "border_color": "#D3D3D3"})
@@ -609,16 +609,21 @@ def record(request):
     subheader3 = 'Representative (if applicable)'
     worksheet.merge_range('A1:M1', title, format)
     worksheet.merge_range('A7:Q7', title2, format)
-    worksheet.merge_range('A8:E8', subheader)
-    worksheet.merge_range('A2:E2', subheader1)
-    worksheet.merge_range('F2:I2', subheader2)
-    worksheet.merge_range('J2:M2', subheader3)
+    worksheet.merge_range('A9:E9', subheader)
+    worksheet.merge_range('A3:E3', subheader1)
+    worksheet.merge_range('F3:I3', subheader2)
+    worksheet.merge_range('J3:M3', subheader3)
     worksheet.set_row(2, 15)  # Set the header row height to 15
     # puting it all together
     # Write the column headers with the defined format.
-    # for col_num, value in enumerate(writer.columns.values):
-    #     # print(col_num, value)
-    #     worksheet.write(2, col_num, value, header_format)
+    for col_num, value in enumerate(user_detail.columns.values):
+        # print(col_num, value)
+        worksheet.write(3, col_num, value, header_format)
+
+    for col_num, value in enumerate(ropa_csv.columns.values):
+        # print(col_num, value)
+        worksheet.write(9, col_num, value, header_format)
+
 
     writer.save()
 
@@ -932,7 +937,7 @@ def workflow_dashboard(request):
             'bg_dict': bg_dict,
             'result1': result1,
             'ropa_dict': ropa_dict,
-            'output' :output
+            'output': output
         }
         return render(request, 'bfh_tab.html', context)
     elif result == "DPO":
@@ -1061,7 +1066,7 @@ def workflow_ropa(request):
     result = RopaMain.objects.all()
     ropa_main = pd.DataFrame(list(RopaMain.objects.all().values('ropamainid', 'ropaid', 'businessfunc', 'processingactivityname',
                                            'processingactivitydesc', 'categoriesdatasubjects', 'categoriespersonaldata',
-                                           'status','controllername', 'categoriesofrecepients', 'lawfulbasisofprocessing',
+                                           'status', 'controllername', 'categoriesofrecepients', 'lawfulbasisofprocessing',
                                            'dataprocessor', 'retentionschedule', 'linkcontractprocessor', 'countriesdetailstransferred',
                                            'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts', 'comments')))
     # a=len(bg)
@@ -1366,7 +1371,8 @@ def admin_screen(request):
             print('Failure', a)
 
         print('success', success)
-        output = request.session['output']
+
+        output = request.session.get('output')
         context = {
             'success': success,
             'result': result,
@@ -1433,10 +1439,17 @@ def map_role(request):
 
 
 def bfunction(request):
+    bfunc = pd.DataFrame(list(BusinessFunction.objects.all().values()))
+    bfunc_dict = bfunc.to_dict('records')
+    context = {
+
+        'bfunc_dict': bfunc_dict
+    }
+
     if request.method == 'POST':
         # BgMain_resource = BgMainResource()
         # dataset = Dataset()
-        print('inside debugger')
+        print('inside debugger bfunction')
         bfunc = pd.DataFrame(list(BusinessFunction.objects.all().values()))
         bfunc_dict = bfunc.to_dict('records')
         print("bfunc", bfunc)
@@ -1454,6 +1467,8 @@ def bfunction(request):
             print(a)
             count += 1
 
+
+
         if a is not None:
             print('Success', a)
             success = '1'
@@ -1466,8 +1481,9 @@ def bfunction(request):
             'success': success,
             'bfunc_dict': bfunc_dict
         }
-        return render(request, 'upload_screen.html', context)
-    return render(request, 'bfunction.html')
+
+        return render(request, 'function.html', context)
+    return render(request, 'bfunction.html',context)
 
 
 def up_screen(request):
@@ -1523,7 +1539,7 @@ def up_screen(request):
             'record_success': record_success,
 
         }
-        return render(request, 'upload_screen.html', context)
+        return render(request, 'admin_screen_upload.html', context)
     return render(request, 'admin_screen.html')
 
 
@@ -1565,3 +1581,74 @@ def user_details(request):
     }
     return render(request, 'user_details.html', context)
 
+
+def action_history(request):
+    # import ipdb
+    # ipdb.set_trace()
+    bg_audit = pd.DataFrame(list(BgAudit.objects.all().values('auditaction', 'auditdate', 'audituser','businessterm','bgid')))
+    # a=len(bg)
+    bg_audit_dict = bg_audit.to_dict('records')
+
+
+    ropa_audit = pd.DataFrame(list(RopaAudit.objects.all().values('auditaction', 'auditdate', 'audituser','businessfunc','ropaid')))
+    # a=len(bg)
+    ropa_audit_dict = ropa_audit.to_dict('records')
+
+
+    output = request.session['output']
+
+    context={
+        'bg_audit_dict': bg_audit_dict,
+        'ropa_audit_dict':ropa_audit_dict,
+        'output': output
+    }
+
+    return render(request, 'action_history.html', context)
+
+
+def function(request):
+    bfunc = pd.DataFrame(list(BusinessFunction.objects.all().values()))
+    bfunc_dict = bfunc.to_dict('records')
+    context = {
+
+        'bfunc_dict': bfunc_dict
+    }
+
+    if request.method == 'POST':
+        # BgMain_resource = BgMainResource()
+        # dataset = Dataset()
+        print('inside debugger bfunction')
+        bfunc = pd.DataFrame(list(BusinessFunction.objects.all().values()))
+        bfunc_dict = bfunc.to_dict('records')
+        print("bfunc", bfunc)
+        print("bfunc_dict", bfunc_dict)
+        new_BusinessFunction = request.FILES['document']
+        imported_data = pd.read_csv(new_BusinessFunction)
+        print(imported_data)
+        count = 0
+        for i in range(len(imported_data)):
+            a = BusinessFunction.objects.bulk_create([
+                BusinessFunction(
+                    organization=imported_data["organization"][count],
+                    businessfunc=imported_data["businessfunc"][count],
+                    description=imported_data["description"][count])])
+            print(a)
+            count += 1
+
+        if a is not None:
+            print('Success', a)
+            success = '1'
+        else:
+            print('Failure', a)
+
+        print('success', success)
+
+        context = {
+            'success': success,
+            'bfunc_dict': bfunc_dict
+        }
+    return render(request, 'function.html',context)
+
+
+def admin_screen_upload(request):
+    return render(request, 'admin_screen_upload.html')

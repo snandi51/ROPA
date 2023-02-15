@@ -40,4 +40,7 @@ urlpatterns = [
     path('bfunction', member_views.bfunction, name='bfunction'),
     path('error_data', member_views.error_data, name='error_data'),
     path('user_details', member_views.user_details, name='user_details'),
+    path('action_history', member_views.action_history, name='action_history'),
+    path('function', member_views.function, name='function'),
+    path('admin_screen_upload', member_views.admin_screen_upload, name='admin_screen_upload'),
  ]
