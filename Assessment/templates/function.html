@@ -227,16 +227,37 @@
         </div>
 
     </form>
+      <div class="rect-4" style="height:50px; width:290px; margin-left:-130px; position:absolute; margin-top:350px; background-color:white;" id="file_upload">
 
 
-<!--    <div class="rect-4" style="height:50px; width:180px; margin-left:1%; margin-top:300px; background-color:white; display:none;" id="file_upload">-->
+      <p style="margin-left: 15%; margin-top:10px; ">File uploaded. <button style="display: flex;
+flex-direction: row;
+align-items: center;
+padding: 8px 8px 8px 16px;
+gap: 16px;
+
+position: absolute;
+width: 100px;
+left: 52%;
+top: 40%;
+bottom: 4.44%;
+
+/* Grey Scale/White */
+
+background: #FFFFFF;
+/* Elevation/04 */
+
+box-shadow: 0px 24px 38px rgba(0, 67, 103, 0.14), 0px 9px 46px rgba(0, 67, 103, 0.12), 0px 11px 15px rgba(0, 67, 103, 0.2);
+border-radius: 4px;color: #12ABDB;
+" id="file_dismiss" onclick="file_up()">Dismiss</button></p>
 
 
-<!--      <p style="margin-left: 23%; margin-top:10px;">File uploaded.<br></p>-->
-<!--&lt;!&ndash;                   <p  class ="" style="text-align:center;"><a href="record">Go to Records Register.</a></p>&ndash;&gt;-->
+    </div>
 
 
-<!--    </div>-->
+
+
+
 
 
 
@@ -296,8 +317,14 @@
     }
 
     function file_up(){
-     file_upload.style.display = "block";
+     file_upload.style.display = "none";
     }
+
+<!--    document.getElementById("file_dismiss").onclick = function() {-->
+<!--&lt;!&ndash;        document.getElementById("file_upload").style.display = "none";&ndash;&gt;-->
+<!--    }-->
+
+
 
 </script>
 

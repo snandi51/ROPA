@@ -357,6 +357,34 @@
       border-radius:15px;
       -webkit-box-shadow: inset 20px 0 10px grey;
     }
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      border-bottom: 1px dotted black;
+    }
+
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      font-family: 'Ubuntu';
+      font-style: normal;
+      font-size: 12px;
+      width: 120px;
+      background-color: rgba(39, 41, 54, 0.85);
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+
+      /* Position the tooltip */
+      position: absolute;
+      z-index: 1;
+      top: -5px;
+      left: 105%;
+    }
+
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+    }
 </style>
 
 
@@ -403,56 +431,87 @@
       </button>
 
       <div class="table " style="margin-top:15px;">
-          <table id="myTable"  class="paginated table table-striped table-hover" style="margin-left:32px;width:1080px;background: #E0E0E0;">
+          <table   class="paginated table table-striped table-hover" style="margin-left:32px;width:1080px;background: #E0E0E0;">
               <thead>
-              <tr>
-                  <th scope="col" class="tab-header" >Business Term</th>
-                  <th scope="col" class="tab-header">Definition</th>
-                  <th scope="col" class="tab-header">Data Attribute</th>
-                  <th scope="col" class="tab-header">System</th>
-                  <th scope="col" class="tab-header">Data Domain</th>
-                  <th scope="col" class="tab-header">Line of Business</th>
-                  <th scope="col" class="tab-header">Status</th>
-              </tr>
+                  <tr>
+                      <th scope="col" class="tab-header" >Business Term</th>
+                      <th scope="col" class="tab-header">Definition</th>
+                      <th scope="col" class="tab-header">Data Attribute</th>
+                      <th scope="col" class="tab-header">System</th>
+                      <th scope="col" class="tab-header">Data Domain</th>
+                      <th scope="col" class="tab-header">Line of Business</th>
+                      <th scope="col" class="tab-header">Status</th>
+                  </tr>
               </thead>
+          </table>
+          <table id="myTable"  class="paginated table table-striped table-hover" style="margin-left:32px;width:1080px;background: #E0E0E0;">
+<!--              <thead>-->
+<!--              <tr>-->
+<!--                  <th scope="col" class="tab-header" >Business Term</th>-->
+<!--                  <th scope="col" class="tab-header">Definition</th>-->
+<!--                  <th scope="col" class="tab-header">Data Attribute</th>-->
+<!--                  <th scope="col" class="tab-header">System</th>-->
+<!--                  <th scope="col" class="tab-header">Data Domain</th>-->
+<!--                  <th scope="col" class="tab-header">Line of Business</th>-->
+<!--                  <th scope="col" class="tab-header">Status</th>-->
+<!--              </tr>-->
+<!--              </thead>-->
               <tbody>
-
-              {% for temp in bg_dict %}
-              <tr>
-                  <td scope="row" id='Myvar' onclick="Mybtn1('{{temp.bgid}}')" class="first-column tab-text"><u>{{temp.businessterm}}</u></td>
-
-<!--                    <td scope="row" ><button onclick="get_id('{{temp.bgid}}')" >{{temp.businessterm}}</button></td>-->
-<!--                  <td scope="row" id="bg{{temp.businessterm}}" class="first-column" >{{temp.businessterm}}</a></td>-->
-                  <td class="tab-text">{{ temp.definition }}</td>
-                  <td class="tab-text">{{ temp.dataattribute }}</td>
-                  <td class="tab-text">{{ temp.system }}</td>
-                  <td class="tab-text">{{ temp.datadomain }}</td>
-                  <td class="tab-text">{{ temp.lineofbusiness }}</td>
-                  {% if temp.status == 'Awaiting Approval' %}
-                    <td class="approved approved-box tab-text" style="display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0px 4px;
-    width: 121px;
-    height: 24px;
-    background: #9E4780;
-    border-radius: 2px;
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    font-family: 'Ubuntu';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 10px;
-    line-height: 16px;
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.4px;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.95);">{{ temp.status }}</td>
-                  {% elif temp.status == 'Rejected' %}
-                            <td class="approved approved-box tab-text" style="display: flex;flex-direction: row; align-items: center;padding: 0px 4px;width: 100px;height: 20px;
-                                background: red;
+                  {% for temp in bg_dict %}
+                      <tr>
+                          <td scope="row" id='Myvar' onclick="Mybtn1('{{temp.bgid}}')" class="first-column tab-text"><u>{{temp.businessterm}}</u></td>
+                          <td class="tab-text">{{ temp.definition }}</td>
+                          <td class="tab-text">{{ temp.dataattribute }}</td>
+                          <td class="tab-text">{{ temp.system }}</td>
+                          <td class="tab-text">{{ temp.datadomain }}</td>
+                          <td class="tab-text">{{ temp.lineofbusiness }}</td>
+                            {% if temp.status == 'Awaiting Approval' %}
+                                <td class="approved approved-box tab-text" style="display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 0px 4px;
+            width: 121px;
+            height: 24px;
+            background: #9E4780;
+            border-radius: 2px;
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+            font-family: 'Ubuntu';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 10px;
+            line-height: 16px;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.95);">{{ temp.status }}</td>
+                            {% elif temp.status == 'Rejected' %}
+                                <td class="approved approved-box tab-text" style="display: flex;flex-direction: row; align-items: center;padding: 0px 4px;width: 100px;height: 20px;
+                                        background: red;
+                                        border-radius: 2px;
+                                        flex: none;
+                                        order: 0;
+                                        flex-grow: 0;
+                                        font-family: 'Ubuntu';
+                                        font-style: normal;
+                                        font-weight: 700;
+                                        font-size: 10px;
+                                        line-height: 16px;
+                                        display: flex;
+                                        align-items: center;
+                                        letter-spacing: 0.4px;
+                                        text-transform: uppercase;
+                                        color: rgba(255, 255, 255, 0.95);">{{ temp.status }}</td>
+                            {% elif temp.status == 'Approved' %}
+                                <td style="display: flex;
+                                flex-direction: row;
+                                align-items: center;
+                                padding: 0px 4px;
+                                width: 82px;
+                                height: 16px;
+                                background: #007E6E;
                                 border-radius: 2px;
                                 flex: none;
                                 order: 0;
@@ -467,37 +526,12 @@
                                 letter-spacing: 0.4px;
                                 text-transform: uppercase;
                                 color: rgba(255, 255, 255, 0.95);">{{ temp.status }}</td>
-                  {% else %}
-                    <td style="display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0px 4px;
-    width: 82px;
-    height: 16px;
-    background: #007E6E;
-    border-radius: 2px;
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    font-family: 'Ubuntu';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 10px;
-    line-height: 16px;
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.4px;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.95);">{{ temp.status }}</td>
-
-                  {% endif %}
-              </tr>
-              {% endfor %}
+                            {% endif %}
+                       </tr>
+                   {% endfor %}
+                </tbody>
+          </table>
       </div>
-
-
-
-
   </div >
 
 <!--add form-->
@@ -554,17 +588,17 @@
                   <div class="input-1 col " style="left: -5%;margin-top:4%;">
                       <label  class="label-top"
                              style="font-family: 'Ubuntu';font-style: normal;font-weight: 400;font-size: 12px;line-height: 16px;letter-spacing: 0.2px;
-                    color: rgba(39, 41, 54, 0.85);"
-                      >Classification</label>
+                             color: rgba(39, 41, 54, 0.85);">Classification</label>
                       <!--        <input type="text" name="email" style="margin-top: 5px;" class="input-master" id="inputPassword" placeholder="GDPR">-->
-                      <select id="classification_add" name="dataclassification" style="box-sizing: border-box;width: 456px;height: 45px;background: #FFFFFF;border: 1px solid #8D8D8D;
-        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;color: rgba(39, 41, 54, 0.85);" multiple required>
+                      <select title="For multiselect ctrl+click"  id="classification_add" name="dataclassification" style="box-sizing: border-box;width: 456px;height: 45px;background: #FFFFFF;border: 1px solid #8D8D8D;
+                            border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;color: rgba(39, 41, 54, 0.85);" multiple required>
                           <option value="private">PRIVATE</option>
                           <option value="public">PUBLIC</option>
                           <option value="restricted">RESTRICTED</option>
                           <option value="internal">INTERNAL</option>
                           <option value="confidential">CONFIDENTIAL</option>
                       </select>
+<!--                      <span class="tooltiptext">For multiselect ctrl+click</span>-->
                   </div>
 
                   <div class="input-1 col " style="left: -5%; margin-top:4%;">
@@ -686,9 +720,9 @@
                     color: rgba(39, 41, 54, 0.85);">Classification</label>
                       <!--        <input type="text" name="email" style="margin-top: 5px;" class="input-master" id="inputPassword" placeholder="GDPR">-->
                       <input style="box-sizing: border-box;width: 456px;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
-        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="classification_edit" readonly >
-                      <select id="classification_edit" name="dataclassification" style="box-sizing: border-box;width: 456px;height: 40px;background: #FFFFFF;border: 1px solid #8D8D8D;
-        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" multiple required >
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" id="classification_edit" readonly required>
+                      <select title="For multiselect ctrl+click" id="classification_edit" name="dataclassification" style="box-sizing: border-box;width: 456px;height: 40px;background: #FFFFFF;border: 1px solid #8D8D8D;
+        border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" multiple  required>
                           <option value="private">PRIVATE</option>
                           <option value="public">PUBLIC</option>
                           <option value="restricted">RESTRICTED</option>
@@ -737,7 +771,6 @@
                   </div>
 
                   <input type="text" name="bgid"  id="bgid_edit" placeholder="lorem ipsum" style="display:none;">
-<!-- invisble -->
 
                   <p style="margin-top:150px; margin-left: 42px;"></p>
               </div>
@@ -754,9 +787,7 @@
                 </button>
 
           </footer>
-
-
-</form>
+  </form>
 <!--    <button type="button"  onClick = "deleteRow(this)" id="deleterow"  style="position:absolute;background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:850px; margin-top:535px;  width:200px; height:30px;">-->
 <!--                 <span style=" text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Delete</span>-->
 <!--    </button>-->

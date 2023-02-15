@@ -295,7 +295,7 @@
 
                           {% for temp in bg_dict %}
                           <tr>
-                              <td scope="row" id='Myvar' onclick="Mybtn1('{{temp.bgid}}')" class="first-column tab-text">{{temp.bgid}}</td>
+                              <td scope="row" id='Myvar' onclick="Mybtn1('{{temp.bgid}}')" class="first-column tab-text"><u>{{temp.bgid}}</u></td>
                               <td>{{ temp.businessterm }}</td>
 <!--                              <td>{{ temp.definition }}</td>-->
 <!--                              <td>{{ temp.dataattribute }}</td>-->
@@ -328,7 +328,7 @@
 
                               {% for temp in ropa_dict %}
                               <tr>
-                                  <td scope="row" id='Myvar2' onclick="Mybtn2('{{temp.ropamainid}}')" class="first-column tab-text">{{temp.ropaid}}</td>
+                                  <td scope="row" id='Myvar2' onclick="Mybtn2('{{temp.ropamainid}}')" class="first-column tab-text"><u>{{temp.ropaid}}</u></td>
 <!--                                  <td>{{ temp.businessfunc }}</td>-->
                                   <td>{{ temp.processingactivityname }}</td>
 <!--                                  <td>{{ temp.processingactivitydesc }}</td>-->
@@ -458,15 +458,15 @@
               <!--                  <form method="POST" id="bform_screen1" class="business_form" action="test">-->
               <!--                     {% csrf_token %}-->
 
-              <footer style="height:50px;  position: fixed; width:550px; right: 0;bottom: 0; background: #FFFFFF;border: 1px solid #FFFFFF;">
-                    <button type="submit" name="act" value="reject"  style="position:absolute;background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:50px; margin-top: 10px;  width:200px; height:30px;">
-                       <span style=" text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Reject</span>
-                    </button>
-                    <button type="submit"  name="act" value="approve" style="background: #12ABDB;border: 1px solid #0E88AF;border-radius: 4px; margin-left:280px; margin-top:10px;  width:200px; height:30px;">
-                       <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Approve</span>
-                    </button>
+<!--              <footer style="height:50px;  position: fixed; width:550px; right: 0;bottom: 0; background: #FFFFFF;border: 1px solid #FFFFFF;">-->
+<!--                    <button type="submit" name="act" value="reject"  style="position:absolute;background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:50px; margin-top: 10px;  width:200px; height:30px;">-->
+<!--                       <span style=" text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Reject</span>-->
+<!--                    </button>-->
+<!--                    <button type="submit"  name="act" value="approve" style="background: #12ABDB;border: 1px solid #0E88AF;border-radius: 4px; margin-left:280px; margin-top:10px;  width:200px; height:30px;">-->
+<!--                       <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Approve</span>-->
+<!--                    </button>-->
 
-              </footer>
+<!--              </footer>-->
           </div>
 
      </form>
@@ -562,12 +562,12 @@
                     <input type="text" name="ropamainid"  id="ropamainid_edit" placeholder="lorem ipsum" style="display:none">
             </div>
           </div>
-            <footer style="height:50px;  position: fixed;width:775px; right: 0;bottom: 0;   background: #FFFFFF;border: 1px solid #FFFFFF;">
-               <button type="submit" name="act" value="reject" style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:80px; margin-top:10px;  width:280px; height:30px;">
-               <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px; margin-left:-19px;">Reject</span></button>
-               <button type="submit" name="act" value="approve" style="background: #12ABDB;border: 1px solid #0E88AF;border-radius: 4px; margin-left:50px; margin-top:10px;  width:280px; height:30px;">
-               <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Approve</span></button>
-            </footer>
+<!--            <footer style="height:50px;  position: fixed;width:775px; right: 0;bottom: 0;   background: #FFFFFF;border: 1px solid #FFFFFF;">-->
+<!--               <button type="submit" name="act" value="reject" style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:80px; margin-top:10px;  width:280px; height:30px;">-->
+<!--               <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px; margin-left:-19px;">Reject</span></button>-->
+<!--               <button type="submit" name="act" value="approve" style="background: #12ABDB;border: 1px solid #0E88AF;border-radius: 4px; margin-left:50px; margin-top:10px;  width:280px; height:30px;">-->
+<!--               <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Approve</span></button>-->
+<!--            </footer>-->
         </div>
     </form>
 

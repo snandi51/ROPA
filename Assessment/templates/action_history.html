@@ -1,0 +1,383 @@
+{% extends 'base-figma.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<link href="static/assets/css/style-figma.css" rel="stylesheet">
+
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+
+<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
+
+
+<link rel="stylesheet" href="static/assets/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="static/assets/js/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="static/assets/js/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="static/assets/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+<style>
+        .container {
+            width: 50%
+        }
+        .scroll {
+              overflow-y: scroll;
+              height: 120px;
+              width: 300px;
+              margin: 10px 15px; padding: 5px;
+              text-align: justify;
+          }
+          .scroll::-webkit-scrollbar {
+              width:5px;
+          }
+          .scroll::-webkit-scrollbar-track {
+              -webkit-box-shadow:inset 0 0 0px rgba(0,0,0,0.3);
+              border-radius:5px;
+          }
+          .scroll::-webkit-scrollbar-thumb {
+              border-radius:15px;
+              -webkit-box-shadow: inset 20px 0 10px grey;
+          }
+        .d-flex{
+          display: flex;
+           width: 100%;
+        }
+        .d-flex-col{
+          display: flex;
+          width: 100%;
+          flex-direction: column;
+        }
+        .text-center {
+          text-align: left;
+        }
+        .TabButton {
+            width: 100%;
+            color: #5A5A61;
+            border: 0;
+            border-bottom: 1px solid #e0e0e0;
+            background-color:  #CDCDCF;
+            margin: 0;
+            font-size: 14px;
+            line-height: 16px;
+            font-weight: normal;
+            padding: 16px;
+            cursor: pointer;
+        }
+        .TabButtonSelected {
+
+          border-bottom-color: #C94927 !important;
+            background-color:  #CDCDCF !important;
+            font-weight: 500;
+        }
+
+
+        .d-chart-n {
+          display: none;
+        }
+
+        .d-chart-show {
+          display: block;
+        }
+
+        #wrapper11 {
+            display: grid;
+            grid-template-rows: 30px 1fr 30px;
+        }
+
+        #content11 {
+           overflow-y: scroll;
+           width: 830px;
+           height: 340px;
+        }
+
+        /* Optional */
+        #wrapper11 > * {
+           padding: 5px;
+        }
+        #header11 {
+        height: 40px;
+    }
+        .rounded-checkbox {
+          width:15px;
+          height: 15px;
+          border-radius: 50%;
+          vertical-align: middle;
+          border: 1px solid black;
+          appearance: none;
+          -webkit-appearance: none;
+          outline: none;
+          cursor: pointer;
+        }
+        .rounded-checkbox:checked {
+          appearance: auto;
+          clip-path: circle(50% at 50% 50%);
+          background-color: blue;
+        }
+        .tab {
+              overflow: hidden;
+              border-bottom: 1px solid #ccc;
+              background-color: white;
+            }
+
+            .tab button {
+              background-color: inherit;
+              float: left;
+              border: none;
+              outline: none;
+              cursor: pointer;
+              padding: 12px 14px;
+              transition: 0.3s;
+              font-size: 17px;
+            }
+            .tablinks {
+              background-color: #E0E0E0;
+              color: white;
+              float: left;
+              border: none;
+              outline: none;
+              cursor: pointer;
+              padding: 14px 16px;
+              font-size: 17px;
+              width: 25%;
+            }
+            .tablinks:hover {
+              background-color: #777;
+            }
+
+            .tab button:hover {
+              background-color: #ddd;
+            }
+
+            .tab button.active {
+              background-color: blue;
+            }
+
+            .tabcontent {
+              display: block;
+              padding: 6px 12px;
+              border: 1px solid #ccc;
+              border-top: none;
+            }
+
+
+
+</style>
+<style>
+    .scroll {
+        overflow-y: scroll;
+        height: 120px;
+        width: 300px;
+        margin: 10px 15px; padding: 5px;
+        text-align: justify;
+    }
+    .scroll::-webkit-scrollbar {
+      width:10px;
+    }
+    .scroll::-webkit-scrollbar-track {
+      -webkit-box-shadow:inset 0 0 0px rgba(0,0,0,0.3);
+      border-radius:10px;
+    }
+    .scroll::-webkit-scrollbar-thumb {
+      border-radius:15px;
+      -webkit-box-shadow: inset 20px 0 10px grey;
+    }
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      border-bottom: 1px dotted black;
+    }
+
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      font-family: 'Ubuntu';
+      font-style: normal;
+      font-size: 12px;
+      width: 120px;
+      background-color: rgba(39, 41, 54, 0.85);
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+
+      /* Position the tooltip */
+      position: absolute;
+      z-index: 1;
+      top: -5px;
+      left: 105%;
+    }
+
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+    }
+</style>
+
+<script>
+    function activeTab(evt, id) {
+
+       // Get all elements with class="tablinks" and remove the class "active"
+        let tabactive = document.getElementsByClassName("TabButtonSelected");
+        tabactive[0].className = tabactive[0].className.replace(" TabButtonSelected", "");
+        document.getElementById(id).style.display = "block";
+        evt.currentTarget.className += " TabButtonSelected";
+        displaySection(evt,id)
+    }
+
+    function displaySection(evt, id) {
+
+        let tabactive = document.getElementsByClassName("tab-section");
+        tabactive[0].className = tabactive[0].className.replace(" d-chart-show", "d-chart-n");
+        // add below line of codes
+        [...document.querySelectorAll('div.tab-section')].forEach(item => item.style.display='none')
+        document.getElementById("Section" + id).style.display = "block";
+        evt.currentTarget.className += " d-chart-show";
+    }
+</script>
+
+
+<body class="body-class" style="overflow-y: hidden;">
+  <!-- The dots/circles -->
+
+
+
+
+  <div class="alt-nav" style="width:100%;height:80px;">
+
+<!--    <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 210px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>-->
+<!--      <a href="javascript:;"  style="margin-left: 160px;margin-top:30px;"><img src="static/assets/img/Icon.png" onclick="history.back()"></a>-->
+<!--      <p class="" style=" margin-left:160px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;">Business Glossary<b></b></p>-->
+      {% if output == 'Processor' %}
+        <p style="margin-left:180px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;"><a href="{% url 'processor_dashboard' %}" style="text-decoration:none;color:black;"><img src="static/assets/img/Icon.png"></a> Action History </p>
+      {% else %}
+        <p style="margin-left:180px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;"><a href="{% url 'dashboard' %}" style="text-decoration:none;color:black;"><img src="static/assets/img/Icon.png"></a> Action History </p>
+      {% endif %}
+  </div>
+  <div class="rect-meta-1" style="height:480px; margin-top: 130px;">
+<!--    <form method="POST" enctype="multipart/form-data" action="score" name="bfh_tab">-->
+<!--        {% csrf_token %}-->
+        <div class="container" id="wrapper11">
+            <div class="d-flex" >
+                <div class="d-flex text-center" style="margin-left: -140px; height: 65px; margin-top: 2px; width:870px;">
+                    <div class="TabButton TabButtonSelected tablinks" id="Tab1" style="text-align:center;width:660px; font-size: 14px; color: black; font-weight: 500; font-family: 'Ubuntu';" onclick="activeTab(event, 'Tab1')"><b>Business Glossary</b></div>
+                    <div class="TabButton tab tablinks" id="Tab2" style="text-align:center;width:650px; font-size: 14px; font-weight: 500; font-family: 'Ubuntu'; color: black; " onclick="activeTab(event, 'Tab2')">Record Register</div>
+
+                </div>
+            </div>
+
+            <div class="d-flex-col scroll" id="content11" style="width:890px;margin-top: 70px; margin-left: -140px; font-size: 13px; font-weight: 400; font-family: 'Ubuntu';height:270px;">
+                <div id="SectionTab1" class="tab-section d-chart-n d-chart-show" onchange="form_change()">
+                   <table id="myTable"  class="paginated table table-striped table-hover" style="width:940px;background: #E0E0E0;">
+                      <thead>
+                      <tr>
+                          <th scope="col" class="tab-header">Action</th>
+                          <th scope="col" class="tab-header">BGId</th>
+                          <th scope="col" class="tab-header">Business Term</th>
+                          <th scope="col" class="tab-header">User</th>
+                          <th scope="col" class="tab-header">Date </th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                          {% for temp in bg_audit_dict %}
+                              <tr>
+                                  {% if temp.auditaction == 'I' %}
+                                    <td scope="row" class="first-column tab-text">Insert</td>
+                                    {% elif temp.auditaction == 'U' %}
+                                        <td scope="row" class="first-column tab-text">Update</td>
+                                    {% elif temp.auditaction == 'D' %}
+                                        <td scope="row" class="first-column tab-text">Delete</td>
+                                  {% endif %}
+                                  <td class="tab-text">{{ temp.bgid }}</td>
+                                  <td class="tab-text">{{ temp.businessterm }}</td>
+                                  <td class="tab-text">{{ temp.audituser }}</td>
+                                  <td class="tab-text">{{ temp.auditdate }}</td>
+                              </tr>
+                          {% endfor %}
+                      </tbody>
+                  </table>
+                </div>
+
+                <div id="SectionTab2" class="tab-section d-chart-n">
+                     <table id="myTable2"  class="paginated table table-striped table-hover" style="width:940px; background: #E0E0E0;">
+                          <thead>
+                              <tr>
+                                   <th scope="col" class="tab-header">Action</th>
+                                   <th scope="col" class="tab-header">ROPA ID</th>
+                                   <th scope="col" class="tab-header">Business Function</th>
+                                   <th scope="col" class="tab-header">User </th>
+                                   <th scope="col" class="tab-header">Date</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+
+                              {% for i in ropa_audit_dict %}
+                                  <tr>
+                                      {% if i.auditaction == 'I' %}
+                                        <td scope="row" class="first-column tab-text">Insert</td>
+                                        {% elif i.auditaction == 'U' %}
+                                            <td scope="row" class="first-column tab-text">Update</td>
+                                        {% elif i.auditaction == 'D' %}
+                                            <td scope="row" class="first-column tab-text">Delete</td>
+                                      {% endif %}
+                                      <td class="tab-text">{{ i.ropaid }}</td>
+                                      <td class="tab-text">{{ i.businessfunc }}</td>
+                                      <td class="tab-text">{{ i.audituser }}</td>
+                                      <td class="tab-text">{{ i.auditdate }}</td>
+                                  </tr>
+                              {% endfor %}
+                          </tbody>
+                     </table>
+                </div>
+            </div>
+<!--    </form>-->
+  </div>
+
+
+
+<!--  <div class="login-box scroll" style="top:165px;left:80px;  width:925px;height:380px;">-->
+
+<!--      <input type="text" name="search" placeholder="Search.." class="search" id="myInput" onkeyup="myFunction()">-->
+<!--&lt;!&ndash;      <input type="text" name="filter" style="width:108px;border: 2px solid #ccc; margin-left:16px; box-sizing: border-box; height:40px;" placeholder="   Filter        &#x25BC;" class="Filterbox" id="filter" onkeyup="myFunction()">&ndash;&gt;-->
+<!--      <button type="text" name="changee" style="width:108px;border: 2px solid #ccc; margin-left:16px; box-sizing: border-box; height:40px;" placeholder="   Filter        &#x25BC;"  id="filter_button" >Filter</button>-->
+<!--      &lt;!&ndash;      <input type="text" name="Download"  placeholder="   Download As     &#x25BC;">&ndash;&gt;-->
+
+
+<!--      <div class="table " style="margin-top:15px;">-->
+<!--          <table id="myTable" class="paginated table table-striped table-hover" style="margin-left:32px;width:850px;background: #E0E0E0;">-->
+<!--              <thead>-->
+<!--                  <tr>-->
+<!--                      <th scope="col" class="tab-header" >Action</th>-->
+<!--                      <th scope="col" class="tab-header">User</th>-->
+<!--                      <th scope="col" class="tab-header">Date</th>-->
+<!--                  </tr>-->
+<!--              </thead>-->
+
+
+<!--              <tbody>-->
+<!--                  {% for temp in bg_audit_dict %}-->
+<!--                      <tr>-->
+<!--                          <td scope="row" id='Myvar' onclick="Mybtn1('{{temp.bgid}}')" class="first-column tab-text">{{temp.auditaction}}</td>-->
+<!--                          <td class="tab-text">{{ temp.audituser }}</td>-->
+<!--                          <td class="tab-text">{{ temp.auditdate }}</td>-->
+<!--                       </tr>-->
+<!--                   {% endfor %}-->
+<!--              </tbody>-->
+<!--          </table>-->
+<!--      </div>-->
+  </div >
+
+
+
+
+
+
+
+{% endblock %}
+
+</body>
+
+
+
+</html>

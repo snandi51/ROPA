@@ -333,6 +333,21 @@
       -webkit-box-shadow: inset 20px 0 10px grey;
     }
 
+    .successfully-saved {
+      display: none;
+      color: #1B7C18;
+      border-radius: 5px;
+      border: 2px solid #1B7C18;
+      padding: .5em .75em;
+      background: #D6F8DD;
+      width: 25%;
+      margin-top: 20px;
+
+      &.show {
+        display: block;
+      }
+    }
+
 </style>
 
 <script>
@@ -372,7 +387,7 @@
         </button>
         <a href="static/assets/data_record_excel.xlsx" id="download_csv" download hidden>download</a>
         <div class="table" style="margin-top:15px;">
-            <table id="mTable" class="paginated table table-striped table-hover" style="margin-left:24px;width:1020px;background: #E0E0E0;">
+            <table  class="paginated table table-striped table-hover" style="margin-left:24px;width:1020px;background: #E0E0E0;">
               <thead>
                     <tr>
                         <th scope="col" class="tab-header">ROPA ID</th>
@@ -384,6 +399,8 @@
                         <th scope="col" class="tab-header">Status</th>
                     </tr>
               </thead>
+            </table>
+            <table id="mTable" class="paginated table table-striped table-hover" style="margin-left:24px;width:1020px;background: #E0E0E0;">
                 <tbody>
                  {% for temp in ropa_dict %}
                     <tr>
@@ -427,24 +444,8 @@
                                 letter-spacing: 0.4px;
                                 text-transform: uppercase;
                                 color: rgba(255, 255, 255, 0.95);">{{ temp.status }}</td>
-                        {% elif temp.status == 'Rejected' %}
-                            <td class="approved approved-box tab-text" style="display: flex;flex-direction: row; align-items: center;padding: 0px 4px;width: 100px;height: 20px;
-                                background: red;
-                                border-radius: 2px;
-                                flex: none;
-                                order: 0;
-                                flex-grow: 0;
-                                font-family: 'Ubuntu';
-                                font-style: normal;
-                                font-weight: 700;
-                                font-size: 10px;
-                                line-height: 16px;
-                                display: flex;
-                                align-items: center;
-                                letter-spacing: 0.4px;
-                                text-transform: uppercase;
-                                color: rgba(255, 255, 255, 0.95);">{{ temp.status }}</td>
-                        {% else %}
+
+                        {% elif temp.status == 'Approved' %}
                             <td class="approved approved-box tab-text" style="display: flex;
                                 flex-direction: row;
                                 align-items: center;
@@ -514,7 +515,7 @@
                     <div class="input-1 col" style="left: 95%;  margin-top:10%;">
                         <label for="inputPassword" class="label-top" style=" color: rgba(39, 41, 54, 0.85);width: 200px;font-size:12px;;">Categories of Personal Data</label>
 <!--                        <input style="margin-top: -2%; width: 300px;" type="text" name="categoriespersonaldata" id="categoriespersonaldata_add" class="input-master"  placeholder=" Personal data categories " required>-->
-                        <select class="input-master" id='pets' style="margin-top: -2%; width: 300px; height: 32px;background: #FFFFFF;" name="categoriespersonaldata" id="categoriespersonaldata_add" multiple>
+                        <select title="For multiselect ctrl+click" class="input-master" id='pets' style="margin-top: -2%; width: 300px; height: 32px;background: #FFFFFF;" name="categoriespersonaldata" id="categoriespersonaldata_add" multiple>
                             {% for temp in distinct_values %}
                               <option   value='{{ temp.businessterm }}'>{{ temp.businessterm }}</option>
                             {% endfor %}
@@ -523,7 +524,7 @@
                     <div class="input-1 col " style="left: -2%; margin-top: -15%;">
                         <label for="inputPassword" class="label-top" style="color: rgba(39, 41, 54, 0.85);width:200px;">Lawful Basis of Processing</label>
 <!--                        <input type="text" style="margin-top: -2%; width:300px;" name="lawfulbasisofprocessing" id="lawfulbasisofprocessing_add"  class="input-master" placeholder=" Type something " >-->
-                        <select style="margin-top: -2%; width:300px;" name="lawfulbasisofprocessing" id="lawfulbasisofprocessing_add">
+                        <select  style="margin-top: -2%; width:300px;" name="lawfulbasisofprocessing" id="lawfulbasisofprocessing_add">
                             <option>Consent</option>
                             <option>Contract</option>
                             <option>Legal Obligation</option>
@@ -559,14 +560,15 @@
                         <label for="inputPassword" class="label-top" style="color: rgba(39, 41, 54, 0.85);width: 300px; font-size:12px; ">Label General description of technical and organizational security measures (if applicable)</label>
                         <input style="margin-top: 5%; width:300px;" type="text" name="securitymeasures_desc" id="securitymeasures_desc_add" class="input-master"  placeholder=" Type something" >
                     </div>
-                    <div class="input-1 col" style="left: 95%; margin-top: 15%;">
+<!--                    <div class="input-1 col" style="left: 95%; margin-top: 15%;">-->
+                    <div class="input-1 col" style="left: -2%; margin-top: 15%;">
                         <label for="inputPassword" class="label-top" style="color: rgba(39, 41, 54, 0.85); width: 300px;font-size:12px;">Links to contracts, consents, breach records, assessments</label>
                         <input style="margin-top: 5%; width: 320px;" type="text" name="linkscontracts" id="linkscontracts_add" class="input-master" placeholder=" Contract link with the processor organization " >
                     </div>
-                    <div class="input-1 col" style="left: -2%; margin-top: -17%;">
-                            <label for="inputPassword" class="label-top" style="color: rgba(39, 41, 54, 0.85); width: 100px;font-size:12px;">Status</label>
-                            <input style="margin-top: 5%; width: 320px;" type="text" name="status1" id="status1_add" class="input-master" placeholder=" Awaiting Approval " readonly>
-                    </div>
+<!--                    <div class="input-1 col" style="left: -2%; margin-top: -17%;">-->
+<!--                            <label for="inputPassword" class="label-top" style="color: rgba(39, 41, 54, 0.85); width: 100px;font-size:12px;">Status</label>-->
+<!--                            <input style="margin-top: 5%; width: 320px;" type="text" name="status1" id="status1_add" class="input-master" placeholder=" Awaiting Approval " readonly>-->
+<!--                    </div>-->
                         <input type="text" name="ropaid"  id="ropaid_add" placeholder="lorem ipsum" style="display:none;">
                 </div>
             </div>
@@ -617,7 +619,7 @@
                 <div class="input-1 col" style="left: 95%;  margin-top:10%;">
                     <label for="inputPassword" class="label-top" style=" width: 200px;font-size:12px;;">Categories of Personal Data</label>
                     <input style="margin-top: -2%; width: 300px;" type="text" name="categoriespersonaldata" id="categoriespersonaldata_edit" class="input-master"  placeholder=" Personal data categories " >
-                    <select  style="margin-top: -2%; width: 300px; box-sizing: border-box;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
+                    <select  title="For multiselect ctrl+click" style="margin-top: -2%; width: 300px; box-sizing: border-box;height: 32px;background: #FFFFFF;border: 1px solid #8D8D8D;
                                                 border-radius: 3px;flex: none;order: 1;align-self: stretch;flex-grow: 0;" name="categoriespersonaldata" id="categoriespersonaldata_edit" multiple >
                         {% for temp in distinct_values %}
                           <option value='{{ temp.businessterm }}'>{{ temp.businessterm }}</option>
@@ -627,7 +629,7 @@
                 <div class="input-1 col " style="left: -2%; margin-top: -15%;">
                     <label for="inputPassword" class="label-top" style="width:200px;">Lawful Basis of Processing</label>
                     <input type="text" style="margin-top: -2%; width:300px;"  id="lawfulbasisofprocessing_edit"  class="input-master" placeholder=" Type something " >
-                    <select style="margin-top: -2%; width:300px;" name="lawfulbasisofprocessing"  class="input-master" >
+                    <select  style="margin-top: -2%; width:300px;" name="lawfulbasisofprocessing"  class="input-master" >
                         <option>Consent</option>
                         <option>Contract</option>
                         <option>Legal Obligation</option>
@@ -678,7 +680,7 @@
             <footer style="height:50px;  position: fixed;width:775px; right: 0;bottom: 0;   background: #FFFFFF;border: 1px solid #FFFFFF;">
                <button type="button"  onClick = "deleteRow(this)" id="deleterow" style="background: #FFFFFF;border-radius: 0px 0px 4px 4px; border: 1px solid #0E88AF;border-radius: 4px; margin-left:80px; margin-top:10px;  width:280px; height:30px;">
                <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: #12ABDB;font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px; margin-left:-19px;">Delete</span></button>
-               <button type="submit"  style="background: #12ABDB;border: 1px solid #0E88AF;border-radius: 4px; margin-left:50px; margin-top:10px;  width:280px; height:30px;">
+               <button type="submit" id="edit_button" style="background: #12ABDB;border: 1px solid #0E88AF;border-radius: 4px; margin-left:50px; margin-top:10px;  width:280px; height:30px;">
                <span style="text-align: center;align-items: center;letter-spacing: 0.75px;font-size: 14px;color: rgba(255, 255, 255, 0.95);font-family: 'Ubuntu';font-style: normal;font-weight: 500;line-height: 16px;">Save</span></button>
             </footer>
         </div>
@@ -786,6 +788,7 @@
         console.log('edit_dict', edit_dict)
         if (edit_dict){
             console.log("inside function")
+
             var status_edit = document.getElementById('status_edit')
             status_edit.value=edit_dict.status
             var processingactivityname_edit =document.getElementById('processingactivityname_edit')
@@ -888,14 +891,14 @@
 
 
     function colorChange() {
-       if ((document.getElementById("processingactivityname_add").value != "") &
-           (document.getElementById("businessfunc_add").value != "") & (document.getElementById("processingactivitydesc_add").value != "") &
-           (document.getElementById("categoriesdatasubjects_add").value != "") & (document.getElementById("categoriespersonaldata_add").value != "") &
-           (document.getElementById("controllername_add").value != "") & (document.getElementById("categoriesofrecepients_add").value != "")
-            & (document.getElementById("lawfulbasisofprocessing_add").value != "")& (document.getElementById("retentionschedule_add").value != "")&
-            (document.getElementById("dataprocessor_add").value != "") & (document.getElementById("linkcontractprocessor_add").value != "")&
-            (document.getElementById("countriesdetailstransferred_add").value != "") & (document.getElementById("safeguardsexternaltransfers_add").value != "")
-            & (document.getElementById("securitymeasures_desc_add").value != "") & (document.getElementById("linkscontracts_add").value != "") & (document.getElementById("status1_add").value != "")) {
+       if ((document.getElementById("processingactivityname_add").value != "") & (document.getElementById("businessfunc_add").value != "") &
+           (document.getElementById("processingactivitydesc_add").value != "") & (document.getElementById("categoriesdatasubjects_add").value != "") &
+           (document.getElementById("categoriespersonaldata_add").value != "") & (document.getElementById("controllername_add").value != "") &
+           (document.getElementById("categoriesofrecepients_add").value != "") & (document.getElementById("lawfulbasisofprocessing_add").value != "")&
+           (document.getElementById("retentionschedule_add").value != "") & (document.getElementById("dataprocessor_add").value != "") &
+           (document.getElementById("linkcontractprocessor_add").value != "") & (document.getElementById("countriesdetailstransferred_add").value != "") &
+           (document.getElementById("safeguardsexternaltransfers_add").value != "") & (document.getElementById("securitymeasures_desc_add").value != "") &
+           (document.getElementById("linkscontracts_add").value != "")) {
             var x = document.getElementById("add_button").style.background = "#12ABDB";
        }
        else {
@@ -929,6 +932,7 @@
         }
     }
 </script>
+
 {% endblock %}
 </body>
 
