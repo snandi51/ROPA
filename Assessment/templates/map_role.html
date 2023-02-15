@@ -368,7 +368,7 @@
   flex-basis: 500px;
 }</style>
 <style>
-   <style>
+
 * {
   box-sizing: border-box;
 }
@@ -431,6 +431,26 @@ tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 </style>
+<style>
+   .scroll {
+        overflow-y: scroll;
+        height: 120px;
+        width: 300px;
+        margin: 10px 15px; padding: 5px;
+        text-align: justify;
+   }
+    .scroll::-webkit-scrollbar {
+      width:10px;
+    }
+    .scroll::-webkit-scrollbar-track {
+      -webkit-box-shadow:inset 0 0 0px rgba(0,0,0,0.3);
+      border-radius:10px;
+    }
+    .scroll::-webkit-scrollbar-thumb {
+      border-radius:15px;
+      -webkit-box-shadow: inset 20px 0 10px grey;
+    }
+</style>
 <script>
 
    function download_files(){
@@ -461,75 +481,97 @@ tr:nth-child(even) {
 <body class="body-class" style="overflow-y: hidden; overflow-x: hidden;">
   <!-- The dots/circles -->
     <div class="alt-nav" style="width:1372px;height:80px">
-<!--        <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 176px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>-->
-        <p style="margin-left:154px;margin-top:33px;font-weight: 500;line-height: 28px;font-size: 24px;" onclick="history.back()">&#60; Admin - Map Roles to Users </p><br>
-        <p style="padding-left:212px;padding-bottom:143px;padding-top:0px;"> </p>
+        <p style="margin-left:160px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;"><a href="{% url 'admin_screen' %}" style="text-decoration:none;color:black;"><img src="static/assets/img/Icon.png"></a> Admin - Map Roles to Users </p>
+<!--        <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 176px;margin-top: 30px;margin-bottom:0;color: #0070AD;"></p>-->
+<!--        <p style="margin-left:154px;margin-bottom:143px;margin-top:0;font-weight: 500;line-height: 28px;font-size: 24px;" onclick="history.back()">&#60; Admin - Map Roles to Users </p><br>-->
+<!--        <p style="padding-left:212px;padding-bottom:143px;padding-top:0px;"> </p>-->
     </div>
-    <div class="login-box" style="top:165px;left:400px; width:1100px;height:420px; overflow-y: scroll; overflow-x: hidden;">
-
-<!--        <input type="text" name="search" placeholder="Search.." class="search" id="myInput" onkeyup="myFunction()">-->
-<!--        <input type="text" name="filter" style="width:108px;border: 2px solid #ccc; margin-left:16px; box-sizing: border-box; height:40px;" placeholder="   Filter        &#x25BC;" class="Filterbox " >-->
+    <div class="login-box scroll" style="top:165px;margin-left:-330px; width:1050px;height:380px;  overflow-x: hidden;">
 
 
-    <a href="/static/assets/bs_glossaryy_excel.csv" id="select_1" download hidden></a>
-    <a href="/static/assets/record_registerr_excel.csv" id="select_2" download hidden></a>
-    <a href="/static/assets/user_roll_mappingg_excel.csv" id="select_3" download hidden></a>
-    <a href="/static/assets/business_functionn_excel.csv" id="select_4" download hidden></a>
-    <div style="margin-left:50%; position: absolute; margin-top:10px;">
-        <select class="download" onchange="download_files()" name="cars" id="cars" style="">
-            <option value= "1" > Download Template </option>
-            <option value="2" id="">Business Glossary</option>
-            <option value="3">User Mapping</option>
-            <option value="4">Business Function</option>
-            <option value="5">ROPA ID</option>
-        </select>
-    </div>
-        <button class="Addnew-button" style="margin-left:770px; margin-top:10px; position:absolute; height:35px;" id="myBtn"  >
-           <span style="font-size:30px; margin-right:10px;">&plus; </span>  Upload
-        </button>
-        <button class="save" style="margin-left:920px; margin-top:10px; height:35px;" id="myBtn"  >
-           <span style="font-size:22px; margin-right:10px; margin-top:10;">&plus; </span>  Save changes
-        </button>
-        <a href="static/assets/record_register_excel.csv" id="download_csv" download hidden>download Template</a>
 
-        <div class="table" style="margin-top:15px;">
-            <table id="mTable" class="paginated table table-striped table-hover" style="margin-left:24px;width:1030px;background: #E0E0E0;">
-              <thead>
-                    <tr>
-                        <th scope="col">User Name</th>
-                        <th scope="col">Organization</th>
-                        <th scope="col">Email ID</th>
-                        <th scope="col">Roles</th>
-                    </tr>
-              </thead>
-                <tbody>
-                 {% for temp in admin_dict %}
-                    <tr>
-                        <td scope="row" id='Myvar' onclick="Mybtn1('{{temp.ropamainid}}')" class="first-column">{{temp.0}}</td>
-                        <td>{{ temp.1 }}</td>
-                        <td>{{ temp.2 }}</td>
-                        <td style="height:30px;">{{ temp.4 }}
-                        <select id="classification_edit" name="dataclassification" style="width:100%; height:27px;" multiple required >
-                            <option value="data steward">Data Steward</option>
-                            <option value="Bussiness Function Head">Bussiness Function Head</option>
-                            <option value="DPO">DPO</option>
-                        </select>
-                        </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+        <a href="/static/assets/bs_glossaryy_excel.csv" id="select_1" download hidden></a>
+        <a href="/static/assets/record_registerr_excel.csv" id="select_2" download hidden></a>
+        <a href="/static/assets/user_roll_mappingg_excel.csv" id="select_3" download hidden></a>
+        <a href="/static/assets/business_functionn_excel.csv" id="select_4" download hidden></a>
+        <div style="margin-left:52%; position: absolute; margin-top:10px;">
+            <select class="" onchange="download_files()" name="cars" id="cars" style="width:170px; height:35px;background: #12ABDB; color: rgba(255, 255, 255, 0.95);">
+                <option value= "1" > Download Template </option>
+                <option value="2" id="">Business Glossary</option>
+                <option value="3">User Mapping</option>
+                <option value="4">Business Function</option>
+                <option value="5">ROPA ID</option>
+            </select>
         </div>
 
+<!--          <form method="POST"  action="map_role_upload">-->
 
-            </div>
+<!--             {% csrf_token %}-->
 
 
+            <button class="Addnew-button" style="margin-left:730px; margin-top:10px; position:absolute; height:35px;" id="upload_btn"  >
+               <span style="font-size:30px; margin-right:10px;">&plus; </span>  Upload
+            </button>
+
+<!-------------------------     roles edit  form   -------------------------------------------------------------->
+
+            <form method="POST"  action="map_role_edit">
+
+             {% csrf_token %}
+
+
+                <button type="submit" class="Addnew-button" style="margin-left:870px; margin-top:10px; height:35px;" id="myBtn"  >
+                   <span style="font-size:22px; margin-right:10px; margin-top:10;">&plus; </span>  Save changes
+                </button>
+                <a href="static/assets/record_register_excel.csv" id="download_csv" download hidden>download Template</a>
+
+                <div class="table " style="margin-top:15px;">
+                    <table id="mTable" class="paginated table table-striped table-hover" style="margin-left:24px;width:1000px;background: #E0E0E0;">
+                      <thead>
+                            <tr>
+                                <th scope="col" class="tab-header">User Name</th>
+                                <th scope="col" class="tab-header">Email ID</th>
+                                <th scope="col" class="tab-header">Roles</th>
+                            </tr>
+                      </thead>
+
+                      <tbody>
+                        {% for temp in admin_dict %}
+                            <tr>
+                                <td scope="row" id='Myvar' class="first-column">{{temp.0}}</td>
+                                <td scope="row">{{ temp.2 }}</td>
+<!--                                <td scope="row">{{ temp.4 }}</td>-->
+
+
+
+
+                                <TD ALIGN="center">
+                                   <select id="roles" name="roles" required>
+                                       <option value="{{ temp.3 }}">{{ temp.4 }}</option>
+                                        <option value="4">Data steward</option>
+                                        <option value="2">Bussiness Function Head</option>
+                                        <option value="3">DPO</option>
+                                   </select>
+                                </TD>
+
+
+
+                            </tr>
+                        {% endfor %}
+                      </tbody>
+
+                    </table>
+
+                </div>
+
+            </form>
+
+    </div>
 
 <!-------------------------------------------------- Add Form -------------------------------------------------------------------------->
- <form method="POST" id="add_form" onsubmit="setTimeout(Mybtn1('{{success}}'), 3000)" enctype="multipart/form-data" class="ropa_form_add" action="map_role">
+ <form method="POST" id="add_form" onsubmit="setTimeout(upload_func('{{success}}'), 3000)" enctype="multipart/form-data" class="ropa_form_add" action="map_role_upload">
          {% csrf_token %}
-       <div id="myModal" class="modal" style="overflow-x: hidden;overflow-y: hidden;margin-top:0px;">
+       <div id="myModal" class="modal " style="overflow-x: hidden;overflow-y: hidden;margin-top:0px;">
 <!--            <img src="static/assets/img/upload.png" style="margin-left:900px; padding-top:40px;" >-->
 
                 <div class="rect-4" style="min-height:515px; width:480px; margin-left:47%; margin-top:-110px; background-color:white;">
@@ -539,7 +581,7 @@ tr:nth-child(even) {
 
 <!--                            <img class="us" src="static/assets/img/upload.png" style="margin-left:100px;" >-->
                             <p style="padding-top:100px;">Click on the "Choose File" button to upload a file:</p>
-                            <input type="file" id="document" onchange="colorChange()" name="document" accept=".csv" required>
+                            <input type="file" id="document" onchange="colorChange()" name="document" required>
 <!--                        <input type="submit">-->
                         </div>
 
@@ -589,261 +631,64 @@ tr:nth-child(even) {
     </div>
 
 
-
-
-
-
 <script>
     // Get the modal
-    var modal = document.getElementById("myModal");
+    var upload_modal = document.getElementById("myModal");
 
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
 
-    var btn1 = document.getElementById("myBtn1");
+
+    var upload_btn = document.getElementById("upload_btn");
 
     // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+    var close_upload = document.getElementsByClassName("close_upload")[0];
 
-    // When the user clicks the button, open the modal
-    btn.onclick = function() {
-      modal.style.display = "block";
+     upload_btn.onclick = function() {
+      upload_modal.style.display = "block";
     }
 
 
-<!--    // When the user clicks on <span> (x), close the modal-->
-<!--    span.onclick = function() {-->
-<!--      modal.style.display = "none";-->
-<!--    }-->
+
+    function upload_func(id){
+    console.log('Hi!')
+    console.log(id)
+    upload_modal.style.display = "none";
+    }
+
+
+    // When the user clicks on <span> (x), close the modal
+    close_upload.onclick = function() {
+      upload_modal.style.display = "none";
+    }
 
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
+      if (event.target == upload_modal) {
+        upload_modal.style.display = "none";
       }
     }
 
-    var cancel = document.getElementById("cancel-button");
 
-    cancel.onclick = function() {
-      modal.style.display = "none";
-    }
-
-    var canceldelete = document.getElementById("cancel-delete-button")
-
-
-    canceldelete.onclick = function() {
-      myModal2.style.display = "none";
-    }
-
-
-    window.onload= function(){
-          console.log("function called")
-          var record1_1 = document.getElementById("record1_1")
-          var record1_2 = document.getElementById("record1_2")
-          var record1_3 = document.getElementById("record1_3")
-          var record1_4 = document.getElementById("record1_4")
-          var record1_5= document.getElementById("record1_5")
-          var record1_6 = document.getElementById("record1_6")
-          var record1_7 = document.getElementById("record1_7")
-          var record1_8 = document.getElementById("record1_8")
-          var record1_9 = document.getElementById("record1_9")
-          var record1_10 = document.getElementById("record1_10")
-          var record1_11 = document.getElementById("record1_11")
-          var record1_12 = document.getElementById("record1_12")
-          var record1_13 = document.getElementById("record1_13")
-          var record1_14 = document.getElementById("record1_14")
-          var record1_15 = document.getElementById("record1_15")
-          var record1_16 = document.getElementById("record1_16")
-    }
-
-
-    // Get the modal
-    var modal1 = document.getElementById("myModal1");
-
-
-
-    // Get the button that opens the modal
-    var btn1 = document.getElementById("Myvar");
-
-    var glob_id = '0'
-
-    function Mybtn1(id){
-        console.log('Hi!')
-        console.log(id)
-        glob_id = id
-        var ropa_dict= {{ropa_dict|safe}}
-        console.log(ropa_dict)
-        console.log('entering index')
-        const index = ropa_dict.findIndex(object => {
-            return object.ropaid == id;
-        });
-        console.log(index)
-        var edit_dict=ropa_dict[index]
-        console.log(edit_dict)
-        if (edit_dict){
-            var record_edit1_1 = document.getElementById('record_edit1_1')
-            record_edit1_1.value=edit_dict.record_edit1_1
-            var record_edit1_2 =document.getElementById('record_edit1_2')
-            record_edit1_2.value=edit_dict.record_edit1_2
-            var record_edit1_3 = document.getElementById('record_edit1_3')
-            record_edit1_3.value=edit_dict.record_edit1_3
-            var record_edit1_4 = document.getElementById('record_edit1_4')
-            record_edit1_4.value=edit_dict.record_edit1_4
-            var record_edit1_5 = document.getElementById('record_edit1_5')
-            record_edit1_5.value=edit_dict.record_edit1_5
-            var record_edit1_6= document.getElementById('record_edit1_6')
-            record_edit1_6.value=edit_dict.record_edit1_6
-            var record_edit1_7 = document.getElementById('record_edit1_7')
-            record_edit1_7.value=edit_dict.record_edit1_7
-            var record_edit1_8 = document.getElementById('record_edit1_8')
-            record_edit1_8.value=edit_dict.record_edit1_8
-            var record_edit1_9 = document.getElementById('record_edit1_9')
-            record_edit1_9.value=edit_dict.record_edit1_9
-            var record_edit1_10= document.getElementById('record_edit1_10')
-            record_edit1_10.value=edit_dict.record_edit1_10
-            var record_edit1_11= document.getElementById('record_edit1_11')
-            record_edit1_11.value=edit_dict.record_edit1_11
-            var record_edit1_12= document.getElementById('record_edit1_12')
-            record_edit1_12.value=edit_dict.record_edit1_12
-            var record_edit1_13= document.getElementById('record_edit1_13')
-            record_edit1_13.value=edit_dict.record_edit1_13
-            var record_edit1_14= document.getElementById('record_edit1_14')
-            record_edit1_14.value=edit_dict.record_edit1_14
-            var record_edit1_15= document.getElementById('record_edit1_15')
-            record_edit1_15.value=edit_dict.record_edit1_15
-            var record_edit1_16= document.getElementById('record_edit1_16')
-            record_edit1_16.value=edit_dict.record_edit1_16
-            var ropaid_edit= document.getElementById('ropaid_edit')
-            ropaid_edit.value=edit_dict.ropaid_edit
-        }
-        modal1.style.display = "block";
-    }
-
-    function deleteRow(tempid){
-        console.log('entering delete function')
-        console.log(tempid)
-        console.log(glob_id)
-        var modal1 = document.getElementById("myModal1");
-        modal1.style.display = "none";
-        var modal2 = document.getElementById("myModal2");
-        modal2.style.display = "block";
-    }
-
-
-    // Get the <span> element that closes the modal
-    var span1 = document.getElementsByClassName("close_edit")[0];
-
-    var span2 = document.getElementsByClassName("close_delete")[0];
-
-<!--    function yes_function(){-->
-<!--    window.location.href='{% url 'delete' %}'+'?search='+glob_id-->
-<!--    }-->
-
-    // When the user clicks on <span> (x), close the modal
-    span1.onclick = function() {
-      modal1.style.display = "none";
-      modal2.style.display = "none";
-    }
-
-    var span2 = document.getElementsByClassName("close_delete")[0];
-
-    // When the user clicks on <span> (x), close the modal
-    span1.onclick = function() {
-      modal1.style.display = "none";
-    }
-    span2.onclick = function() {
-      modal2.style.display = "none";
-    }
-
-</script>
-<script>
-    function myFunction() {
-        var input, filter, found, table, tr, td, i, j;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("mTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td");
-            for (j = 0; j < td.length; j++) {
-                if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                    found = true;
-                }
-            }
-            if (found) {
-                tr[i].style.display = "";
-                found = false;
-            } else {
-                tr[i].style.display = "none";
-            }
-        }
-    }
-</script>
-
-
-<script>
-       // Get the modal
-    var modal = document.getElementById("myModal");
-
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close_upload")[0];
-
-    // When the user clicks the button, open the modal
-    btn.onclick = function() {
-      modal.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-      modal.style.display = "none";
-    }
-
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-
-    var load_button = document.getElementById("upload_button");
-
-    var upload_screen = document.getElementById("upload_logo");
-
-    load_button.onclick = function() {
-        modal.style.display = "none";
-        upload_screen.style.display = "block";
-    }
-
-    var upload_close = document.getElementsByClassName("close_up")[0];
-
-
-     // When the user clicks on <span> (x), close the modal
-    upload_close.onclick = function() {
-      upload_screen.style.display = "none";
-    }
-
-
-    function colorChange(){
-      console.log("color")
-      if(document.getElementById("document").value!= " ")
-      {
+    function colorChange()
+    {
+        console.log("color")
+        if (document.getElementById("document").value != " ")
+    {
         document.getElementById("upload_button").style.background = "#12ABDB";
-      }
-      else
-      {
+    }
+    else
+    {
         document.getElementById("upload_button").style.background = "rgba(39, 41, 54, 0.22)";
-        document.getElementById("upload_button").style.color = "white";
-        document.getElementById("upload_button").style.border = "#0C7799;";
-      }
+    document.getElementById("upload_button").style.color = "white";
+    document.getElementById("upload_button").style.border = "#0C7799;";
+    }
     }
 
+
 </script>
+
+
+
+
 {% endblock %}
 </body>
 
