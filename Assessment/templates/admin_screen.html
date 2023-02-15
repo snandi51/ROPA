@@ -158,7 +158,7 @@
         <p style="padding-left:212px;padding-bottom:143px;padding-top:0px;"> </p>
 </div>
 
-<body style="background: linear-gradient(3.47deg, #00649B 13.28%, #66A9CD 93.28%);position: static;width: 1090px;height: 800px; margin-left: 150px;
+<body style="overflow-x:hidden; background: linear-gradient(3.47deg, #00649B 13.28%, #66A9CD 93.28%);position: static;width: 1090px;height: 700px; margin-left: 150px;
 padding-top: 100px;">
 <!--    <div class="user-info1">-->
 <!--      <div style="width: 20%; height: 70px; top:20%; ">-->
@@ -174,7 +174,7 @@ padding-top: 100px;">
     <a href="/static/assets/record_registerr_excel.csv" id="select_2" download hidden></a>
     <a href="/static/assets/user_roll_mappingg_excel.csv" id="select_3" download hidden></a>
     <a href="/static/assets/business_functionn_excel.csv" id="select_4" download hidden></a>
-    <div style="margin-left:50%; position: absolute;margin-top:-18px; ">
+    <div style="margin-left:55%; position: absolute;margin-top:15px; ">
         <select class="download" onchange="download_files()" name="cars" id="cars">
             <option value= "1" > Download Template </option>
             <option value="2" id="">Business Glossary</option>
@@ -186,45 +186,45 @@ padding-top: 100px;">
 
     <!--    Risk Summary box 1-->
 <!--    <a href=""  onClick="risk_clickable_box1()" id="myBtn">-->
-        <div class="risk-clickable-box1" id="myBtn" >
+        <div class="risk-clickable-box1" id="myBtn" style="margin-top:50px;height:195px;">
             <div class="inside-risk-clickable-box1" style="height:80px;">
                 <p class="risk_summary_title">Set Business Glossary</p><br>
                 <p class="us" style="right:-40px;">Upload Business Glossary.</p>
-                <img class="users" style="margin-top:74px; margin-left:80px;" src="static/assets/img/Set Business Glossary.svg" >
+                <img class="users" style="margin-top:68px; margin-left:80px;" src="static/assets/img/Set Business Glossary.svg" >
             </div>
         </div>
 <!--    </a>-->
 
 
-    <a href="{% url 'map_role' %}" onClick="risk_clickable_box2()">
-        <div class="risk-clickable-box2" id="risk-clickable-box2" style="">
+    <a href="{% url 'map_role' %}" onClick="risk_clickable_box2()"  >
+        <div class="risk-clickable-box2" id="risk-clickable-box2" style="margin-top:50px;height:195px;">
             <div class="inside-risk-clickable-box2 disabled" style="height:80px;">
                 <p class="risk_summary_title">Map Roles to Users</p><br>
                 <p class="us" style="right:-40px;">Upload Map Roles to Users </p>
-                <img class="users"style="margin-top:74px; margin-left:83px;" src="static/assets/img/Map Roles to Users.svg" >
+                <img class="users"style="margin-top:68px; margin-left:83px;" src="static/assets/img/Map Roles to Users.svg" >
             </div>
         </div>
     </a>
 
 
-    <a href="{% url 'bfunction' %}" onClick="risk_clickable_box3()">
-        <div class="risk-clickable-box3" id="risk-clickable-box3" style="">
+    <a href="{% url 'bfunction' %}" onClick="risk_clickable_box3()" >
+        <div class="risk-clickable-box3" id="risk-clickable-box3" style="margin-top:50px;height:195px;">
             <div class="inside-risk-clickable-box3 disabled" style="height:80px;">
                 <p class="risk_summary_title">Set Business Functions</p><br>
                 <p class="us" style="right:-40px;">Upload files for Business Function </p>
-                <img class="users" style="margin-top:74px; margin-left:83px;"src="static/assets/img/Set Business Functions.svg" >
+                <img class="users" style="margin-top:68px; margin-left:83px;"src="static/assets/img/Set Business Functions.svg" >
             </div>
         </div>
     </a>
 
 
     <a href="#" onClick="risk_clickable_box4()">
-        <div class="risk-clickable-box4" id="box4" style="">
+        <div class="risk-clickable-box4" id="box4" style="margin-top:50px;height:195px;">
             <div class="inside-risk-clickable-box4 disabled" style="height:80px;">
                 <p class="us" style="right:-40px;">Upload Records Register </p>
                 <p class="risk_summary_title">Set Records Register</p><br>
 
-                <img class="users" style="margin-top:74px; margin-left:83px;"src="static/assets/img/Set Records Register.svg" >
+                <img class="users" style="margin-top:68px; margin-left:83px;"src="static/assets/img/Set Records Register.svg" >
             </div>
         </div>
     </a>

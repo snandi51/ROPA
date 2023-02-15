@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth.models import User
 from Assessment.models import UserDetails, RopaType, BgMain, RopaMain, RopaAudit, BusinessFunction, BgAudit
 from datetime import date
 from django.conf import settings
@@ -1547,23 +1548,145 @@ def error_data(request):
     return render(request, 'error_data.html')
 
 
-def map_role(req):
-    # import ipdb
-    # ipdb.set_trace()
+def map_role(request):
     cursor = connection.cursor()
-    print('sp_admin_map_roles')
+    print('sp_admin_map_roles_edit')
     try:
         cursor.execute('EXEC sp_admin_map_roles')
         result_set = cursor.fetchall()
 
-        print(result_set)
-        context={
-            'admin_dict':result_set,
+        context = {
+            'admin_dict': result_set,
         }
+        return render(request, 'map_role.html', context)
 
-        return render(req, 'map_role.html',context)
     finally:
         cursor.close()
+
+
+def map_role_upload(request):
+    print('map_role_upload')
+    cursor1 = connection.cursor()
+    try:
+        cursor1.execute('EXEC sp_admin_map_roles')
+        result_set1 = cursor1.fetchall()
+        context1 = {
+            'admin_dict': result_set1,
+        }
+        if request.method == 'POST':
+
+            print('inside map_role_upload')
+            # import ipdb
+            # ipdb.set_trace()
+            uploaded_data = request.FILES['document']
+            df = pd.read_csv(uploaded_data)
+            print(df)
+            for temp in df.index:
+                print(df['username'][temp], df['roles'][temp],df['email'][temp],df['password'][temp])
+                user_final = User.objects.create_user(username=df['username'][temp],
+                                                email=df['email'][temp],
+                                                password=df['password'][temp])
+                print('user :',user_final)
+
+                group_final = df['roles'][temp]
+
+                user_final.groups.add(group_final)
+            try:
+                cursor.execute('EXEC sp_admin_map_roles')
+                result_set = cursor.fetchall()
+
+                print(result_set)
+
+                context = {
+                     'admin_dict': result_set,
+                    }
+                return render(request, 'map_role.html', context)
+
+            finally:
+                cursor.close()
+        return render(request, 'map_role.html', context1)
+
+    finally:
+        cursor1.close()
+
+
+def map_role_edit(request):
+    # from django.contrib.auth.models import User, Group
+    #
+    # # retrieve the user
+    # user = User.objects.get(username='user_name')
+    #
+    # # retrieve the group
+    # group = Group.objects.get(name='group_name')
+    #
+    # # add the user to the group
+    # user.groups.add(group)
+    #
+    # # save the changes
+    # user.save()
+    cursor = connection.cursor()
+
+    if request.method == 'POST':
+
+        roles = request.POST.getlist('roles')
+        print(roles)
+        roles_df=pd.DataFrame(roles)
+
+        print('sp_admin_map_roles_edit')
+        try:
+            cursor.execute('EXEC sp_admin_map_roles')
+            result_set = cursor.fetchall()
+
+            print(result_set)
+            df = pd.DataFrame(result_set)
+            print(df[0])
+
+            df[4]=roles_df
+            print(df)
+
+            for index, x in df.iterrows():
+                # import ipdb
+                # ipdb.set_trace()
+
+                # retrieve the user
+                user = User.objects.get(username=df[0][index])
+                # print(user)
+
+                old_group = Group.objects.get(user=user.id)
+                # print('old_group =',old_group)
+
+                user_final = User.objects.get(id=df[5][index])
+                # print('user_final=',user_final)
+                group_final = Group.objects.get(id=df[4][index])
+                # print('group_final =',group_final)
+
+
+
+
+                if old_group != group_final:
+                    user_final.groups.remove(old_group)
+
+                    user_final.groups.add(group_final)
+
+
+
+
+                # group.user_set.remove(user)
+                # group.user_set.add(user)
+                # add the user to the group
+                # user.groups.add(group)
+                # save the changes
+
+
+            cursor.execute('EXEC sp_admin_map_roles')
+            final_result = cursor.fetchall()
+            context = {
+                'admin_dict': final_result,
+            }
+            return render(request, 'map_role.html',context)
+
+        finally:
+            cursor.close()
 
 
 def user_details(request):

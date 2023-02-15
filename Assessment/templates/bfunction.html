@@ -112,6 +112,27 @@
 
 
 </style>
+<style>
+   .scroll {
+        overflow-y: scroll;
+        height: 120px;
+        width: 300px;
+        margin: 10px 15px; padding: 5px;
+        text-align: justify;
+   }
+    .scroll::-webkit-scrollbar {
+      width:10px;
+    }
+    .scroll::-webkit-scrollbar-track {
+      -webkit-box-shadow:inset 0 0 0px rgba(0,0,0,0.3);
+      border-radius:10px;
+    }
+    .scroll::-webkit-scrollbar-thumb {
+      border-radius:15px;
+      -webkit-box-shadow: inset 20px 0 10px grey;
+    }
+</style>
+s
 
 <script>
 
@@ -144,10 +165,11 @@
   <!-- The dots/circles -->
     <div class="alt-nav" style="width:1372px;height:80px">
 <!--        <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 176px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>-->
-        <p style="margin-left:190px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;" onclick="history.back()">&#60; Admin - Business Functions </p><br>
+        <p style="margin-left:160px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;"><a href="{% url 'admin_screen' %}" style="text-decoration:none;color:black;"><img src="static/assets/img/Icon.png"></a> Admin - Business Functions </p>
+<!--        <p style="margin-left:190px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;" onclick="history.back()">&#60; Admin - Business Functions </p><br>-->
         <p style="padding-left:212px;padding-bottom:143px;padding-top:0px;"> </p>
     </div>
-        <div class="login-box" style="top:165px;left:400px; width:1100px;height:420px; overflow-y: scroll; overflow-x: hidden;">
+        <div class="login-box scroll" style="top:165px;left:90px; width:1100px;height:420px; overflow-x: hidden;">
 
 <!--        <input type="text" name="search" placeholder="Search.." class="search" id="myInput" onkeyup="myFunction()">-->
 <!--        <input type="text" name="filter" style="width:108px;border: 2px solid #ccc; margin-left:16px; box-sizing: border-box; height:40px;" placeholder="   Filter        &#x25BC;" class="Filterbox " >-->

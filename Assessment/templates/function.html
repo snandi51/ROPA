@@ -112,6 +112,26 @@
 
 
 </style>
+<style>
+   .scroll {
+        overflow-y: scroll;
+        height: 120px;
+        width: 300px;
+        margin: 10px 15px; padding: 5px;
+        text-align: justify;
+   }
+    .scroll::-webkit-scrollbar {
+      width:10px;
+    }
+    .scroll::-webkit-scrollbar-track {
+      -webkit-box-shadow:inset 0 0 0px rgba(0,0,0,0.3);
+      border-radius:10px;
+    }
+    .scroll::-webkit-scrollbar-thumb {
+      border-radius:15px;
+      -webkit-box-shadow: inset 20px 0 10px grey;
+    }
+</style>
 
 <script>
 
@@ -144,15 +164,16 @@
   <!-- The dots/circles -->
     <div class="alt-nav" style="width:1372px;height:80px">
 <!--        <p style="font-family: 'Ubuntu';font-weight: 400px;font-size: 17px;line-height: 16px;margin-left: 176px;margin-top: 30px;margin-bottom:0;color: #0070AD;">Title</p>-->
-        <p style="margin-left:190px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;" onclick="history.back()">&#60; Admin - Business Functions </p><br>
+        <p style="margin-left:160px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;"><a href="{% url 'admin_screen' %}" style="text-decoration:none;color:black;"><img src="static/assets/img/Icon.png"></a> Admin - Business Functions </p>
+<!--        <p style="margin-left:190px;margin-bottom:143px;margin-top:30px;font-weight: 500;line-height: 28px;font-size: 24px;" onclick="history.back()">&#60; Admin - Business Functions </p><br>-->
         <p style="padding-left:212px;padding-bottom:143px;padding-top:0px;"> </p>
     </div>
-        <div class="login-box" style="top:165px;left:400px; width:1100px;height:420px; overflow-y: scroll; overflow-x: hidden;">
+        <div class="login-box scroll" style="top:165px;left:90px; width:1050px;height:420px;  overflow-x: hidden;">
 
 <!--        <input type="text" name="search" placeholder="Search.." class="search" id="myInput" onkeyup="myFunction()">-->
 <!--        <input type="text" name="filter" style="width:108px;border: 2px solid #ccc; margin-left:16px; box-sizing: border-box; height:40px;" placeholder="   Filter        &#x25BC;" class="Filterbox " >-->
 
-        <button class="Addnew-button" style="margin-left:920px; margin-top:10px; position:absolute; height:35px;" id="myBtn6"  >
+        <button class="Addnew-button" style="margin-left:880px; margin-top:10px; position:absolute; height:35px;" id="myBtn6"  >
            <span style="font-size:30px; margin-right:10px;">&plus; </span>  Upload
         </button>
 
@@ -170,7 +191,7 @@
         </select>
     </div>
         <div class="table" style="margin-top:60px;">
-            <table id="mTable" class="paginated table table-striped table-hover" style="margin-left:24px;width:1030px;background: #E0E0E0;">
+            <table id="mTable" class="paginated table table-striped table-hover" style="margin-left:24px;width:1000px;background: #E0E0E0;">
               <thead>
                     <tr>
                         <th scope="col">Business Function</th>
@@ -227,31 +248,33 @@
         </div>
 
     </form>
-      <div class="rect-4" style="height:50px; width:290px; margin-left:-130px; position:absolute; margin-top:350px; background-color:white;" id="file_upload">
+    <div class="rect-4" style="height:50px; width:290px; margin-left:-90px; position:absolute; margin-top:320px; background-color:white;" id="file_upload">
 
 
-      <p style="margin-left: 15%; margin-top:10px; ">File uploaded. <button style="display: flex;
-flex-direction: row;
-align-items: center;
-padding: 8px 8px 8px 16px;
-gap: 16px;
+          <p style="margin-left: 15%; margin-top:10px;font-family:'Ubuntu', font-size:12px; font-weight:300; ">File uploaded.
+              <button style="display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 8px 8px 8px 16px;
+            gap: 16px;
 
-position: absolute;
-width: 100px;
-left: 52%;
-top: 40%;
-bottom: 4.44%;
+            position: absolute;
+            width: 100px;
+            left: 52%;
+            top: 20%;
+            bottom: 4.44%;
+            height: 30px;
 
-/* Grey Scale/White */
+            /* Grey Scale/White */
 
-background: #FFFFFF;
-/* Elevation/04 */
-
-box-shadow: 0px 24px 38px rgba(0, 67, 103, 0.14), 0px 9px 46px rgba(0, 67, 103, 0.12), 0px 11px 15px rgba(0, 67, 103, 0.2);
-border-radius: 4px;color: #12ABDB;
-" id="file_dismiss" onclick="file_up()">Dismiss</button></p>
+            background: #FFFFFF;
+            /* Elevation/04 */
 
 
+            border-radius: 2px;
+            border-color:#12ABDB;
+            color: #12ABDB;" id="file_dismiss" onclick="file_up()">Dismiss</button>
+          </p>
     </div>
 
 
