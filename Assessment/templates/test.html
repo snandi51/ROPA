@@ -256,6 +256,20 @@
                   cursor: pointer;
                }
 
+               .close_saved {
+                  color: #aaaaaa;
+                  float: right;
+                  font-size: 28px;
+                  font-weight: bold;
+                }
+
+               .close_saved:hover,
+               .close_saved:focus {
+                  color: #000;
+                  text-decoration: none;
+                  cursor: pointer;
+               }
+
                 .first-column:focus,
                 .first-column:hover{
                   cursor: pointer;
@@ -423,6 +437,7 @@
           <option  value="2">PDF</option>
       </select>
       <a href="static/assets/bs_glossary_df.csv" id="download_csv" download hidden>download</a>
+<!--      <a href="static/assets/bs_glossary_pdf.csv" id="download_pdf" download hidden>download</a>-->
 
 
 
@@ -549,7 +564,7 @@
       {% csrf_token %}
 
 
-  <div id="myModal" class="modal" style="overflow-x: hidden;overflow-y: hidden;margin-top:0px;">
+  <div id="myModal" class="modal" style="overflow-x: hidden;overflow-y: hidden;margin-top:0px;" >
           <div class="rect-4" style="height:575px; max-width:572px;  margin-top: -94px;margin-left:40.30%; overflow-x: hidden;overflow-y: scroll;border: 1px solid #FFFFFF; border-radius: 0px;">
               <span class="close">&times;</span>
               <div onchange="colorChange()" style="position:absolute; left:7%; ">
@@ -838,6 +853,13 @@
                 </footer>
     </div>
 
+    <div class="rect-4" id="data_saved" style="display:none; height:50px; width:290px; margin-left:-90px; position:absolute; margin-top:320px; background-color:white;" >
+      <p style="margin-left: 15%; margin-top:10px;font-family:'Ubuntu', font-size:12px; font-weight:300; ">Record saved successfully.
+        <span class="close_saved" >&times;</span>
+      </p>
+    </div>
+
+
 
 <!--  <div class="filter" id="Filter_box" style="top:223px; margin-left:25%;  width:540px; height:320px; background: white; border-radius: 8px 0px 0px 8px;">-->
 <!--    <div  style="margin-left: 2%; background:green; ">-->
@@ -931,6 +953,13 @@ canceldelete.onclick = function() {
 
 window.onload= function(){
       console.log("function called")
+      var is_data_loaded = {{new_data|safe}}
+      console.log(is_data_loaded)
+      if(is_data_loaded){
+          var data_saved = document.getElementById('data_saved');
+          data_saved.style.display = 'block';
+      }
+
       var businessterm_add = document.getElementById("businessterm_add")
       var dataattribute_add = document.getElementById("dataattribute_add")
       var definition_add = document.getElementById("definition_add")
@@ -1030,6 +1059,8 @@ var span1 = document.getElementsByClassName("close_edit")[0];
 
 var span2 = document.getElementsByClassName("close_delete")[0];
 
+var span3 = document.getElementsByClassName("close_saved")[0];
+
 function yes_function(){
 window.location.href='{% url 'delete' %}'+'?search='+glob_id
 }
@@ -1056,6 +1087,11 @@ span1.onclick = function() {
 span2.onclick = function() {
   modal2.style.display = "none";
 }
+span3.onclick = function() {
+  data_saved.style.display = "none";
+}
+
+
 <!-- filter download and search -->
 
 
@@ -1128,6 +1164,16 @@ f_btn.onclick = function() {
 <!--    modal.style.display = "none";-->
 <!--  }-->
 <!--}-->
+
+    var form = document.getElementById('bform_screen1');
+<!--    function displayInfo(){-->
+<!--         if (form.checkValidity()){-->
+<!--			alert("Record saved successfully.");  // display string message-->
+<!--         }-->
+<!--    }-->
+    function displayInfo(){
+        data_saved.style.display = "block";
+    }
 </script>
 
 
