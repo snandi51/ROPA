@@ -43,5 +43,6 @@ urlpatterns = [
     path('action_history', member_views.action_history, name='action_history'),
     path('function', member_views.function, name='function'),
     path('admin_screen_upload', member_views.admin_screen_upload, name='admin_screen_upload'),
-    path('map_role_edit', member_views.map_role_edit, name='map_role_edit')
+    path('map_role_edit', member_views.map_role_edit, name='map_role_edit'),
+    path('map_role_upload', member_views.map_role_upload, name='map_role_upload')
  ]

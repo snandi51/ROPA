@@ -255,6 +255,20 @@
           cursor: pointer;
        }
 
+      .close_saved {
+          color: #aaaaaa;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+      }
+
+       .close_saved:hover,
+       .close_saved:focus {
+          color: #000;
+          text-decoration: none;
+          cursor: pointer;
+       }
+
       /* The Modal (background) */
       .modal {
           display: none; /* Hidden by default */
@@ -356,8 +370,9 @@
         getSelectValue = document.getElementById("cars").value;
         if(getSelectValue == "1"){
             document.getElementById("download_csv").click();
-        }else{
-           console.log('pdf')
+        }
+        else(getSelectValue == "2"){
+            document.getElementById("download_pdf").click();
         }
     }
 </script>
@@ -386,6 +401,7 @@
            <span style="font-size:30px; margin-right:10px;">&plus; </span>  Add New
         </button>
         <a href="static/assets/data_record_excel.xlsx" id="download_csv" download hidden>download</a>
+        <a href="static/assets/data_record_pdf.pdf" id="download_pdf" download hidden>download</a>
         <div class="table" style="margin-top:15px;">
             <table  class="paginated table table-striped table-hover" style="margin-left:24px;width:1020px;background: #E0E0E0;">
               <thead>
@@ -732,6 +748,12 @@
           </footer>
     </div>
 
+  <div class="rect-4" id="data_saved" style="display:none; height:50px; width:290px; margin-left:-90px; position:absolute; margin-top:320px; background-color:white;" >
+      <p style="margin-left: 15%; margin-top:10px;font-family:'Ubuntu', font-size:12px; font-weight:300; ">Record saved successfully.
+        <span class="close_saved" >&times;</span>
+      </p>
+    </div>
+
 
 <script>
     // Get the modal
@@ -952,6 +974,23 @@
                 tr[i].style.display = "none";
             }
         }
+    }
+</script>
+<script>
+    var span3 = document.getElementsByClassName("close_saved")[0];
+
+    span3.onclick = function() {
+      data_saved.style.display = "none";
+    }
+
+    window.onload= function(){
+      console.log("function called")
+      var is_data_loaded = {{new_data|safe}}
+      console.log(is_data_loaded)
+      if(is_data_loaded){
+          var data_saved = document.getElementById('data_saved');
+          data_saved.style.display = 'block';
+      }
     }
 </script>
 

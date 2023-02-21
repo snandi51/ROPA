@@ -16,6 +16,9 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import Group
 # from Assessment.views import group_required
 # from IPython.display import display, HTML
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
+# import pdfkit as pdf
 
 
 def login_user(request):
@@ -240,7 +243,7 @@ def bussiness_glossary(request):
 def test(request):
     # import ipdb
     # ipdb.set_trace()
-
+    is_data_loaded = False
     if request.method == "POST":
         businessterm = request.POST.get('businessterm')
         definition = request.POST.get('definition')
@@ -259,6 +262,7 @@ def test(request):
 
         createdby = request.POST.get('createdby')
 
+        is_data_loaded = True
 
         # classification value pass pending.
         business_detail = BgMain(businessterm=businessterm, definition=definition, dataclassification=dataclassification, dataattribute=dataattribute,
@@ -295,10 +299,14 @@ def test(request):
 
     output = request.session.get('output')
 
+    new_data = str(is_data_loaded).lower()
+
     context = {
             'bga': result,
             'bg_dict': bg_dict,
-            'output': output
+            'output': output,
+            'is_data_loaded': is_data_loaded,
+            'new_data': new_data
 
      }
     stored_proc(request)
@@ -470,6 +478,7 @@ def dashboard(request):
 
 # @login_required
 def record(request):
+    is_data_loaded = False
     if request.method == "POST":
         print("inside function")
         status = 'Awaiting Approval'
@@ -493,7 +502,7 @@ def record(request):
         securitymeasures_desc = request.POST.get('securitymeasures_desc')
         linkscontracts = request.POST.get('linkscontracts')
 
-
+        is_data_loaded = True
 
         # user_detail = request.session['user_detail']
         # id = request.user.id
@@ -547,6 +556,19 @@ def record(request):
                                                                 'retentionschedule', 'linkcontractprocessor', 'countriesdetailstransferred',
                                                                 'safeguardsexternaltransfers', 'securitymeasures_desc', 'linkscontracts')))
     ropa_csv = ropa_csv.drop(['ropaid'], axis=1)
+
+    # fig, ax = plt.subplots(figsize=(12, 4))
+    # ax.axis('tight')
+    # ax.axis('off')
+    # the_table = ax.table(cellText=ropa_csv.values, colLabels=ropa_csv.columns, loc='center')
+    #
+    # pp = PdfPages("Assessment/static/assets/data_record_pdf.pdf")
+    # pp.savefig(fig, bbox_inches='tight')
+    # pp.close()
+
+    # ropa_csv.to_html('f.html')
+    # ropa_pdf = 'Assessment/static/assets/data_record_pdf.pdf'
+    # pdf.from_file('f.html', ropa_pdf)
     # style = ropa_csv.style.set_table_styles(
     #     [{"selector": "", "props": [("border", "1px solid grey")]},
     #      {"selector": "tbody td", "props": [("border", "1px solid grey")]},
@@ -587,12 +609,11 @@ def record(request):
     #header formatting
     header_format = workbook.add_format({
         "valign": "vcenter",
-        "align": "center",
-        "bg_color": "#951F06",
         "bold": True,
-        'font_color': '#FFFFFF',
         'border': 1,
-        'border_color': '# D3D3D3'
+        'text_wrap': True,
+        'fg_color': '#D7E4BC',
+        'border_color': 'black'
     })
     # Full border formatting for conditional formatted cells
     full_border = workbook.add_format({"border": 1, "border_color": "#D3D3D3"})
@@ -610,8 +631,8 @@ def record(request):
     subheader3 = 'Representative (if applicable)'
     worksheet.merge_range('A1:M1', title, format)
     worksheet.merge_range('A7:Q7', title2, format)
-    worksheet.merge_range('A9:E9', subheader)
-    worksheet.merge_range('A3:E3', subheader1)
+    worksheet.merge_range('B9:Q9', subheader)
+    worksheet.merge_range('B3:E3', subheader1)
     worksheet.merge_range('F3:I3', subheader2)
     worksheet.merge_range('J3:M3', subheader3)
     worksheet.set_row(2, 15)  # Set the header row height to 15
@@ -619,12 +640,11 @@ def record(request):
     # Write the column headers with the defined format.
     for col_num, value in enumerate(user_detail.columns.values):
         # print(col_num, value)
-        worksheet.write(3, col_num, value, header_format)
+        worksheet.write(3, col_num+1, value, header_format)
 
     for col_num, value in enumerate(ropa_csv.columns.values):
         # print(col_num, value)
-        worksheet.write(9, col_num, value, header_format)
-
+        worksheet.write(9, col_num+1, value, header_format)
 
     writer.save()
 
@@ -645,11 +665,15 @@ def record(request):
     print(distinct_values)
 
     output = request.session.get('output')
+
+    new_data = str(is_data_loaded).lower()
+
     context = {
         'distinct_values': distinct_values,
         'result': result,
         'ropa_dict': ropa_dict,
-        'output': output
+        'output': output,
+        'new_data': new_data
     }
     return render(request, 'record.html', context)
 
@@ -1383,7 +1407,6 @@ def admin_screen(request):
             'output': output
         }
         return render(request, 'upload_screen.html', context)
-
     return render(request, 'admin_screen.html')
 
 
@@ -1573,6 +1596,7 @@ def map_role_upload(request):
         context1 = {
             'admin_dict': result_set1,
         }
+
         if request.method == 'POST':
 
             print('inside map_role_upload')
@@ -1582,15 +1606,22 @@ def map_role_upload(request):
             df = pd.read_csv(uploaded_data)
             print(df)
             for temp in df.index:
-                print(df['username'][temp], df['roles'][temp],df['email'][temp],df['password'][temp])
+                print(df['username'][temp], df['roles'][temp], df['email'][temp], df['password'][temp])
                 user_final = User.objects.create_user(username=df['username'][temp],
                                                 email=df['email'][temp],
                                                 password=df['password'][temp])
-                print('user :',user_final)
+                print('user :', user_final)
 
                 group_final = df['roles'][temp]
+                # import ipdb
+                # ipdb.set_trace()
 
-                user_final.groups.add(group_final)
+                my_group = Group.objects.get(name=group_final)
+                print(my_group)
+                my_group.user_set.add(user_final)
+
+                # user_final.groups.add(group_final)
+                cursor = connection.cursor()
             try:
                 cursor.execute('EXEC sp_admin_map_roles')
                 result_set = cursor.fetchall()
@@ -1604,6 +1635,7 @@ def map_role_upload(request):
 
             finally:
                 cursor.close()
+
         return render(request, 'map_role.html', context1)
 
     finally:
